@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(require('./router/auth'));
 
 app.get('/',(req,res) => {
-    res.send(`Hello world from home`);
+    res.send(`Hello worldddd`);
 });
 
 app.listen(port || process.env.port, ()=> {
