@@ -22,7 +22,7 @@ app.use("/api", studentRoutes);
 
 
 app.get('/',(req,res) => {
-    res.send(`Hello worldddd abc returns`);
+    res.send(`Hello worldddd abc returns one`);
 });
 
 app.listen(port || process.env.port, ()=> {

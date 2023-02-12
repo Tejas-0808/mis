@@ -2,20 +2,18 @@ const express = require('express');
 const router = express.Router();
 http = require('http');
 const util = require('util');
-const { pool } = require('../db/mySql')
+const { pool } = require('../db/mySql');
+const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
 
 
-router.get('/',(req,res) => {
-    res.send(`Hello worldd `);
-});
 
-router.post('/student', async (req, res) => {
-    
+//Adding student data
+router.post('/student_info', async (req, res) => {
 
-    const { idstudent, name, age, email } = req.body;
+    const {Reg_Id, roll_no, First_Name, Middle_Name, Last_Name, Email_id, Mobile_No, Caste, Religion, Nationality, Category, Blood_group, Gender, D_O_B, Birth_Place, Marital_Status, Seat_type, Student_type, Addhar_no, Permanent_Add, Current_Add, Physically_handicapped, Branch, Photo, Signature, Fathers_Name, Fathers_email, Fathers_mobile, Fathers_occupation, Fathers_officeno, Mothers_Name, Mothers_email, Mothers_mobile, Mothers_occupation, Mothers_officeno, Guardian_Name, Guardian_email, Guardian_mobile, Guardian_occupation, Guardian_officeno, Date_of_admission, Degree, Payment_type, State_eligibility, Year, Admission_batch, Semester} = req.body;
 
-    if(!idstudent || !name || !age || !email ){
+    if(!Reg_Id ||  !roll_no || !First_Name || !Middle_Name || !Last_Name || !Email_id || !Mobile_No || !Caste || !Religion || !Nationality || !Category || !Blood_group || !Gender || !D_O_B || !Birth_Place || !Marital_Status || !Seat_type || !Student_type || !Addhar_no || !Permanent_Add || !Current_Add || !Physically_handicapped ) {
         return res.status(422).json({error: "plz fill all fields properly"});
     }
 
@@ -23,7 +21,7 @@ router.post('/student', async (req, res) => {
 
         (async()=>{
             try{
-                const data = await query("SELECT * FROM student WHERE idstudent=?",[idstudent]);
+                const data = await query("SELECT * FROM student_info WHERE Reg_Id=?",[Reg_Id]);
                 userExists = await data[0];
             }
             finally{
@@ -34,7 +32,54 @@ router.post('/student', async (req, res) => {
                 (async()=>{
                     try{
 
-                      const data = await query("INSERT INTO student VALUES(?,?,?,?)",[idstudent, name, age, email]);
+                      const data = await query("INSERT INTO student_info VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",[
+                        Reg_Id, 
+                        roll_no, 
+                        First_Name, 
+                        Middle_Name, 
+                        Last_Name, 
+                        Email_id, 
+                        Mobile_No, 
+                        Caste, 
+                        Religion, 
+                        Nationality, 
+                        Category, 
+                        Blood_group, 
+                        Gender, 
+                        D_O_B, 
+                        Birth_Place, 
+                        Marital_Status, 
+                        Seat_type, 
+                        Student_type, 
+                        Addhar_no, 
+                        Permanent_Add, 
+                        Current_Add, 
+                        Physically_handicapped, 
+                        Branch, 
+                        Photo, 
+                        Signature, 
+                        Fathers_Name, 
+                        Fathers_email,
+                        Fathers_mobile, 
+                        Fathers_occupation, 
+                        Fathers_officeno, 
+                        Mothers_Name, 
+                        Mothers_email, 
+                        Mothers_mobile, 
+                        Mothers_occupation, 
+                        Mothers_officeno, 
+                        Guardian_Name, 
+                        Guardian_email, 
+                        Guardian_mobile,
+                        Guardian_occupation, 
+                        Guardian_officeno, 
+                        Date_of_admission, 
+                        Degree, 
+                        Payment_type, 
+                        State_eligibility, 
+                        Year, 
+                        Admission_batch, 
+                        Semester ]);
                       console.log(data[0]);
                       //const data = await query("UPDATE users SET name=?,phone=?,city=?,state=?,country=?,password=?,cpassword=?,emailToken=? WHERE email=?",[name,phone,city,state,country,pass,cpass,Token,email]);
                       res.status(200).json({msg: "User added successfully"})
@@ -53,39 +98,6 @@ router.post('/student', async (req, res) => {
          console.log(err);
      }
 });
-// router.post('/student', async (req, res) => {
-//     try {
-//       const { id, name, age, email } = req.body;
-//       const data = await query('INSERT INTO student (id, name, age, email) VALUES ($1, $2, $3, $4)', [id, name, age, email]);
-//       res.send({
-//         message: 'Student added successfully',
-//         student: {
-//             id,
-//           name,
-//           age,
-//           email
-//         }
-//       });
-//     } catch (err) {
-//       console.error(err.message);
-//       res.status(500).send({
-//         message: 'Error adding student'
-//       });
-//     }
-//   });
-  
 
-// router.post('/student',async(req,res)=>{
-//     try{
-                
-//                     //const data = await query("SELECT * FROM student_login whEre roll_no=?",[username]);
-//                     const data = await query();
-//                     res.send('profile');
-                
-//         } 
-//     catch(err){
-//         console.log(err);
-//     }
-// })
 
 module.exports = router;

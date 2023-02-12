@@ -1,13 +1,6 @@
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-    host     : 'mis.mysql.database.azure.com',
-    port     : '3306',
-    user     : 'pgaikwad',
-    password : 'India@17pg',
-    database : 'mis'
-});
-
+const connection = require('../db/mySql');
 exports.listStudents = (req, res) => {
   connection.query('SELECT * FROM students', (err, results) => {
     if (err) throw err;
