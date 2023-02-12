@@ -2,11 +2,11 @@ const mysql = require('mysql2');
 
 
 const pool = mysql.createPool({
-  host     : 'localhost',
+  host     : 'mis.mysql.database.azure.com',
   port     : '3306',
-  user     : 'root',
-  password : '',
-  database : 'mis_db'
+  user     : 'pgaikwad',
+  password : 'India@17pg',
+  database : 'mis'
 });
 
 
@@ -24,8 +24,6 @@ const pool = mysql.createPool({
 //   }
 //   console.log(result);
 // });
-
-
 
 
 module.exports = pool.promise();
