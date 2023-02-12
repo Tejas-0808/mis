@@ -6,8 +6,6 @@ const { pool } = require('../db/mySql')
 const query = util.promisify(pool.query).bind(pool);
 
 
-
-
 router.get('/get',async(req,res)=>{
     try{
         res.send({"message":""});
