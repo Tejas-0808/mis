@@ -11,7 +11,6 @@ const query = util.promisify(pool.query).bind(pool);
 //filling staff details
 router.post('/staff_data', async (req, res) => {
 
-
     const {staff_id, staff_username, First_name, Middle_Name, Last_Name, Branch_id, Qualifications, role_id, Email_id, Phone_no, Address, Gender, Martial_Status } = req.body;
 
     if(!staff_id || !staff_username || !First_name || !Middle_Name || !Last_Name || !Branch_id || !Qualifications || !Email_id || !Phone_no || !Address || !Gender || !Martial_Status){
