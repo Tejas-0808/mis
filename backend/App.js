@@ -16,7 +16,7 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(require('./router/hod'));
 //app.use(require('./router/student'));
-
+app.use(require('./router/branch'));
 
 app.get('/',(req,res) => {
     res.send(`Hello worldddd abc returns one`);

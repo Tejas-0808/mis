@@ -1,11 +1,19 @@
 const mysql = require('mysql2');
 
 
+// const pool = mysql.createPool({
+//   host     : 'mis.mysql.database.azure.com',
+//   port     : '3306',
+//   user     : 'pgaikwad',
+//   password : 'India@17pg',
+//   database : 'mis'
+// });
+
 const pool = mysql.createPool({
-  host     : 'mis.mysql.database.azure.com',
+  host     : 'localhost',
   port     : '3306',
-  user     : 'pgaikwad',
-  password : 'India@17pg',
+  user     : 'root',
+  password : '',
   database : 'mis'
 });
 
