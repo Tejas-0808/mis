@@ -17,6 +17,11 @@ app.use(express.json());
 app.use(require('./router/hod'));
 //app.use(require('./router/student'));
 app.use(require('./router/branch'));
+app.use(require('./router/structure'));
+app.use(require('./router/staff_details'));
+app.use(require('./router/privilege'));
+
+
 
 app.get('/',(req,res) => {
     res.send(`Hello worldddd abc returns one`);
