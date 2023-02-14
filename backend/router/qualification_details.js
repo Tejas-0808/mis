@@ -33,9 +33,9 @@ router.get("/qualification_details", async (req,res)=> {
 
 router.post('/qualification_details', async (req, res) => {
 
-    //const {Reg_Id, Custom_Id, Exam_type, Month_of_Passing,Year_of_exam,Board,School/college_name,Address_School/college,Marks_obtained,Our_of_marks}= req.body;
+    const {Reg_Id, Custom_Id, Exam_type, Month_of_Passing,Year_of_exam,Board,School_college_name,Address_School_college,Marks_obtained,Out_of_marks}= req.body;
     
-        if(!Reg_Id || !Custom_Id || !Exam_type || !Month_of_Passing || !Year_of_exam || !Board || !School/college_name || !Address_School/college || !Marks_obtained || !Our_of_marks){
+        if(!Reg_Id || !Custom_Id || !Exam_type || !Month_of_Passing || !Year_of_exam || !Board || !School_college_name || !Address_School_college || !Marks_obtained || !Out_of_marks){
             return res.status(422).json({error: "Please fill all fields properly"}); 
         }
     
@@ -54,7 +54,7 @@ router.post('/qualification_details', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO qualification_details VALUES(?,?,?,?,?,?,?,?,?,?)",[Reg_Id, Custom_Id, Exam_type, Month_of_Passing,Year_of_exam,Board,School/college_name,Address_School/college,Marks_obtained,Our_of_marks ]);
+                          const data = await query("INSERT INTO qualification_details VALUES(?,?,?,?,?,?,?,?,?,?)",[Reg_Id, Custom_Id, Exam_type, Month_of_Passing,Year_of_exam,Board,School_college_name,Address_School_college,Marks_obtained,Out_of_marks ]);
                           console.log(data[0]);
                           res.status(200).json({msg: "Student Qualifications added successfully"})
                         }
