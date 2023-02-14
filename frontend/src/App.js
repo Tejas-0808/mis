@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// import { createRoot } from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import Branch from "./components/Branch";
+import Student from "./components/Student";
+//import Staff from "./components/Staff";
+import Add from "./components/Add";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Branch/>}/>
+          <Route path="/add" element={<Add/>}/>
+          <Route path="/student" element={<Student/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

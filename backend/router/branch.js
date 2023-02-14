@@ -34,7 +34,11 @@ router.get("/branch", async (req,res)=> {
 router.post('/branch', async (req, res) => {
 
     const {Branch_id, Branch_name, HOD, students_enrolled} = req.body;
-    
+    console.log(Branch_id);
+    console.log(Branch_name);
+    console.log(HOD);
+    console.log(students_enrolled);
+
         if(!Branch_id || !Branch_name || !HOD || !students_enrolled){
             return res.status(422).json({error: "plz fill all fields properly"});
         }

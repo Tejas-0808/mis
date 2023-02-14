@@ -1,5 +1,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
 dotenv.config({path:'./config.env'});
 const bodyParser = require('body-parser');
@@ -14,6 +16,8 @@ const port = process.env.PORT || 3001;
 
 
 app.use(express.json());
+app.use(cors());
+
 app.use(require('./router/hod'));
 //app.use(require('./router/student'));
 app.use(require('./router/branch'));
