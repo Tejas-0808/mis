@@ -10,12 +10,12 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/branch", async (req,res)=> {
+router.get("/structure", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM branch");
+            const data = await query("SELECT * FROM structure");
             const result = await data;
             return res.json(result);
 
@@ -28,18 +28,15 @@ router.get("/branch", async (req,res)=> {
         console.log(err);
         return res.status(400).json({error: err});
     }
-})
+})   
 
 
-router.post('/branch', async (req, res) => {
+router.post('/structure', async (req, res) => {    
 
-    const {Branch_id, Branch_name, HOD, students_enrolled} = req.body;
-    console.log(Branch_id);
-    console.log(Branch_name);
-    console.log(HOD);
-    console.log(students_enrolled);
-
-        if(!Branch_id || !Branch_name || !HOD || !students_enrolled){
+    const {strid,scheme_id,category,semester,branch_id,board_of_study,coursecode,coursename,lecture,tut,pract,ise1,ise2,ise3,PR,TW,ese,total_marks,total_credits} = req.body;
+    
+        if(!strid || !scheme_id || !category || !semester || !branch_id || !board_of_study || !coursecode || !coursename
+            || !lecture || !tut || !pract || !ise1 || !ise2 || !ise3 || !PR || !TW || !ese || !total_marks || !total_credits){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -47,7 +44,7 @@ router.post('/branch', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
+                    const data = await query("SELECT * FROM structure WHERE strid=?",[strid]);
                     userExists = await data[0];
                 }
                 finally{
@@ -58,9 +55,11 @@ router.post('/branch', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO branch VALUES(?,?,?,?)",[Branch_id, Branch_name, HOD, students_enrolled ]);
+                          const data = await query("INSERT INTO structure VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                          [strid,scheme_id,category,semester,branch_id,board_of_study,coursecode,coursename,lecture,tut
+                            ,pract,ise1,ise2,ise3,PR,TW,ese,total_marks,total_credits]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "Branch added successfully"})
+                          res.status(200).json({msg: "Structure added successfully"})
                         }
                         finally{
                             
@@ -68,7 +67,7 @@ router.post('/branch', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "Branch already exists"});
+                    return res.status(422).json({error: "Structure already exists"});
                 }     
            })()
          }

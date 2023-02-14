@@ -10,12 +10,12 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/branch", async (req,res)=> {
+router.get("/privilege", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM branch");
+            const data = await query("SELECT * FROM privilege");
             const result = await data;
             return res.json(result);
 
@@ -31,15 +31,11 @@ router.get("/branch", async (req,res)=> {
 })
 
 
-router.post('/branch', async (req, res) => {
+router.post('/privilege', async (req, res) => {
 
-    const {Branch_id, Branch_name, HOD, students_enrolled} = req.body;
-    console.log(Branch_id);
-    console.log(Branch_name);
-    console.log(HOD);
-    console.log(students_enrolled);
-
-        if(!Branch_id || !Branch_name || !HOD || !students_enrolled){
+    const {role_id,role} = req.body;
+    
+        if(!role_id || !role ){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -47,7 +43,7 @@ router.post('/branch', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
+                    const data = await query("SELECT * FROM privilege WHERE role_id=?",[role_id]);
                     userExists = await data[0];
                 }
                 finally{
@@ -58,9 +54,9 @@ router.post('/branch', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO branch VALUES(?,?,?,?)",[Branch_id, Branch_name, HOD, students_enrolled ]);
+                          const data = await query("INSERT INTO privilege VALUES(?,?)",[role_id,role ]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "Branch added successfully"})
+                          res.status(200).json({msg: "privilege added successfully"})
                         }
                         finally{
                             
@@ -68,7 +64,7 @@ router.post('/branch', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "Branch already exists"});
+                    return res.status(422).json({error: "privilege already exists"});
                 }     
            })()
          }

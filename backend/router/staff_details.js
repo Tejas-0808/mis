@@ -10,12 +10,12 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/branch", async (req,res)=> {
+router.get("/staff_details", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM branch");
+            const data = await query("SELECT * FROM staff_details");
             const result = await data;
             return res.json(result);
 
@@ -31,15 +31,12 @@ router.get("/branch", async (req,res)=> {
 })
 
 
-router.post('/branch', async (req, res) => {
+router.post('/staff_details', async (req, res) => {
 
-    const {Branch_id, Branch_name, HOD, students_enrolled} = req.body;
-    console.log(Branch_id);
-    console.log(Branch_name);
-    console.log(HOD);
-    console.log(students_enrolled);
-
-        if(!Branch_id || !Branch_name || !HOD || !students_enrolled){
+    const {Staff_id,First_name,Middle_Name,Last_Name,Branch_id,Qualifications,role_id ,Email_id,Phone_no,Address,Gender,Marital_Status} = req.body;
+    
+        if(!Staff_id || !First_name || !Middle_Name || !Last_Name || !Branch_id || !Qualifications || !role_id || !Email_id
+            || !Phone_no || !Address || !Gender || !Marital_Status){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -47,7 +44,7 @@ router.post('/branch', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
+                    const data = await query("SELECT * FROM staff_details WHERE Staff_id=?",[Staff_id]);
                     userExists = await data[0];
                 }
                 finally{
@@ -58,9 +55,10 @@ router.post('/branch', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO branch VALUES(?,?,?,?)",[Branch_id, Branch_name, HOD, students_enrolled ]);
+                          const data = await query("INSERT INTO Staff_details VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",[Staff_id,First_name,Middle_Name,Last_Name,Branch_id,Qualifications,role_id ,
+                            Email_id,Phone_no,Address,Gender,Marital_Status]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "Branch added successfully"})
+                          res.status(200).json({msg: "Staff_details added successfully"})
                         }
                         finally{
                             
@@ -68,7 +66,7 @@ router.post('/branch', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "Branch already exists"});
+                    return res.status(422).json({error: "staff_details already exists"});
                 }     
            })()
          }

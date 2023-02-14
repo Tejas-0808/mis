@@ -10,12 +10,12 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/branch", async (req,res)=> {
+router.get("/master_scheme", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM branch");
+            const data = await query("SELECT * FROM master_scheme");
             const result = await data;
             return res.json(result);
 
@@ -31,36 +31,33 @@ router.get("/branch", async (req,res)=> {
 })
 
 
-router.post('/branch', async (req, res) => {
+router.post("/master_scheme", async (req, res) => {
 
-    const {Branch_id, Branch_name, HOD, students_enrolled} = req.body;
-    console.log(Branch_id);
-    console.log(Branch_name);
-    console.log(HOD);
-    console.log(students_enrolled);
-
-        if(!Branch_id || !Branch_name || !HOD || !students_enrolled){
+    const {mastersch_id, master_scheme, from_year, to_year} = req.body;
+    
+        if(!mastersch_id || !master_scheme || !from_year || !to_year){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
          try{
     
             (async()=>{
-                try{
-                    const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
-                    userExists = await data[0];
-                }
-                finally{
-                    // pool.end();
-                }
+                // try{
+                //     const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
+                //     userExists = await data[0];
+                // }
+                // finally{
+                //     // pool.end();
+                // }
     
-                if(!userExists){            
+                if(true){   
+                           
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO branch VALUES(?,?,?,?)",[Branch_id, Branch_name, HOD, students_enrolled ]);
+                          const data = await query("INSERT INTO master_scheme VALUES(?,?,?,?)",[mastersch_id, master_scheme, from_year, to_year ]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "Branch added successfully"})
+                          res.status(200).json({msg: "Scheme added successfully"})
                         }
                         finally{
                             
@@ -68,7 +65,7 @@ router.post('/branch', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "Branch already exists"});
+                    return res.status(422).json({error: "Scheme already exists"});
                 }     
            })()
          }
