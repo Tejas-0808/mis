@@ -47,7 +47,7 @@ const Branch = () => {
         </h1>
         <div className="branch">
         {branch.map((branch) => (
-          <div key={branch.Branch_id} className="brach">
+          <div key={branch.Branch_id} className="branch">
             <h2>{branch.Branch_id}</h2>
             <p>{branch.Branch_name}</p>
             <p>{branch.HOD}</p>
