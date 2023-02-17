@@ -37,7 +37,7 @@ app.use(require('./router/linkassigned'));
 app.use(require('./router/b_o_s'));
 
 app.get('/',(req,res) => {
-    res.send(`Hello worldddd abc returns one`);
+    res.send(`Hello world`);
 });
 
 app.listen(port || process.env.port, ()=> {
