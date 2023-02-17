@@ -77,5 +77,28 @@ router.post('/branch', async (req, res) => {
          }
     });
 
+router.delete("/branch/:id", async (req, res) => {
+
+    const Branchid = req.params.id;
+    console.log(Branchid);
+    try{
+
+        (async()=>{
+                const q = "Delete from branch where Branch_id = ?"
+
+                pool.query(q,[Branchid],(err,data)=>{
+                    if(err) return res.json(err);
+                        
+                    return res.json("Branch has been deleted");
+                })
+        })()
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({error: err});
+    }
+    
+})
+
 
 module.exports = router;
