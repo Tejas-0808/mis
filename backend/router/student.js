@@ -6,6 +6,25 @@ const { pool } = require('../db/mySql');
 const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
 
+router.get("/student", async (req,res)=> {
+    try{
+
+        (async()=>{
+            
+            const data = await query("SELECT * FROM student_info");
+            const result = await data;
+            return res.json(result);
+
+            // return res.json(data);
+            console.log(result);
+            
+        })()
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({error: err});
+    }
+})
 
 
 //Adding student data
