@@ -35,6 +35,9 @@ app.use(require('./router/scheme'));
 app.use(require('./router/login_details'));
 app.use(require('./router/linkassigned'));
 app.use(require('./router/b_o_s'));
+app.use(require('./router/citylist'));
+app.use(require('./router/state'));
+
 
 app.get('/',(req,res) => {
     res.send(`Hello world`);
