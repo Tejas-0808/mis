@@ -23,10 +23,20 @@ function App() {
           <Route path="/" element={<Branch/>}/>
           <Route path="/add" element={<Add/>}/>
           <Route path="/student" element={<Student/>}/>
+<<<<<<< HEAD
           <Route path="/contact_details" element={<Student_info/>}/>
           <Route path="/Add_contact_details" element={<Add_C_d/>}/>
           <Route path="/Add_Education_details" element={<Add_EducationDetails/>}/>
           <Route path="/Education_details" element={<Educationdetails/>}/>
+=======
+          <Route path="/addPayment" element={<AddPaymentType/>}/>
+          <Route path="/payment" element={<PaymentType/>}/>
+          <Route path="/city" element={<City/>}/>
+          <Route path="/addcity" element={<Addcity/>}/>
+          <Route path="/state" element={<State/>}/>
+          <Route path="/addstate" element={<AddState/>}/>
+
+>>>>>>> 0af2785b3d3fb840e6334f4ce01b98ae1b0ce99e
         </Routes>
       </BrowserRouter>
     </div>
