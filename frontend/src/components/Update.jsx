@@ -25,7 +25,7 @@ function Update() {
         e.preventDefault();
         try {
           await axios.put("http://localhost:3001/branch/" + B_id, branch);
-          navigate("/");
+          navigate("/branch");
         } catch (err) {
           console.log(err);
           // setError(true)
