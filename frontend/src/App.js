@@ -10,12 +10,12 @@ import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 //import Staff from "./components/Staff";
-import Add from "./components/Add";
+// import Add from "./components/Add";
 import Edit from "./components/Studentsection/Academic/Masters/Edit";
 import City from "./components/Studentsection/Academic/Masters/City";
 import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import Add from "./components/Admin/Academic/Addbranch";
-import City from "./components/Studentsection/Academic/Masters/City"
+// import City from "./components/Studentsection/Academic/Masters/City"
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity"
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
