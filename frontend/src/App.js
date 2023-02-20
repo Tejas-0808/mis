@@ -16,6 +16,7 @@ import City from "./components/Studentsection/Academic/Masters/City"
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity"
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
+import Update from "./components/Update";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
+          <Route path="/update/:id" element={<Update/>}/>
 
         </Routes>
       </BrowserRouter>

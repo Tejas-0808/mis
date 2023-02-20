@@ -53,6 +53,7 @@ const Branch = () => {
             <p>{branch.HOD}</p>
             <p>{branch.Students_enrolled}</p>
             <button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
+            <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button>
             </div>
         ))}
         <button>
