@@ -17,6 +17,10 @@ import Addcity from "./components/Studentsection/Academic/Masters/Addcity"
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
 import Update from "./components/Update";
+import Student_info from "./components/Student/Profile/Contactdetails";
+import Add_C_d from "./components/Student/Profile/Add_contact_details";
+import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
+import Educationdetails from "./components/Student/Profile/Educationdetails";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
           <Route path="/" element={<Branch/>}/>
           <Route path="/add" element={<Add/>}/>
           <Route path="/student" element={<Student/>}/>
+          <Route path="/contact_details" element={<Student_info/>}/>
+          <Route path="/Add_contact_details" element={<Add_C_d/>}/>
+          <Route path="/Add_Education_details" element={<Add_EducationDetails/>}/>
+          <Route path="/Education_details" element={<Educationdetails/>}/>
           <Route path="/addPayment" element={<AddPaymentType/>}/>
           <Route path="/payment" element={<PaymentType/>}/>
           <Route path="/city" element={<City/>}/>
