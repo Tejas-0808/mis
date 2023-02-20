@@ -19,13 +19,8 @@ import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
 import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
 import Home from "./components/Home";
-import Add from "./components/Add";
 import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType"
 import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType"
-import City from "./components/Studentsection/Academic/Masters/City"
-import Addcity from "./components/Studentsection/Academic/Masters/Addcity"
-import State from "./components/Studentsection/Academic/Masters/State";
-import AddState from "./components/Studentsection/Academic/Masters/AddState";
 import Update from "./components/Update";
 import Student_info from "./components/Student/Profile/Contactdetails";
 import Add_C_d from "./components/Student/Profile/Add_contact_details";
