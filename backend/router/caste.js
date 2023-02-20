@@ -17,10 +17,10 @@ router.get("/caste", async (req,res)=> {
             
             const data = await query("SELECT * FROM caste_list");
             const result = await data;
+            console.log(result);
             return res.json(result);
 
             // return res.json(data);
-            console.log(result);
             
         })()
     }
@@ -98,7 +98,28 @@ router.delete("/caste/:id", async (req, res) => {
         return res.status(400).json({error: err});
     }
     
-})
+});
+
+router.put("/caste/:id", async(req, res) => {
+    const casteId = req.params.id;
+    console.log(casteId);
+    try{
+        (async()=>{
+            const q = "UPDATE caste_list SET `caste_id` = ?, `caste_name` = ? WHERE caste_id = ?"
+            const value = [
+                req.body.caste_id,
+                req.body.caste_name
+            ]
+
+            pool.query(q, [...value, casteId], (err, data)=>{
+                if(err) return res.json(err);
+                return res.json("Caste has been updated.");
+            })
+        })()
+    }catch(err){
+        console.log(err);
+    }
+});
 
 
 module.exports = router;
