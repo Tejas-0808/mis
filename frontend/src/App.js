@@ -19,6 +19,11 @@ import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
 import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
 import Home from "./components/Home";
+import Add from "./components/Add";
+import Student_info from "./components/Student/Profile/Contactdetails";
+import Add_C_d from "./components/Student/Profile/Add_contact_details";
+import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
+import Educationdetails from "./components/Student/Profile/Educationdetails";
 
 function App() {
   return (
@@ -29,6 +34,12 @@ function App() {
           <Route path="/branch" element={<Branch/>}/>
           <Route path="/add" element={<Add/>}/>
           <Route path="/student" element={<Student/>}/>
+          <Route path="/contact_details" element={<Student_info/>}/>
+          <Route path="/Add_contact_details" element={<Add_C_d/>}/>
+          <Route path="/Add_Education_details" element={<Add_EducationDetails/>}/>
+          <Route path="/Education_details" element={<Educationdetails/>}/>
+          <Route path="/addPayment" element={<AddPaymentType/>}/>
+          <Route path="/payment" element={<PaymentType/>}/>
           <Route path="/city" element={<City/>}/>
           <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/state" element={<State/>}/>
