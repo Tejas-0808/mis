@@ -36,6 +36,8 @@ router.post('/city', async (req, res) => {
     const {city_id, city_name, isDistrict, state_id} = req.body;
     console.log(city_id);
     console.log(city_name);
+    console.log(isDistrict);
+    console.log(state_id);
     // console.log(HOD);
     // console.log(students_enrolled);
 
