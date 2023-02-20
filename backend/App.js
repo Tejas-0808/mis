@@ -28,6 +28,7 @@ app.use(require('./router/structure'));
 app.use(require('./router/staff_details'));
 app.use(require('./router/privilege'));
 app.use(require('./router/caste'));
+app.use(require('./router/religion'));
 app.use(require('./router/category'));
 app.use(require('./router/payment_type'));
 app.use(require('./router/master_scheme'));

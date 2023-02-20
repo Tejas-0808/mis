@@ -1,10 +1,11 @@
 import React from 'react'
-import { useState, } from 'react';
+import { useState, useEffect} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 function NewStudent() {
+  
   const [branch, setBranch] = useState({
     Branch_id: "",
     Branch_name: "",
@@ -29,17 +30,49 @@ function NewStudent() {
       };
 
   console.log(branch);
-  const [data, setData] = useState([]);
+ 
+  
+      
+
+
+  const [caste, setCaste] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/caste')
+    axios.get('http://localhost:3001/caste')
       .then(response => {
-        setData(response.data);
+        setCaste(response.data);
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/category')
+      .then(response => {
+        setCategory(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+  const [religion, setReligion] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/religion')
+      .then(response => {
+        setReligion(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const [selectedOption, setSelectedOption] = useState(null);
+  const handleCheckboxChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
   return (
     <div className="form">
       NEW STUDENT ENTRY
@@ -51,11 +84,48 @@ function NewStudent() {
       <input type="number" placeholder="Phone No" name="Phone_No" onChange={handleChange}/>
       <input type="date" placeholder="dob" name="D.O.B" onChange={handleChange}/>
       <input type="text" placeholder="bloodgroup" name="Blood_group" onChange={handleChange}/>
-      <input type="text" placeholder="caste" name="Caste" onChange={handleChange}/>
-      <input type="text" placeholder="category" name="Category" onChange={handleChange}/>
-      <input type="text" placeholder="Admission Category" name="AdmissionCategory" onChange={handleChange}/>
-      <input type="text" placeholder="caste" name="Caste" onChange={handleChange}/>
-      <input type="number" placeholder="Student enrolled" name="students_enrolled" onChange={handleChange}/>
+      <select name="dropdown" placeholder="Select caste" className="form-select-caste" onChange={handleChange} required>
+      <option value="">-- Select caste --</option>
+      {caste.map(item=> (
+        <option key={item.caste_id} value={item.caste_id}>{item.caste_name}</option>
+      ))}
+      </select>
+   
+    <select name="dropdown" placeholder="Select Category" className="form-select-category" onChange={handleChange} required>
+      <option value="">-- Select category --</option>
+      {category.map((item) => (
+        <option key={item.category_id} value={item.category_id}>{item.category_name}</option>
+      ))}
+    </select>
+    <select name="dropdown" placeholder="Select Religion" className="form-select-religion" onChange={handleChange} required>
+      <option value="">-- Select Religion --</option>
+      {religion.map(item => (
+        <option key={item.religion_id} value={item.religion_id}>{item.Religion_name}</option>
+      ))}
+    </select>
+    <h5>
+      Martial Status
+    </h5>
+    <label>
+        <input
+          type="checkbox"
+          name="married"
+          value="married"
+          checked={selectedOption === 'married'}
+          onChange={handleCheckboxChange}
+        />
+        Married
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          name="unmarried"
+          value="unmarried"
+          checked={selectedOption === 'unmarried'}
+          onChange={handleCheckboxChange}
+        />
+        Unmarried
+      </label>
       <button onClick={handleClick}>Add</button>
     </div>
   )
