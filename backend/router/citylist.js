@@ -9,17 +9,18 @@ const query = util.promisify(pool.query).bind(pool);
 
 
 //adding branch
-router.get("/payment", async (req,res)=> {
+
+router.get("/city", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM payment_type_list");
+            const data = await query("SELECT * FROM city_list");
             const result = await data;
+            console.log(result+"1");
             return res.json(result);
 
             // return res.json(data);
-            console.log(result);
             
         })()
     }
@@ -30,15 +31,17 @@ router.get("/payment", async (req,res)=> {
 })
 
 
-router.post('/payment', async (req, res) => {
+router.post('/city', async (req, res) => {
 
-    const {payment_id, payment_type, category_id} = req.body;
-    console.log(payment_id);
-    console.log(payment_type);
-    console.log(category_id);
+    const {city_id, city_name, isDistrict, state_id} = req.body;
+    console.log(city_id);
+    console.log(city_name);
+    console.log(isDistrict);
+    console.log(state_id);
+    // console.log(HOD);
     // console.log(students_enrolled);
 
-        if(!payment_id || !payment_type || !category_id){
+        if(!city_id || !city_name || !isDistrict || !state_id){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -46,20 +49,20 @@ router.post('/payment', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM payment_type_list WHERE payment_id=?",[payment_id]);
-                    userExists = await data[0];
+                    const data = await query("SELECT * FROM city_list WHERE city_name=?",[city_name]);
+                    cityExists = await data[0];
                 }
                 finally{
                     // pool.end();
                 }
     
-                if(!userExists){            
+                if(!cityExists){            
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO payment_type_list VALUES(?,?,?)",[payment_id, payment_type, category_id ]);
+                          const data = await query("INSERT INTO city_list VALUES(?,?,?,?)",[city_id, city_name, isDistrict, state_id]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "payment type added successfully"})
+                          res.status(200).json({msg: "city added successfully"})
                         }
                         finally{
                             
@@ -67,7 +70,7 @@ router.post('/payment', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "payment type already exists"});
+                    return res.status(422).json({error: "city already exists"});
                 }     
            })()
          }
@@ -76,19 +79,19 @@ router.post('/payment', async (req, res) => {
          }
     });
 
-router.delete("/payment/:id", async (req, res) => {
+router.delete("/city/:id", async (req, res) => {
 
-    const paymentid = req.params.id;
-    console.log(paymentid);
+    const cityid = req.params.id;
+    console.log(cityid);
     try{
 
         (async()=>{
-                const q = "Delete from payment_type_list where payment_id = ?"
+                const q = "Delete from city_list where city_id = ?"
 
-                pool.query(q,[paymentid],(err,data)=>{
+                pool.query(q,[cityid],(err,data)=>{
                     if(err) return res.json(err);
                         
-                    return res.json("Payment type has been deleted");
+                    return res.json("city has been deleted");
                 })
         })()
     }

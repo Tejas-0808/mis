@@ -42,15 +42,15 @@ router.post("/master_scheme", async (req, res) => {
          try{
     
             (async()=>{
-                // try{
-                //     const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
-                //     userExists = await data[0];
-                // }
-                // finally{
-                //     // pool.end();
-                // }
+                try{
+                    const data = await query("SELECT * FROM master_scheme WHERE mastersch_id=?",[mastersch_id]);
+                    userExists = await data[0];
+                }
+                finally{
+                    // pool.end();
+                }
     
-                if(true){   
+                if(!userExists){   
                            
                     (async()=>{
                         try{
@@ -74,5 +74,28 @@ router.post("/master_scheme", async (req, res) => {
          }
     });
 
+    router.delete("/masterscheme/:id", async (req, res) => {
+
+        const masterschemeid = req.params.id;
+        console.log(masterschemeid);
+        try{
+      
+            (async()=>{
+                    const q = "Delete from master_scheme where mastersch_id = ?"
+      
+                    pool.query(q,[masterschemeid],(err,data)=>{
+                        if(err) return res.json(err);
+                            
+                        return res.json("Master Scheme has been deleted");
+                    })
+            })()
+        }
+        catch (err) {
+            console.log(err);
+            return res.status(400).json({error: err});
+        }
+        
+      })
+      
 
 module.exports = router;

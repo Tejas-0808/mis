@@ -75,7 +75,40 @@ router.post('/branch', async (req, res) => {
          catch(err) {
              console.log(err);
          }
-    });
+});
+
+
+//update the branch
+router.put("/branch/:id", async (req, res) => {
+
+    const Branchid = req.params.id;
+    console.log(Branchid);
+    try{
+
+        (async()=>{
+                const q = "Update branch set `Branch_id` = ?, `Branch_name` = ?, `HOD` = ?, `students_enrolled` = ? where Branch_id = ?"
+
+                const values = [
+                    req.body.Branch_id,
+                    req.body.Branch_name,
+                    req.body.HOD,
+                    req.body.students_enrolled,
+                ]
+
+                pool.query(q,[...values,Branchid],(err,data)=>{
+                    if(err) return res.json(err);
+                        
+                    return res.json("Branch has been updated succesfully");
+                })
+        })()
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({error: err});
+    }
+    
+})
+
 
 router.delete("/branch/:id", async (req, res) => {
 
