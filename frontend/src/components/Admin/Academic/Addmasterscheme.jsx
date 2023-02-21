@@ -21,7 +21,7 @@ function AddMasterscheme() {
         e.preventDefault();
         try {
           await axios.post("http://localhost:3001/master_scheme", Masterscheme);
-          navigate("/masterscheme");
+          navigate("/Masterscheme");
         } catch (err) {
           console.log(err);
           // setError(true)

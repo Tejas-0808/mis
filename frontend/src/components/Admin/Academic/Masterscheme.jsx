@@ -62,4 +62,4 @@ const Masterscheme = () => {
   )
 }
 
-export default Masterscheme
+export default Masterscheme;

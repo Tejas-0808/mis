@@ -10,10 +10,11 @@ import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 //import Staff from "./components/Staff";
-// import Add from "./components/Add";
-import Edit from "./components/Studentsection/Academic/Masters/Edit";
+//import Add from "./components/Add";
 import City from "./components/Studentsection/Academic/Masters/City";
 import Caste from "./components/Studentsection/Academic/Masters/Caste";
+import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
+import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
 // import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
@@ -39,6 +40,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Branch/>}/>
           <Route path="/edit/:id" element={<Edit/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
@@ -57,6 +59,8 @@ function App() {
           <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
+          <Route path="/caste" element={<Caste/>}/>
+          <Route path="/update/:id" element={<Update/>}/>
 
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
