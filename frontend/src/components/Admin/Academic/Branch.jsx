@@ -47,12 +47,13 @@ const Branch = () => {
         </h1>
         <div className="branch">
         {branch.map((branch) => (
-          <div key={branch.Branch_id} className="brach">
+          <div key={branch.Branch_id} className="branch">
             <h2>{branch.Branch_id}</h2>
             <p>{branch.Branch_name}</p>
             <p>{branch.HOD}</p>
             <p>{branch.Students_enrolled}</p>
             <button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
+            <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button>
             </div>
         ))}
         <button>
