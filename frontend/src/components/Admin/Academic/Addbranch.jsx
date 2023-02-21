@@ -21,7 +21,7 @@ function Add() {
         e.preventDefault();
         try {
           await axios.post("http://localhost:3001/branch", branch);
-          navigate("/");
+          navigate("/branch");
         } catch (err) {
           console.log(err);
           // setError(true)

@@ -10,17 +10,18 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/caste", async (req,res)=> {
+router.get("/religion", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM caste_list");
+            const data = await query("SELECT * FROM religion");
             const result = await data;
             console.log(result);
             return res.json(result);
 
             // return res.json(data);
+            console.log(result);
             
         })()
     }
@@ -31,15 +32,15 @@ router.get("/caste", async (req,res)=> {
 })
 
 
-router.post('/caste', async (req, res) => {
+router.post('/religion', async (req, res) => {
 
-    const {caste_id, caste_name} = req.body;
-    console.log(caste_id);
-    console.log(caste_name);
+    const {religion_id, Religion_name} = req.body;
+    console.log(religion_id);
+    console.log(Religion_name);
     // console.log(HOD);
     // console.log(students_enrolled);
 
-        if(!caste_id || !caste_name){
+        if(!religion_id || !Religion_name){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -47,7 +48,7 @@ router.post('/caste', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM caste_list WHERE caste_name=?",[caste_name]);
+                    const data = await query("SELECT * FROM religion WHERE Religion_name=?",[Religion_name]);
                     userExists = await data[0];
                 }
                 finally{
@@ -58,9 +59,9 @@ router.post('/caste', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO caste_list VALUES(?,?)",[caste_id, caste_name ]);
+                          const data = await query("INSERT INTO religion VALUES(?,?)",[religion_id, Religion_name ]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "caste added successfully"})
+                          res.status(200).json({msg: "Religion added successfully"})
                         }
                         finally{
                             
@@ -68,7 +69,7 @@ router.post('/caste', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "caste already exists"});
+                    return res.status(422).json({error: "Religion already exists"});
                 }     
            })()
          }
@@ -77,19 +78,19 @@ router.post('/caste', async (req, res) => {
          }
     });
 
-router.delete("/caste/:id", async (req, res) => {
+router.delete("/relgion/:id", async (req, res) => {
 
-    const casteid = req.params.id;
-    console.log(casteid);
+    const relgionid = req.params.id;
+    console.log(relgionid);
     try{
 
         (async()=>{
-                const q = "Delete from caste_list where caste_id = ?"
+                const q = "Delete from religion where religion_id = ?"
 
-                pool.query(q,[casteid],(err,data)=>{
+                pool.query(q,[religionid],(err,data)=>{
                     if(err) return res.json(err);
                         
-                    return res.json("caste has been deleted");
+                    return res.json("religion has been deleted");
                 })
         })()
     }
@@ -98,28 +99,7 @@ router.delete("/caste/:id", async (req, res) => {
         return res.status(400).json({error: err});
     }
     
-});
-
-router.put("/caste/:id", async(req, res) => {
-    const casteId = req.params.id;
-    console.log(casteId);
-    try{
-        (async()=>{
-            const q = "UPDATE caste_list SET `caste_id` = ?, `caste_name` = ? WHERE caste_id = ?"
-            const value = [
-                req.body.caste_id,
-                req.body.caste_name
-            ]
-
-            pool.query(q, [...value, casteId], (err, data)=>{
-                if(err) return res.json(err);
-                return res.json("Caste has been updated.");
-            })
-        })()
-    }catch(err){
-        console.log(err);
-    }
-});
+})
 
 
 module.exports = router;
