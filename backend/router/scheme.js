@@ -13,10 +13,10 @@ router.get("/scheme", async (req, res) => {
     (async () => {
       const data = await query("SELECT * FROM scheme");
       const result = await data;
+      console.log(result);
       return res.json(result);
 
       // return res.json(data);
-      console.log(result);
     })();
   } catch (err) {
     console.log(err);
@@ -33,15 +33,15 @@ router.post("/scheme", async (req, res) => {
 
   try {
     (async () => {
-      // try{
-      //     const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
-      //     userExists = await data[0];
-      // }
-      // finally{
-      //     // pool.end();
-      // }
+      try{
+          const data = await query("SELECT * FROM scheme WHERE category=?",[category]);
+          userExists = await data[0];
+      }
+      finally{
+          // pool.end();
+      }
 
-      if (true) {
+      if (!userExists) {
         (async () => {
           try {
             const data = await query(
@@ -61,5 +61,28 @@ router.post("/scheme", async (req, res) => {
     console.log(err);
   }
 });
+
+router.delete("/scheme/:id", async (req, res) => {
+
+  const schemeid = req.params.id;
+  console.log(schemeid);
+  try{
+
+      (async()=>{
+              const q = "Delete from scheme where scid = ?"
+
+              pool.query(q,[schemeid],(err,data)=>{
+                  if(err) return res.json(err);
+                      
+                  return res.json("Branch has been deleted");
+              })
+      })()
+  }
+  catch (err) {
+      console.log(err);
+      return res.status(400).json({error: err});
+  }
+  
+})
 
 module.exports = router;

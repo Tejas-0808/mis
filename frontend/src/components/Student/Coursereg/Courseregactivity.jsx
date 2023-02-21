@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 
 
-const CourseRegActivity () => {
+const CourseRegActivity = () => {
     return (<div>
         
         </div>)

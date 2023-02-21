@@ -6,10 +6,10 @@ import axios from "axios";
 
 function Addcity() {
   const [city, setCity] = useState({
-    Branch_id: "",
-    Branch_name: "",
-    HOD: "",
-    students_enrolled: "",
+    city_id: "",
+    city_name: "",
+    isDistrict: "",
+    state_id: "",
   });
 
   const navigate = useNavigate();
