@@ -30,6 +30,20 @@ router.get("/caste", async (req,res)=> {
     }
 })
 
+router.get("/caste/:id", async (req, res) => {
+    const CasteId = req.params.id;
+    try{
+        (async()=> {
+            const data = await query("SELECT * FROM caste_list WHERE caste_id = ?", CasteId);
+            const result = await data[0];
+            console.log(result);
+            return res.json(result);
+        })()
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({error: err})
+    }
+})
 
 router.post('/caste', async (req, res) => {
 
