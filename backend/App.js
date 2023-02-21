@@ -34,6 +34,8 @@ app.use(require('./router/scheme'));
 app.use(require('./router/login_details'));
 app.use(require('./router/linkassigned'));
 app.use(require('./router/b_o_s'));
+app.use(require('./router/attendance'));
+app.use(require('./router/time_table'));
 
 app.get('/',(req,res) => {
     res.send(`Hello worldddd abc returns one`);
