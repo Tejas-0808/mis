@@ -74,7 +74,7 @@ router.post("/master_scheme", async (req, res) => {
          }
     });
 
-    router.delete("/masterscheme/:id", async (req, res) => {
+    router.delete("/master_scheme/:id", async (req, res) => {
 
         const masterschemeid = req.params.id;
         console.log(masterschemeid);
