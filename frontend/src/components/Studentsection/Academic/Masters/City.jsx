@@ -56,7 +56,7 @@ const City = () => {
             </div>
         ))}
         <button>
-            <Link to="/Addcity">Add new City</Link>
+            <Link to="/addcity">Add new City</Link>
         </button>
     </div>
     </div>
