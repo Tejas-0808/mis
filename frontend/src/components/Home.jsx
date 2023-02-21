@@ -34,6 +34,11 @@ function Home() {
             <Link to="/state">State.</Link>
         </button>
       </p>
+      <p>
+        <button>
+            <Link to="/state">State.</Link>
+        </button>
+      </p>
     </div>
   )
 }
