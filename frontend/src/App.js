@@ -39,7 +39,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Branch/>}/>
           <Route path="/edit/:id" element={<Edit/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
