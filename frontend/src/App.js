@@ -51,11 +51,13 @@ function App() {
           <Route path="/Education_details" element={<Educationdetails/>}/>
           <Route path="/addPayment" element={<AddPaymentType/>}/>
           <Route path="/payment" element={<PaymentType/>}/>
-          {/* <Route path="/city" element={<City/>}/>
-          <Route path="/addcity" element={<Addcity/>}/> */}
+          <Route path="/city" element={<City/>}/>
+          <Route path="/caste" element={<Caste/>}/>
+          {/* <Route path="/category" element={<Category/>}/> */}
+          {/* <Route path="/addcity" element={<Addcity/>}/> */}
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
-
+          <Route path = "/update/:id" element={<Update/>}/>
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>

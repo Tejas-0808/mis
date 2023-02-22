@@ -29,9 +29,10 @@ const Caste = () => {
         <div className='caste'>
         {caste.map((caste) => (
             <div key={caste.caste_id} className="caste">
-                <button className='edit'><Link to={`/edit/${caste.caste_id}`}>Edit</Link></button>
+                
                 <p>{caste.caste_id}</p>
                 <p>{caste.caste_name}</p>
+                <button className='edit'><Link to={`/edit/${caste.caste_id}`}>Edit</Link></button>
             </div>
         ))}
         </div>
