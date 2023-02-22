@@ -35,7 +35,7 @@ function UpdateStructure(){
     const fetchStructure = async() => {
         try{
             const res = await axios.get("http://localhost:3001/structure/"+ C_id);
-            setCategory(res.data);
+            setStructure(res.data);
             console.log(Structure);
         }catch(err){
             console.log(err);

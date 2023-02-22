@@ -91,12 +91,35 @@ router.post('/structure', async (req, res) => {
          }
     });
 
+    router.delete("/structure/:id", async (req, res) => {
+
+        const strId = req.params.id;
+        console.log(strId);
+        try{
+    
+            (async()=>{
+                    const q = "Delete from structure where strid = ?"
+    
+                    pool.query(q,[strId],(err,data)=>{
+                        if(err) return res.json(err);
+                            
+                        return res.json("structure has been deleted");
+                    })
+            })()
+        }
+        catch (err) {
+            console.log(err);
+            return res.status(400).json({error: err});
+        }
+        
+    })
+
     router.put("/structure/:id", async(req, res) => {
         const strId = req.params.id;
         console.log(strId);
         try{
             (async()=>{
-                const q = "UPDATE structure SET `caste_id` = ?, `caste_name` = ? WHERE caste_id = ?"
+                const q = "UPDATE structure SET `strid` = ?, `scheme_id` = ?, `category` = ?, `semester` = ?, `branch_id` = ?, `board_of_study` = ?, `coursecode` = ?, `coursename` = ?, `lecture` = ?, `tut` = ?, `pract` = ?, `ise1` = ?, `ise2`= ?, `ise3` = ?, `PR` = ?, `TW` = ?, `ese` = ?, `total_marks` = ?, `total_credits` = ? WHERE strid = ?"
                 const value = [
                     req.body.strid,
                     req.body.scheme_id, 

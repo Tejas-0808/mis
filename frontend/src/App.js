@@ -15,7 +15,7 @@ import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
-// import City from "./components/Studentsection/Academic/Masters/City";
+import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
@@ -42,6 +42,9 @@ import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateR
 import District from "./components/Studentsection/Academic/Masters/District";
 import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
 import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Structure from "./components/Admin/Academic/Structure";
+import AddStructure from "./components/Admin/Academic/AddStructure";
+import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 
 function App() {
   return (
@@ -79,14 +82,21 @@ function App() {
           <Route path="/category" element={<Category/>}/>
           <Route path="/addcategory" element={<AddCategory/>}/>
           <Route path="/updatecategory/:id" element={<UpdateCategory/>}/>
+
           <Route path="/city" element={<City/>}/>
           <Route path="/addcity" element={<Addcity/>}/>
+
           <Route path="/religion" element={<Religion/>}/>
           <Route path="/addreligion" element={<AddReligion/>}/>
           <Route path="/updatereligion/:id" element={<UpdateReligion/>}/>
+
           <Route path="/district" element={<District/>}/>
           <Route path="/adddistrict" element={<AddDistrict/>}/>
           <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+
+          <Route path="/structure" element={<Structure/>}/>
+          <Route path="addstructure" element={<AddStructure/>}/>
+          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
         </Routes>
       </BrowserRouter>
     </div>
