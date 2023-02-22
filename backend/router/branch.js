@@ -41,7 +41,7 @@ router.get("/branch/:id", async (req,res)=> {
             
             const data = await query("SELECT * FROM branch where branch_id = ?", Branchid);
             const result = await data[0];
-            console.log(result);
+            // console.log(result);
             return res.json(result);
 
             // return res.json(data);

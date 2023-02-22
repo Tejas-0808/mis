@@ -26,7 +26,7 @@ import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
 import Home from "./components/Home";
 import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType"
 import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType"
-import Update from "./components/Update";
+import Update from "./components/Admin/Academic/Update";
 import Student_info from "./components/Student/Profile/Contactdetails";
 import Add_C_d from "./components/Student/Profile/Add_contact_details";
 import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
@@ -55,7 +55,7 @@ function App() {
           {/* <Route path="/addcity" element={<Addcity/>}/> */}
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
-
+          <Route path="/update/:id" element={<Update/>}/>
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>
