@@ -20,7 +20,7 @@ function Add() {
   const handleClick = async (e) => {
         e.preventDefault();
         try {
-          await axios.post("http://localhost:3001/branch", branch);
+          await axios.post("http://localhost:3001/branch",branch);
           navigate("/branch");
         } catch (err) {
           console.log(err);
