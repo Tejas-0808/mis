@@ -16,7 +16,7 @@ import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
-import City from "./components/Studentsection/Academic/Masters/City"
+// import City from "./components/Studentsection/Academic/Masters/City"
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity"
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
@@ -34,6 +34,9 @@ import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDet
 import Educationdetails from "./components/Student/Profile/Educationdetails";
 import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
+import Category from "./components/Studentsection/Academic/Masters/Category";
+import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
+import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
 
 function App() {
   return (
@@ -41,7 +44,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Branch/>}/>
-          <Route path="/edit/:id" element={<Edit/>}/>
+          {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
           <Route path="/add" element={<Add/>}/>
@@ -59,11 +62,16 @@ function App() {
           <Route path="/addstate" element={<AddState/>}/>
           <Route path="/caste" element={<Caste/>}/>
           <Route path="/update/:id" element={<Update/>}/>
-
+          <Route path="/addcaste" element={<AddCaste/>}/>
+          <Route path="/updatecaste/:id" element={<UpdateCaste/>}/>
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>
           <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
+
+          <Route path="/category" element={<Category/>}/>
+          <Route path="/addcategory" element={<AddCategory/>}/>
+          <Route path="/updatecategory/:id" element={<UpdateCategory/>}/>
         </Routes>
       </BrowserRouter>
     </div>
