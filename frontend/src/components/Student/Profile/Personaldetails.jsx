@@ -47,7 +47,7 @@ const PersonalDetails = () => {
         </h1>
         <div className="personaldetails">
         {personaldetails.map((personaldetails) => (
-          <div key={personaldetails.roll_no} className="personaldetails">
+          <div key={personaldetails.Reg_Id} className="personaldetails">
             <h2>{personaldetails.Reg_Id}</h2>
             <p>{personaldetails.roll_no}</p>
             <p>{personaldetails.First_Name}</p>
@@ -71,8 +71,9 @@ const PersonalDetails = () => {
             <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Physically_handicapped}</p>
             <p>{personaldetails.Branch}</p>
-            <p>{personaldetails.Photo}</p>
-            <p>{personaldetails.Signature}</p>
+            {/* <p>{personaldetails.Photo}</p> */}
+           
+            {/* <p>{personaldetails.Signature}</p> */}
             <p>{personaldetails.Fathers_Name}</p>
             <p>{personaldetails.Fathers_email}</p>
             <p>{personaldetails.Fathers_mobile}</p>
@@ -93,7 +94,7 @@ const PersonalDetails = () => {
             <p>{personaldetails.State_eligibility}</p>
             <p>{personaldetails.Year}</p>
             <p>{personaldetails.Admission_batch}</p>
-            <p>{personaldetails.Semester}</p>
+            <p>{personaldetails.Semester}</p> 
             <button className="delete" onClick={()=>handleDelete(personaldetails.Reg_Id)}>Delete</button>
             </div>
         ))}

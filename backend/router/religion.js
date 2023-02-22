@@ -31,6 +31,22 @@ router.get("/religion", async (req,res)=> {
     }
 })
 
+//get particular religion
+
+router.get("/religion/:id", async (req, res) => {
+    const ReligionId = req.params.id;
+    try{
+        (async()=> {
+            const data = await query("SELECT * FROM religion WHERE religion_id = ?", ReligionId);
+            const result = await data[0];
+            console.log(result);
+            return res.json(result);
+        })()
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({error: err})
+    }
+})
 
 router.post('/religion', async (req, res) => {
 
@@ -78,10 +94,10 @@ router.post('/religion', async (req, res) => {
          }
     });
 
-router.delete("/relgion/:id", async (req, res) => {
+router.delete("/religion/:id", async (req, res) => {
 
-    const relgionid = req.params.id;
-    console.log(relgionid);
+    const religionid = req.params.id;
+    console.log(religionid);
     try{
 
         (async()=>{
@@ -100,6 +116,28 @@ router.delete("/relgion/:id", async (req, res) => {
     }
     
 })
+
+router.put("/religion/:id", async(req, res) => {
+    const religionId = req.params.id;
+    console.log(religionId);
+    try{
+        (async()=>{
+            const q = "UPDATE religion SET `religion_id` = ?, `Religion_name` = ? WHERE religion_id = ?"
+            const value = [
+                req.body.religion_id,
+                req.body.Religion_name
+            ]
+
+            pool.query(q, [...value, religionId], (err, data)=>{
+                if(err) return res.json(err);
+                return res.json("Religion has been updated.");
+            })
+        })()
+    }catch(err){
+        console.log(err);
+    }
+});
+
 
 
 module.exports = router;
