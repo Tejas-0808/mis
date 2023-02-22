@@ -13,10 +13,10 @@ router.get("/student", async (req,res)=> {
             
             const data = await query("SELECT * FROM student_info");
             const result = await data;
+            console.log(result);
             return res.json(result);
 
             // return res.json(data);
-            console.log(result);
             
         })()
     }
