@@ -76,6 +76,8 @@ function NewStudent() {
   return (
     <div className="form">
       NEW STUDENT ENTRY
+      <hr></hr>
+      <br></br>
       <input type="number" placeholder="reg_id" name="Reg_Id" onChange={handleChange}/>
       <input type="text" placeholder="First Name" name="First_Name" onChange={handleChange}/>
       <input type="text" placeholder="Middle Name" name="Middle_Name" onChange={handleChange}/>
