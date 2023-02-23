@@ -34,14 +34,15 @@ import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDet
 import Educationdetails from "./components/Student/Profile/Educationdetails";
 import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
+import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Branch/>}/>
-          <Route path="/edit/:id" element={<Edit/>}/>
+    
+          {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
           <Route path="/add" element={<Add/>}/>
@@ -66,6 +67,7 @@ function App() {
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>
           <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
+          <Route path="/branchchange" element={<Branchchange/>}/>
         </Routes>
       </BrowserRouter>
     </div>
