@@ -39,6 +39,10 @@ import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateR
 import District from "./components/Studentsection/Academic/Masters/District";
 import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
 import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
+import Add_rolllist from "./components/Studentsection/Academic/Utiity/Addrolllist";
+
+
 
 function App() {
   return (
@@ -55,7 +59,8 @@ function App() {
           <Route path="/Add_Education_details" element={<Add_EducationDetails/>}/>
           <Route path="/Education_details" element={<Educationdetails/>}/>
           <Route path="/PersonalDetails" element={<PersonalDetails/>}/>
-
+          <Route path="/Rolllist" element={<Rolllist/>}/>
+          <Route path="/Add_rolllist" element={<Add_rolllist/>}/>
           <Route path="/addPayment" element={<AddPaymentType/>}/>
           <Route path="/payment" element={<PaymentType/>}/>
           {/* <Route path="/city" element={<City/>}/> */}
