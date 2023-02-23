@@ -59,6 +59,7 @@ const [branch, setbranch] = useState([]);
 
 const [semester, setsemester] = useState([]);
 
+
   useEffect(() => {
     axios
       .get("http://localhost:3001/semester")

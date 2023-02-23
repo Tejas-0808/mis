@@ -139,5 +139,4 @@ router.put("/religion/:id", async(req, res) => {
 });
 
 
-
 module.exports = router;

@@ -11,7 +11,7 @@ function Home() {
       </p>
       <p>
         <button>
-            <Link to="/student">Student</Link>
+            <Link to="/NewStudent">Student</Link>
         </button>
       </p>
       <p>

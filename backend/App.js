@@ -40,7 +40,8 @@ app.use(require('./router/attendance'));
 app.use(require('./router/time_table'));
 app.use(require('./router/citylist'));
 app.use(require('./router/state'));
-app.use(require('./router/district'));
+app.use(require('./router/particularstudent'));
+
 
 app.get('/',(req,res) => {
     res.send(`Hello worldddd abc returns one`);

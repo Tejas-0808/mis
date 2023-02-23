@@ -17,12 +17,14 @@ import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
 import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
+import UpdateCity from "./components/Studentsection/Academic/Masters/UpdateCity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
 import Scheme from "./components/Admin/Academic/Scheme";
 import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
 import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
+import UpdateMasterScheme from "./components/Admin/Academic/UpdateMasterScheme";
 import Home from "./components/Home";
 import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType"
 import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType"
@@ -33,14 +35,8 @@ import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDet
 import Educationdetails from "./components/Student/Profile/Educationdetails";
 import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
-import Religion from "./components/Studentsection/Academic/Masters/Religion";
-import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-import District from "./components/Studentsection/Academic/Masters/District";
-import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
-import Add_rolllist from "./components/Studentsection/Academic/Utiity/Addrolllist";
 
 
 
@@ -49,6 +45,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          {/* <Route path="/" element={<Branch/>}/> */}
+          {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
           <Route path="/add" element={<Add/>}/>
@@ -60,27 +58,18 @@ function App() {
           <Route path="/Education_details" element={<Educationdetails/>}/>
           <Route path="/PersonalDetails" element={<PersonalDetails/>}/>
           <Route path="/Rolllist" element={<Rolllist/>}/>
-          <Route path="/Add_rolllist" element={<Add_rolllist/>}/>
+         
           <Route path="/addPayment" element={<AddPaymentType/>}/>
           <Route path="/payment" element={<PaymentType/>}/>
-          {/* <Route path="/city" element={<City/>}/> */}
-          <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
-          <Route path="/caste" element={<Caste/>}/>
           <Route path="/update/:id" element={<Update/>}/>
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme/>}/>
           <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
-          <Route path="/city" element={<City/>}/>
-          <Route path="/addcity" element={<Addcity/>}/>
-          <Route path="/religion" element={<Religion/>}/>
-          <Route path="/addreligion" element={<AddReligion/>}/>
-          <Route path="/updatereligion/:id" element={<UpdateReligion/>}/>
-          <Route path="/district" element={<District/>}/>
-          <Route path="/adddistrict" element={<AddDistrict/>}/>
-          <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+          <Route path="/branchchange" element={<Branchchange/>}/>
         </Routes>
       </BrowserRouter>
     </div>
