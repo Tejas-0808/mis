@@ -24,10 +24,28 @@ router.get("/b_o_s", async (req, res) => {
   }
 });
 
+//get particular religion
+
+router.get("/b_o_s/:id", async (req, res) => {
+  const BosId = req.params.id;
+  try {
+    (async () => {
+      const data = await query("SELECT * FROM b_o_s WHERE bos_id = ?", BosId);
+      const result = await data[0];
+      console.log(result);
+      return res.json(result);
+    })()
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err })
+  }
+})
+
+
 router.post("/b_o_s", async (req, res) => {
   const { bos_id, bos_name } = req.body;
 
-  if (!bos_id || !bos_name ) {
+  if (!bos_id || !bos_name) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
@@ -60,5 +78,45 @@ router.post("/b_o_s", async (req, res) => {
     console.log(err);
   }
 });
+
+router.delete("/b_o_s/:id", async (req, res) => {
+  const bosId = req.params.id;
+  console.log(bosId);
+  try {
+    (async () => {
+      const q = "DELETE FROM b_o_s WHERE bos_id = ?";
+      pool.query(q, [bosId], (err, data) => {
+        if (err) return res.json(err);
+
+        return res.json("BOS has been deleted");
+      })
+    })()
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err });
+  }
+})
+
+router.put("/b_o_s/:id", async (req, res) => {
+  const BosId = req.params.id;
+  console.log(BosId);
+  try {
+    (async () => {
+      const q = "UPDATE b_o_s SET `bos_id` = ?, `bos_name` = ? WHERE bos_id = ?"
+      const value = [
+        req.body.bos_id,
+        req.body.bos_name
+      ]
+
+      pool.query(q, [...value, BosId], (err, data) => {
+        if (err) return res.json(err);
+        return res.json("BOS has been updated.");
+      })
+    })()
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 
 module.exports = router;

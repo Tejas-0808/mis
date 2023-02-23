@@ -51,6 +51,7 @@ const Masterscheme = () => {
             <p>{Masterscheme.master_scheme}</p>
             <p>{Masterscheme.from_year}</p>
             <p>{Masterscheme.to_year}</p>
+            <button className='update'><Link to={`/updatemasterscheme/${Masterscheme.mastersch_id}`}>Update</Link></button>
             <button className="delete" onClick={()=>handleDelete(Masterscheme.mastersch_id)}>Delete</button>
             </div>
         ))}

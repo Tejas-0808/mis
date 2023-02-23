@@ -30,6 +30,20 @@ router.get("/category", async (req,res)=> {
     }
 })
 
+router.get('/category/:id', async(req, res) =>{
+    const CategoryId = req.params.id;
+    try{
+        (async()=> {
+            const data = await query("SELECT * FROM category_list WHERE category_id = ?", CategoryId);
+            const result = await data[0];
+            console.log(result);
+            return res.json(result);
+        })()
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({error: err});
+    }
+})
 
 router.post('/category', async (req, res) => {
 
@@ -79,14 +93,14 @@ router.post('/category', async (req, res) => {
 
 router.delete("/category/:id", async (req, res) => {
 
-    const categoryid = req.params.id;
-    console.log(categoryid);
+    const categoryId = req.params.id;
+    console.log(categoryId);
     try{
 
         (async()=>{
                 const q = "Delete from category_list where category_id = ?"
 
-                pool.query(q,[categoryid],(err,data)=>{
+                pool.query(q,[categoryId],(err,data)=>{
                     if(err) return res.json(err);
                         
                     return res.json("category has been deleted");
@@ -100,5 +114,25 @@ router.delete("/category/:id", async (req, res) => {
     
 })
 
+router.put("/category/:id", async(req, res) => {
+    const categoryId = req.params.id;
+    console.log(categoryId);
+    try{
+        (async()=>{
+            const q = "UPDATE category_list SET `category_id` = ?, `category_name` = ? WHERE category_id = ?"
+            const value = [
+                req.body.category_id,
+                req.body.category_name
+            ]
+
+            pool.query(q, [...value, categoryId], (err, data)=>{
+                if(err) return res.json(err);
+                return res.json("Category has been updated.");
+            })
+        })()
+    }catch(err){
+        console.log(err);
+    }
+});
 
 module.exports = router;

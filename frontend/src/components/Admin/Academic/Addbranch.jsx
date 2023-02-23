@@ -9,7 +9,7 @@ function Add() {
     Branch_id: "",
     Branch_name: "",
     HOD: "",
-    students_enrolled: "",
+    Students_enrolled: "",
   });
 
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function Add() {
       <input type="number" placeholder="ID" name="Branch_id" onChange={handleChange}/>
       <input type="text" placeholder="Brach Name" name="Branch_name" onChange={handleChange}/>
       <input type="text" placeholder="HOD " name="HOD" onChange={handleChange}/>
-      <input type="number" placeholder="Student enrolled" name="students_enrolled" onChange={handleChange}/>
+      <input type="number" placeholder="Student enrolled" name="Students_enrolled" onChange={handleChange}/>
       <button onClick={handleClick}>Add</button>
     </div>
   )
