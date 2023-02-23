@@ -15,14 +15,16 @@ import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
-// import City from "./components/Studentsection/Academic/Masters/City";
+import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
+import UpdateCity from "./components/Studentsection/Academic/Masters/UpdateCity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
 import Scheme from "./components/Admin/Academic/Scheme";
 import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
 import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
+import UpdateMasterScheme from "./components/Admin/Academic/UpdateMasterScheme";
 import Home from "./components/Home";
 import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType"
 import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType"
@@ -39,6 +41,9 @@ import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateR
 import District from "./components/Studentsection/Academic/Masters/District";
 import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
 import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import B_o_s from "./components/Admin/Academic/B_o_s";
+import AddBos from "./components/Admin/Academic/AddBos";
+import UpdateBos from "./components/Admin/Academic/UpdateBos";
 
 function App() {
   return (
@@ -59,8 +64,6 @@ function App() {
 
           <Route path="/addPayment" element={<AddPaymentType/>}/>
           <Route path="/payment" element={<PaymentType/>}/>
-          <Route path="/city" element={<City/>}/>
-          <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
           <Route path="/caste" element={<Caste/>}/>
@@ -68,8 +71,10 @@ function App() {
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme/>}/>
           <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
           <Route path="/city" element={<City/>}/>
+          <Route path="/updatecity/:id" element={<UpdateCity/>}/>
           <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/religion" element={<Religion/>}/>
           <Route path="/addreligion" element={<AddReligion/>}/>
@@ -77,6 +82,9 @@ function App() {
           <Route path="/district" element={<District/>}/>
           <Route path="/adddistrict" element={<AddDistrict/>}/>
           <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+          <Route path="/bos" element={<B_o_s/>}/>
+          <Route path="/addbos" element={<AddBos/>}/>
+          <Route path="/updatebos/:id" element={<UpdateBos/>}/>
         </Routes>
       </BrowserRouter>
     </div>
