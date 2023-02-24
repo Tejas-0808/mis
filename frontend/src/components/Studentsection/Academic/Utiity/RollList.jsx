@@ -7,21 +7,21 @@ const Rolllist = () => {
 
   const [rollno, setrollno] = useState([]);
 
-  const fetchAllrollno = async () => {
-    try {
-        const res = await axios.get("http://localhost:3001/student");
-        setrollno(res.data);
-        console.log(res.data);
-    } catch(err) {
-        console.log(err);
-    }
-}
+//   const fetchAllrollno = async () => {
+//     try {
+//         const res = await axios.get("http://localhost:3001/student");
+//         setrollno(res.data);
+//         console.log(res.data);
+//     } catch(err) {
+//         console.log(err);
+//     }
+// }
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    fetchAllrollno();
-    // eslint-disable-next-line
-  }, []);
+//     fetchAllrollno();
+//     // eslint-disable-next-line
+//   }, []);
   const navigate = useNavigate();
 
   console.log(rollno);
