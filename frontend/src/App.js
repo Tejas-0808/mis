@@ -69,6 +69,18 @@ function App() {
           <Route path="/masterscheme" element={<Masterscheme/>}/>
           <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme/>}/>
           <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
+
+          <Route path="/category" element={<Category/>}/>
+          <Route path="/addcategory" element={<AddCategory/>}/>
+          <Route path="/updatecategory/:id" element={<UpdateCategory/>}/>
+          {/* <Route path="/city" element={<City/>}/> */}
+          <Route path="/addcity" element={<Addcity/>}/>
+          <Route path="/religion" element={<Religion/>}/>
+          <Route path="/addreligion" element={<AddReligion/>}/>
+          <Route path="/updatereligion/:id" element={<UpdateReligion/>}/>
+          <Route path="/district" element={<District/>}/>
+          <Route path="/adddistrict" element={<AddDistrict/>}/>
+          <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
           <Route path="/branchchange" element={<Branchchange/>}/>
         </Routes>
       </BrowserRouter>
