@@ -15,7 +15,7 @@ import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
-// import City from "./components/Studentsection/Academic/Masters/City";
+import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
@@ -48,7 +48,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Branch/>}/>
+          {/* <Route path="/" element={<Branch/>}/> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
@@ -78,7 +78,7 @@ function App() {
           <Route path="/category" element={<Category/>}/>
           <Route path="/addcategory" element={<AddCategory/>}/>
           <Route path="/updatecategory/:id" element={<UpdateCategory/>}/>
-          <Route path="/city" element={<City/>}/>
+          {/* <Route path="/city" element={<City/>}/> */}
           <Route path="/addcity" element={<Addcity/>}/>
           <Route path="/religion" element={<Religion/>}/>
           <Route path="/addreligion" element={<AddReligion/>}/>
