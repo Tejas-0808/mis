@@ -1,6 +1,10 @@
 import React from 'react'
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Rollnogeneration() {
+function RollNoGeneration() {
+
+
   return (
     <div>
         
@@ -8,4 +12,4 @@ function Rollnogeneration() {
   )
 }
 
-export default Rollnogeneration
+export default RollNoGeneration
