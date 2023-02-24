@@ -10,18 +10,17 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/religion", async (req,res)=> {
+router.get("/degree", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM religion");
+            const data = await query("SELECT * FROM degree_list");
             const result = await data;
             console.log(result);
             return res.json(result);
 
             // return res.json(data);
-            console.log(result);
             
         })()
     }
@@ -31,13 +30,11 @@ router.get("/religion", async (req,res)=> {
     }
 })
 
-//get particular religion
-
-router.get("/religion/:id", async (req, res) => {
-    const ReligionId = req.params.id;
+router.get("/degree/:id", async (req, res) => {
+    const degId = req.params.id;
     try{
         (async()=> {
-            const data = await query("SELECT * FROM religion WHERE religion_id = ?", ReligionId);
+            const data = await query("SELECT * FROM degree_list WHERE degree_id = ?", degId);
             const result = await data[0];
             console.log(result);
             return res.json(result);
@@ -48,15 +45,15 @@ router.get("/religion/:id", async (req, res) => {
     }
 })
 
-router.post('/religion', async (req, res) => {
+router.post('/degree', async (req, res) => {
 
-    const {religion_id, Religion_name} = req.body;
-    console.log(religion_id);
-    console.log(Religion_name);
+    const {degId, degName} = req.body;
+    console.log(degId);
+    console.log(degName);
     // console.log(HOD);
     // console.log(students_enrolled);
 
-        if(!religion_id || !Religion_name){
+        if(!degId || !degName){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -64,20 +61,20 @@ router.post('/religion', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM religion WHERE Religion_name=?",[Religion_name]);
+                    const data = await query("SELECT * FROM degree WHERE degId=?",[degId]);
                     userExists = await data[0];
                 }
                 finally{
-                    // pool.end();
+                    // pool.end()
                 }
     
                 if(!userExists){            
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO religion VALUES(?,?)",[religion_id, Religion_name ]);
+                          const data = await query("INSERT INTO batch VALUES(?,?)",[batch_id, year]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "Religion added successfully"})
+                          res.status(200).json({msg: "batch added successfully"})
                         }
                         finally{
                             
@@ -85,7 +82,7 @@ router.post('/religion', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "Religion already exists"});
+                    return res.status(422).json({error: "batch already exists"});
                 }     
            })()
          }
@@ -94,19 +91,19 @@ router.post('/religion', async (req, res) => {
          }
     });
 
-router.delete("/religion/:id", async (req, res) => {
+router.delete("/batch/:id", async (req, res) => {
 
-    const religionid = req.params.id;
-    console.log(religionid);
+    const BatchId = req.params.id;
+    console.log(BatchId);
     try{
 
         (async()=>{
-                const q = "Delete from religion where religion_id = ?"
+                const q = "Delete from batch where batch_id = ?"
 
-                pool.query(q,[religionid],(err,data)=>{
+                pool.query(q,[BatchId],(err,data)=>{
                     if(err) return res.json(err);
                         
-                    return res.json("religion has been deleted");
+                    return res.json("batch has been deleted");
                 })
         })()
     }
@@ -115,22 +112,22 @@ router.delete("/religion/:id", async (req, res) => {
         return res.status(400).json({error: err});
     }
     
-})
+});
 
-router.put("/religion/:id", async(req, res) => {
-    const religionId = req.params.id;
-    console.log(religionId);
+router.put("/batch/:id", async(req, res) => {
+    const BatchId = req.params.id;
+    console.log(BatchId);
     try{
         (async()=>{
-            const q = "UPDATE religion SET `religion_id` = ?, `Religion_name` = ? WHERE religion_id = ?"
+            const q = "UPDATE batch SET `batch_id` = ?, `year` = ? WHERE batch_id = ?"
             const value = [
-                req.body.religion_id,
-                req.body.Religion_name
+                req.body.batch_id,
+                req.body.year
             ]
 
-            pool.query(q, [...value, religionId], (err, data)=>{
+            pool.query(q, [...value, BatchId], (err, data)=>{
                 if(err) return res.json(err);
-                return res.json("Religion has been updated.");
+                return res.json("Batch has been updated.");
             })
         })()
     }catch(err){

@@ -52,6 +52,7 @@ const City = () => {
             <p>{city.city_name}</p>
             <p>{city.isDistrict}</p>
             <p>{city.state_id}</p>
+            <button className='update'><Link to={`/updatecity/${city.city_id}`}>Update</Link></button>
             <button className="delete" onClick={()=>handleDelete(city.city_id)}>Delete</button>
             </div>
         ))}
