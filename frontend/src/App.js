@@ -37,8 +37,15 @@ import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
-
-
+import Category from "./components/Studentsection/Academic/Masters/Category"
+import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory"
+import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory"
+import Religion from "./components/Studentsection/Academic/Masters/Religion"
+import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion"
+import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion"
+import District from "./components/Studentsection/Academic/Masters/District"
+import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict"
+import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict"
 
 function App() {
   return (
