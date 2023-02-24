@@ -41,6 +41,7 @@ app.use(require('./router/time_table'));
 app.use(require('./router/citylist'));
 app.use(require('./router/state'));
 app.use(require('./router/particularstudent'));
+app.use(require('./router/courses_taken'));
 
 
 app.get('/',(req,res) => {
