@@ -30,6 +30,23 @@ router.get("/city", async (req,res)=> {
     }
 })
 
+//get particular religion
+
+router.get("/city/:id", async (req, res) => {
+    const cityId = req.params.id;
+    try{
+        (async()=> {
+            const data = await query("SELECT * FROM city_list WHERE city_id = ?", cityId);
+            const result = await data[0];
+            console.log(result);
+            return res.json(result);
+        })()
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({error: err})
+    }
+})
+
 
 router.post('/city', async (req, res) => {
 
@@ -102,5 +119,27 @@ router.delete("/city/:id", async (req, res) => {
     
 })
 
+router.put("/city/:id", async(req, res) => {
+    const cityId = req.params.id;
+    console.log(cityId);
+    try{
+        (async()=>{
+            const q = "UPDATE city_list SET `city_id` = ?, `city_name` = ?, `isDistrict` = ?, `state_id` = ?  WHERE city_id = ?"
+            const value = [
+                req.body.city_id,
+                req.body.city_name,
+                req.body.isDistrict,
+                req.body.state_id
+            ]
+
+            pool.query(q, [...value, cityId], (err, data)=>{
+                if(err) return res.json(err);
+                return res.json("City has been updated.");
+            })
+        })()
+    }catch(err){
+        console.log(err);
+    }
+});
 
 module.exports = router;

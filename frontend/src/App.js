@@ -17,12 +17,14 @@ import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
 import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
+import UpdateCity from "./components/Studentsection/Academic/Masters/UpdateCity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
 import Scheme from "./components/Admin/Academic/Scheme";
 import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
 import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
+import UpdateMasterScheme from "./components/Admin/Academic/UpdateMasterScheme";
 import Home from "./components/Home";
 import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType"
 import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType"
@@ -33,15 +35,7 @@ import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDet
 import Educationdetails from "./components/Student/Profile/Educationdetails";
 import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-import Religion from "./components/Studentsection/Academic/Masters/Religion";
-import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-import District from "./components/Studentsection/Academic/Masters/District";
-import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 
 function App() {
   return (
@@ -63,16 +57,13 @@ function App() {
 
           <Route path="/addPayment" element={<AddPaymentType/>}/>
           <Route path="/payment" element={<PaymentType/>}/>
-          <Route path="/city" element={<City/>}/>
-          <Route path="/caste" element={<Caste/>}/>
-          {/* <Route path="/category" element={<Category/>}/> */}
-          {/* <Route path="/addcity" element={<Addcity/>}/> */}
           <Route path="/state" element={<State/>}/>
           <Route path="/addstate" element={<AddState/>}/>
-
+          <Route path="/update/:id" element={<Update/>}/>
           <Route path="/scheme" element={<Scheme/>}/>
           <Route path="/addscheme" element={<Addscheme/>}/>
           <Route path="/masterscheme" element={<Masterscheme/>}/>
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme/>}/>
           <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
 
           <Route path="/category" element={<Category/>}/>
@@ -86,6 +77,7 @@ function App() {
           <Route path="/district" element={<District/>}/>
           <Route path="/adddistrict" element={<AddDistrict/>}/>
           <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+          <Route path="/branchchange" element={<Branchchange/>}/>
         </Routes>
       </BrowserRouter>
     </div>

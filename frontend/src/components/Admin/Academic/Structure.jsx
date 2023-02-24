@@ -30,7 +30,7 @@ const Structure = () => {
       console.log(id)
       await axios.delete("http://localhost:3001/structure/"+id)
       const res = await axios.get("http://localhost:3001/structure");
-        setBranch(res.data);
+        setStructure(res.data);
       // window.location.reload()
       // navigate("/");
     }catch(err){
