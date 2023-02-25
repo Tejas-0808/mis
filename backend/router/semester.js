@@ -8,20 +8,19 @@ const query = util.promisify(pool.query).bind(pool);
 
 
 
-//adding branch
+//adding semester
 
-router.get("/religion", async (req,res)=> {
+router.get("/semester", async (req,res)=> {
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM religion");
+            const data = await query("SELECT * FROM semester");
             const result = await data;
             console.log(result);
             return res.json(result);
 
             // return res.json(data);
-            console.log(result);
             
         })()
     }
@@ -31,13 +30,11 @@ router.get("/religion", async (req,res)=> {
     }
 })
 
-//get particular religion
-
-router.get("/religion/:id", async (req, res) => {
-    const ReligionId = req.params.id;
+router.get("/semester/:id", async (req, res) => {
+    const semesterId = req.params.id;
     try{
         (async()=> {
-            const data = await query("SELECT * FROM religion WHERE religion_id = ?", ReligionId);
+            const data = await query("SELECT * FROM semester WHERE sem_id = ?", semesterId);
             const result = await data[0];
             console.log(result);
             return res.json(result);
@@ -48,15 +45,15 @@ router.get("/religion/:id", async (req, res) => {
     }
 })
 
-router.post('/religion', async (req, res) => {
+router.post('/semester', async (req, res) => {
 
-    const {religion_id, Religion_name} = req.body;
-    console.log(religion_id);
-    console.log(Religion_name);
+    const {sem_id, sem} = req.body;
+    console.log(sem_id);
+    console.log(sem);
     // console.log(HOD);
     // console.log(students_enrolled);
 
-        if(!religion_id || !Religion_name){
+        if(!sem_id || !sem){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -64,7 +61,7 @@ router.post('/religion', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM religion WHERE Religion_name=?",[Religion_name]);
+                    const data = await query("SELECT * FROM semester WHERE sem_id=?",[sem_id]);
                     userExists = await data[0];
                 }
                 finally{
@@ -75,9 +72,9 @@ router.post('/religion', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO religion VALUES(?,?)",[religion_id, Religion_name ]);
+                          const data = await query("INSERT INTO semester VALUES(?,?)",[sem_id, sem]);
                           console.log(data[0]);
-                          res.status(200).json({msg: "Religion added successfully"})
+                          res.status(200).json({msg: "semester added successfully"})
                         }
                         finally{
                             
@@ -85,7 +82,7 @@ router.post('/religion', async (req, res) => {
                     })()
                 }
                 else{
-                    return res.status(422).json({error: "Religion already exists"});
+                    return res.status(422).json({error: "semester already exists"});
                 }     
            })()
          }
@@ -94,19 +91,19 @@ router.post('/religion', async (req, res) => {
          }
     });
 
-router.delete("/religion/:id", async (req, res) => {
+router.delete("/semester/:id", async (req, res) => {
 
-    const religionid = req.params.id;
-    console.log(religionid);
+    const semID = req.params.id;
+    console.log(semID);
     try{
 
         (async()=>{
-                const q = "Delete from religion where religion_id = ?"
+                const q = "Delete from semester where sem_id = ?"
 
-                pool.query(q,[religionid],(err,data)=>{
+                pool.query(q,[semID],(err,data)=>{
                     if(err) return res.json(err);
                         
-                    return res.json("religion has been deleted");
+                    return res.json("semester has been deleted");
                 })
         })()
     }
@@ -115,28 +112,9 @@ router.delete("/religion/:id", async (req, res) => {
         return res.status(400).json({error: err});
     }
     
-})
-
-router.put("/religion/:id", async(req, res) => {
-    const religionId = req.params.id;
-    console.log(religionId);
-    try{
-        (async()=>{
-            const q = "UPDATE religion SET `religion_id` = ?, `Religion_name` = ? WHERE religion_id = ?"
-            const value = [
-                req.body.religion_id,
-                req.body.Religion_name
-            ]
-
-            pool.query(q, [...value, religionId], (err, data)=>{
-                if(err) return res.json(err);
-                return res.json("Religion has been updated.");
-            })
-        })()
-    }catch(err){
-        console.log(err);
-    }
 });
+
+
 
 
 module.exports = router;
