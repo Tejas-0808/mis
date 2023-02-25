@@ -7,10 +7,55 @@ function RollNoGeneration() {
   const [rollGen, setRollGen] = useState({
     admission_batch: "",
     department: "",
-    degree: "", 
-    semester: ""
+    degree: "",
+    semester: "",
   });
-  
+  const [branch, setBranch] = useState([]);
+
+  const fetchBranch = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/branch");
+      setBranch(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const generate = (rollGen) => {
+    const { admission_batch, department, degree, semester } = rollGen;
+    var d = "";
+    var t = "";
+    var s = "";
+
+    function fetchBranchCode(department) {
+      try {
+        (async () => {
+          const res = await axios.get(
+            "http://localhost:3001/branch/" + department
+          );
+          return res.data;
+        })();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    var branchCode = fetchBranchCode(department);
+
+    if (degree === "B.tech") {
+      d = "BT";
+      t = "F";
+    } else if (degree === "M.Tech") {
+      d = "MT";
+      t = "F";
+    } else if (degree === "MCA") {
+      d = "MCA";
+      t = "F";
+    } else if (degree === "B.Tech PART TIME") {
+      d = "BT";
+      t = "P";
+    } else if (degree === "M.Tech PART TIME") {
+      d = "MT";
+      t = "P";
+    }
 
   // console.log(rollGen);
 
@@ -21,6 +66,8 @@ function RollNoGeneration() {
 
   }
 
+    return d + batchCode + s + branchCode + t + "037";
+  };
 
   const fetchAllSData = async () => {
     try {
@@ -34,6 +81,7 @@ function RollNoGeneration() {
 
   useEffect(() => {
     fetchAllSData();
+    fetchBranch();
   }, []);
   const navigate = useNavigate();
 
@@ -41,14 +89,11 @@ function RollNoGeneration() {
     setRollGen((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    generate(rollGen)
-  }
-
-  
-
-
+    generate(rollGen);
+    console.log(generate(rollGen));
+  };
 
   return (
     <div>
@@ -82,8 +127,8 @@ function RollNoGeneration() {
           required
         >
           <option value="">-- Select Branch --</option>
-          {SData.map((branch) => (
-            <option value={branch.Branch}>{branch.Branch}</option>
+          {branch.map((branch) => (
+            <option value={branch.Branch_name}>{branch.Branch_name}</option>
           ))}
         </select>
       </label>
@@ -120,7 +165,9 @@ function RollNoGeneration() {
         </select>
       </label>
       <div>
-            <button className="submit" onClick={handleClick}>Submit</button>
+        <button className="submit" onClick={handleClick}>
+          Submit
+        </button>
       </div>
     </div>
   );
