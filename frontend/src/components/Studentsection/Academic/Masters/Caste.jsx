@@ -42,7 +42,7 @@ const Caste = () => {
             <div key={caste.caste_id} className="caste">
                 <p>{caste.caste_id}</p>
                 <p>{caste.caste_name}</p>
-                <button className='edit'><Link to={`/edit/${caste.caste_id}`}>Edit</Link></button>
+                {/* <button className='edit'><Link to={`/edit/${caste.caste_id}`}>Edit</Link></button> */}
                 <button className='update'><Link to={`/updatecaste/${caste.caste_id}`}>Update</Link></button>
                 <button className="delete" onClick={()=>handleDelete(caste.caste_id)}>Delete</button>
             </div>

@@ -30,6 +30,23 @@ router.get("/master_scheme", async (req,res)=> {
     }
 })
 
+//get particular religion
+
+router.get("/masterscheme/:id", async (req, res) => {
+    const masterschemeId = req.params.id;
+    try{
+        (async()=> {
+            const data = await query("SELECT * FROM master_scheme WHERE mastersch_id = ?", masterschemeId);
+            const result = await data[0];
+            console.log(result);
+            return res.json(result);
+        })()
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({error: err})
+    }
+})
+
 
 router.post("/master_scheme", async (req, res) => {
 
@@ -97,5 +114,27 @@ router.post("/master_scheme", async (req, res) => {
         
       })
       
+      router.put("/masterscheme/:id", async(req, res) => {
+        const masterschemeId = req.params.id;
+        console.log(masterschemeId);
+        try{
+            (async()=>{
+                const q = "UPDATE master_scheme SET `mastersch_id` = ?, `master_scheme` = ?, `from_year` = ?, `to_year` = ?  WHERE mastersch_id = ?"
+                const value = [
+                    req.body.mastersch_id,
+                    req.body.master_scheme,
+                    req.body.from_year,
+                    req.body.to_year
+                ]
+    
+                pool.query(q, [...value, masterschemeId], (err, data)=>{
+                    if(err) return res.json(err);
+                    return res.json("MasterScheme has been updated.");
+                })
+            })()
+        }catch(err){
+            console.log(err);
+        }
+    });
 
 module.exports = router;

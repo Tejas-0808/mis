@@ -24,10 +24,28 @@ router.get("/b_o_s", async (req, res) => {
   }
 });
 
+//get particular religion
+
+router.get("/b_o_s/:id", async (req, res) => {
+  const BosId = req.params.id;
+  try {
+    (async () => {
+      const data = await query("SELECT * FROM b_o_s WHERE bos_id = ?", BosId);
+      const result = await data[0];
+      console.log(result);
+      return res.json(result);
+    })()
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err })
+  }
+})
+
+
 router.post("/b_o_s", async (req, res) => {
   const { bos_id, bos_name } = req.body;
 
-  if (!bos_id || !bos_name ) {
+  if (!bos_id || !bos_name) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
@@ -44,9 +62,10 @@ router.post("/b_o_s", async (req, res) => {
       if (true) {
         (async () => {
           try {
-            const data = await query("INSERT INTO b_o_s VALUES(?,?)",
-              [bos_id, bos_name]
-            );
+            const data = await query("INSERT INTO b_o_s VALUES(?,?)", [
+              bos_id,
+              bos_name,
+            ]);
             console.log(data[0]);
             res.status(200).json({ msg: "b_o_s added successfully" });
           } finally {
