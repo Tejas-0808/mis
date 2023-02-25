@@ -36,7 +36,7 @@ import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
-import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/RollNoGeneration";
+import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import Religion from "./components/Studentsection/Academic/Masters/Religion";
 import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
 import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";

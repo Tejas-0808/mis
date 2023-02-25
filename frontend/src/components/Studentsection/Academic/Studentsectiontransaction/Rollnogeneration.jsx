@@ -12,15 +12,14 @@ function RollNoGeneration() {
   });
   
 
-  const Degree = rollGen.degree;
-  const Adm_batch = rollGen.admission_batch
-  const dept = rollGen.department
-  const sem = rollGen.semester 
-  console.log(Degree)
+  // console.log(rollGen);
 
-  // const generate = (Degree, Adm_batch, dept, sem) => {
-  //   if(Degree)
-  // }
+  const generate = (rollGen) => {
+    console.log(rollGen);
+    const {degree, admission_batch, semester, department} = rollGen;
+    
+
+  }
 
 
   const fetchAllSData = async () => {
@@ -44,6 +43,7 @@ function RollNoGeneration() {
 
   const handleClick = async(e) => {
     e.preventDefault();
+    generate(rollGen)
   }
 
   
