@@ -50,6 +50,7 @@ import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
+import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard";
 
 
 function App() {
@@ -103,6 +104,8 @@ function App() {
           <Route path="/structure" element={<Structure/>}/>
           <Route path="addstructure" element={<AddStructure/>}/>
           <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+
+          <Route path="/identitycard" element={<IdentityCard/>}/>
         </Routes>
       </BrowserRouter>
     </div>
