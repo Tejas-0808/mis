@@ -3,14 +3,25 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function RollNoGeneration() {
-  const [SData, setSData] = useState([]);
+  const [batch, setBatch] = useState([]);
+  const [Degree, setDegree] = useState([]);
+  const [branch, setBranch] = useState([]);
+  const [sem, setSem] = useState([]);
   const [rollGen, setRollGen] = useState({
     admission_batch: "",
     department: "",
     degree: "",
     semester: "",
   });
-  const [branch, setBranch] = useState([]);
+
+  const fetchBatch = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/batch");
+      setBatch(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchBranch = async () => {
     try {
@@ -20,27 +31,45 @@ function RollNoGeneration() {
       console.log(err);
     }
   };
+
+  const fetchSem = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/semester");
+      setSem(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchDegree = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/degree");
+      setDegree(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const navigate = useNavigate();
+
   const generate = (rollGen) => {
     const { admission_batch, department, degree, semester } = rollGen;
     var d = "";
     var t = "";
     var s = "";
 
-    function fetchBranchCode(department) {
-      try {
-        (async () => {
-          const res = await axios.get(
-            "http://localhost:3001/branch/" + department
-          );
-          return res.data;
-        })();
-      } catch (err) {
-        console.log(err);
-      }
+    // const { branchId, branchName } = department;
+    console.log(department[0]);
+    var branchCode = department[0];
+    if (department[0].length === 1) {
+      branchCode = "0" + department[0];
+    } else {
+      branchCode = department[0];
     }
-    var branchCode = fetchBranchCode(department);
 
-    if (degree === "B.tech") {
+    if (degree === "B.Tech") {
       d = "BT";
       t = "F";
     } else if (degree === "M.Tech") {
@@ -57,7 +86,7 @@ function RollNoGeneration() {
       t = "P";
     }
 
-    if (semester === "1" || semester === "2") s = "F";
+    if (semester === "I" || semester === "II") s = "F";
     else s = "S";
 
     const batchCode = admission_batch.slice(-2);
@@ -65,21 +94,13 @@ function RollNoGeneration() {
     return d + batchCode + s + branchCode + t + "037";
   };
 
-  const fetchAllSData = async () => {
-    try {
-      const res = await axios.get("http://localhost:3001/student");
-      setSData(res.data);
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    fetchAllSData();
+    fetchBatch();
     fetchBranch();
+    fetchDegree();
+    fetchSem();
+    // fetchBranchCode(department);
   }, []);
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setRollGen((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -105,10 +126,24 @@ function RollNoGeneration() {
           required
         >
           <option value="">-- Select Batch --</option>
-          {SData.map((batch) => (
-            <option value={batch.Admission_batch}>
-              {batch.Admission_batch}
-            </option>
+          {batch.map((batch) => (
+            <option value={batch.year}>{batch.year}</option>
+          ))}
+        </select>
+      </label>
+
+      <label>
+        Degree:
+        <select
+          name="degree"
+          placeholder="Select Degree"
+          className="form-select-degree"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select Degree --</option>
+          {Degree.map((degree) => (
+            <option value={degree.degree_name}>{degree.degree_name}</option>
           ))}
         </select>
       </label>
@@ -124,23 +159,9 @@ function RollNoGeneration() {
         >
           <option value="">-- Select Branch --</option>
           {branch.map((branch) => (
-            <option value={branch.Branch_name}>{branch.Branch_name}</option>
-          ))}
-        </select>
-      </label>
-
-      <label>
-        Degree:
-        <select
-          name="degree"
-          placeholder="Select Degree"
-          className="form-select-degree"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Degree --</option>
-          {SData.map((degree) => (
-            <option value={degree.Degree}>{degree.Degree}</option>
+            <option value={[branch.Branch_id, branch.Branch_name]}>
+              {branch.Branch_id}.{branch.Branch_name}
+            </option>
           ))}
         </select>
       </label>
@@ -155,8 +176,8 @@ function RollNoGeneration() {
           required
         >
           <option value="">-- Select Semester --</option>
-          {SData.map((sem) => (
-            <option value={sem.Semester}>{sem.Semester}</option>
+          {sem.map((sem) => (
+            <option value={sem.sem}>{sem.sem}</option>
           ))}
         </select>
       </label>

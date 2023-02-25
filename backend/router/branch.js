@@ -45,23 +45,6 @@ router.get("/branch/:id", async (req, res) => {
   }
 });
 
-router.get("/branch/:dept", async (req, res) => {
-  const branchDept = req.params.dept;
-  try {
-    (async () => {
-      const data = await query(
-        "SELECT Branch_id FROM branch WHERE Branch_name = ?",
-        branchDept
-      );
-      const result = await data[0];
-      return res.json(result);
-    })();
-  } catch (err) {
-    console.log(err);
-    return res.status(400).json({ error: err });
-  }
-});
-
 router.post("/branch", async (req, res) => {
   const { Branch_id, Branch_name, HOD, Students_enrolled } = req.body;
   console.log(Branch_id);
