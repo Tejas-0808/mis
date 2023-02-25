@@ -47,6 +47,7 @@ import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 
 
+
 function App() {
   return (
     <div className="App">
@@ -54,47 +55,47 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Branch/>}/> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
-          <Route path="/" element={<Home/>}/>
-          <Route path="/branch" element={<Branch/>}/>
-          <Route path="/add" element={<Add/>}/>
-          <Route path="/newstudent" element={<NewStudent/>}/>
-          <Route path="/student" element={<Student/>}/>
-          <Route path="/contact_details" element={<Student_info/>}/>
-          <Route path="/Add_contact_details" element={<Add_C_d/>}/>
-          <Route path="/Add_Education_details" element={<Add_EducationDetails/>}/>
-          <Route path="/Education_details" element={<Educationdetails/>}/>
-          <Route path="/PersonalDetails" element={<PersonalDetails/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/branch" element={<Branch />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/newstudent" element={<NewStudent />} />
+          <Route path="/student" element={<Student />} />
+          <Route path="/contact_details" element={<Student_info />} />
+          <Route path="/Add_contact_details" element={<Add_C_d />} />
+          <Route path="/Add_Education_details" element={<Add_EducationDetails />} />
+          <Route path="/Education_details" element={<Educationdetails />} />
+          <Route path="/PersonalDetails" element={<PersonalDetails />} />
 
-          <Route path="/addPayment" element={<AddPaymentType/>}/>
-          <Route path="/payment" element={<PaymentType/>}/>
+          <Route path="/addPayment" element={<AddPaymentType />} />
+          <Route path="/payment" element={<PaymentType />} />
           {/* <Route path="/city" element={<City/>}/>
           <Route path="/addcity" element={<Addcity/>}/> */}
-          <Route path="/state" element={<State/>}/>
-          <Route path="/addstate" element={<AddState/>}/>
-          <Route path="/update/:id" element={<Update/>}/>
-          <Route path="/scheme" element={<Scheme/>}/>
-          <Route path="/addscheme" element={<Addscheme/>}/>
-          <Route path="/masterscheme" element={<Masterscheme/>}/>
-          <Route path="/addmasterscheme" element={<AddMasterscheme/>}/>
+          <Route path="/state" element={<State />} />
+          <Route path="/addstate" element={<AddState />} />
+          <Route path="/update/:id" element={<Update />} />
+          <Route path="/scheme" element={<Scheme />} />
+          <Route path="/addscheme" element={<Addscheme />} />
+          <Route path="/masterscheme" element={<Masterscheme />} />
+          <Route path="/addmasterscheme" element={<AddMasterscheme />} />
 
-          <Route path="/category" element={<Category/>}/>
-          <Route path="/addcategory" element={<AddCategory/>}/>
-          <Route path="/updatecategory/:id" element={<UpdateCategory/>}/>
+          <Route path="/category" element={<Category />} />
+          <Route path="/addcategory" element={<AddCategory />} />
+          <Route path="/updatecategory/:id" element={<UpdateCategory />} />
 
-          <Route path="/city" element={<City/>}/>
-          <Route path="/addcity" element={<Addcity/>}/>
+          <Route path="/city" element={<City />} />
+          <Route path="/addcity" element={<Addcity />} />
 
-          <Route path="/religion" element={<Religion/>}/>
-          <Route path="/addreligion" element={<AddReligion/>}/>
-          <Route path="/updatereligion/:id" element={<UpdateReligion/>}/>
+          <Route path="/religion" element={<Religion />} />
+          <Route path="/addreligion" element={<AddReligion />} />
+          <Route path="/updatereligion/:id" element={<UpdateReligion />} />
 
-          <Route path="/district" element={<District/>}/>
-          <Route path="/adddistrict" element={<AddDistrict/>}/>
-          <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+          <Route path="/district" element={<District />} />
+          <Route path="/adddistrict" element={<AddDistrict />} />
+          <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
 
-          <Route path="/structure" element={<Structure/>}/>
-          <Route path="addstructure" element={<AddStructure/>}/>
-          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+          <Route path="/structure" element={<Structure />} />
+          <Route path="addstructure" element={<AddStructure />} />
+          <Route path="/updatestructure/:id" element={<UpdateStructure />} />
         </Routes>
       </BrowserRouter>
     </div>
