@@ -46,9 +46,20 @@ import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateC
 import District from "./components/Studentsection/Academic/Masters/District";
 import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
 import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+<<<<<<< HEAD
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
+=======
+import B_o_s from "./components/Admin/Academic/B_o_s";
+import AddBos from "./components/Admin/Academic/AddBos";
+import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import Structure from "./components/Admin/Academic/Structure";
+import AddStructure from "./components/Admin/Academic/AddStructure";
+import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
+import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard";
+
+>>>>>>> 74cc6113e14f01ac6125c2d045d0974c9fd903a8
 
 function App() {
   return (
@@ -95,9 +106,30 @@ function App() {
           <Route path="/adddistrict" element={<AddDistrict />} />
           <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
 
+<<<<<<< HEAD
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+=======
+          <Route path="/city" element={<City/>}/>
+          <Route path="/updatecity/:id" element={<UpdateCity/>}/>
+          <Route path="/addcity" element={<Addcity/>}/>
+
+          <Route path="/religion" element={<Religion/>}/>
+          <Route path="/addreligion" element={<AddReligion/>}/>
+          <Route path="/updatereligion/:id" element={<UpdateReligion/>}/>
+
+          <Route path="/district" element={<District/>}/>
+          <Route path="/adddistrict" element={<AddDistrict/>}/>
+          <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+          <Route path="/bos" element={<B_o_s/>}/>
+          <Route path="/addbos" element={<AddBos/>}/>
+          <Route path="/updatebos/:id" element={<UpdateBos/>}/>
+
+          <Route path="/structure" element={<Structure/>}/>
+          <Route path="addstructure" element={<AddStructure/>}/>
+          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+>>>>>>> 74cc6113e14f01ac6125c2d045d0974c9fd903a8
         </Routes>
       </BrowserRouter>
     </div>
