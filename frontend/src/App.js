@@ -46,7 +46,9 @@ import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateC
 import District from "./components/Studentsection/Academic/Masters/District";
 import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
 import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
-
+import Structure from "./components/Admin/Academic/Structure";
+import AddStructure from "./components/Admin/Academic/AddStructure";
+import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 
 function App() {
   return (
@@ -62,7 +64,6 @@ function App() {
           <Route path="/student" element={<Student />} />
           <Route path="/contact_details" element={<Student_info />} />
           <Route path="/Add_contact_details" element={<Add_C_d />} />
-<<<<<<< HEAD
           <Route path="/Add_Education_details" element={<Add_EducationDetails />} />
           <Route path="/Education_details" element={<Educationdetails />} />
           <Route path="/PersonalDetails" element={<PersonalDetails />} />
@@ -97,44 +98,6 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
-=======
-          <Route
-            path="/Add_Education_details"
-            element={<Add_EducationDetails />}
-          />
-          <Route path="/Education_details" element={<Educationdetails />} />
-          <Route path="/PersonalDetails" element={<PersonalDetails />} />
-          <Route path="/Rolllist" element={<Rolllist />} />
-
-          <Route path="/addPayment" element={<AddPaymentType />} />
-          <Route path="/payment" element={<PaymentType />} />
-          <Route path="/state" element={<State />} />
-          <Route path="/addstate" element={<AddState />} />
-          <Route path="/update/:id" element={<Update />} />
-          <Route path="/scheme" element={<Scheme />} />
-          <Route path="/addscheme" element={<Addscheme />} />
-          <Route path="/masterscheme" element={<Masterscheme />} />
-          <Route
-            path="/updatemasterscheme/:id"
-            element={<UpdateMasterScheme />}
-          />
-          <Route path="/addmasterscheme" element={<AddMasterscheme />} />
-
-          <Route path="/category" element={<Category />} />
-          <Route path="/addcategory" element={<AddCategory />} />
-          <Route path="/updatecategory/:id" element={<UpdateCategory />} />
-          {/* <Route path="/city" element={<City/>}/> */}
-          <Route path="/addcity" element={<Addcity />} />
-          <Route path="/religion" element={<Religion />} />
-          <Route path="/addreligion" element={<AddReligion />} />
-          <Route path="/updatereligion/:id" element={<UpdateReligion />} />
-          <Route path="/district" element={<District />} />
-          <Route path="/adddistrict" element={<AddDistrict />} />
-          <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
-          <Route path="/branchchange" element={<Branchchange />} />
-
-          <Route path="/rollgeneration" element={<RollNoGeneration />} />
->>>>>>> 054688a922bfa8c8c21f42a9c940a237e5a9d7b8
         </Routes>
       </BrowserRouter>
     </div>

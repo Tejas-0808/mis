@@ -6,7 +6,7 @@ import { GiGuards, GiLockedDoor } from "react-icons/gi";
 import { HiIdentification } from "react-icons/hi";
 import { MdAccountCircle, MdEmail, MdOutlineFeedback, MdReport, MdOutlinePayment } from 'react-icons/md';
 import { TbBooks } from "react-icons/tb";
-import '../../styles/sidebar.css';
+import '../../../styles/sidebar.css';
 
 export const navData = [
     {
