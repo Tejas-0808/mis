@@ -15,7 +15,7 @@ import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
 import Add from "./components/Admin/Academic/Addbranch";
-// import City from "./components/Studentsection/Academic/Masters/City";
+import City from "./components/Studentsection/Academic/Masters/City";
 import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
@@ -26,7 +26,7 @@ import AddMasterscheme from "./components/Admin/Academic/Addmasterscheme";
 import Home from "./components/Home";
 import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType"
 import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType"
-import Update from "./components/Admin/Academic/Admin/Academic/Update";
+import Update from "./components/Admin/Academic/Update"
 import Student_info from "./components/Student/Profile/Contactdetails";
 import Add_C_d from "./components/Student/Profile/Add_contact_details";
 import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
@@ -42,13 +42,14 @@ import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateR
 import District from "./components/Studentsection/Academic/Masters/District";
 import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
 import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Imagetest from "./components/Admin/Academic/Imagetest";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Branch/>}/>
+          {/* <Route path="/" element={<Branch/>}/> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/branch" element={<Branch/>}/>
@@ -84,6 +85,7 @@ function App() {
           <Route path="/district" element={<District/>}/>
           <Route path="/adddistrict" element={<AddDistrict/>}/>
           <Route path="/updatedistrict/:id" element={<UpdateDistrict/>}/>
+          <Route path="/imageshow" element={<Imagetest/>}/>
         </Routes>
       </BrowserRouter>
     </div>

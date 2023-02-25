@@ -10,6 +10,7 @@ const PersonalDetails = () => {
   const fetchAllPersonalDetails = async () => {
     try {
         const res = await axios.get("http://localhost:3001/student");
+        
         setpersonaldetails(res.data);
         console.log(res.data);
     } catch(err) {
@@ -71,7 +72,7 @@ const PersonalDetails = () => {
             <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Physically_handicapped}</p>
             <p>{personaldetails.Branch}</p>
-            {/* <p>{personaldetails.Photo}</p> */}
+
            
             {/* <p>{personaldetails.Signature}</p> */}
             <p>{personaldetails.Fathers_Name}</p>

@@ -108,6 +108,7 @@ router.put("/branch/:id", async (req, res) => {
 
     const Branchid = req.params.id;
     console.log(Branchid);
+    console.log(req.body.Branch_name);
     try{
 
         (async()=>{
