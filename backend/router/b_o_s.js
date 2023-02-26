@@ -62,9 +62,10 @@ router.post("/b_o_s", async (req, res) => {
       if (true) {
         (async () => {
           try {
-            const data = await query("INSERT INTO b_o_s VALUES(?,?)",
-              [bos_id, bos_name]
-            );
+            const data = await query("INSERT INTO b_o_s VALUES(?,?)", [
+              bos_id,
+              bos_name,
+            ]);
             console.log(data[0]);
             res.status(200).json({ msg: "b_o_s added successfully" });
           } finally {
@@ -78,45 +79,5 @@ router.post("/b_o_s", async (req, res) => {
     console.log(err);
   }
 });
-
-router.delete("/b_o_s/:id", async (req, res) => {
-  const bosId = req.params.id;
-  console.log(bosId);
-  try {
-    (async () => {
-      const q = "DELETE FROM b_o_s WHERE bos_id = ?";
-      pool.query(q, [bosId], (err, data) => {
-        if (err) return res.json(err);
-
-        return res.json("BOS has been deleted");
-      })
-    })()
-  } catch (err) {
-    console.log(err);
-    return res.status(400).json({ error: err });
-  }
-})
-
-router.put("/b_o_s/:id", async (req, res) => {
-  const BosId = req.params.id;
-  console.log(BosId);
-  try {
-    (async () => {
-      const q = "UPDATE b_o_s SET `bos_id` = ?, `bos_name` = ? WHERE bos_id = ?"
-      const value = [
-        req.body.bos_id,
-        req.body.bos_name
-      ]
-
-      pool.query(q, [...value, BosId], (err, data) => {
-        if (err) return res.json(err);
-        return res.json("BOS has been updated.");
-      })
-    })()
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 
 module.exports = router;

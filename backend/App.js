@@ -1,19 +1,15 @@
-const dotenv = require('dotenv');
-const express = require('express');
-const cors = require('cors');
+const dotenv = require("dotenv");
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
-dotenv.config({path:'./config.env'});
-const bodyParser = require('body-parser');
-
+dotenv.config({ path: "./config.env" });
+const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 const port = process.env.PORT || 3001;
-
-
 
 app.use(express.json());
 app.use(cors());
@@ -52,11 +48,6 @@ app.get('/',(req,res) => {
     res.send(`Hello worldddd abc returns one`);
 });
 
-app.listen(port || process.env.port, ()=> {
-    console.log(`server is running on port no ${port}`);   
-})
-
-
-
-
-
+app.listen(port || process.env.port, () => {
+  console.log(`server is running on port no ${port}`);
+});
