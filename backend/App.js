@@ -20,6 +20,7 @@ app.use(cors());
 
 app.use(require('./router/hod'));
 app.use(require('./router/student'));
+app.use(require('./router/newstudent'));
 app.use(require('./router/branch'));
 app.use(require('./router/batch'));
 app.use(require('./router/prerequisite'));
