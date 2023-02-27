@@ -43,20 +43,23 @@ const PersonalDetails = () => {
   return (
     <div>
         <h1>
-           Student Personal Details
+           Personal Details
         </h1>
         <div className="personaldetails">
         {personaldetails.map((personaldetails) => (
           <div key={personaldetails.Reg_Id} className="personaldetails">
-            <h2>{personaldetails.Reg_Id}</h2>
+            {/* <h2>{personaldetails.Reg_Id}</h2> */}
             <p>{personaldetails.roll_no}</p>
+            <p>{personaldetails.Branch}</p>
             <p>{personaldetails.First_Name}</p>
             <p>{personaldetails.Middle_Name}</p>
             <p>{personaldetails.Last_Name}</p>
+            <p>{personaldetails.Permanent_Add}</p>
+            <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Email_id}</p>
             <p>{personaldetails.Mobile_No}</p>
-            <p>{personaldetails.Caste}</p>
             <p>{personaldetails.Religion}</p>
+            <p>{personaldetails.Caste}</p>
             <p>{personaldetails.Nationality}</p>
             <p>{personaldetails.Category}</p>
             <p>{personaldetails.Blood_group}</p>
@@ -67,13 +70,12 @@ const PersonalDetails = () => {
             <p>{personaldetails.Seat_type}</p>
             <p>{personaldetails.Student_type}</p>
             <p>{personaldetails.Addhar_no}</p>
-            <p>{personaldetails.Permanent_Add}</p>
-            <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Physically_handicapped}</p>
-            <p>{personaldetails.Branch}</p>
             {/* <p>{personaldetails.Photo}</p> */}
            
             {/* <p>{personaldetails.Signature}</p> */}
+
+            <h1>Father,Mother And Guardian Details</h1>
             <p>{personaldetails.Fathers_Name}</p>
             <p>{personaldetails.Fathers_email}</p>
             <p>{personaldetails.Fathers_mobile}</p>
@@ -89,7 +91,10 @@ const PersonalDetails = () => {
             <p>{personaldetails.Guardian_mobile}</p>
             <p>{personaldetails.Guardian_occupation}</p>
             <p>{personaldetails.Guardian_officeno}</p>
+
+            <h1>Admission Details</h1>
             <p>{personaldetails.Date_of_admission}</p>
+            <p>{personaldetails.Degree}</p>
             <p>{personaldetails.Payment_type}</p>
             <p>{personaldetails.State_eligibility}</p>
             <p>{personaldetails.Year}</p>
