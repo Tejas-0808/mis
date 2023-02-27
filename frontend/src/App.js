@@ -7,15 +7,15 @@ import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 //import Staff from "./components/Staff";
 //import Add from "./components/Add";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-import Religion from "./components/Studentsection/Academic/Masters/Religion";
-import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-import District from "./components/Studentsection/Academic/Masters/District";
-import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+// import Category from "./components/Studentsection/Academic/Masters/Category";
+// import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
+// import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
+// import Religion from "./components/Studentsection/Academic/Masters/Religion";
+// import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
+// import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
+// import District from "./components/Studentsection/Academic/Masters/District";
+// import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
+// import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
@@ -58,6 +58,9 @@ import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateD
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
+import B_o_s from "./components/Admin/Academic/B_o_s";
+import AddBos from "./components/Admin/Academic/AddBos";
+import UpdateBos from "./components/Admin/Academic/UpdateBos";
 
 function App() {
   return (
