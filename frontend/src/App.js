@@ -49,7 +49,9 @@ import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateD
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
-
+import AddBos from "./components/Admin/Academic/AddBos";
+import B_o_s from "./components/Admin/Academic/B_o_s";
+import UpdateBos from "./components/Admin/Academic/UpdateBos";
 function App() {
   return (
     <div className="App">

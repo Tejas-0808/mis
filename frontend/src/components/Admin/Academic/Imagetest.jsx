@@ -6,18 +6,18 @@ import axios from 'axios';
 function Imagetest() {
   const [image, setImage] = useState(null);
 
-  // const handleLoad = async () => {
-  //   try {
-  //       const res = await axios.get("http://localhost:3001/images/1");
-  //       console.log(+"123");
-  //       const blob = res.blob();
-        
-  //       setImage(URL.createObjectURL(blob))
-  //       console.log(res.data);
-  //   } catch(err) {
-  //       console.log(err);
-  //   }
-  // }
+  const handleLoad = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/images/1");
+      console.log("HEllo" + "123");
+      const blob = res.blob();
+      console.log("This is blob" + blob);
+      setImage(URL.createObjectURL(blob))
+      //console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
   console.log(image);
   const handleUpload = (event) => {
     const file = event.target.files[0];
@@ -27,18 +27,17 @@ function Imagetest() {
       method: 'POST',
       body: formData
     })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
   };
 
-  const handleLoad = () => {
-    fetch('http://localhost:3001/images/3')
-    .then(response => response.blob()) 
-    .then(blob => setImage(URL.createObjectURL(blob)))
-    .catch(error => console.error(error));
-    
-  };
+  // const handleLoad = () => {
+  //   fetch('http://localhost:3001/images/3')
+  //     .then(response => response.blob())
+  //     .then(blob => setImage(URL.createObjectURL(blob)))
+  //     .catch(error => console.error(error));
+  // };
 
   return (
     <div>
