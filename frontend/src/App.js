@@ -122,6 +122,7 @@ function App() {
           <Route path="/structure" element={<Structure/>}/>
           <Route path="addstructure" element={<AddStructure/>}/>
           <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+          <Route path="/rollnogeneration" element={<RollNoGeneration/>}/>
         </Routes>
       </BrowserRouter>
     </div>
