@@ -43,6 +43,7 @@ app.use(require('./router/citylist'));
 app.use(require('./router/state'));
 app.use(require('./router/particularstudent'));
 app.use(require('./router/courses_taken'));
+app.use(require('./router/course_category'));
 
 
 app.get('/', (req, res) => {

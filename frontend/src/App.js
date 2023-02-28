@@ -62,6 +62,9 @@ import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 import AddBos from "./components/Admin/Academic/AddBos";
 import B_o_s from "./components/Admin/Academic/B_o_s";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard";
+
+
 function App() {
   return (
     <div className="App">
