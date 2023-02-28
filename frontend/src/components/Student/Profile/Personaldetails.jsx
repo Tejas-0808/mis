@@ -6,16 +6,31 @@ import { Link, useNavigate } from "react-router-dom";
 const PersonalDetails = () => {
 
   const [personaldetails, setpersonaldetails] = useState([]);
+  const [image, setImage] = useState(null);
+
 
   const fetchAllPersonalDetails = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/student");
-      setpersonaldetails(res.data);
-      console.log(res.data.Signature);
-    } catch (err) {
-      console.log(err);
+        const res = await axios.get("http://localhost:3001/student");
+        // const imgres = await axios.get("http://localhost:3001/images/"+"1");
+        // const blob =  await imgres.blob();
+        
+        console.log(res.data[0].Signature.data);
+        const tryb = res.data[0].Signature.data;
+        let blob = new Blob([JSON.stringify(tryb,null,2)],{type:''});
+        console.log(blob);
+        // var image1 = new Image();
+        // image1.src = URL.createObjectURL(blob);
+        // document.body.appendChild(image1);
+        setImage(URL.createObjectURL(blob));
+        setpersonaldetails(res.data);
+        console.log(URL.createObjectURL(blob));
+        // const blob = await res.blob();  
+    } catch(err) {
+        console.log(err);
     }
   }
+console.log(image);
 
   useEffect(() => {
 
@@ -44,6 +59,7 @@ const PersonalDetails = () => {
     <div>
       <h1>
         Student Personal Details
+           {image && <img src={image} alt="uploaded image" />}
       </h1>
       <div className="personaldetails">
         {personaldetails.map((personaldetails) => (
@@ -71,8 +87,7 @@ const PersonalDetails = () => {
             <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Physically_handicapped}</p>
             <p>{personaldetails.Branch}</p>
-            {/* <p>{personaldetails.Photo}</p> */}
-
+            {/* <p>{personaldetails.Photo}</p> */}{/* <img src={URL.createObjectURL()} alt="signature" srcset="" /> */}
             {/* <p>{personaldetails.Signature}</p> */}
             <p>{personaldetails.Fathers_Name}</p>
             <p>{personaldetails.Fathers_email}</p>
