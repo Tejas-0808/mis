@@ -11,11 +11,6 @@ const PersonalDetails = () => {
 
   const fetchAllPersonalDetails = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/student");
-      setpersonaldetails(res.data);
-      console.log(res.data.Signature);
-    } catch (err) {
-      console.log(err);
         const res = await axios.get("http://localhost:3001/student");
         // const imgres = await axios.get("http://localhost:3001/images/"+"1");
         // const blob =  await imgres.blob();
