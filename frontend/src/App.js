@@ -49,6 +49,11 @@ import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateD
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
+import B_o_s from "./components/Admin/Academic/B_o_s";
+import AddBos from "./components/Admin/Academic/AddBos";
+import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import Imagetest from "./components/Admin/Academic/Imagetest";
+
 
 function App() {
   return (
@@ -113,6 +118,7 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="/imageshow" element={<Imagetest/>}/>
         </Routes>
       </BrowserRouter>
     </div>

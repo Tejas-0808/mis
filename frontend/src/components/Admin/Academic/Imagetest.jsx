@@ -8,16 +8,17 @@ function Imagetest() {
 
   // const handleLoad = async () => {
   //   try {
-  //       const res = await axios.get("http://localhost:3001/images/1");
-  //       console.log(+"123");
-  //       const blob = res.blob();
+  //       const res = await axios.get("http://localhost:3001/images/3");
+  //       // const blob = res.json();
+  //       console.log(res+"123");
         
-  //       setImage(URL.createObjectURL(blob))
+  //       setImage(URL.createObjectURL(res))
   //       console.log(res.data);
   //   } catch(err) {
   //       console.log(err);
   //   }
   // }
+
   console.log(image);
   const handleUpload = (event) => {
     const file = event.target.files[0];
@@ -37,7 +38,6 @@ function Imagetest() {
     .then(response => response.blob()) 
     .then(blob => setImage(URL.createObjectURL(blob)))
     .catch(error => console.error(error));
-    
   };
 
   return (
