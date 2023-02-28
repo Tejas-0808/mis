@@ -14,6 +14,8 @@ function RollNoGeneration() {
     semester: "",
   });
 
+
+
   const fetchBatch = async () => {
     try {
       const res = await axios.get("http://localhost:3001/batch");
@@ -54,8 +56,9 @@ function RollNoGeneration() {
 
   const navigate = useNavigate();
 
-  const generate = (rollGen) => {
+  const generate = (rollGen, name) => {
     const { admission_batch, department, degree, semester } = rollGen;
+    
     var d = "";
     var t = "";
     var s = "";
@@ -99,7 +102,6 @@ function RollNoGeneration() {
     fetchBranch();
     fetchDegree();
     fetchSem();
-    // fetchBranchCode(department);
   }, []);
 
   const handleChange = (e) => {

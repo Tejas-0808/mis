@@ -5,8 +5,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
+import NewUser from "./components/Users/HOD/NewUser";
 //import Staff from "./components/Staff";
 //import Add from "./components/Add";
+// import Category from "./components/Studentsection/Academic/Masters/Category";
+// import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
+// import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
+// import Religion from "./components/Studentsection/Academic/Masters/Religion";
+// import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
+// import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
+// import District from "./components/Studentsection/Academic/Masters/District";
+// import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
+// import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
@@ -54,7 +64,9 @@ import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
 
-
+import AddBos from "./components/Admin/Academic/AddBos";
+import B_o_s from "./components/Admin/Academic/B_o_s";
+import UpdateBos from "./components/Admin/Academic/UpdateBos";
 function App() {
   return (
     <div className="App">
@@ -65,6 +77,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/branch" element={<Branch />} />
           <Route path="/add" element={<Add />} />
+          <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
           <Route path="/contact_details" element={<Student_info />} />
@@ -115,6 +128,10 @@ function App() {
           <Route path="/addbos" element={<AddBos />} />
           <Route path="/updatebos/:id" element={<UpdateBos />} />
 
+          <Route path="/structure" element={<Structure/>}/>
+          <Route path="addstructure" element={<AddStructure/>}/>
+          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+          <Route path="/rollnogeneration" element={<RollNoGeneration/>}/>
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
