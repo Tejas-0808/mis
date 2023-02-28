@@ -45,15 +45,7 @@ import Educationdetails from "./components/Student/Profile/Educationdetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory"
-import Religion from "./components/Studentsection/Academic/Masters/Religion" 
-import AddReligion from  "./components/Studentsection/Academic/Masters/AddReligion" 
-import UpdateReligion from  "./components/Studentsection/Academic/Masters/UpdateReligion"
-import District from  "./components/Studentsection/Academic/Masters/District" 
-import AddDistrict from  "./components/Studentsection/Academic/Masters/AddDistrict" 
-import UpdateDistrict from  "./components/Studentsection/Academic/Masters/UpdateDistrict" 
+
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import Religion from "./components/Studentsection/Academic/Masters/Religion";
@@ -72,10 +64,7 @@ import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
-
-import AddBos from "./components/Admin/Academic/AddBos";
-import B_o_s from "./components/Admin/Academic/B_o_s";
-import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard"
 function App() {
   return (
     <div className="App">
@@ -145,6 +134,9 @@ function App() {
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
           <Route path="/imageshow" element={<Imagetest/>}/>
+          <Route path="/rolllist" element={<Rolllist/>}/>
+
+
 
           <Route path="/identitycard" element={<IdentityCard/>}/>
 

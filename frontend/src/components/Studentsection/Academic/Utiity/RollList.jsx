@@ -12,15 +12,6 @@ const Rolllist = () => {
     Admission_batch: ""
   });
 
-//   const fetchAllrollno = async () => {
-//     try {
-//         const res = await axios.get("http://localhost:3001/student");
-//         setrollno(res.data);
-//         console.log(res.data);
-//     } catch(err) {
-//         console.log(err);
-//     }
-// }
 
 //   useEffect(() => {
 
