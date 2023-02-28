@@ -6,16 +6,36 @@ import { Link, useNavigate } from "react-router-dom";
 const PersonalDetails = () => {
 
   const [personaldetails, setpersonaldetails] = useState([]);
+  const [image, setImage] = useState(null);
+
 
   const fetchAllPersonalDetails = async () => {
     try {
+      const res = await axios.get("http://localhost:3001/student");
+      setpersonaldetails(res.data);
+      console.log(res.data.Signature);
+    } catch (err) {
+      console.log(err);
         const res = await axios.get("http://localhost:3001/student");
+        // const imgres = await axios.get("http://localhost:3001/images/"+"1");
+        // const blob =  await imgres.blob();
+        
+        console.log(res.data[0].Signature.data);
+        const tryb = res.data[0].Signature.data;
+        let blob = new Blob([JSON.stringify(tryb,null,2)],{type:''});
+        console.log(blob);
+        // var image1 = new Image();
+        // image1.src = URL.createObjectURL(blob);
+        // document.body.appendChild(image1);
+        setImage(URL.createObjectURL(blob));
         setpersonaldetails(res.data);
-        console.log(res.data);
+        console.log(URL.createObjectURL(blob));
+        // const blob = await res.blob();  
     } catch(err) {
         console.log(err);
     }
-}
+  }
+console.log(image);
 
   useEffect(() => {
 
@@ -24,16 +44,16 @@ const PersonalDetails = () => {
   }, []);
   const navigate = useNavigate();
 
-  
-  const handleDelete= async (id) =>{
-    try{
+
+  const handleDelete = async (id) => {
+    try {
       console.log(id)
-      await axios.delete("http://localhost:3001/student/"+id)
+      await axios.delete("http://localhost:3001/student/" + id)
       const res = await axios.get("http://localhost:3001/student");
       setpersonaldetails(res.data);
       // window.location.reload()
       // navigate("/");
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
 
@@ -42,10 +62,11 @@ const PersonalDetails = () => {
 
   return (
     <div>
-        <h1>
-           Student Personal Details
-        </h1>
-        <div className="personaldetails">
+      <h1>
+        Student Personal Details
+           {image && <img src={image} alt="uploaded image" />}
+      </h1>
+      <div className="personaldetails">
         {personaldetails.map((personaldetails) => (
           <div key={personaldetails.Reg_Id} className="personaldetails">
             <h2>{personaldetails.Reg_Id}</h2>
@@ -71,8 +92,7 @@ const PersonalDetails = () => {
             <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Physically_handicapped}</p>
             <p>{personaldetails.Branch}</p>
-            {/* <p>{personaldetails.Photo}</p> */}
-           
+            {/* <p>{personaldetails.Photo}</p> */}{/* <img src={URL.createObjectURL()} alt="signature" srcset="" /> */}
             {/* <p>{personaldetails.Signature}</p> */}
             <p>{personaldetails.Fathers_Name}</p>
             <p>{personaldetails.Fathers_email}</p>
@@ -94,14 +114,14 @@ const PersonalDetails = () => {
             <p>{personaldetails.State_eligibility}</p>
             <p>{personaldetails.Year}</p>
             <p>{personaldetails.Admission_batch}</p>
-            <p>{personaldetails.Semester}</p> 
-            <button className="delete" onClick={()=>handleDelete(personaldetails.Reg_Id)}>Delete</button>
-            </div>
+            <p>{personaldetails.Semester}</p>
+            <button className="delete" onClick={() => handleDelete(personaldetails.Reg_Id)}>Delete</button>
+          </div>
         ))}
         <button>
-            <Link to="/addpersonaldetails">Add new Student Personal Details</Link>
+          <Link to="/addpersonaldetails">Add new Student Personal Details</Link>
         </button>
-    </div>
+      </div>
     </div>
   )
 }
