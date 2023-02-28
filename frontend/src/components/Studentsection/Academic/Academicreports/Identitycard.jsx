@@ -12,7 +12,7 @@ function IdentityCard() {
     admission_batch: "",
     department: "",
     degree: "",
-    semester: "",
+    // semester: "",
   });
 
   const fetchDegree = async () => {
@@ -66,7 +66,7 @@ function IdentityCard() {
 
   const generate = (IdentityCard) => {
     const { department, degree, admission_batch } = IdentityCard;
-    
+
 
     return null;
   };
@@ -140,18 +140,20 @@ function IdentityCard() {
       <button className="Generate" onClick={handleClick}>
         Generate
       </button>
-    </div>
-    
-    <div className='IdentityCard'>
-      {branch.map((IdentityCard) => (
-          <div key={IdentityCard.Branch_name} className="IdentityCard">
-            <h2>{IdentityCard.admission_batch}</h2>
+      <div className=''>
+        {IdentityCard.map((IdentityCard) => (
+          <div className="IdentityCard">
+            <p>{IdentityCard.department}</p>
+            <p>{IdentityCard.admission_batch}</p>
             <p>{IdentityCard.degree_name}</p>
-            </div>
+          </div>
         ))}
-        
-    </div></>
-    
+      </div>
+
+    </div>
+
+
+    </>
   )
 }
 
