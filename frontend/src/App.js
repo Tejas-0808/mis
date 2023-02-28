@@ -122,6 +122,9 @@ function App() {
           <Route path="/structure" element={<Structure/>}/>
           <Route path="addstructure" element={<AddStructure/>}/>
           <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+
+          <Route path="/identitycard" element={<IdentityCard/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>
