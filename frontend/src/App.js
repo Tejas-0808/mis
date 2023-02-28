@@ -63,10 +63,8 @@ import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
-
-import AddBos from "./components/Admin/Academic/AddBos";
-import B_o_s from "./components/Admin/Academic/B_o_s";
-import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
+import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 function App() {
   return (
     <div className="App">
@@ -136,9 +134,10 @@ function App() {
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
           <Route path="/imageshow" element={<Imagetest/>}/>
-
           <Route path="/identitycard" element={<IdentityCard/>}/>
-
+          <Route path="/schemeallotment" element={<Schemeallotment/>}/>
+          <Route path="/rolllist" element={<Rolllist/>}/>
+          
         </Routes>
       </BrowserRouter>
     </div>
