@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
+import NewUser from "./components/Users/HOD/NewUser";
 //import Staff from "./components/Staff";
 //import Add from "./components/Add";
 // import Category from "./components/Studentsection/Academic/Masters/Category";
@@ -71,6 +72,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/branch" element={<Branch />} />
           <Route path="/add" element={<Add />} />
+          <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
           <Route path="/contact_details" element={<Student_info />} />
@@ -121,6 +123,10 @@ function App() {
           <Route path="/addbos" element={<AddBos />} />
           <Route path="/updatebos/:id" element={<UpdateBos />} />
 
+          <Route path="/structure" element={<Structure/>}/>
+          <Route path="addstructure" element={<AddStructure/>}/>
+          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+          <Route path="/rollnogeneration" element={<RollNoGeneration/>}/>
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
