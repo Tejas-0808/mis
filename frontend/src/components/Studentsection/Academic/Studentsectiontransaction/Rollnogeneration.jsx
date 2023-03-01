@@ -13,6 +13,9 @@ function RollNoGeneration() {
     degree: "",
     semester: "",
   });
+  const [SData, SetSData] = useState([]);
+  const [mapData, setMapData] = useState({name: ""})
+
 
 
 
@@ -56,15 +59,26 @@ function RollNoGeneration() {
 
   const navigate = useNavigate();
 
-  const generate = (rollGen, name) => {
+  const generate = (rollGen, SData, name) => {
     const { admission_batch, department, degree, semester } = rollGen;
     
+    for (let i = 0; i < SData.length; i++) {
+      var { First_Name, Middle_Name, Last_Name } = SData[i]
+      var name = First_Name+" "+Middle_Name+" "+Last_Name
+      setMapData((prev) => ({ ...prev, name }));
+      console.log(mapData);
+    }
+    
+    // console.log(First_Name)
+    // console.log(Middle_Name)
+    // console.log(Last_Name)
     var d = "";
     var t = "";
     var s = "";
 
     // const { branchId, branchName } = department;
     console.log(department[0]);
+    console.log(department.slice(2));
     var branchCode = department[0];
     if (department[0].length === 1) {
       branchCode = "0" + department[0];
@@ -110,9 +124,21 @@ function RollNoGeneration() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    generate(rollGen);
-    console.log(generate(rollGen));
+    generate(rollGen, SData);
+    console.log(generate(rollGen, SData));
   };
+
+  const handleShow = async (rollGen) => {
+    const { admission_batch, department, degree, semester } = rollGen
+    const dept = department.slice(2);
+    try {
+      const res = await axios.get("http://localhost:3001/rollgen?admission_batch="+admission_batch+"&department="+dept+"&degree="+degree+"&semester="+semester);
+      SetSData(res.data);
+      console.log(res.data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div>
@@ -184,6 +210,7 @@ function RollNoGeneration() {
         </select>
       </label>
       <div>
+        <button className="Show" onClick={() => handleShow(rollGen)}>Show</button>
         <button className="submit" onClick={handleClick}>
           Submit
         </button>
