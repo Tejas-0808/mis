@@ -44,6 +44,7 @@ app.use(require('./router/state'));
 app.use(require('./router/particularstudent'));
 app.use(require('./router/entrance_exam_details'));
 app.use(require('./router/courses_taken'));
+app.use(require('./router/session'));
 
 
 app.get('/', (req, res) => {

@@ -62,6 +62,9 @@ import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 import AddBos from "./components/Admin/Academic/AddBos";
 import B_o_s from "./components/Admin/Academic/B_o_s";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import Session from "./components/Admin/Academic/Session";
+import AddSession from "./components/Admin/Academic/AddSession";
+
 function App() {
   return (
     <div className="App">
@@ -130,6 +133,9 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="addsession" element={<AddSession />} />
+          <Route path="session" element={<Session />} />
+
         </Routes>
       </BrowserRouter>
     </div>
