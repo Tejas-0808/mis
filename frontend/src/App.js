@@ -55,15 +55,9 @@ import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
-<<<<<<< HEAD
-import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard";
-
-
-=======
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
->>>>>>> 2730c2a3d70cbc9138a3f9c6a591b53f59f8c588
 function App() {
   return (
     <div className="App">
