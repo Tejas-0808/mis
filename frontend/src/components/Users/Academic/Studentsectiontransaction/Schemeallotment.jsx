@@ -115,47 +115,44 @@ function Schemeallotment() {
     }
   };
 
-  const [checkedItems, setCheckedItems] = useState({});
-  const [selectedEntries, setSelectedEntries] = useState([]);
 
-  // const handleCheckboxChange = (event, id) => {
-  //   if (event.target.checked) {
-  //     setSelectedEntries([...selectedEntries, id]);
-  //   } else {
-  //     setSelectedEntries(selectedEntries.filter((entryId) => entryId !== id));
-  //   }
+  // const handleChange1 = (event) => {
+  //   setCheckedItems({
+  //     ...checkedItems,
+  //     [event.target.name]: event.target.checked,
+
+  //   });
   // };
 
-  // const handleCheckboxChange = (event) => {
-  //   const id = event.target.value;
-  //   console.log(id);
-  //   if (selectedEntries.includes(id)) {
-  //     setSelectedEntries(selectedEntries.filter((entry) => entry !== id));
-  //   } else {
-  //     setSelectedEntries([...selectedEntries, id]);
-  //   }
-  // };
-  
-  const [checkedIds, setCheckedIds] = useState(new Set());
+  const [checkedValues, setCheckedValues] = useState([]);
 
-  const handleCheckboxChange = useCallback((isChecked, recordId) => {
-    if (isChecked) {
-      setCheckedIds((prev) => new Set([...prev, recordId]));
+  function handleCheckboxChange(event) {
+    const { value, checked } = event.target;
+
+    if (checked) {
+      setCheckedValues([...checkedValues, value]);
     } else {
-      setCheckedIds((prev) => {
-        const next = new Set(prev);
-        next.delete(recordId);
-        return next;
-      });
+      setCheckedValues(checkedValues.filter((val) => val !== value));
     }
-  }, []);
+  }
 
-  const handleChange1 = (event) => {
-    setCheckedItems({
-      ...checkedItems,
-      [event.target.name]: event.target.checked,
-    });
+  const handleUpdateButtonClick = () => {
+    const newData = Rolllists.Scheme;
+    console.log(newData);
+    // if (checkedValues.length > 0) {
+      axios.post('http://localhost:3001/assignscheme', {
+        checkedValues: checkedValues,
+        newData: newData,
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    // }
   };
+
   console.log(studentlist);
 
   console.log(Rolllists);
@@ -234,54 +231,28 @@ function Schemeallotment() {
           </div>
         ))} */}
         <div>
-          {/* <table id="studentList">
+          <div>
             {studentlist.map((student) => (
-              <tr>
-                <td>
-                  <input
-                    id="chkMango"
-                    name={student.First_Name}
-                    type="checkbox"
-                    value={student.roll_no}
-                    // checked={checkedItems.student.First_Name}
-                    onChange={handleChange1}
-                  />
-                  <label for="chkMango">{student.First_Name}</label>
-                </td>
-              </tr>
+              <table>
+                <tr>
+                  <td>
+                    <div key={student.roll_no}>
+                      <input
+                        type="checkbox"
+                        value={student.roll_no}
+                        checked={checkedValues.includes(student.roll_no)}
+                        onChange={handleCheckboxChange}
+                      />
+                      <span>{student.roll_no}</span>
+                      {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
+                    </div>
+                  </td>
+                </tr>
+              </table>
             ))}
-          </table> */}
 
-          {/* {studentlist.map((student) => (
-            <div key={student.Reg_Id}>
-              <input
-                type="checkbox"
-                value={student.Reg_Id}
-                checked={checkedIds.has(student.Reg_Id)}
-                onChange={(e) => handleCheckboxChange(e.target.checked, student.Reg_Id)}
-              />
-              <span>{student.roll_no}</span>
-              <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} />
-            </div>
-          ))} */}
-
-          {/* <p>Selected items: {JSON.stringify(selectedEntries)}</p> */}
-
-
-          <ul>
-      {studentlist.map((student) => (
-        <li key={student.Reg_Id}>
-          <input
-            type="checkbox"
-            checked={checkedIds.has(student.Reg_Id)}
-            onChange={(e) => handleCheckboxChange(e.target.checked, student.Reg_Id)}
-          />
-          {student.roll_no}
-        </li>
-      ))}
-    </ul>
-
-
+            <p>Checked values: {JSON.stringify(checkedValues)}</p>
+          </div>
           <br />
           <select
             name="Scheme"
@@ -292,12 +263,12 @@ function Schemeallotment() {
           >
             <option value="">-- Select Scheme --</option>
             {scheme.map((item) => (
-              <option key={item.mastersch_id} value={item.master_scheme}>
+              <option key={item.mastersch_id} value={item.mastersch_id}>
                 {item.master_scheme}
               </option>
             ))}
           </select>
-          <button onClick={updateScheme}>Assign FA</button>
+          <button onClick={handleUpdateButtonClick}>Assign Scheme</button>
         </div>
       </div>
     </div>
