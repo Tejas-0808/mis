@@ -45,15 +45,7 @@ import Educationdetails from "./components/Student/Profile/Educationdetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory"
-import Religion from "./components/Studentsection/Academic/Masters/Religion" 
-import AddReligion from  "./components/Studentsection/Academic/Masters/AddReligion" 
-import UpdateReligion from  "./components/Studentsection/Academic/Masters/UpdateReligion"
-import District from  "./components/Studentsection/Academic/Masters/District" 
-import AddDistrict from  "./components/Studentsection/Academic/Masters/AddDistrict" 
-import UpdateDistrict from  "./components/Studentsection/Academic/Masters/UpdateDistrict" 
+
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import Structure from "./components/Admin/Academic/Structure";
@@ -63,9 +55,15 @@ import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
+<<<<<<< HEAD
 import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard";
 
 
+=======
+import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
+import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
+import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
+>>>>>>> 2730c2a3d70cbc9138a3f9c6a591b53f59f8c588
 function App() {
   return (
     <div className="App">
@@ -134,10 +132,13 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="rollnogeneration" element={<RollNoGeneration />} />
           <Route path="/imageshow" element={<Imagetest/>}/>
-
           <Route path="/identitycard" element={<IdentityCard/>}/>
-
+          <Route path="/schemeallotment" element={<Schemeallotment/>}/>
+          <Route path="/rolllist" element={<Rolllist/>}/>
+          <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
+          
         </Routes>
       </BrowserRouter>
     </div>

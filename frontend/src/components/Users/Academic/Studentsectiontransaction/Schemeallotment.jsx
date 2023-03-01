@@ -1,33 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-
-const Rolllist = () => {
-
+function Schemeallotment() {
   const [Rolllists, SetRolllists] = useState({
     Degree: "",
     Branch: "",
     Semester: "",
-    Admission_batch: ""
+    Batch: "",
   });
 
+  const [studentlist, setstudentlist] = useState([]);
 
-//   useEffect(() => {
+  //   useEffect(() => {
 
-//     fetchAllrollno();
-//     // eslint-disable-next-line
-//   }, []);
+  //     fetchAllrollno();
+  //     // eslint-disable-next-line
+  //   }, []);
   const navigate = useNavigate();
-
-  // console.log(rollno);
-
 
   const handleChange = (e) => {
     SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-const [degree, setdegree] = useState([]);
+  const [degree, setdegree] = useState([]);
 
   useEffect(() => {
     axios
@@ -40,7 +36,7 @@ const [degree, setdegree] = useState([]);
       });
   }, []);
 
-const [branch, setbranch] = useState([]);
+  const [branch, setbranch] = useState([]);
 
   useEffect(() => {
     axios
@@ -53,8 +49,7 @@ const [branch, setbranch] = useState([]);
       });
   }, []);
 
-const [semester, setsemester] = useState([]);
-
+  const [semester, setsemester] = useState([]);
 
   useEffect(() => {
     axios
@@ -67,7 +62,7 @@ const [semester, setsemester] = useState([]);
       });
   }, []);
 
-const [batch, setbatch] = useState([]);
+  const [batch, setbatch] = useState([]);
 
   useEffect(() => {
     axios
@@ -83,17 +78,24 @@ const [batch, setbatch] = useState([]);
   const fetchStudents = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post("http://localhost:3001/rolllist",Rolllists);
-        // setBranch(res.data);
-        // console.log(res.data+"!");
-        // console.log(Rolllists);
-       
-    } catch(err) {
-        console.log(err);
+      const res = await axios.post("http://localhost:3001/rolllist", Rolllists);
+      setstudentlist(res.data);
+      // setBranch(res.data);
+      // console.log(res.data+"!");
+      console.log(res.data + "123");
+    } catch (err) {
+      console.log(err);
     }
-}
+  };
 
-  console.log(Rolllists);
+  const [checkedItems, setCheckedItems] = useState({});
+
+  const handleChange1 = (event) => {
+    setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
+  }
+  console.log(studentlist);
+
+  //   console.log(Rolllists);
   return (
     <div>
       <select
@@ -105,12 +107,12 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Degree --</option>
         {degree.map((item) => (
-          <option key={item.degree_id} value={item.degree_name }>
+          <option key={item.degree_id} value={item.degree_name}>
             {item.degree_name}
           </option>
         ))}
       </select>
-  
+
       <select
         name="Branch"
         placeholder="Select Branch"
@@ -120,7 +122,7 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Branch --</option>
         {branch.map((item) => (
-          <option key={item.Branch_id} value={item.Branch_name }>
+          <option key={item.Branch_id} value={item.Branch_name}>
             {item.Branch_name}
           </option>
         ))}
@@ -134,7 +136,7 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Semester --</option>
         {semester.map((item) => (
-          <option key={item.sem_id} value={item.sem }>
+          <option key={item.sem_id} value={item.sem}>
             {item.sem}
           </option>
         ))}
@@ -154,9 +156,44 @@ const [batch, setbatch] = useState([]);
         ))}
       </select>
       <button onClick={fetchStudents}>fetch</button>
-
+      <br></br>
+      <br></br>
+      <div className="branch">
+        {/* {studentlist.map((student) => (
+          <div key={student.roll_no} className="branch">
+            <h2>{student.First_Name}</h2>
+            <p>{branch.Branch_name}</p>
+            <p>{branch.HOD}</p>
+            <p>{branch.Students_enrolled}</p>
+            <button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
+            <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button>
+          </div>
+        ))} */}
+        <div>
+          <table id="studentList">
+            {studentlist.map((student) => (
+              <tr>
+                <td>
+                  <input
+                    id="chkMango"
+                    name={student.First_Name}
+                    type="checkbox"
+                    value={student.roll_no}
+                    // checked={checkedItems.student.First_Name}
+                    onChange={handleChange1}
+                  />
+                  <label for="chkMango">{student.First_Name}</label>
+                </td>
+              </tr>
+            ))}
+          </table>
+          <p>Selected items: {JSON.stringify(checkedItems)}</p>
+          <br />
+          <input type="button" value="Get" onclick="GetSelected()" />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Rolllist
+export default Schemeallotment;

@@ -6,15 +6,11 @@ import axios from "axios";
 function AddStructure() {
   const [Scheme, setScheme] = useState([]);
   const [Category, setCategory] = useState([]);
+  const [semester, setSem] = useState([]);
   const [Branch, setBranch] = useState([]);
   const [Bos, setBos] = useState([]);
   const [Structure, setStructure] = useState({
-    strid: "",
-    scheme_id: "",
-    category: "",
-    semester: "",
-    branch_id: "",
-    board_of_study: "",
+    structure_id: "",
     coursecode: "",
     coursename: "",
     lecture: "",
@@ -50,6 +46,14 @@ function AddStructure() {
     }
   };
 
+  axios.get("http://localhost:3001/semester")
+      .then((response) => {
+        setSem(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   const fetchBranch = async () => {
     try {
       const res = await axios.get("http://localhost:3001/branch");
@@ -84,15 +88,15 @@ function AddStructure() {
   };
 
   const handleClick = async (e) => {
-        e.preventDefault();
-        try {
-          await axios.post("http://localhost:3001/structure", Structure);
-          navigate("/structure");
-        } catch (err) {
-          console.log(err);
-          // setError(true)
-        }
-      };
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/structure", Structure);
+      navigate("/structure");
+    } catch (err) {
+      console.log(err);
+      // setError(true)
+    }
+  };
 
   return (
     <div className="form">
@@ -133,7 +137,20 @@ function AddStructure() {
         </select>
       </label>
       &nbsp;&nbsp;
-      <input type="text" placeholder="Semester" name="semester" onChange={handleChange}/>
+      <select
+        name="semester"
+        placeholder="Board of Study"
+        className="form-select-case"
+        onChange={handleChange}
+        required
+      >
+        <option value="">-- Select Semester --</option>
+        {semester.map((item) => (
+          <option key={item.sem} value={item.sem}>
+            {item.sem}
+          </option>
+        ))}
+      </select>
       &nbsp;&nbsp;
       <label>
         Branch ID:
@@ -194,6 +211,7 @@ function AddStructure() {
       &nbsp;&nbsp;
       <input type="number" placeholder="Total Credits" name="total_credits" onChange={handleChange}/>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br />
       <button onClick={handleClick}>Add</button>
     </div>
   )
