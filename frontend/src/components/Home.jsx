@@ -52,6 +52,11 @@ function Home() {
             <Link to="/imageshow">IMAGE TEST</Link>
         </button>
       </p>
+      <p>
+        <button>
+            <Link to="/schemeallotment">Scheme Allotment TEST</Link>
+        </button>
+      </p>
     </div>
   )
 }
