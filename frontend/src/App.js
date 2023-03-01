@@ -56,15 +56,6 @@ import AddDistrict from  "./components/Studentsection/Academic/Masters/AddDistri
 import UpdateDistrict from  "./components/Studentsection/Academic/Masters/UpdateDistrict" 
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
-import Religion from "./components/Studentsection/Academic/Masters/Religion";
-import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-import District from "./components/Studentsection/Academic/Masters/District";
-import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
@@ -72,10 +63,6 @@ import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
-
-import AddBos from "./components/Admin/Academic/AddBos";
-import B_o_s from "./components/Admin/Academic/B_o_s";
-import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import IdentityCard from "./components/Studentsection/Academic/Academicreports/Identitycard";
 
 
