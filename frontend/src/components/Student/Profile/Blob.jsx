@@ -11,13 +11,13 @@ function Blob() {
       const outputfile = "output.png";
       const res = await axios.get("http://localhost:3001/student");
       // setpersonaldetails(res.data);
-      // console.log(res.data);
+      console.log(res.data);
       const imgr = res.data[0].Photo.data.toString('base64');
-     console.log(imgr)
-    //  const imgsrc = URL.createObjectURL(imgr);
-    //  console.log(imgsrc)
-     
-     setpersonaldetails(imgr)
+      console.log(imgr)
+      //  const imgsrc = URL.createObjectURL(imgr);
+      //  console.log(imgsrc)
+
+      setpersonaldetails(imgr)
     } catch (err) {
       console.log(err);
     }
@@ -65,8 +65,8 @@ function Blob() {
               alt=""
               srcset=""
             /> */}
-  {/* <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAwBAMAAACh2TSJAAAALVBMVEUAAADtNTX////3n5/+9fX719f7zMz5tLTzfHzuQED//f31jY3ybGzxXV3wVFRaxp+rAAAAAXRSTlMAQObYZgAAALVJREFUOMut0rENAjEQRNHdC4kY0QBaAQUQX0QAFSAKIKQEKiAA6VqgIkriApuV1x7pQPz0aWwHljLMpZ0CRDBGoXmeghGYKFJsUo90giAImCgV5OJF+oOgKE48MlGgs2VLBIunWesw0a1ZHqF82c7GmmIfUSpgotOly29DFPFJFDEhkgIT/V5mZuvj6XofKrHU6vyI4u37IYi36aN4h5tL7PJyif1dvCgEpapzISbCTEj5R78BZq5A5Ldh2XYAAAAASUVORK5CYII"></img> */}
-            {/* {personaldetails} */}
+        {/* <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAwBAMAAACh2TSJAAAALVBMVEUAAADtNTX////3n5/+9fX719f7zMz5tLTzfHzuQED//f31jY3ybGzxXV3wVFRaxp+rAAAAAXRSTlMAQObYZgAAALVJREFUOMut0rENAjEQRNHdC4kY0QBaAQUQX0QAFSAKIKQEKiAA6VqgIkriApuV1x7pQPz0aWwHljLMpZ0CRDBGoXmeghGYKFJsUo90giAImCgV5OJF+oOgKE48MlGgs2VLBIunWesw0a1ZHqF82c7GmmIfUSpgotOly29DFPFJFDEhkgIT/V5mZuvj6XofKrHU6vyI4u37IYi36aN4h5tL7PJyif1dvCgEpapzISbCTEj5R78BZq5A5Ldh2XYAAAAASUVORK5CYII"></img> */}
+        {/* {personaldetails} */}
       </div>
     </div>
   );

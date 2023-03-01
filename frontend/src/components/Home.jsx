@@ -14,6 +14,11 @@ function Home() {
       </p>
       <p>
         <button>
+            <Link to="/NewUser">Faculty</Link>
+        </button>
+      </p>
+      <p>
+        <button>
             <Link to="/NewStudent">Student</Link>
         </button>
       </p>
@@ -45,6 +50,11 @@ function Home() {
       <p>
         <button>
             <Link to="/imageshow">IMAGE TEST</Link>
+        </button>
+      </p>
+      <p>
+        <button>
+            <Link to="/schemeallotment">Scheme Allotment TEST</Link>
         </button>
       </p>
     </div>

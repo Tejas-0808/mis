@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
+import NewUser from "./components/Users/HOD/NewUser";
 //import Staff from "./components/Staff";
 //import Add from "./components/Add";
 // import Category from "./components/Studentsection/Academic/Masters/Category";
@@ -41,10 +42,11 @@ import Student_info from "./components/Student/Profile/Contactdetails";
 import Add_C_d from "./components/Student/Profile/Add_contact_details";
 import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
 import Educationdetails from "./components/Student/Profile/Educationdetails";
-import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
+
+
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import Religion from "./components/Studentsection/Academic/Masters/Religion";
 import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
@@ -61,7 +63,10 @@ import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
-
+import Imagetest from "./components/Admin/Academic/Imagetest";
+import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
+import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
+import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 function App() {
   return (
     <div className="App">
@@ -72,6 +77,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/branch" element={<Branch />} />
           <Route path="/add" element={<Add />} />
+          <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
           <Route path="/contact_details" element={<Student_info />} />
@@ -122,10 +128,23 @@ function App() {
           <Route path="/addbos" element={<AddBos />} />
           <Route path="/updatebos/:id" element={<UpdateBos />} />
 
+          <Route path="/structure" element={<Structure/>}/>
+          <Route path="addstructure" element={<AddStructure/>}/>
+          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
+          <Route path="/rollnogeneration" element={<RollNoGeneration/>}/>
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+<<<<<<< HEAD
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
+=======
+          <Route path="/imageshow" element={<Imagetest/>}/>
+          <Route path="/identitycard" element={<IdentityCard/>}/>
+          <Route path="/schemeallotment" element={<Schemeallotment/>}/>
+          <Route path="/rolllist" element={<Rolllist/>}/>
+          <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
+          
+>>>>>>> 110b8c7d79686decb1f3e54d09c4a72e1e720270
         </Routes>
       </BrowserRouter>
     </div>

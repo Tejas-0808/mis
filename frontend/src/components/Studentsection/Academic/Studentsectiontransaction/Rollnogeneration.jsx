@@ -17,6 +17,8 @@ function RollNoGeneration() {
   const [mapData, setMapData] = useState({name: ""})
 
 
+
+
   const fetchBatch = async () => {
     try {
       const res = await axios.get("http://localhost:3001/batch");
@@ -57,8 +59,9 @@ function RollNoGeneration() {
 
   const navigate = useNavigate();
 
-  const generate = (rollGen, SData) => {
+  const generate = (rollGen, SData, name) => {
     const { admission_batch, department, degree, semester } = rollGen;
+    
     for (let i = 0; i < SData.length; i++) {
       var { First_Name, Middle_Name, Last_Name } = SData[i]
       var name = First_Name+" "+Middle_Name+" "+Last_Name
@@ -113,7 +116,6 @@ function RollNoGeneration() {
     fetchBranch();
     fetchDegree();
     fetchSem();
-    // fetchBranchCode(department);
   }, []);
 
   const handleChange = (e) => {

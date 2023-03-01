@@ -12,7 +12,7 @@ function IdentityCard() {
     admission_batch: "",
     department: "",
     degree: "",
-    semester: "",
+    // semester: "",
   });
 
   const fetchDegree = async () => {
@@ -63,17 +63,31 @@ function IdentityCard() {
     // fetchBranchCode(department);
   }, []);
 
+
+  const generate = (IdentityCard) => {
+    const { department, degree, admission_batch } = IdentityCard;
+
+
+    return null;
+  };
+
+
   const handleChange = (e) => {
     setIdentityCard((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-
+  const handleClick = async (e) => {
+    e.preventDefault();
+    generate(IdentityCard);
+    console.log(generate(IdentityCard));
+  };
 
   return (
-    <div>
+    <><div>
       <h1>
         Identity Card Generation
       </h1>
+      &nbsp;&nbsp;
       <label>
         Degree:
         <select
@@ -89,7 +103,7 @@ function IdentityCard() {
           ))}
         </select>
       </label>
-  
+      &nbsp;&nbsp;
       <label>
         Department:
         <select
@@ -105,7 +119,7 @@ function IdentityCard() {
           ))}
         </select>
       </label>
-
+      &nbsp;&nbsp;
       <label>
         Admission Batch:
         <select
@@ -122,8 +136,24 @@ function IdentityCard() {
         </select>
       </label>
 
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button className="Generate" onClick={handleClick}>
+        Generate
+      </button>
+      <div className=''>
+        {IdentityCard.map((IdentityCard) => (
+          <div className="IdentityCard">
+            <p>{IdentityCard.department}</p>
+            <p>{IdentityCard.admission_batch}</p>
+            <p>{IdentityCard.degree_name}</p>
+          </div>
+        ))}
+      </div>
 
     </div>
+
+
+    </>
   )
 }
 
