@@ -140,7 +140,7 @@ const [batch, setbatch] = useState([]);
         ))}
       </select>
       <select
-        name="Batch"
+        name="Admission_batch"
         placeholder="Select Batch"
         className="form-select-batch"
         onChange={handleChange}
