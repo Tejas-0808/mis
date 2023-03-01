@@ -43,14 +43,11 @@ app.use(require('./router/citylist'));
 app.use(require('./router/state'));
 app.use(require('./router/particularstudent'));
 app.use(require('./router/courses_taken'));
-<<<<<<< HEAD
 app.use(require('./router/rollgen'))
-=======
 app.use(require('./router/course_category'));
 
 app.use(require("./router/images"));
 app.use(require('./router/rolllist'));
->>>>>>> 110b8c7d79686decb1f3e54d09c4a72e1e720270
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

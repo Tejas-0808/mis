@@ -135,16 +135,13 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
-<<<<<<< HEAD
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
-=======
           <Route path="/imageshow" element={<Imagetest/>}/>
           <Route path="/identitycard" element={<IdentityCard/>}/>
           <Route path="/schemeallotment" element={<Schemeallotment/>}/>
           <Route path="/rolllist" element={<Rolllist/>}/>
           <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
           
->>>>>>> 110b8c7d79686decb1f3e54d09c4a72e1e720270
         </Routes>
       </BrowserRouter>
     </div>
