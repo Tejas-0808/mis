@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function Schemeallotment() {
+function Facultyadvisor() {
   const [Rolllists, SetRolllists] = useState({
     Degree: "",
     Branch: "",
@@ -196,4 +196,4 @@ function Schemeallotment() {
   );
 }
 
-export default Schemeallotment;
+export default Facultyadvisor;

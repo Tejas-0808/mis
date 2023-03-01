@@ -66,6 +66,7 @@ import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Imagetest from "./components/Admin/Academic/Imagetest";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
+import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 function App() {
   return (
     <div className="App">
@@ -138,6 +139,7 @@ function App() {
           <Route path="/identitycard" element={<IdentityCard/>}/>
           <Route path="/schemeallotment" element={<Schemeallotment/>}/>
           <Route path="/rolllist" element={<Rolllist/>}/>
+          <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
           
         </Routes>
       </BrowserRouter>
