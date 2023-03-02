@@ -150,6 +150,7 @@ function Schemeallotment() {
         .catch((error) => {
           console.error(error);
         });
+        navigate("/");
     // }
   };
 
