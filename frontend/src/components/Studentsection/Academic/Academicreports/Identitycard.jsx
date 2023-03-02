@@ -9,7 +9,7 @@ function IdentityCard() {
   const [batch, setBatch] = useState([]);
   const [sem, setSem] = useState([]);
   const [IdentityCard, setIdentityCard] = useState({
-    admission_batch: "",
+    Batch: "",
     Branch: "",
     Degree: "",
     // semester: "",
@@ -81,7 +81,7 @@ function IdentityCard() {
 
 
   const generate = (IdentityCard) => {
-    const { Branch, Degree, admission_batch } = IdentityCard;
+    const { Branch, Degree, Batch } = IdentityCard;
 
 
     return null;
@@ -90,12 +90,6 @@ function IdentityCard() {
 
   const handleChange = (e) => {
     setIdentityCard((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleClick = async (e) => {
-    e.preventDefault();
-    generate(IdentityCard);
-    console.log(generate(IdentityCard));
   };
 
   return (
@@ -139,7 +133,7 @@ function IdentityCard() {
       <label>
         Admission Batch:
         <select
-          name="admission_batch"
+          name="Batch"
           placeholder="Select Admission Batch"
           className="form-select-batch"
           onChange={handleChange}
@@ -153,29 +147,35 @@ function IdentityCard() {
       </label>
 
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" className="Generate" value="Get" onclick="GetSelected()">
+      <button type="button" className="Generate" value="Get" onClick={fetchStudents}>
         Generate
       </button>
       <div>
-          <table id="studentList">
-            {studentlist.map((student) => (
-              <tr>
-                <td>
-                  <input
-                    id="chkMango"
-                    name={student.First_Name}
-                    type="checkbox"
-                    value={student.roll_no}
-                    // checked={checkedItems.student.First_Name}
-                    onChange={handleChange}
-                  />
-                  <label for="chkMango">{student.First_Name}</label>
-                </td>
-              </tr>
+      {studentlist.map((student) => (
+              <table>
+                <tr>
+                  <td>
+                    <div key={student.roll_no}>
+                      <input
+                        type="checkbox"
+                        value={student.roll_no}
+                        // checked={checkedValues.includes(student.roll_no)}
+                        // onChange={handleCheckboxChange}
+                      /> &nbsp;&nbsp;
+                      <span>{student.roll_no}</span> &nbsp;&nbsp;
+                      <span>{student.First_Name}</span> &nbsp;&nbsp;
+                      <span>{student.Middle_Name}</span> &nbsp;&nbsp;
+                      <span>{student.Last_Name}</span> &nbsp;&nbsp;
+                      <span>{student.Branch}</span> &nbsp;&nbsp;
+                      <span>{student.Phone_No}</span> &nbsp;&nbsp;
+                      <span>{student.Blood_grp}</span> &nbsp;&nbsp;
+                      <span>{student.D_O_B}</span> &nbsp;&nbsp;
+                      <span>{student.Permanent_Add}</span> &nbsp;&nbsp;
+                    </div>
+                  </td>
+                </tr>
+              </table>
             ))}
-          </table>
-          {/* <p>Selected items: {JSON.stringify(checkedItems)}</p> */}
-          <br />
         </div>
 
     </div>

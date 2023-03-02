@@ -11,16 +11,16 @@ router.post("/identitycard", async (req,res)=> {
 
     const Degree = req.body.Degree;
     const Branch = req.body.Branch;
-    const Admission_batch = req.body.admission_batch;
+    const Batch = req.body.Batch;
     console.log(Degree);
     console.log(Branch);
-    console.log(Admission_batch);
+    console.log(Batch);
 
     try{
 
         (async()=>{
             
-            const data = await query("SELECT roll_no, First_Name FROM student_info where Branch = ? and Admission_batch = ?",[Branch,Admission_batch]);
+            const data = await query("SELECT roll_no, First_Name, Middle_Name, Last_Name, Phone_No, Blood_group, D_O_B, Permanent_Add, Branch FROM student_info where Branch = ? and Admission_batch = ?",[Branch,Batch]);
             const result = await data;
             // console.log(data);
             return res.json(result);

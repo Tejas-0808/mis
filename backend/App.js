@@ -51,7 +51,7 @@ app.use(require('./router/course_category'));
 app.use(require("./router/images"));
 app.use(require('./router/rolllist'));
 app.use(require('./router/assignscheme'));
-
+app.use(require('./router/identitycard'));
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

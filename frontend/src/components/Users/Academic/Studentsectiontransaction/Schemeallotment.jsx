@@ -192,7 +192,7 @@ function Schemeallotment() {
       <div className="">
 
         <div>
-          <div>
+          <div> 
             {studentlist.map((student) => (
               <table>
                 <tr>
