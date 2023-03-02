@@ -12,7 +12,7 @@ router.post("/rolllist", async (req,res)=> {
     const Degree = req.body.Degree;
     const Branch = req.body.Branch;
     const Semester = req.body.Semester;
-    const Admission_batch = req.body.Batch;
+    const Admission_batch = req.body.Admission_batch;
     console.log(Degree);
     console.log(Branch);
     console.log(Semester);
