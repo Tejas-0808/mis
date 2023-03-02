@@ -51,6 +51,8 @@ app.use(require('./router/course_category'));
 app.use(require("./router/images"));
 app.use(require('./router/rolllist'));
 app.use(require('./router/assignscheme'));
+app.use(require('./router/promotestudent'));
+
 
 
 app.get('/', (req, res) => {
