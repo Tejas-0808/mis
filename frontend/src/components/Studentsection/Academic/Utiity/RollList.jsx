@@ -12,6 +12,9 @@ const Rolllist = () => {
     Admission_batch: ""
   });
 
+  const [studentlist, setstudentlist] = useState([]);
+
+
 
 //   useEffect(() => {
 
@@ -84,9 +87,10 @@ const [batch, setbatch] = useState([]);
     e.preventDefault();
     try {
         const res = await axios.post("http://localhost:3001/rolllist",Rolllists);
+        setstudentlist(res.data);
         // setBranch(res.data);
         // console.log(res.data+"!");
-        // console.log(Rolllists);
+        console.log(res.data);
        
     } catch(err) {
         console.log(err);
@@ -140,7 +144,7 @@ const [batch, setbatch] = useState([]);
         ))}
       </select>
       <select
-        name="Batch"
+        name="Admission_batch"
         placeholder="Select Batch"
         className="form-select-batch"
         onChange={handleChange}
@@ -154,7 +158,19 @@ const [batch, setbatch] = useState([]);
         ))}
       </select>
       <button onClick={fetchStudents}>fetch</button>
-
+      <br></br>
+      <br></br>
+      {studentlist.map((student) => (
+              <table>
+                <tr>
+                  <td>
+                    <div key={student.roll_no}>
+                      <span>{student.roll_no}</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            ))}
     </div>
   )
 }

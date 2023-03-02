@@ -6,16 +6,17 @@ import axios from "axios";
 function AddStructure() {
   const [Scheme, setScheme] = useState([]);
   const [Category, setCategory] = useState([]);
-  const [semester, setSem] = useState([]);
+  const [Semester, setSem] = useState([]);
   const [Branch, setBranch] = useState([]);
   const [Bos, setBos] = useState([]);
+  const [result,setResult] = useState(0);
   const [Structure, setStructure] = useState({
     structure_id: "",
     coursecode: "",
     coursename: "",
-    lecture: "",
-    tut: "",
-    pract: "",
+    lecture: 0,
+    tut: 0,
+    pract: 0,
     ise1: "",
     ise2: "",
     ise3: "",
@@ -46,13 +47,15 @@ function AddStructure() {
     }
   };
 
-  axios.get("http://localhost:3001/semester")
-      .then((response) => {
-        setSem(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const fetchSem = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/semester");
+      setSem(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchBranch = async () => {
     try {
@@ -74,6 +77,8 @@ function AddStructure() {
     }
   };
 
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -81,12 +86,14 @@ function AddStructure() {
     fetchCategory();
     fetchBranch();
     fetchBos();
+    fetchSem();
   }, []);
   
   const handleChange = (e) => {
     setStructure((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setResult(parseInt(Structure.lecture) + parseInt(Structure.pract))
   };
-
+  console.log(result);
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -94,7 +101,6 @@ function AddStructure() {
       navigate("/structure");
     } catch (err) {
       console.log(err);
-      // setError(true)
     }
   };
 
@@ -136,22 +142,22 @@ function AddStructure() {
           ))}
         </select>
       </label>
-      &nbsp;&nbsp;
-      <select
-        name="semester"
-        placeholder="Board of Study"
-        className="form-select-case"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Semester --</option>
-        {semester.map((item) => (
-          <option key={item.sem} value={item.sem}>
-            {item.sem}
-          </option>
-        ))}
-      </select>
-      &nbsp;&nbsp;
+      <label>
+        Semester:
+        <select
+          name="semester"
+          placeholder="Board of Study"
+          className="form-select-case"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select Sem --</option>
+          {Semester.map((Semester) => (
+            <option value={Semester.sem}>{Semester.sem}</option>
+          ))}
+        </select>
+      </label>
+      &nbsp;&nbsp; &nbsp;&nbsp;
       <label>
         Branch ID:
         <select
@@ -193,8 +199,10 @@ function AddStructure() {
       <input type="number" placeholder="Tutorial" name="tut" onChange={handleChange}/>
       &nbsp;&nbsp;
       <input type="number" placeholder="Practical" name="pract" onChange={handleChange}/>
-      <h3></h3>
-      &nbsp;&nbsp;<br></br><br></br>
+
+      <h3><input type="number" placeholder="Total" name="total" value={result}/></h3>
+
+      &nbsp;&nbsp;<br></br>
       <input type="number" placeholder="In Sem 1" name="ise1" onChange={handleChange}/>
       &nbsp;&nbsp;
       <input type="number" placeholder="In Sem 2" name="ise2" onChange={handleChange}/>

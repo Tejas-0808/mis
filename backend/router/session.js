@@ -25,13 +25,18 @@ router.get("/session", async (req, res) => {
 //adding session
 router.post("/session", async (req, res) => {
     // const session_id = req.body.session_id;
-  const { session_id,session_name, term, year } = req.body;
+  const { session_id, term, year } = req.body;
   console.log(session_id);
-  console.log(session_name);
   console.log(term);
   console.log(year);
+const academic_year = `${year}-${(year % 100) + 1}`;
+const academic_year_formatted = academic_year.length === 6 ? academic_year : `${academic_year}`;
+const session_name1 = `${term} ${academic_year_formatted}`;
 
-  if (!session_id || !term || !year || !session_name) {
+  // session_name=  `${term} ${year}-${(year%100+1)}`;
+  console.log(session_name1);
+
+  if (!session_id || !term || !year || !session_name1) {
     return res.status(422).json({ error: "please fill all fields properly" });
   }
 
@@ -51,7 +56,7 @@ router.post("/session", async (req, res) => {
           try {
             const data = await query("INSERT INTO sessions VALUES(?,?,?,?)", [
               session_id,
-              session_name,
+              session_name1,
               term,
               year,
             ]);

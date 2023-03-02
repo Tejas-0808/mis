@@ -6,7 +6,7 @@ import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 import NewUser from "./components/Users/HOD/NewUser";
-//import Staff from "./components/Staff";
+import Staff from "./components/Staff";
 //import Add from "./components/Add";
 import Category from "./components/Studentsection/Academic/Masters/Category";
 import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
@@ -61,6 +61,8 @@ import Imagetest from "./components/Admin/Academic/Imagetest";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
+
+
 function App() {
   return (
     <div className="App">
