@@ -8,16 +8,20 @@ function Facultyadvisor() {
     Branch: "",
     Semester: "",
     Batch: "",
-    Facultyadvisor:""
+    Facultyadvisor: ""
   });
 
   const [studentlist, setstudentlist] = useState([]);
 
   const navigate = useNavigate();
 
-  
+
   const [degree, setdegree] = useState([]);
-  
+  const [branch, setbranch] = useState([]);
+  const [semester, setsemester] = useState([]);
+  const [batch, setbatch] = useState([]);
+  const [faculty_advisor, setFa] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:3001/degree")
@@ -27,26 +31,18 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-    }, []);
-    
-    const [branch, setbranch] = useState([]);
-    
-    useEffect(() => {
-      axios
+
+    axios
       .get("http://localhost:3001/branch")
       .then((response) => {
         setbranch(response.data);
+
       })
       .catch((error) => {
         console.error(error);
       });
-    }, []);
-    
-    // console.log(branch);
-    const [semester, setsemester] = useState([]);
-    
-    useEffect(() => {
-      axios
+
+    axios
       .get("http://localhost:3001/semester")
       .then((response) => {
         setsemester(response.data);
@@ -54,12 +50,8 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-    }, []);
-    
-    const [batch, setbatch] = useState([]);
 
-    useEffect(() => {
-      axios
+    axios
       .get("http://localhost:3001/batch")
       .then((response) => {
         setbatch(response.data);
@@ -67,24 +59,47 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
+
+
   }, []);
 
-  const [faculty_advisor, setFa] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/staff_details")
-      .then((response) => {
-        setFa(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  console.log(faculty_advisor);
+
+  console.log(Rolllists.Branch.slice(0, 1));
+
+
+  // useEffect(() => {
+  // }, []);
+
+  // // console.log(branch);
+
+  // useEffect(() => {
+  // }, []);
+
+
+  // useEffect(() => {
+  // }, []);
+
+
+
+
+  // useEffect(() => {
+  // }, []);
+
+  const handleChange = async (e) => {
+    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  // console.log(faculty_advisor);
+
+
+  console.log(Rolllists);
 
   const fetchStudents = async (e) => {
+    setCheckedValues([]);
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/rolllist", Rolllists);
+      const res = await axios.post("http://localhost:3001/facultyrolllists", Rolllists);
       setstudentlist(res.data);
       // setBranch(res.data);
       // console.log(res.data+"!");
@@ -92,11 +107,14 @@ function Facultyadvisor() {
     } catch (err) {
       console.log(err);
     }
-    for (let i = 0; i < Faculty.length; i++) {
-      var {First_Name, Middle_Name, Last_Name} = Faculty[i];
-      var name = First_Name+" "+Middle_Name+" "+Last_Name
-      setFName((prev) => ([ ...prev, name ]));      
-    }
+
+    axios.get("http://localhost:3001/staff_details/" + Rolllists.Branch.slice(0, 1))
+      .then((response) => {
+        setFa(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const [checkedValues, setCheckedValues] = useState([]);
@@ -125,11 +143,11 @@ function Facultyadvisor() {
         .catch((error) => {
           console.error(error);
         });
-        navigate("/");
+      navigate("/");
     }
   };
 
-  console.log(studentlist);
+  // console.log(studentlist);
 
   console.log(Rolllists);
   return (
@@ -197,7 +215,7 @@ function Facultyadvisor() {
       <div className="facultyadv">
         <div>
           <table id="studentList">
-          {studentlist.map((student) => (
+            {studentlist.map((student) => (
               <table>
                 <tr>
                   <td>
@@ -228,7 +246,7 @@ function Facultyadvisor() {
             <option value="">-- Select FA --</option>
             {faculty_advisor.map((item) => (
               <option key={item.staffID} value={item.staffID}>
-                {item.First_Name+" "+item.Last_Name}
+                {item.First_Name + " " + item.Last_Name}
               </option>
             ))}
           </select>

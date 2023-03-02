@@ -22,12 +22,13 @@ router.get("/facultyadvisor/:id", async(req, res)=> {
     }
 })
 
-router.get("/staff_details", async (req,res)=> {
+router.get("/staff_details/:id", async (req,res)=> {
+    const br_id = req.params.id;
     try{
 
         (async()=>{
             
-            const data = await query("SELECT * FROM staff_details");
+            const data = await query("SELECT * FROM staff_details where Branch_id=?", [br_id]);
             const result = await data;
             return res.json(result);
 
