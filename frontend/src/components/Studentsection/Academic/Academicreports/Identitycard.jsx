@@ -10,10 +10,12 @@ function IdentityCard() {
   const [sem, setSem] = useState([]);
   const [IdentityCard, setIdentityCard] = useState({
     admission_batch: "",
-    department: "",
-    degree: "",
+    Branch: "",
+    Degree: "",
     // semester: "",
   });
+
+  const [studentlist, setstudentlist] = useState([]);
 
   const fetchDegree = async () => {
     try {
@@ -53,6 +55,19 @@ function IdentityCard() {
     }
   };
 
+  const fetchStudents = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:3001/identitycard", IdentityCard);
+      setstudentlist(res.data);
+      // setBranch(res.data);
+      // console.log(res.data+"!");
+      console.log(res.data + "123");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,12 +75,13 @@ function IdentityCard() {
     fetchBranch();
     fetchDegree();
     fetchSem();
-    // fetchBranchCode(department);
+    fetchStudents();
+    // fetchBranchCode(Branch);
   }, []);
 
 
   const generate = (IdentityCard) => {
-    const { department, degree, admission_batch } = IdentityCard;
+    const { Branch, Degree, admission_batch } = IdentityCard;
 
 
     return null;
@@ -91,23 +107,23 @@ function IdentityCard() {
       <label>
         Degree:
         <select
-          name="degree"
+          name="Degree"
           placeholder="Select Degree"
-          className="form-select-degree"
+          className="form-select-Degree"
           onChange={handleChange}
           required
         >
           <option value="">-- Select Degree --</option>
-          {Degree.map((degree) => (
-            <option value={degree.degree_name}>{degree.degree_name}</option>
+          {Degree.map((Degree) => (
+            <option value={Degree.degree_name}>{Degree.degree_name}</option>
           ))}
         </select>
       </label>
       &nbsp;&nbsp;
       <label>
-        Department:
+        Branch:
         <select
-          name="department"
+          name="Branch"
           placeholder="Select Branch"
           className="form-select-branch"
           onChange={handleChange}
@@ -137,18 +153,30 @@ function IdentityCard() {
       </label>
 
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <button className="Generate" onClick={handleClick}>
+      <button type="button" className="Generate" value="Get" onclick="GetSelected()">
         Generate
       </button>
-      <div className=''>
-        {IdentityCard.map((IdentityCard) => (
-          <div className="IdentityCard">
-            <p>{IdentityCard.department}</p>
-            <p>{IdentityCard.admission_batch}</p>
-            <p>{IdentityCard.degree_name}</p>
-          </div>
-        ))}
-      </div>
+      <div>
+          <table id="studentList">
+            {studentlist.map((student) => (
+              <tr>
+                <td>
+                  <input
+                    id="chkMango"
+                    name={student.First_Name}
+                    type="checkbox"
+                    value={student.roll_no}
+                    // checked={checkedItems.student.First_Name}
+                    onChange={handleChange}
+                  />
+                  <label for="chkMango">{student.First_Name}</label>
+                </td>
+              </tr>
+            ))}
+          </table>
+          {/* <p>Selected items: {JSON.stringify(checkedItems)}</p> */}
+          <br />
+        </div>
 
     </div>
 
