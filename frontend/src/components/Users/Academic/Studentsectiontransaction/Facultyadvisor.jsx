@@ -68,29 +68,10 @@ function Facultyadvisor() {
   console.log(Rolllists.Branch.slice(0, 1));
 
 
-  // useEffect(() => {
-  // }, []);
-
-  // // console.log(branch);
-
-  // useEffect(() => {
-  // }, []);
-
-
-  // useEffect(() => {
-  // }, []);
-
-
-
-
-  // useEffect(() => {
-  // }, []);
-
   const handleChange = async (e) => {
     SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  // console.log(faculty_advisor);
 
 
   console.log(Rolllists);
@@ -147,7 +128,6 @@ function Facultyadvisor() {
     }
   };
 
-  // console.log(studentlist);
 
   console.log(Rolllists);
   return (
