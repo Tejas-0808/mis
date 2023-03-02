@@ -6,17 +6,17 @@ import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 import NewUser from "./components/Users/HOD/NewUser";
-//import Staff from "./components/Staff";
+import Staff from "./components/Staff";
 //import Add from "./components/Add";
-// import Category from "./components/Studentsection/Academic/Masters/Category";
-// import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-// import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-// import Religion from "./components/Studentsection/Academic/Masters/Religion";
-// import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-// import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-// import District from "./components/Studentsection/Academic/Masters/District";
-// import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-// import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Category from "./components/Studentsection/Academic/Masters/Category";
+import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
+import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
+import Religion from "./components/Studentsection/Academic/Masters/Religion";
+import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
+import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
+import District from "./components/Studentsection/Academic/Masters/District";
+import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
+import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
@@ -48,25 +48,21 @@ import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
 
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
-import Religion from "./components/Studentsection/Academic/Masters/Religion";
-import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-import District from "./components/Studentsection/Academic/Masters/District";
-import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import Session from "./components/Admin/Academic/Session";
+import AddSession from "./components/Admin/Academic/AddSession";
+
 import Imagetest from "./components/Admin/Academic/Imagetest";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
+
+
 function App() {
   return (
     <div className="App">
@@ -135,6 +131,9 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="addsession" element={<AddSession />} />
+          <Route path="session" element={<Session />} />
+
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
           <Route path="/imageshow" element={<Imagetest/>}/>
           <Route path="/identitycard" element={<IdentityCard/>}/>

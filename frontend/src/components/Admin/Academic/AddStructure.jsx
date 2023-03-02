@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react'
-import { useState, } from 'react';
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 function AddStructure() {
+  const [Scheme, setScheme] = useState([]);
+  const [Category, setCategory] = useState([]);
+  const [Semester, setSem] = useState([]);
+  const [Branch, setBranch] = useState([]);
+  const [Bos, setBos] = useState([]);
+  const [result,setResult] = useState(0);
   const [Structure, setStructure] = useState({
     structure_id: "",
     coursecode: "",
     coursename: "",
-    lecture: "",
-    tut: "",
-    pract: "",
+    lecture: 0,
+    tut: 0,
+    pract: 0,
     ise1: "",
     ise2: "",
     ise3: "",
@@ -22,11 +27,73 @@ function AddStructure() {
     total_credits: ""
   });
 
-  const navigate = useNavigate();
-  const handleChange = (e) => {
-    setStructure((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const fetchScheme = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/scheme");
+      setScheme(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
+  const fetchCategory = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/course_category");
+      setCategory(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchSem = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/semester");
+      setSem(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchBranch = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/branch");
+      setBranch(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchBos = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/b_o_s");
+      setBos(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchScheme();
+    fetchCategory();
+    fetchBranch();
+    fetchBos();
+    fetchSem();
+  }, []);
+  
+  const handleChange = (e) => {
+    setStructure((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setResult(parseInt(Structure.lecture) + parseInt(Structure.pract))
+  };
+  console.log(result);
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -34,165 +101,124 @@ function AddStructure() {
       navigate("/structure");
     } catch (err) {
       console.log(err);
-      // setError(true)
     }
   };
 
-  const [scheme, setScheme] = useState([]);
-  const [category, setCategory] = useState([]);
-  const [semester, setSem] = useState([]);
-  const [branch, setBranch] = useState([]);
-  const [b_o_s, setB_o_s] = useState([]);
-
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/scheme")
-      .then((response) => {
-        setScheme(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    axios.get("http://localhost:3001/category")
-      .then((response) => {
-        setCategory(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    axios.get("http://localhost:3001/semester")
-      .then((response) => {
-        setSem(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    axios.get("http://localhost:3001/branch")
-      .then((response) => {
-        setBranch(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    axios.get("http://localhost:3001/b_o_s")
-      .then((response) => {
-        setB_o_s(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [])
-
-  //   console.log(branch);
   return (
     <div className="form">
-      <b>--- ADD STRUCTURE ---</b>
-
-      <br></br>
-
-      <input type="number" placeholder="Structure Id" name="structure_id" onChange={handleChange} />
-      {/* <input type="text" placeholder="category" name="category" onChange={handleChange}/>
-    <input type="text" placeholder="Semester" name="semester" onChange={handleChange}/>
-    <input type="number" placeholder="Branch Id" name="branch_id" onChange={handleChange}/>
-    <input type="text" placeholder="Board of Study" name="board_of_study" onChange={handleChange}/> */}
-
-      <select
-        name="Scheme_id"
-        placeholder="Scheme_id"
-        className="form-select-case"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select scheme --</option>
-        {scheme.map((item) => (
-          <option key={item.scid} value={item.scid}>
-            {item.scid}
-          </option>
-        ))}
-      </select>
-
-      <select
-        name="category"
-        placeholder="category"
-        className="form-select-case"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Category --</option>
-        {category.map((item) => (
-          <option key={item.category_name} value={item.category_name}>
-            {item.category_name}
-          </option>
-        ))}
-      </select>
-
-      <select
-        name="semester"
-        placeholder="Board of Study"
-        className="form-select-case"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Semester --</option>
-        {semester.map((item) => (
-          <option key={item.sem} value={item.sem}>
-            {item.sem}
-          </option>
-        ))}
-      </select>
-
-      <select
-        name="board_of_study"
-        placeholder="Branch id"
-        className="form-select-case"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Branch --</option>
-        {branch.map((item) => (
-          <option key={item.Branch_name} value={item.Branch_name}>
-            {item.Branch_name}
-          </option>
-        ))}
-      </select>
-
-      <select
-        name="Scheme_id"
-        placeholder="Scheme_id"
-        className="form-select-case"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Board of Study --</option>
-        {b_o_s.map((item) => (
-          <option key={item.bos_name} value={item.bos_name}>
-            {item.bos_name}
-          </option>
-        ))}
-      </select>
-      <select className='form-select-case' onChange={handleChange} >
-          <option>Lecture</option>
-          <option>Practical</option>
-          <option>Tutorial</option>
-      </select>
-      <input type="text" placeholder="Course Code" name="coursecode" onChange={handleChange} />
-      <input type="text" placeholder="Course Name" name="coursename" onChange={handleChange} />
-      {/* <input type="number" placeholder="Lecture" name="lecture" onChange={handleChange}/>
+      ADD Structure
+      <br></br><br></br>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="Structure Id" name="strid" onChange={handleChange}/>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <label>
+        Scheme:
+        <select
+          name="scheme_id"
+          placeholder="Select Scheme"
+          className="form-select-scheme"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select Scheme ID --</option>
+          {Scheme.map((Scheme) => (
+            <option value={Scheme.scid}>{Scheme.scid}</option>
+          ))}
+        </select>
+      </label>
+      &nbsp;&nbsp;
+      <label>
+        Category:
+        <select
+          name="category"
+          placeholder="Select Category"
+          className="form-select-category"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select Course Category --</option>
+          {Category.map((Category) => (
+            <option value={Category.name}>{Category.name}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Semester:
+        <select
+          name="semester"
+          placeholder="Board of Study"
+          className="form-select-case"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select Sem --</option>
+          {Semester.map((Semester) => (
+            <option value={Semester.sem}>{Semester.sem}</option>
+          ))}
+        </select>
+      </label>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <label>
+        Branch ID:
+        <select
+          name="branch_id"
+          placeholder="Select Branch Id"
+          className="form-select-BranchId"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select BranchId --</option>
+          {Branch.map((Branch) => (
+            <option value={Branch.Branch_id}>{Branch.Branch_id}</option>
+          ))}
+        </select>
+      </label>
+      &nbsp;&nbsp;
+      <label>
+        BOS:
+        <select
+          name="board_of_study"
+          placeholder="Select BOS"
+          className="form-select-Bos"
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Select BOS --</option>
+          {Bos.map((Bos) => (
+            <option value={Bos.bos_name}>{Bos.bos_name}</option>
+          ))}
+        </select>
+      </label>
+      &nbsp;&nbsp;
+      <input type="text" placeholder="Course Code" name="coursecode" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="text" placeholder="Course Name" name="coursename" onChange={handleChange}/>
+      &nbsp;&nbsp;<br></br><br></br>
+      <input type="number" placeholder="Lecture" name="lecture" onChange={handleChange}/>
+      &nbsp;&nbsp;
       <input type="number" placeholder="Tutorial" name="tut" onChange={handleChange}/>
-      <input type="number" placeholder="Practical" name="pract" onChange={handleChange}/> */}
-      <input type="number" placeholder="In Sem 1" name="ise1" onChange={handleChange} />
-      <input type="number" placeholder="In Sem 2" name="ise2" onChange={handleChange} />
-      <input type="number" placeholder="In Sem 3" name="ise3" onChange={handleChange} />
-      <input type="number" placeholder="PR" name="PR" onChange={handleChange} />
-      <input type="number" placeholder="TW" name="TW" onChange={handleChange} />
-      <input type="number" placeholder="End Sem" name="ese" onChange={handleChange} />
-      <input type="number" placeholder="Total Marks" name="total_marks" onChange={handleChange} />
-      <input type="number" placeholder="Total Credits" name="total_credits" onChange={handleChange} />
-      <br />
+      &nbsp;&nbsp;
+      <input type="number" placeholder="Practical" name="pract" onChange={handleChange}/>
+
+      <h3><input type="number" placeholder="Total" name="total" value={result}/></h3>
+
+      &nbsp;&nbsp;<br></br>
+      <input type="number" placeholder="In Sem 1" name="ise1" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="In Sem 2" name="ise2" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="In Sem 3" name="ise3" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="PR" name="PR" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="TW" name="TW" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="End Sem" name="ese" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="Total Marks" name="total_marks" onChange={handleChange}/>
+      &nbsp;&nbsp;
+      <input type="number" placeholder="Total Credits" name="total_credits" onChange={handleChange}/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <br />
       <button onClick={handleClick}>Add</button>
     </div>
