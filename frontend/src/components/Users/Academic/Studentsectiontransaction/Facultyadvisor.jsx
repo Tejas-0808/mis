@@ -19,12 +19,9 @@ function Facultyadvisor() {
   //   }, []);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
+  
   const [degree, setdegree] = useState([]);
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:3001/degree")
@@ -34,12 +31,12 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
-
-  const [branch, setbranch] = useState([]);
-
-  useEffect(() => {
-    axios
+    }, []);
+    
+    const [branch, setbranch] = useState([]);
+    
+    useEffect(() => {
+      axios
       .get("http://localhost:3001/branch")
       .then((response) => {
         setbranch(response.data);
@@ -47,12 +44,13 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
-
-  const [semester, setsemester] = useState([]);
-
-  useEffect(() => {
-    axios
+    }, []);
+    
+    // console.log(branch);
+    const [semester, setsemester] = useState([]);
+    
+    useEffect(() => {
+      axios
       .get("http://localhost:3001/semester")
       .then((response) => {
         setsemester(response.data);
@@ -60,12 +58,12 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+    }, []);
+    
+    const [batch, setbatch] = useState([]);
 
-  const [batch, setbatch] = useState([]);
-
-  useEffect(() => {
-    axios
+    useEffect(() => {
+      axios
       .get("http://localhost:3001/batch")
       .then((response) => {
         setbatch(response.data);
@@ -74,6 +72,20 @@ function Facultyadvisor() {
         console.error(error);
       });
   }, []);
+  const [f_name, setFName] = useState([])
+  const [Faculty, setFaculty] = useState([]);
+  
+  useEffect(() => {
+    axios.get("http://localhost:3001/facultyadvisor/" + Rolllists.Branch[0])
+      .then((response) => {
+        setFaculty(response.data);
+        console.log(Faculty)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [Rolllists]);
+
 
   const fetchStudents = async (e) => {
     e.preventDefault();
@@ -86,14 +98,37 @@ function Facultyadvisor() {
     } catch (err) {
       console.log(err);
     }
+    for (let i = 0; i < Faculty.length; i++) {
+      var {First_Name, Middle_Name, Last_Name} = Faculty[i];
+      var name = First_Name+" "+Middle_Name+" "+Last_Name
+      setFName((prev) => ([ ...prev, name ]));      
+    }
   };
-
+  
+  console.log(Rolllists)
+  
   const [checkedItems, setCheckedItems] = useState({});
-
+  
+  const handleChange = (e) => {
+    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
   const handleChange1 = (event) => {
-    setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
+    setCheckedItems({ ...checkedItems, [event.target.name]: event.target.checked });
   }
   console.log(studentlist);
+
+
+
+  
+
+  // useEffect(()=>{
+    
+  // },[Faculty])
+  console.log(f_name);
+
+  const handleChange2 = (e) => {
+
+  }
 
   //   console.log(Rolllists);
   return (
@@ -122,8 +157,8 @@ function Facultyadvisor() {
       >
         <option value="">-- Select Branch --</option>
         {branch.map((item) => (
-          <option key={item.Branch_id} value={item.Branch_name}>
-            {item.Branch_name}
+          <option key={item.Branch_id} value={[item.Branch_id, item.Branch_name]}>
+            {item.Branch_id}. {item.Branch_name}
           </option>
         ))}
       </select>
@@ -158,6 +193,20 @@ function Facultyadvisor() {
       <button onClick={fetchStudents}>fetch</button>
       <br></br>
       <br></br>
+      {/* <select
+        name="faculty"
+        placeholder="Select Faculty"
+        className="form-select-faculty"
+        onChange={handleChange2}
+        required
+      >
+        <option value="">-- Select Faculty --</option>
+        {Faculty.map((item) => (
+          <option key={item.staffID} value={item.year}>
+            {item.year}
+          </option>
+        ))}
+      </select> */}
       <div className="branch">
         {/* {studentlist.map((student) => (
           <div key={student.roll_no} className="branch">
@@ -189,6 +238,22 @@ function Facultyadvisor() {
           </table>
           <p>Selected items: {JSON.stringify(checkedItems)}</p>
           <br />
+
+          <select
+            name="Batch"
+            placeholder="Select Batch"
+            className="form-select-batch"
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Select Batch --</option>
+            {batch.map((item) => (
+              <option key={item.batch_id} value={item.year}>
+                {item.year}
+              </option>
+            ))}
+          </select>
+
           <input type="button" value="Get" onclick="GetSelected()" />
         </div>
       </div>

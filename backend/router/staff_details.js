@@ -10,6 +10,18 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
+router.get("/facultyadvisor/:id", async(req, res)=> {
+    const deptId = req.params.id;
+    try {
+        const data = await query("SELECT First_Name, Middle_Name, Last_Name from staff_details WHERE Branch_id = ?", deptId);
+        const result = data;
+        return res.json(result);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).json({ Error: err });
+    }
+})
+
 router.get("/staff_details", async (req,res)=> {
     try{
 
