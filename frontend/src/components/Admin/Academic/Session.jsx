@@ -28,11 +28,11 @@ const Session = () => {
     axios.get('http://localhost:3001/session')
       .then(response => {
         const data = response.data;
-        const updatedSessions = data.map(item => ({
-          ...item,
-          session_name: `${item.term} ${item.year}-${(item.year+1).toString().substring(2)}`
-        }));
-        setSession(updatedSessions);
+        // const updatedSessions = data.map(item => ({
+        //   ...item,
+        //   session_name: `${item.term} ${item.year}-${(item.year+1).toString().substring(2)}`
+        // }));
+        setSession(data);
       })
       .catch(error => {
         console.log(error);

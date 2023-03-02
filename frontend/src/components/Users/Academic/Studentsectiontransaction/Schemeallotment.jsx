@@ -13,22 +13,34 @@ function Schemeallotment() {
 
   const [studentlist, setstudentlist] = useState([]);
 
+  //   useEffect(() => {
+
+  //     fetchAllrollno();
+  //     // eslint-disable-next-line
+  //   }, []);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const [degree, setdegree] = useState([]);
+
   useEffect(() => {
     axios
-    .get("http://localhost:3001/degree")
-    .then((response) => {
+      .get("http://localhost:3001/degree")
+      .then((response) => {
         setdegree(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
-      axios
+  }, []);
+
+  const [branch, setbranch] = useState([]);
+
+  useEffect(() => {
+    axios
       .get("http://localhost:3001/branch")
       .then((response) => {
         setbranch(response.data);
@@ -36,7 +48,12 @@ function Schemeallotment() {
       .catch((error) => {
         console.error(error);
       });
-      axios
+  }, []);
+
+  const [semester, setsemester] = useState([]);
+
+  useEffect(() => {
+    axios
       .get("http://localhost:3001/semester")
       .then((response) => {
         setsemester(response.data);
@@ -44,7 +61,12 @@ function Schemeallotment() {
       .catch((error) => {
         console.error(error);
       });
-      axios
+  }, []);
+
+  const [batch, setbatch] = useState([]);
+
+  useEffect(() => {
+    axios
       .get("http://localhost:3001/batch")
       .then((response) => {
         setbatch(response.data);
@@ -52,7 +74,12 @@ function Schemeallotment() {
       .catch((error) => {
         console.error(error);
       });
-      axios
+  }, []);
+
+  const [scheme, setscheme] = useState([]);
+
+  useEffect(() => {
+    axios
       .get("http://localhost:3001/master_scheme")
       .then((response) => {
         setscheme(response.data);
@@ -61,12 +88,6 @@ function Schemeallotment() {
         console.error(error);
       });
   }, []);
-
-  const [degree, setdegree] = useState([]);
-  const [branch, setbranch] = useState([]);
-  const [semester, setsemester] = useState([]);
-  const [batch, setbatch] = useState([]);
-  const [scheme, setscheme] = useState([]);
 
   const fetchStudents = async (e) => {
     e.preventDefault();
@@ -94,6 +115,15 @@ function Schemeallotment() {
     }
   };
 
+
+  // const handleChange1 = (event) => {
+  //   setCheckedItems({
+  //     ...checkedItems,
+  //     [event.target.name]: event.target.checked,
+
+  //   });
+  // };
+
   const [checkedValues, setCheckedValues] = useState([]);
 
   function handleCheckboxChange(event) {
@@ -109,7 +139,7 @@ function Schemeallotment() {
   const handleUpdateButtonClick = () => {
     const newData = Rolllists.Scheme;
     console.log(newData);
-    if (checkedValues.length > 0) {
+    // if (checkedValues.length > 0) {
       axios.post('http://localhost:3001/assignscheme', {
         checkedValues: checkedValues,
         newData: newData,
@@ -120,7 +150,8 @@ function Schemeallotment() {
         .catch((error) => {
           console.error(error);
         });
-    }
+        navigate("/");
+    // }
   };
 
   console.log(studentlist);
@@ -190,7 +221,16 @@ function Schemeallotment() {
       <br></br>
       <br></br>
       <div className="">
-
+        {/* {studentlist.map((student) => (
+          <div key={student.roll_no} className="branch">
+            <h2>{student.First_Name}</h2>
+            <p>{branch.Branch_name}</p>
+            <p>{branch.HOD}</p>
+            <p>{branch.Students_enrolled}</p>
+            <button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
+            <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button>
+          </div>
+        ))} */}
         <div>
           <div> 
             {studentlist.map((student) => (
@@ -205,6 +245,7 @@ function Schemeallotment() {
                         onChange={handleCheckboxChange}
                       />
                       <span>{student.roll_no}</span>
+                      {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
                     </div>
                   </td>
                 </tr>
