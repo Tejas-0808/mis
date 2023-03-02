@@ -54,6 +54,9 @@ import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 import B_o_s from "./components/Admin/Academic/B_o_s";
 import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import Session from "./components/Admin/Academic/Session";
+import AddSession from "./components/Admin/Academic/AddSession";
+
 import Imagetest from "./components/Admin/Academic/Imagetest";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
@@ -128,6 +131,9 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="addsession" element={<AddSession />} />
+          <Route path="session" element={<Session />} />
+
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
           <Route path="/imageshow" element={<Imagetest/>}/>
           <Route path="/identitycard" element={<IdentityCard/>}/>

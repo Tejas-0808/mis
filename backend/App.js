@@ -42,12 +42,16 @@ app.use(require('./router/time_table'));
 app.use(require('./router/citylist'));
 app.use(require('./router/state'));
 app.use(require('./router/particularstudent'));
+app.use(require('./router/entrance_exam_details'));
 app.use(require('./router/courses_taken'));
+app.use(require('./router/session'));
 app.use(require('./router/rollgen'))
 app.use(require('./router/course_category'));
 
 app.use(require("./router/images"));
 app.use(require('./router/rolllist'));
+app.use(require('./router/assignscheme'));
+
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);
