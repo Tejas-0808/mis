@@ -136,11 +136,15 @@ function OfferedCourses() {
 
   function handleCheckboxChange(event) {
     const { value, checked } = event.target;
-
     if (checked) {
-      setCheckedValues([...checkedValues, value]);
+      setCheckedValues((prevCheckedValues) => [...prevCheckedValues, value]);
     } else {
-      setCheckedValues(checkedValues.filter((val) => val !== value));
+      setCheckedValues((prevCheckedValues) =>
+        prevCheckedValues.filter((val) => val !== value)
+      );
+      setInitiallyCheckedValues((prevInitiallyCheckedValues) =>
+        prevInitiallyCheckedValues.filter((val) => val !== value)
+      );
     }
   }
 
