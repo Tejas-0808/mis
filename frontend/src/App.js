@@ -61,7 +61,7 @@ import Imagetest from "./components/Admin/Academic/Imagetest";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
-
+import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 
 function App() {
   return (
@@ -140,7 +140,7 @@ function App() {
           <Route path="/schemeallotment" element={<Schemeallotment/>}/>
           <Route path="/rolllist" element={<Rolllist/>}/>
           <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
-          
+          <Route path="/offeredcourses" element={<Offeredcourses/>}/>
         </Routes>
       </BrowserRouter>
     </div>

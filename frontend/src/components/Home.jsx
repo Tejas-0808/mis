@@ -62,6 +62,11 @@ function Home() {
             <Link to="/facultyadvisor">Assign FACULTY ADVISOR</Link>
         </button>
       </p>
+      <p>
+        <button>
+            <Link to="/offeredcourses">Offered Courses</Link>
+        </button>
+      </p>
     </div>
   )
 }
