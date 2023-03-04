@@ -10,17 +10,11 @@ function AddSession() {
       term: "",
       year: ""
     });
-
+   
 // const navigate = useNavigate();
 const handleChange = (e) => {
+  
     setSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    const session_name1 = `${Session.term} ${Session.year}-${Session.year%100+1}`;
-      console.log(session_name1);
-      setSession(prevState => ({
-        ...prevState,
-        session_name: session_name1
-        
-      }));
   };
   
 
@@ -28,8 +22,13 @@ const handleChange = (e) => {
 
     e.preventDefault();
     try {
-      
-    console.log(Session.session_name);
+      const session_name1=  `${Session.term} ${Session.year}-${(Session.year%100+1)}`
+
+      console.log(Session);
+  setSession(prevState => ({
+    ...prevState,
+    session_name: session_name1
+  }));
       await axios.post("http://localhost:3001/session", Session);
     //   navigate("/session");
     } catch (err) {

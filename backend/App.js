@@ -53,6 +53,10 @@ app.use(require('./router/rolllist'));
 app.use(require('./router/assignscheme'));
 app.use(require('./router/promotestudent'));
 
+app.use(require('./router/identitycard'));
+app.use(require('./router/assignfaculty'));
+app.use(require('./router/courselist'));
+app.use(require('./router/offercourses'));
 
 
 app.get('/', (req, res) => {

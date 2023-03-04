@@ -64,6 +64,7 @@ import Facultyadvisor from "./components/Users/Academic/Studentsectiontransactio
 import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
 
 
+import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 
 function App() {
   return (
@@ -145,6 +146,7 @@ function App() {
           <Route path="/promotion" element={<Promotion/>}/>
 
           
+          <Route path="/offeredcourses" element={<Offeredcourses/>}/>
         </Routes>
       </BrowserRouter>
     </div>

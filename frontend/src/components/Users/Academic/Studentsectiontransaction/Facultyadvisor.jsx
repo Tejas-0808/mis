@@ -8,22 +8,19 @@ function Facultyadvisor() {
     Branch: "",
     Semester: "",
     Batch: "",
+    Facultyadvisor: ""
   });
 
   const [studentlist, setstudentlist] = useState([]);
 
-  //   useEffect(() => {
-
-  //     fetchAllrollno();
-  //     // eslint-disable-next-line
-  //   }, []);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
 
   const [degree, setdegree] = useState([]);
+  const [branch, setbranch] = useState([]);
+  const [semester, setsemester] = useState([]);
+  const [batch, setbatch] = useState([]);
+  const [faculty_advisor, setFa] = useState([]);
 
   useEffect(() => {
     axios
@@ -34,24 +31,17 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
 
-  const [branch, setbranch] = useState([]);
-
-  useEffect(() => {
     axios
       .get("http://localhost:3001/branch")
       .then((response) => {
         setbranch(response.data);
+
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
 
-  const [semester, setsemester] = useState([]);
-
-  useEffect(() => {
     axios
       .get("http://localhost:3001/semester")
       .then((response) => {
@@ -60,11 +50,7 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
 
-  const [batch, setbatch] = useState([]);
-
-  useEffect(() => {
     axios
       .get("http://localhost:3001/batch")
       .then((response) => {
@@ -73,12 +59,28 @@ function Facultyadvisor() {
       .catch((error) => {
         console.error(error);
       });
+
+
   }, []);
 
+  console.log(faculty_advisor);
+
+  console.log(Rolllists.Branch.slice(0, 1));
+
+
+  const handleChange = async (e) => {
+    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+
+
+  console.log(Rolllists);
+
   const fetchStudents = async (e) => {
+    setCheckedValues([]);
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/rolllist", Rolllists);
+      const res = await axios.post("http://localhost:3001/facultyrolllists", Rolllists);
       setstudentlist(res.data);
       // setBranch(res.data);
       // console.log(res.data+"!");
@@ -86,16 +88,48 @@ function Facultyadvisor() {
     } catch (err) {
       console.log(err);
     }
+
+    axios.get("http://localhost:3001/staff_details/" + Rolllists.Branch.slice(0, 1))
+      .then((response) => {
+        setFa(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
-  const [checkedItems, setCheckedItems] = useState({});
+  const [checkedValues, setCheckedValues] = useState([]);
 
-  const handleChange1 = (event) => {
-    setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
+  function handleCheckboxChange(event) {
+    const { value, checked } = event.target;
+
+    if (checked) {
+      setCheckedValues([...checkedValues, value]);
+    } else {
+      setCheckedValues(checkedValues.filter((val) => val !== value));
+    }
   }
-  console.log(studentlist);
 
-  //   console.log(Rolllists);
+  const handleUpdateButtonClick = () => {
+    const newData = Rolllists.Facultyadvisor;
+    console.log(newData);
+    if (checkedValues.length > 0) {
+      axios.post('http://localhost:3001/assignfaculty', {
+        checkedValues: checkedValues,
+        newData: newData,
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      navigate("/");
+    }
+  };
+
+
+  console.log(Rolllists);
   return (
     <div>
       <select
@@ -122,8 +156,8 @@ function Facultyadvisor() {
       >
         <option value="">-- Select Branch --</option>
         {branch.map((item) => (
-          <option key={item.Branch_id} value={item.Branch_name}>
-            {item.Branch_name}
+          <option key={item.Branch_id} value={[item.Branch_id, item.Branch_name]}>
+            {item.Branch_id}. {item.Branch_name}
           </option>
         ))}
       </select>
@@ -158,38 +192,45 @@ function Facultyadvisor() {
       <button onClick={fetchStudents}>fetch</button>
       <br></br>
       <br></br>
-      <div className="branch">
-        {/* {studentlist.map((student) => (
-          <div key={student.roll_no} className="branch">
-            <h2>{student.First_Name}</h2>
-            <p>{branch.Branch_name}</p>
-            <p>{branch.HOD}</p>
-            <p>{branch.Students_enrolled}</p>
-            <button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
-            <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button>
-          </div>
-        ))} */}
+      <div className="facultyadv">
         <div>
           <table id="studentList">
             {studentlist.map((student) => (
-              <tr>
-                <td>
-                  <input
-                    id="chkMango"
-                    name={student.First_Name}
-                    type="checkbox"
-                    value={student.roll_no}
-                    // checked={checkedItems.student.First_Name}
-                    onChange={handleChange1}
-                  />
-                  <label for="chkMango">{student.First_Name}</label>
-                </td>
-              </tr>
+              <table>
+                <tr>
+                  <td>
+                    <div key={student.roll_no}>
+                      <input
+                        type="checkbox"
+                        value={student.roll_no}
+                        checked={checkedValues.includes(student.roll_no)}
+                        onChange={handleCheckboxChange}
+                      />
+                      <span>{student.roll_no}</span>
+                      {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
+                    </div>
+                  </td>
+                </tr>
+              </table>
             ))}
           </table>
-          <p>Selected items: {JSON.stringify(checkedItems)}</p>
+          <p>Selected items: {JSON.stringify(checkedValues)}</p>
           <br />
-          <input type="button" value="Get" onclick="GetSelected()" />
+          <select
+            name="Facultyadvisor"
+            placeholder="Select FA"
+            className="form-select-fa"
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Select FA --</option>
+            {faculty_advisor.map((item) => (
+              <option key={item.staffID} value={item.staffID}>
+                {item.First_Name + " " + item.Last_Name}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleUpdateButtonClick}>Assign FA</button>
         </div>
       </div>
     </div>

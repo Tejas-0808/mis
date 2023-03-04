@@ -9,7 +9,7 @@ const Rolllist = () => {
     Degree: "",
     Branch: "",
     Semester: "",
-    Admission_batch: ""
+    Batch: ""
   });
 
   const [studentlist, setstudentlist] = useState([]);
