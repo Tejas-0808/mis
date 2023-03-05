@@ -23,7 +23,7 @@ const Rolllist = () => {
 //   }, []);
   const navigate = useNavigate();
 
-  // console.log(rollno);
+ // console.log(Rolllist);
 
 
   const handleChange = (e) => {

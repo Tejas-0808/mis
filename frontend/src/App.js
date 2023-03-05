@@ -61,6 +61,9 @@ import Imagetest from "./components/Admin/Academic/Imagetest";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
+import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
+
+
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
@@ -142,6 +145,9 @@ function App() {
           <Route path="/schemeallotment" element={<Schemeallotment/>}/>
           <Route path="/rolllist" element={<Rolllist/>}/>
           <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
+          <Route path="/promotion" element={<Promotion/>}/>
+
+          
           <Route path="/offeredcourses" element={<Offeredcourses/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
 

@@ -13,10 +13,10 @@ router.post("/rolllist", async (req,res)=> {
     const Branch = req.body.Branch;
     const Semester = req.body.Semester;
     const Batch = req.body.Batch;
-    // console.log(Degree);
-    // console.log(Branch);
-    // console.log(Semester);
-    // console.log(Batch);
+    console.log(Degree);
+    console.log(Branch);
+    console.log(Semester);
+    console.log(Batch);
 
     try{
 
@@ -24,7 +24,7 @@ router.post("/rolllist", async (req,res)=> {
             
             const data = await query("SELECT roll_no,First_Name FROM student_info where Branch = ? and Semester= ? and Admission_batch = ?",[Branch,Semester,Batch]);
             const result = await data;
-            // console.log(data);
+            console.log(data);
             return res.json(result);
 
         })()
