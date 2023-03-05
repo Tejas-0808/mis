@@ -6,6 +6,7 @@ const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
 
+//get session
 router.get("/session", async (req, res) => {
   try {
     (async () => {

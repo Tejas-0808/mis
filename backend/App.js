@@ -55,7 +55,7 @@ app.use(require('./router/identitycard'));
 app.use(require('./router/assignfaculty'));
 app.use(require('./router/courselist'));
 app.use(require('./router/offercourses'));
-
+app.use(require('./router/courseactivity'));
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

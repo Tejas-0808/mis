@@ -62,6 +62,8 @@ import IdentityCard from './components/Studentsection/Academic/Academicreports/I
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
+import Dashboard from "./components/Student/Dashboard/dashboard";
+import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 
 function App() {
   return (
@@ -141,6 +143,9 @@ function App() {
           <Route path="/rolllist" element={<Rolllist/>}/>
           <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
           <Route path="/offeredcourses" element={<Offeredcourses/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+
+          <Route path="/coursereg" element={<CourseRegActivity/>}/>
         </Routes>
       </BrowserRouter>
     </div>
