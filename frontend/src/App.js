@@ -147,7 +147,7 @@ function App() {
           <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
           <Route path="/promotion" element={<Promotion/>}/>
 
-          
+          <Route path="/branchchange" element={<Branchchange/>}/>
           <Route path="/offeredcourses" element={<Offeredcourses/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
 

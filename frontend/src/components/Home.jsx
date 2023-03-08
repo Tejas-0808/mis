@@ -7,7 +7,7 @@ import StudentDashboard from './Student/Dashboard/dashboard'
 function Home() {
   return (
     <>
-      {/* <p>
+      <p>
         <button>
             <Link to="/branch">Branch</Link>
         </button>
@@ -66,11 +66,13 @@ function Home() {
         <button>
             <Link to="/offeredcourses">Offered Courses</Link>
         </button>
-      </p> */}
-      <Navigation/>
-
+      </p>
+      {/* <Navigation/>
+      <div className='d-flex'>
       <SideBar/>
       <StudentDashboard/>
+      </div> */}
+      
 
     </>
   )

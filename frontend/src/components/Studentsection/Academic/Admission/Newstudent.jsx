@@ -8,10 +8,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function NewStudent() {
   const [personaldetails, setPersonalDetails] = useState({
@@ -273,15 +277,28 @@ function NewStudent() {
           name="Phone_No"
           onChange={handleChange}
         />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              label="Date of Birth"
+              name="D_O_B"
+              onChange={handleChange}
+              required
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['DatePicker']}>
         <TextField
           required
           variant="outlined"
           type="date"
-          // label="Date of Birth"
-          // placeholder="Date of Birth"
+          label="Date of Birth"
           name="D_O_B"
           onChange={handleChange}
         />
+        </DemoContainer>
+    </LocalizationProvider> */}
         <TextField
           required
           type="text"
@@ -406,7 +423,7 @@ function NewStudent() {
       </RadioGroup>
     </FormControl> */}
 
-<FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Martial Status
           </FormLabel>
@@ -418,12 +435,18 @@ function NewStudent() {
             onChange={handleCheckboxChange1}
           >
             <FormControlLabel
-              value="Married" control={<Radio />} label="Married"
+              value="Married"
+              control={<Radio />}
+              label="Married"
             />
-            <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
+            <FormControlLabel
+              value="Unmarried"
+              control={<Radio />}
+              label="Unmarried"
+            />
           </RadioGroup>
-          </FormControl>
-    
+        </FormControl>
+
         {/* <h5>Martial Status</h5>
         <label>
           <TextField
@@ -475,7 +498,11 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange1}
           >
-            <FormControlLabel value="female" control={<Radio />} label="Female"/>
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
           </RadioGroup>
         </FormControl>
@@ -488,8 +515,16 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange2}
           >
-            <FormControlLabel value="Indian" control={<Radio />} label="Indian"/>
-            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
+            <FormControlLabel
+              value="Indian"
+              control={<Radio />}
+              label="Indian"
+            />
+            <FormControlLabel
+              value="Foreigner"
+              control={<Radio />}
+              label="Foreigner"
+            />
           </RadioGroup>
         </FormControl>
 
@@ -515,28 +550,26 @@ function NewStudent() {
           Foreigner
         </label> */}
 
-<FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">Physically Handicapped</InputLabel>
+        <FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-helper-label">
+            Physically Handicapped
+          </InputLabel>
           <Select
             required
             name="Physically_handicapped"
             className="form-physically-handicapped"
             labelId="demo-simple-select-helper-label"
-            label="Physically Handicapped"  
+            label="Physically Handicapped"
             onChange={handleChange}
           >
             <MenuItem value="">
               <em>-- Physically Handicapped --</em>
             </MenuItem>
-            <MenuItem value="1">
-              Yes
-            </MenuItem>
-            <MenuItem value="0">
-              No
-            </MenuItem>
+            <MenuItem value="1">Yes</MenuItem>
+            <MenuItem value="0">No</MenuItem>
           </Select>
         </FormControl>
-        
+
         {/* <select
           name="Physically_handicapped"
           placeholder="Physically Handicapped"
@@ -613,7 +646,7 @@ function NewStudent() {
           Hosteller
         </label> */}
 
-<FormControl sx={{ m: 1, minWidth: 200 }}>
+        <FormControl sx={{ m: 1, minWidth: 200 }}>
           <FormLabel id="demo-controlled-radio-buttons-group">Status</FormLabel>
           <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
@@ -621,50 +654,62 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange3}
           >
-            <FormControlLabel value="Day Scholar" control={<Radio />} label="Day Scholar"/>
-            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
+            <FormControlLabel
+              value="Day Scholar"
+              control={<Radio />}
+              label="Day Scholar"
+            />
+            <FormControlLabel
+              value="Foreigner"
+              control={<Radio />}
+              label="Foreigner"
+            />
           </RadioGroup>
         </FormControl>
 
         <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">Select City</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">
+            Select City
+          </InputLabel>
           <Select
             required
             name="City"
             className="form-city"
             labelId="demo-simple-select-helper-label"
-            label="Select City"  
+            label="Select City"
             onChange={handleChange}
           >
             <MenuItem value="">
               <em>-- Select City --</em>
             </MenuItem>
             {city.map((item) => (
-            <MenuItem key={item.city_id} value={item.city_name}>
-              {item.city_name}
-            </MenuItem>
-          ))}
+              <MenuItem key={item.city_id} value={item.city_name}>
+                {item.city_name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
         <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">Select State</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">
+            Select State
+          </InputLabel>
           <Select
             required
             name="State"
             className="form-city"
             labelId="demo-simple-select-helper-label"
-            label="Select State"  
+            label="Select State"
             onChange={handleChange}
           >
             <MenuItem value="">
               <em>-- Select State --</em>
             </MenuItem>
             {state.map((item) => (
-            <MenuItem key={item.state_id} value={item.state_name}>
-              {item.state_name}
-            </MenuItem>
-          ))}
+              <MenuItem key={item.state_id} value={item.state_name}>
+                {item.state_name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         {/* <select
@@ -725,7 +770,7 @@ function NewStudent() {
         />
         {/* <TextField type="date" onChange={handleChange} ref={dateTextFieldRef} /> */}
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 130 }}>
           <InputLabel id="demo-simple-select-label">Degree</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -762,13 +807,24 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-
+        {/* 
         <TextField
           required
           type="date"
           name="Date_of_admission"
+          label="Date of Admission"
           onChange={handleChange}
-        />
+        /> */}
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              required
+              label="Date of Admission"
+              name="Date_of_admission"
+              onChange={handleChange}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
 
         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
@@ -788,7 +844,6 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-
 
         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Payment-Type</InputLabel>
@@ -828,7 +883,9 @@ function NewStudent() {
           </Select>
         </FormControl>
 
-        <Button variant="contained" onClick={handleClickadd}>Add</Button>
+        <Button variant="contained" onClick={handleClickadd}>
+          Add
+        </Button>
       </div>
     </Box>
   );
