@@ -393,7 +393,7 @@ function NewStudent() {
             </option>
           ))}
         </select> */}
-        <FormControl>
+        {/* <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label">Martial Status</FormLabel>
       <RadioGroup
         row
@@ -404,7 +404,26 @@ function NewStudent() {
         <FormControlLabel name="Marital_Status" onChange={handleCheckboxChange} checked={selectedMS === "Unmarried"} control={<Radio />} label="Unmarried"  />
        
       </RadioGroup>
-    </FormControl>
+    </FormControl> */}
+
+<FormControl sx={{ m: 1, minWidth: 150 }}>
+          <FormLabel id="demo-controlled-radio-buttons-group">
+            Martial Status
+          </FormLabel>
+
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="Marital_Status"
+            // value={value}
+            onChange={handleCheckboxChange1}
+          >
+            <FormControlLabel
+              value="Married" control={<Radio />} label="Married"
+            />
+            <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
+          </RadioGroup>
+          </FormControl>
+    
         {/* <h5>Martial Status</h5>
         <label>
           <TextField
@@ -426,7 +445,7 @@ function NewStudent() {
           />
           Unmarried
         </label> */}
-        <h5>Gender</h5>
+        {/* <h5>Gender</h5>
         <label>
           <TextField
             type="radio"
@@ -446,8 +465,35 @@ function NewStudent() {
             onChange={handleCheckboxChange1}
           />
           Male
-        </label>
-        <h5>Nationality</h5>
+        </label> */}
+
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
+          <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="Gender"
+            // value={value}
+            onChange={handleCheckboxChange1}
+          >
+            <FormControlLabel value="female" control={<Radio />} label="Female"/>
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+          </RadioGroup>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
+          <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="Nationality"
+            // value={value}
+            onChange={handleCheckboxChange2}
+          >
+            <FormControlLabel value="Indian" control={<Radio />} label="Indian"/>
+            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
+          </RadioGroup>
+        </FormControl>
+
+        {/* <h5>Nationality</h5>
         <label>
           <TextField
             type="radio"
@@ -467,8 +513,31 @@ function NewStudent() {
             onChange={handleCheckboxChange2}
           />
           Foreigner
-        </label>
-        <select
+        </label> */}
+
+<FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-helper-label">Physically Handicapped</InputLabel>
+          <Select
+            required
+            name="Physically_handicapped"
+            className="form-physically-handicapped"
+            labelId="demo-simple-select-helper-label"
+            label="Physically Handicapped"  
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>-- Physically Handicapped --</em>
+            </MenuItem>
+            <MenuItem value="1">
+              Yes
+            </MenuItem>
+            <MenuItem value="0">
+              No
+            </MenuItem>
+          </Select>
+        </FormControl>
+        
+        {/* <select
           name="Physically_handicapped"
           placeholder="Physically Handicapped"
           className="form-physically-handicapped"
@@ -478,7 +547,7 @@ function NewStudent() {
           <option value="">-- Physically Handicapped --</option>
           <option value="1"> YES </option>
           <option value="0"> NO </option>
-        </select>
+        </select> */}
         <TextField
           required
           type="text"
@@ -522,7 +591,7 @@ function NewStudent() {
           name="Guardian_Number"
           onChange={handleChange}
         />
-        <h5>Status</h5>
+        {/* <h5>Status</h5>
         <label>
           <TextField
             type="radio"
@@ -542,8 +611,63 @@ function NewStudent() {
             onChange={handleCheckboxChange3}
           />
           Hosteller
-        </label>
-        <select
+        </label> */}
+
+<FormControl sx={{ m: 1, minWidth: 200 }}>
+          <FormLabel id="demo-controlled-radio-buttons-group">Status</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="Student_type"
+            // value={value}
+            onChange={handleCheckboxChange3}
+          >
+            <FormControlLabel value="Day Scholar" control={<Radio />} label="Day Scholar"/>
+            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
+          </RadioGroup>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-helper-label">Select City</InputLabel>
+          <Select
+            required
+            name="City"
+            className="form-city"
+            labelId="demo-simple-select-helper-label"
+            label="Select City"  
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>-- Select City --</em>
+            </MenuItem>
+            {city.map((item) => (
+            <MenuItem key={item.city_id} value={item.city_name}>
+              {item.city_name}
+            </MenuItem>
+          ))}
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-helper-label">Select State</InputLabel>
+          <Select
+            required
+            name="State"
+            className="form-city"
+            labelId="demo-simple-select-helper-label"
+            label="Select State"  
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>-- Select State --</em>
+            </MenuItem>
+            {state.map((item) => (
+            <MenuItem key={item.state_id} value={item.state_name}>
+              {item.state_name}
+            </MenuItem>
+          ))}
+          </Select>
+        </FormControl>
+        {/* <select
           name="City"
           placeholder="Select City"
           className="form-select-city"
@@ -556,8 +680,8 @@ function NewStudent() {
               {item.city_name}
             </option>
           ))}
-        </select>
-        <select
+        </select> */}
+        {/* <select
           name="State"
           placeholder="Select State"
           className="form-select-state"
@@ -570,7 +694,7 @@ function NewStudent() {
               {item.state_name}
             </option>
           ))}
-        </select>
+        </select> */}
         <TextField
           required
           type="number"
