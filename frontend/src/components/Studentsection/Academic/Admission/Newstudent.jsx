@@ -210,16 +210,14 @@ function NewStudent() {
   return (
     <Box
       component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
       noValidate
       autoComplete="off"
     >
       <div className="form">
         <h1>NEW STUDENT ENTRY</h1>
         <hr></hr>
-        <br></br>
+        
         <TextField
           required
           type="number"
@@ -406,7 +404,7 @@ function NewStudent() {
       </RadioGroup>
     </FormControl> */}
 
-<FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Martial Status
           </FormLabel>
@@ -422,8 +420,8 @@ function NewStudent() {
             />
             <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
           </RadioGroup>
-          </FormControl>
-    
+        </FormControl>
+
         {/* <h5>Martial Status</h5>
         <label>
           <TextField
@@ -475,7 +473,7 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange1}
           >
-            <FormControlLabel value="female" control={<Radio />} label="Female"/>
+            <FormControlLabel value="female" control={<Radio />} label="Female" />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
           </RadioGroup>
         </FormControl>
@@ -488,7 +486,7 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange2}
           >
-            <FormControlLabel value="Indian" control={<Radio />} label="Indian"/>
+            <FormControlLabel value="Indian" control={<Radio />} label="Indian" />
             <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
           </RadioGroup>
         </FormControl>
@@ -515,14 +513,14 @@ function NewStudent() {
           Foreigner
         </label> */}
 
-<FormControl sx={{ m: 1, minWidth: 250 }}>
+        <FormControl sx={{ m: 1, minWidth: 250 }}>
           <InputLabel id="demo-simple-select-helper-label">Physically Handicapped</InputLabel>
           <Select
             required
             name="Physically_handicapped"
             className="form-physically-handicapped"
             labelId="demo-simple-select-helper-label"
-            label="Physically Handicapped"  
+            label="Physically Handicapped"
             onChange={handleChange}
           >
             <MenuItem value="">
@@ -536,7 +534,7 @@ function NewStudent() {
             </MenuItem>
           </Select>
         </FormControl>
-        
+
         {/* <select
           name="Physically_handicapped"
           placeholder="Physically Handicapped"
@@ -613,7 +611,7 @@ function NewStudent() {
           Hosteller
         </label> */}
 
-<FormControl sx={{ m: 1, minWidth: 200 }}>
+        <FormControl sx={{ m: 1, minWidth: 200 }}>
           <FormLabel id="demo-controlled-radio-buttons-group">Status</FormLabel>
           <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
@@ -621,7 +619,7 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange3}
           >
-            <FormControlLabel value="Day Scholar" control={<Radio />} label="Day Scholar"/>
+            <FormControlLabel value="Day Scholar" control={<Radio />} label="Day Scholar" />
             <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
           </RadioGroup>
         </FormControl>
@@ -633,17 +631,17 @@ function NewStudent() {
             name="City"
             className="form-city"
             labelId="demo-simple-select-helper-label"
-            label="Select City"  
+            label="Select City"
             onChange={handleChange}
           >
             <MenuItem value="">
               <em>-- Select City --</em>
             </MenuItem>
             {city.map((item) => (
-            <MenuItem key={item.city_id} value={item.city_name}>
-              {item.city_name}
-            </MenuItem>
-          ))}
+              <MenuItem key={item.city_id} value={item.city_name}>
+                {item.city_name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
@@ -654,17 +652,17 @@ function NewStudent() {
             name="State"
             className="form-city"
             labelId="demo-simple-select-helper-label"
-            label="Select State"  
+            label="Select State"
             onChange={handleChange}
           >
             <MenuItem value="">
               <em>-- Select State --</em>
             </MenuItem>
             {state.map((item) => (
-            <MenuItem key={item.state_id} value={item.state_name}>
-              {item.state_name}
-            </MenuItem>
-          ))}
+              <MenuItem key={item.state_id} value={item.state_name}>
+                {item.state_name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         {/* <select

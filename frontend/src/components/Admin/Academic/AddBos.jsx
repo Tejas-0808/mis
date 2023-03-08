@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Box, TextField, Button } from '@mui/material/';
 
 
 function AddBos() {
@@ -16,24 +17,31 @@ function AddBos() {
   };
 
   const handleClick = async (e) => {
-        e.preventDefault();
-        try {
-          await axios.post("http://localhost:3001/b_o_s", Bos);
-          navigate("/bos");
-        } catch (err) {
-          console.log(err);
-          // setError(true)
-        }
-      };
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/b_o_s", Bos);
+      navigate("/bos");
+    } catch (err) {
+      console.log(err);
+      // setError(true)
+    }
+  };
 
-//   console.log(branch);
+  //   console.log(branch);
   return (
-    <div className="form">
-      ADD
-      <input type="number" placeholder="BOS ID" name="bos_id" onChange={handleChange}/>
-      <input type="text" placeholder="BOS Name" name="bos_name" onChange={handleChange}/>
-      <button onClick={handleClick}>Add</button>
-    </div>
+    <Box component="form"
+    sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+    noValidate
+    autoComplete="off"
+  >
+      <div className="form">
+        <h1>ADD BOS</h1>
+        <hr />
+        <TextField type="number" required label="BOS ID" name="bos_id" onChange={handleChange} />
+        <TextField type="text" required label="BOS Name" name="bos_name" onChange={handleChange} />
+        <Button variant="contained" onClick={handleClick}>Add</Button>
+      </div>
+    </Box>
   )
 }
 
