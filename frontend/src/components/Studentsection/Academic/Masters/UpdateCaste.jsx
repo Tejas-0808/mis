@@ -2,6 +2,17 @@ import React, { useEffect } from 'react'
 import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { Box, Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+
 
 
 function UpdateCaste(){
@@ -42,10 +53,42 @@ function UpdateCaste(){
     }
 
     return (<div className='edit_form'>
-        <h2>EDIT</h2>
-        <input type="number" placeholder="ID" name="caste_id" value={Caste.caste_id} onChange={handleChange}/>
+   <Box
+    component="form"
+    sx={{
+      "& .MuiTextField-root": { m: 1, width: "25ch" },
+    }}
+    noValidate
+    autoComplete="off"
+  >
+        <h1>UPDATE CASTE</h1>
+        <hr></hr>
+        <br></br>
+      <TextField
+          required
+         type="number"
+          variant="outlined"
+          label="Caste ID"
+          name="caste_id"
+          value={Caste.caste_id}
+          onChange={handleChange}
+        />
+
+      <TextField
+          required
+          variant="outlined"
+          name="caste_name"
+          label="Caste Name"
+          value={Caste.caste_name}
+          onChange={handleChange}
+        />
+     
+      <Button variant="contained" onClick={handleEdit}>SUBMIT</Button>
+      
+        {/* <input type="number" placeholder="ID" name="caste_id" value={Caste.caste_id} onChange={handleChange}/>
         <input type="text" placeholder="Caste Name" name="caste_name" value={Caste.caste_name} onChange={handleChange}/>
-        <button onClick={handleEdit}>Submit</button>
+        <button onClick={handleEdit}>Submit</button> */}
+        </Box>
     </div>)
 }
 
