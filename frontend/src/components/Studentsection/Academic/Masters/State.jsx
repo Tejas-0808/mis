@@ -50,6 +50,7 @@ const State = () => {
           <div key={state.state_id} className="State">
             <h2>{state.state_id}</h2>
             <p>{state.state_name}</p>
+            <button className='update'><Link to={`/updatestate/${state.state_id}`}>Update</Link></button>
             <button className="delete" onClick={()=>handleDelete(state.state_id)}>Delete</button>
             </div>
         ))}

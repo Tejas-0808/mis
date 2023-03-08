@@ -26,6 +26,7 @@ import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
 import UpdateCity from "./components/Studentsection/Academic/Masters/UpdateCity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
+import UpdateState from "./components/Studentsection/Academic/Masters/UpdateState";
 import Scheme from "./components/Admin/Academic/Scheme";
 import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
@@ -63,7 +64,6 @@ import Schemeallotment from "./components/Users/Academic/Studentsectiontransacti
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
 
-
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
@@ -95,6 +95,7 @@ function App() {
           <Route path="/addcity" element={<Addcity/>}/> */}
           <Route path="/state" element={<State />} />
           <Route path="/addstate" element={<AddState />} />
+          <Route path="/updatestate/:id" element={<UpdateState />} />
           <Route path="/update/:id" element={<Update />} />
           <Route path="/scheme" element={<Scheme />} />
           <Route path="/addscheme" element={<Addscheme />} />
