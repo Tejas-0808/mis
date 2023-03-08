@@ -142,7 +142,7 @@ function Addscheme() {
           <InputLabel id="demo-simple-select-label">Course Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            name="Category"
+            name="category"
             placeholder="Category"
             className="form-select-MasterschemeId"
             onChange={handleChange}
@@ -150,7 +150,7 @@ function Addscheme() {
           >
             <MenuItem value="">-- Select Course Category --</MenuItem>
             {CourseCategory.map((item) => (
-              <MenuItem key={item.name} value={item.name}>
+              <MenuItem key={item.course_category_id} value={item.course_category_id}>
                 {item.name}
               </MenuItem>
             ))}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { DataGrid } from '@mui/x-data-grid';
+// import { DataGrid } from '@mui/x-data-grid';
 import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
 
 const columns = [
@@ -266,7 +266,7 @@ function Facultyadvisor() {
                 </table>
               ))}
             </table>
-            <div style={{ height: 400, width: '100%' }}>
+            {/* <div style={{ height: 400, width: '100%' }}>
               <DataGrid
                 rows={studentlist}
                 columns={columns}
@@ -274,7 +274,7 @@ function Facultyadvisor() {
                 rowsPerPageOptions={[5]}
                 checkboxSelection
               />
-            </div>
+            </div> */}
                 
             <p>Selected items: {JSON.stringify(checkedValues)}</p>
             <br />
