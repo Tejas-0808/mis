@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Box from "@mui/material/Box";
+import { Box, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -217,7 +217,7 @@ function NewStudent() {
       autoComplete="off"
     >
       <div className="form">
-        NEW STUDENT ENTRY
+        <h1>NEW STUDENT ENTRY</h1>
         <hr></hr>
         <br></br>
         <TextField
@@ -318,11 +318,11 @@ function NewStudent() {
         onChange={handleChange}
         required
       >
-        <option value="">-- Select caste --</option>
+        <MenuItem value="">-- Select caste --</MenuItem>
         {caste.map((item) => (
-          <option key={item.caste_id} value={item.caste_name}>
+          <MenuItem key={item.caste_id} value={item.caste_name}>
             {item.caste_name}
-          </option>
+          </MenuItem>
         ))}
       </select> */}
         <FormControl sx={{ m: 1, minWidth: 150 }}>
@@ -352,14 +352,14 @@ function NewStudent() {
         onChange={handleChange}
         required
       >
-        <option value="">-- Select category --</option>
+        <MenuItem value="">-- Select category --</MenuItem>
         {category.map((item) => (
-          <option key={item.category_id} value={item.category_name}>
+          <MenuItem key={item.category_id} value={item.category_name}>
             {item.category_name}
-          </option>
+          </MenuItem>
         ))}
       </select> */}
-       <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
           <InputLabel id="demo-simple-select-helper-label">Religion</InputLabel>
           <Select
             required
@@ -373,10 +373,10 @@ function NewStudent() {
               <em>-- Select Religion --</em>
             </MenuItem>
             {religion.map((item) => (
-            <MenuItem key={item.religion_id} value={item.Religion_name}>
-              {item.Religion_name}
-            </MenuItem>
-          ))}
+              <MenuItem key={item.religion_id} value={item.Religion_name}>
+                {item.Religion_name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         {/* <select
@@ -386,11 +386,11 @@ function NewStudent() {
           onChange={handleChange}
           required
         >
-          <option value="">-- Select Religion --</option>
+          <MenuItem value="">-- Select Religion --</MenuItem>
           {religion.map((item) => (
-            <option key={item.religion_id} value={item.Religion_name}>
+            <MenuItem key={item.religion_id} value={item.Religion_name}>
               {item.Religion_name}
-            </option>
+            </MenuItem>
           ))}
         </select> */}
         {/* <FormControl>
@@ -674,11 +674,11 @@ function NewStudent() {
           onChange={handleChange}
           required
         >
-          <option value="">-- Select city --</option>
+          <MenuItem value="">-- Select city --</MenuItem>
           {city.map((item) => (
-            <option key={item.city_id} value={item.city_name}>
+            <MenuItem key={item.city_id} value={item.city_name}>
               {item.city_name}
-            </option>
+            </MenuItem>
           ))}
         </select> */}
         {/* <select
@@ -688,11 +688,11 @@ function NewStudent() {
           onChange={handleChange}
           required
         >
-          <option value="">-- Select State --</option>
+          <MenuItem value="">-- Select State --</MenuItem>
           {state.map((item) => (
-            <option key={item.state_id} value={item.state_name}>
+            <MenuItem key={item.state_id} value={item.state_name}>
               {item.state_name}
-            </option>
+            </MenuItem>
           ))}
         </select> */}
         <TextField
@@ -724,93 +724,111 @@ function NewStudent() {
           onChange={handleChange}
         />
         {/* <TextField type="date" onChange={handleChange} ref={dateTextFieldRef} /> */}
-        <select
-          name="Degree"
-          placeholder="Select Degree"
-          className="form-select-Degree"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Degree --</option>
-          {degree.map((item) => (
-            <option key={item.degree_id} value={item.degree_name}>
-              {item.degree_name}
-            </option>
-          ))}
-        </select>
-        <select
-          name="Semester"
-          placeholder="Select Semester"
-          className="form-select-Semester"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Semester --</option>
-          {semester.map((item) => (
-            <option key={item.sem_id} value={item.sem}>
-              {item.sem}
-            </option>
-          ))}
-        </select>
-        <label>
-          Year
-          {/* <select value={dateSelect.yearValue} onChange={dateSelect.onYearChange}>
-          {dateSelect.yearOptions.map((yearOption) => (
-            <option key={yearOption.value} value={yearOption.value}>
-              {yearOption.label}
-            </option>
-          ))}
-        </select> */}
-        </label>
-        <select
-          name="Branch"
-          placeholder="Select Program"
-          className="form-select-Program"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Program --</option>
-          {branch.map((item) => (
-            <option key={item.Branch_id} value={item.Branch_name}>
-              {item.Branch_name}
-            </option>
-          ))}
-        </select>
+
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Degree</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            name="Degree"
+            placeholder="Select Degree"
+            className="form-select-Degree"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">-- Select Degree --</MenuItem>
+            {degree.map((item) => (
+              <MenuItem key={item.degree_id} value={item.degree_name}>
+                {item.degree_name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Semester</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            name="Semester"
+            placeholder="Select Semester"
+            className="form-select-Semester"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">-- Select Semester --</MenuItem>
+            {semester.map((item) => (
+              <MenuItem key={item.sem_id} value={item.sem}>
+                {item.sem}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
         <TextField
           required
           type="date"
           name="Date_of_admission"
           onChange={handleChange}
         />
-        <select
-          name="Payment_type"
-          placeholder="Select Payment Type"
-          className="form-select-PT"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Payment Type --</option>
-          {payment.map((item) => (
-            <option key={item.payment_id} value={item.payment_type}>
-              {item.payment_type}
-            </option>
-          ))}
-        </select>
-        <select
-          name="Admission_batch"
-          placeholder="Select Batch"
-          className="form-select-batch"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Batch --</option>
-          {batch.map((item) => (
-            <option key={item.batch_id} value={item.year}>
-              {item.year}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleClickadd}>Add</button>
+
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            name="Branch"
+            placeholder="Select Program"
+            className="form-select-Program"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">-- Select Program --</MenuItem>
+            {branch.map((item) => (
+              <MenuItem key={item.Branch_id} value={item.Branch_name}>
+                {item.Branch_name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Payment-Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            name="Payment_type"
+            placeholder="Select Payment Type"
+            className="form-select-PT"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">-- Select Payment Type --</MenuItem>
+            {payment.map((item) => (
+              <MenuItem key={item.payment_id} value={item.payment_type}>
+                {item.payment_type}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Batch</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            name="Admission_batch"
+            placeholder="Select Batch"
+            className="form-select-batch"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">-- Select Batch --</MenuItem>
+            {batch.map((item) => (
+              <MenuItem key={item.batch_id} value={item.year}>
+                {item.year}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <Button variant="contained" onClick={handleClickadd}>Add</Button>
       </div>
     </Box>
   );
