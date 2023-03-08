@@ -98,6 +98,7 @@ function App() {
           <Route path="/addscheme" element={<Addscheme />} />
           <Route path="/masterscheme" element={<Masterscheme />} />
           <Route path="/addmasterscheme" element={<AddMasterscheme />} />
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
 
           <Route path="/category" element={<Category />} />
           <Route path="/addcategory" element={<AddCategory />} />
