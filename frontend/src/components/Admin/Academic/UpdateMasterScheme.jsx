@@ -40,7 +40,7 @@ function UpdateMasterscheme(){
         }
         
     }
-
+    console.log(Masterscheme);
     return (<div className='edit_form'>
         <h2>EDIT</h2>
         <input type="number" placeholder="Masterscheme ID" name="mastersch_id" value={Masterscheme.mastersch_id} onChange={handleChange}/>

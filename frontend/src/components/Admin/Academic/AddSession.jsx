@@ -11,7 +11,7 @@ function AddSession() {
       year: ""
     });
    
-// const navigate = useNavigate();
+const navigate = useNavigate();
 const handleChange = (e) => {
   
     setSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -30,7 +30,7 @@ const handleChange = (e) => {
     session_name: session_name1
   }));
       await axios.post("http://localhost:3001/session", Session);
-    //   navigate("/session");
+      navigate("/session");
     } catch (err) {
       console.log(err);
       // setError(true)
