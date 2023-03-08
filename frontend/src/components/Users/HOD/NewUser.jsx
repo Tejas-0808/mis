@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Button from '@mui/material/Button';
 import Form from 'react-bootstrap/Form';
 
 function NewUser() {
@@ -78,7 +79,7 @@ Marital_Status:""
 
   return (
     <div className="form">
-        <h1>New User</h1>
+        New User
       <hr></hr>
       <br></br>
      
@@ -206,8 +207,8 @@ Marital_Status:""
       </label>
 
       
-    
-      <button onClick={handleClickadd}>Add</button>
+      {/* <Button variant="contained">Hello World</Button> */}
+      <Button variant="contained" onClick={handleClickadd}>Add</Button>
     </div>
   );
 }
