@@ -120,8 +120,13 @@ function App() {
           <Route path="/addcity" element={<Addcity />} />
 
           <Route path="/religion" element={<Religion />} />
-          <Route path="/addreligion" element={<AddReligion />} />
+          <Route path="/addreligion" element={<AddCaste />} />
+          <Route path="/updatercaste/:id" element={<UpdateCaste />} />
+
+          <Route path="/caste" element={<Caste/>} />
+          <Route path="/addcaste" element={<AddReligion />} />
           <Route path="/updatereligion/:id" element={<UpdateReligion />} />
+
 
           <Route path="/district" element={<District />} />
           <Route path="/adddistrict" element={<AddDistrict />} />
