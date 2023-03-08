@@ -22,7 +22,7 @@ const Session = () => {
     fetchAllSession();
     // eslint-disable-next-line
   }, []);
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:3001/session')
@@ -44,9 +44,10 @@ const Session = () => {
       console.log(id)
       await axios.delete("http://localhost:3001/session/"+id)
       const res = await axios.get("http://localhost:3001/session");
+      console.log(res.data);
         setSession(res.data);
       // window.location.reload()
-      // navigate("/");
+      navigate("/session");
     }catch(err){
       console.log(err);
     }
