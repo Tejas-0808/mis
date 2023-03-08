@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Form from 'react-bootstrap/Form';
 
 function NewUser() {
 
@@ -77,10 +78,11 @@ Marital_Status:""
 
   return (
     <div className="form">
-        New User
+        <h1>New User</h1>
       <hr></hr>
       <br></br>
      
+      <label>Email address</label>
       <input
         type="text"
         placeholder="First Name"
