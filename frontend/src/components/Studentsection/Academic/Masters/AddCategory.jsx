@@ -38,12 +38,39 @@ function AddCategory() {
 
 //   console.log(branch);
   return (
+    <Box
+    component="form"
+    sx={{
+      "& .MuiTextField-root": { m: 1, width: "25ch" },
+    }}
+    noValidate
+    autoComplete="off"
+  >
     <div className="form">
-      ADD
-      <input type="number" placeholder="Category Id" name="category_id" onChange={handleChange}/>
-      <input type="text" placeholder="Category Name" name="category_name" onChange={handleChange}/>
-      <button onClick={handleClick}>Add</button>
+    <h1>ADD STATE</h1>
+        <hr></hr>
+        <br></br>
+      <TextField
+          required
+          type="number"
+          variant="outlined"
+          label="Category ID"
+          name="category_id"
+          onChange={handleChange}
+        />
+      {/* <input type="number" placeholder="Category Id" name="category_id" onChange={handleChange}/> */}
+      <TextField
+          required
+          variant="outlined"
+          name="category_name"
+          label="Category Name"
+          onChange={handleChange}
+        />
+      {/* <input type="text" placeholder="Category Name" name="category_name" onChange={handleChange}/> */}
+      {/* <button onClick={handleClick}>Add</button> */}
+      <Button variant="contained" onClick={handleClick}>Add</Button>
     </div>
+    </Box>
   )
 }
 

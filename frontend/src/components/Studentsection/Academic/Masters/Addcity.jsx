@@ -2,17 +2,7 @@ import React from 'react'
 import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-
+import { Box, Button, TextField } from "@mui/material";
 
 function Addcity() {
   const [city, setCity] = useState({
@@ -86,7 +76,8 @@ function Addcity() {
           onChange={handleChange}
         />
       {/* <input type="number" placeholder="State" name="state_id" onChange={handleChange}/> */}
-      <button onClick={handleClick}>Add</button>
+      <Button variant="contained" onClick={handleClick}>Add</Button>
+      {/* <button onClick={handleClick}>Add</button> */}
     </div>
     </Box>
   )

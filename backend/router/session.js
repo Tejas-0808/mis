@@ -82,7 +82,7 @@ router.put("/session/:id", async (req, res) => {
   try {
     (async () => {
       const q =
-        "Update session set `session_id` = ?, `session_name` = ?, `term` = ?, `year` = ? where session_id = ?";
+        "Update sessions set `session_id` = ?, `session_name` = ?, `term` = ?, `year` = ? where session_id = ?";
 
       const values = [
         req.body.session_id,
@@ -109,7 +109,7 @@ router.delete("/session/:id", async (req, res) => {
   console.log(sessionid);
   try {
     (async () => {
-      const q = "Delete from session where session_id = ?";
+      const q = "Delete from sessions where session_id = ?";
 
       pool.query(q, [sessionid], (err, data) => {
         if (err) return res.json(err);
