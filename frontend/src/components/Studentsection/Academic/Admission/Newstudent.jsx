@@ -214,16 +214,14 @@ function NewStudent() {
   return (
     <Box
       component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
       noValidate
       autoComplete="off"
     >
       <div className="form">
         <h1>NEW STUDENT ENTRY</h1>
         <hr></hr>
-        <br></br>
+        
         <TextField
           required
           type="number"
@@ -498,11 +496,7 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange1}
           >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
+            <FormControlLabel value="female" control={<Radio />} label="Female"/>
             <FormControlLabel value="male" control={<Radio />} label="Male" />
           </RadioGroup>
         </FormControl>
@@ -515,16 +509,8 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange2}
           >
-            <FormControlLabel
-              value="Indian"
-              control={<Radio />}
-              label="Indian"
-            />
-            <FormControlLabel
-              value="Foreigner"
-              control={<Radio />}
-              label="Foreigner"
-            />
+            <FormControlLabel value="Indian" control={<Radio />} label="Indian"/>
+            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
           </RadioGroup>
         </FormControl>
 
@@ -550,10 +536,8 @@ function NewStudent() {
           Foreigner
         </label> */}
 
-        <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">
-            Physically Handicapped
-          </InputLabel>
+<FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-helper-label">Physically Handicapped</InputLabel>
           <Select
             required
             name="Physically_handicapped"
@@ -654,16 +638,8 @@ function NewStudent() {
             // value={value}
             onChange={handleCheckboxChange3}
           >
-            <FormControlLabel
-              value="Day Scholar"
-              control={<Radio />}
-              label="Day Scholar"
-            />
-            <FormControlLabel
-              value="Foreigner"
-              control={<Radio />}
-              label="Foreigner"
-            />
+            <FormControlLabel value="Day Scholar" control={<Radio />} label="Day Scholar"/>
+            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
           </RadioGroup>
         </FormControl>
 

@@ -67,6 +67,8 @@ import Promotion from "./components/Users/Academic/Studentsectiontransaction/Pro
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
+import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
+
 
 function App() {
   return (
@@ -98,6 +100,7 @@ function App() {
           <Route path="/addscheme" element={<Addscheme />} />
           <Route path="/masterscheme" element={<Masterscheme />} />
           <Route path="/addmasterscheme" element={<AddMasterscheme />} />
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
 
           <Route path="/category" element={<Category />} />
           <Route path="/addcategory" element={<AddCategory />} />
@@ -140,7 +143,7 @@ function App() {
           <Route path="session" element={<Session />} />
 
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
-          <Route path="/imageshow" element={<Imagetest/>}/>
+          {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
           <Route path="/identitycard" element={<IdentityCard/>}/>
           <Route path="/schemeallotment" element={<Schemeallotment/>}/>
           <Route path="/rolllist" element={<Rolllist/>}/>
@@ -150,8 +153,9 @@ function App() {
           <Route path="/branchchange" element={<Branchchange/>}/>
           <Route path="/offeredcourses" element={<Offeredcourses/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
-
           <Route path="/coursereg" element={<CourseRegActivity/>}/>
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
+          
         </Routes>
       </BrowserRouter>
     </div>

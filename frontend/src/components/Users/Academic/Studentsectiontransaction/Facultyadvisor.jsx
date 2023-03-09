@@ -2,6 +2,28 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
+// import { DataGrid } from '@mui/x-data-grid';
+
+const columns = [
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'firstName', headerName: 'First name', width: 130 },
+  { field: 'lastName', headerName: 'Last name', width: 130 },
+  {
+    field: 'age',
+    headerName: 'Age',
+    type: 'number',
+    width: 90,
+  },
+  {
+    field: 'fullName',
+    headerName: 'Full name',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    width: 160,
+    valueGetter: (params) =>
+      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  },
+];
 
 function Facultyadvisor() {
   const [Rolllists, SetRolllists] = useState({
@@ -244,6 +266,16 @@ function Facultyadvisor() {
                 </table>
               ))}
             </table>
+            {/* <div style={{ height: 400, width: '100%' }}>
+              <DataGrid
+                rows={studentlist}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+              />
+            </div> */}
+                
             <p>Selected items: {JSON.stringify(checkedValues)}</p>
             <br />
 
