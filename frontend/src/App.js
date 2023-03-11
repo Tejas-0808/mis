@@ -45,6 +45,7 @@ import Educationdetails from "./components/Student/Profile/Educationdetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
+import CourseConfirmation from "./components/Users/Academic/courseConfirmation"
 
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
@@ -152,6 +153,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>}/>
 
           <Route path="/coursereg" element={<CourseRegActivity/>}/>
+          <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>
