@@ -219,7 +219,7 @@ function AddStructure() {
           >
             <MenuItem value="">-- Select BOS --</MenuItem>
             {Bos.map((Bos) => (
-              <MenuItem value={Bos.bos_id}>{Bos.bos_name}</MenuItem>
+              <MenuItem value={Bos.dept_id}>{Bos.department}</MenuItem>
             ))}
           </Select>
         </FormControl>
