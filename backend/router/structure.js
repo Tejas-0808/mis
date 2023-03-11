@@ -45,11 +45,12 @@ router.get("/structure/:id", async (req, res) => {
 router.post("/structure", async (req, res) => {
   const {
     strid,
-    scheme_id,
-    category,
+    mastersch_id,
+    course_category,
     semester,
     branch_id,
     board_of_study,
+    session_id,
     coursecode,
     coursename,
     lecture,
@@ -67,11 +68,12 @@ router.post("/structure", async (req, res) => {
 
   if (
     !strid ||
-    !scheme_id ||
-    !category ||
+    !mastersch_id ||
+    !course_category ||
     !semester ||
     !branch_id ||
     !board_of_study ||
+    !session_id ||
     !coursecode ||
     !coursename ||
     !lecture ||
@@ -104,14 +106,15 @@ router.post("/structure", async (req, res) => {
         (async () => {
           try {
             const data = await query(
-              "INSERT INTO structure VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+              "INSERT INTO structure VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
               [
                 strid,
-                scheme_id,
-                category,
+                mastersch_id,
+                course_category,
                 semester,
                 branch_id,
                 board_of_study,
+                session_id,
                 coursecode,
                 coursename,
                 lecture,
@@ -166,11 +169,11 @@ router.put("/structure/:id", async (req, res) => {
   try {
     (async () => {
       const q =
-        "UPDATE structure SET `strid` = ?, `scheme_id` = ?, `category` = ?, `semester` = ?, `branch_id` = ?, `board_of_study` = ?, `coursecode` = ?, `coursename` = ?, `lecture` = ?, `tut` = ?, `pract` = ?, `ise1` = ?, `ise2`= ?, `ise3` = ?, `PR` = ?, `TW` = ?, `ese` = ?, `total_marks` = ?, `total_credits` = ? WHERE strid = ?";
+        "UPDATE structure SET `strid` = ?, `mastersch_id` = ?, `course_category` = ?, `semester` = ?, `branch_id` = ?, `board_of_study` = ?, `coursecode` = ?, `coursename` = ?, `lecture` = ?, `tut` = ?, `pract` = ?, `ise1` = ?, `ise2`= ?, `ise3` = ?, `PR` = ?, `TW` = ?, `ese` = ?, `total_marks` = ?, `total_credits` = ? WHERE strid = ?";
       const value = [
         req.body.strid,
-        req.body.scheme_id,
-        req.body.category,
+        req.body.mastersch_id,
+        req.body.course_category,
         req.body.semester,
         req.body.branch_id,
         req.body.board_of_study,

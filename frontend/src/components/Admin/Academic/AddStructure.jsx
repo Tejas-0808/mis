@@ -11,7 +11,12 @@ function AddStructure() {
   const [Bos, setBos] = useState([]);
   const [result, setResult] = useState(0);
   const [Structure, setStructure] = useState({
-    structure_id: "",
+    strid: "",
+    mastersch_id:"",
+    course_category:"",
+    semester:"",
+    branch_id:"",
+    board_of_study:"",
     coursecode: "",
     coursename: "",
     lecture: 0,
@@ -122,7 +127,7 @@ function AddStructure() {
           <InputLabel id="demo-simple-select-helper-label">Scheme ID</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            name="scheme_id"
+            name="mastersch_id"
             placeholder="Select Scheme"
             className="form-select-scheme"
             onChange={handleChange}
@@ -140,7 +145,7 @@ function AddStructure() {
           <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            name="category"
+            name="course_category"
             placeholder="Select Category"
             className="form-select-category"
             onChange={handleChange}
@@ -223,7 +228,7 @@ function AddStructure() {
         <TextField type="number" required label="TW" name="TW" onChange={handleChange} />
         <TextField type="number" required label="End Sem" name="ese" onChange={handleChange} />
 
-        {/* <TextField type="number" required label="Total Marks" name="total_marks" onChange={handleChange} /> */}
+        <TextField type="number" required label="Total Marks" name="total_marks" onChange={handleChange} />
         <TextField type="number" required label="Total Credits" name="total_credits" onChange={handleChange} />
 
         <br />
