@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box, TextField } from '@mui/material/';
+import {
+  InputLabel,
+  FormControl,
+  Select,
+  MenuItem,
+  Button,
+  Box,
+  TextField,
+} from "@mui/material/";
 
 function AddStructure() {
   const [Scheme, setScheme] = useState([]);
@@ -11,17 +19,16 @@ function AddStructure() {
   const [Bos, setBos] = useState([]);
   const [result, setResult] = useState(0);
   const [Structure, setStructure] = useState({
-    strid: "",
-    mastersch_id:"",
-    course_category:"",
-    semester:"",
-    branch_id:"",
-    board_of_study:"",
+    mastersch_id: "",
+    course_category: "",
+    semester: "",
+    branch_id: "",
+    board_of_study: "",
     coursecode: "",
     coursename: "",
-    lecture: 0,
-    tut: 0,
-    pract: 0,
+    lecture: "",
+    tut: "",
+    pract: "",
     ise1: "",
     ise2: "",
     ise3: "",
@@ -29,12 +36,12 @@ function AddStructure() {
     TW: "",
     ese: "",
     total_marks: "",
-    total_credits: ""
+    total_credits: "",
   });
 
   const fetchScheme = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/scheme");
+      const res = await axios.get("http://localhost:3001/master_scheme");
       setScheme(res.data);
       console.log(res.data);
     } catch (err) {
@@ -94,7 +101,7 @@ function AddStructure() {
 
   const handleChange = (e) => {
     setStructure((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setResult(parseInt(Structure.lecture) + parseInt(Structure.pract))
+    setResult(parseInt(Structure.lecture) + parseInt(Structure.pract));
   };
   console.log(result);
   const handleClick = async (e) => {
@@ -116,15 +123,24 @@ function AddStructure() {
       noValidate
       autoComplete="off"
     >
-      
       <div className="form">
         <h1>ADD Structure</h1>
-        <br></br><hr></hr>
+        <br></br>
+        <hr></hr>
 
-        <TextField required label="Structure ID" type="number" placeholder="Structure Id" name="strid" onChange={handleChange} />
+        {/* <TextField
+          required
+          label="Structure ID"
+          type="number"
+          placeholder="Structure Id"
+          name="strid"
+          onChange={handleChange}
+        /> */}
 
         <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <InputLabel id="demo-simple-select-helper-label">Scheme ID</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">
+            Scheme ID
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             name="mastersch_id"
@@ -135,11 +151,10 @@ function AddStructure() {
           >
             <MenuItem value="">-- Select Scheme ID --</MenuItem>
             {Scheme.map((Scheme) => (
-              <MenuItem value={Scheme.scid}>{Scheme.scid}</MenuItem>
+              <MenuItem value={Scheme.mastersch_id}>{Scheme.master_scheme}</MenuItem>
             ))}
           </Select>
         </FormControl>
-
 
         <FormControl sx={{ m: 1, minWidth: 150 }}>
           <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
@@ -153,11 +168,10 @@ function AddStructure() {
           >
             <MenuItem value="">-- Select Course Category --</MenuItem>
             {Category.map((Category) => (
-              <MenuItem value={Category.name}>{Category.name}</MenuItem>
+              <MenuItem value={Category.course_category_id}>{Category.name}</MenuItem>
             ))}
           </Select>
         </FormControl>
-
 
         <FormControl sx={{ m: 1, minWidth: 150 }}>
           <InputLabel id="demo-simple-select-helper-label">Semester</InputLabel>
@@ -188,7 +202,7 @@ function AddStructure() {
           >
             <MenuItem value="">-- Select BranchId --</MenuItem>
             {Branch.map((Branch) => (
-              <MenuItem value={Branch.Branch_id}>{Branch.Branch_id}</MenuItem>
+              <MenuItem value={Branch.Branch_id}>{Branch.Branch_name}</MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -205,37 +219,118 @@ function AddStructure() {
           >
             <MenuItem value="">-- Select BOS --</MenuItem>
             {Bos.map((Bos) => (
-              <MenuItem value={Bos.bos_name}>{Bos.bos_name}</MenuItem>
+              <MenuItem value={Bos.dept_id}>{Bos.department}</MenuItem>
             ))}
           </Select>
         </FormControl>
 
-        <TextField required label="Course Code" name="coursecode" type="text" onChange={handleChange} />
-        <TextField required label="Course Name" type="text" name="coursename" onChange={handleChange} />
+        <TextField
+          required
+          label="Course Code"
+          name="coursecode"
+          type="text"
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          label="Course Name"
+          type="text"
+          name="coursename"
+          onChange={handleChange}
+        />
 
-        <br></br><br></br>
-        <TextField required type="number" label="Lecture" name="lecture" onChange={handleChange} />
-        <TextField required type="number" label="Tutorial" name="tut" onChange={handleChange} />
-        <TextField type="number" required label="Practical" name="pract" onChange={handleChange} />
+        <br></br>
+        <br></br>
+        <TextField
+          required
+          type="number"
+          label="Lecture"
+          name="lecture"
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          type="number"
+          label="Tutorial"
+          name="tut"
+          onChange={handleChange}
+        />
+        <TextField
+          type="number"
+          required
+          label="Practical"
+          name="pract"
+          onChange={handleChange}
+        />
 
-        <h3><input type="number" placeholder="Total" name="total" value={result} /></h3>
+        <h3>
+          <input
+            type="number"
+            placeholder="Total"
+            name="total"
+            value={result}
+          />
+        </h3>
 
-
-        <TextField type="number" required label="In Sem 1" name="ise1" onChange={handleChange} />
-        <TextField type="number" required label="In Sem 2" name="ise2" onChange={handleChange} />
-        <TextField type="number" required label="In Sem 3" name="ise3" onChange={handleChange} />
-        <TextField type="number" required label="PR" name="PR" onChange={handleChange} />
-        <TextField type="number" required label="TW" name="TW" onChange={handleChange} />
-        <TextField type="number" required label="End Sem" name="ese" onChange={handleChange} />
+        <TextField
+          type="number"
+          required
+          label="In Sem 1"
+          name="ise1"
+          onChange={handleChange}
+        />
+        <TextField
+          type="number"
+          required
+          label="In Sem 2"
+          name="ise2"
+          onChange={handleChange}
+        />
+        <TextField
+          type="number"
+          required
+          label="In Sem 3"
+          name="ise3"
+          onChange={handleChange}
+        />
+        <TextField
+          type="number"
+          required
+          label="PR"
+          name="PR"
+          onChange={handleChange}
+        />
+        <TextField
+          type="number"
+          required
+          label="TW"
+          name="TW"
+          onChange={handleChange}
+        />
+        <TextField
+          type="number"
+          required
+          label="End Sem"
+          name="ese"
+          onChange={handleChange}
+        />
 
         <TextField type="number" required label="Total Marks" name="total_marks" onChange={handleChange} />
-        <TextField type="number" required label="Total Credits" name="total_credits" onChange={handleChange} />
+        <TextField
+          type="number"
+          required
+          label="Total Credits"
+          name="total_credits"
+          onChange={handleChange}
+        />
 
         <br />
-        <Button variant='contained' onClick={handleClick}>Add</Button>
+        <Button variant="contained" onClick={handleClick}>
+          Add
+        </Button>
       </div>
     </Box>
-  )
+  );
 }
 
-export default AddStructure
+export default AddStructure;

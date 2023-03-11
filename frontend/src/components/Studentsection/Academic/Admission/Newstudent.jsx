@@ -8,10 +8,10 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import FormGroup from "@mui/material/FormGroup";
+import Checkbox from "@mui/material/Checkbox";
 
 function NewStudent() {
   const [personaldetails, setPersonalDetails] = useState({
@@ -66,9 +66,12 @@ function NewStudent() {
   const navigate = useNavigate();
   const handleChange = (e) => {
     const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
-    // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+      //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
+      // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
+      setPersonalDetails((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
     console.log(personaldetails);
   };
 
@@ -207,17 +210,18 @@ function NewStudent() {
     setSelectedStatus(event.target.value);
     handleChange(event);
   };
+
   return (
     <Box
       component="form"
-      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"
     >
       <div className="form">
         <h1>NEW STUDENT ENTRY</h1>
         <hr></hr>
-        
+
         <TextField
           required
           type="number"
@@ -233,12 +237,7 @@ function NewStudent() {
           label="First Name"
           onChange={handleChange}
         />
-        {/* <TextField
-        type="text"
-        placeholder="First Name"
-        name="First_Name"
-        onChange={handleChange}
-      /> */}
+
         <TextField
           required
           type="text"
@@ -271,15 +270,19 @@ function NewStudent() {
           name="Phone_No"
           onChange={handleChange}
         />
+
         <TextField
-          required
-          variant="outlined"
-          type="date"
-          // label="Date of Birth"
-          // placeholder="Date of Birth"
+          label="Date of Birth"
           name="D_O_B"
+          type="date"
           onChange={handleChange}
+          // defaultValue="2017-05-24"
+          // className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
+
         <TextField
           required
           type="text"
@@ -309,20 +312,7 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-        {/* <select
-        name="Caste"
-        placeholder="Select caste"
-        className="form-select-caste"
-        onChange={handleChange}
-        required
-      >
-        <MenuItem value="">-- Select caste --</MenuItem>
-        {caste.map((item) => (
-          <MenuItem key={item.caste_id} value={item.caste_name}>
-            {item.caste_name}
-          </MenuItem>
-        ))}
-      </select> */}
+
         <FormControl sx={{ m: 1, minWidth: 150 }}>
           <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
           <Select
@@ -343,20 +333,7 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-        {/* <select
-        name="Category"
-        placeholder="Select Category"
-        className="form-select-category"
-        onChange={handleChange}
-        required
-      >
-        <MenuItem value="">-- Select category --</MenuItem>
-        {category.map((item) => (
-          <MenuItem key={item.category_id} value={item.category_name}>
-            {item.category_name}
-          </MenuItem>
-        ))}
-      </select> */}
+
         <FormControl sx={{ m: 1, minWidth: 150 }}>
           <InputLabel id="demo-simple-select-helper-label">Religion</InputLabel>
           <Select
@@ -377,144 +354,93 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-        {/* <select
-          name="Religion"
-          placeholder="Select Religion"
-          className="form-select-religion"
-          onChange={handleChange}
-          required
-        >
-          <MenuItem value="">-- Select Religion --</MenuItem>
-          {religion.map((item) => (
-            <MenuItem key={item.religion_id} value={item.Religion_name}>
-              {item.Religion_name}
-            </MenuItem>
-          ))}
-        </select> */}
-        {/* <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">Martial Status</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel name="Marital_Status" onChange={handleCheckboxChange} checked={selectedMS === "Married"} control={<Radio />} label="Married" />
-        <FormControlLabel name="Marital_Status" onChange={handleCheckboxChange} checked={selectedMS === "Unmarried"} control={<Radio />} label="Unmarried"  />
-       
-      </RadioGroup>
-    </FormControl> */}
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormGroup>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Martial Status
           </FormLabel>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Married"
+                checked={selectedMS === "Married"}
+                name="Marital_Status"
+                onChange={handleCheckboxChange}
+              />
+            }
+            label="Married"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Unmarried"
+                checked={selectedMS === "Unmarried"}
+                name="Marital_Status"
+                onChange={handleCheckboxChange}
+              />
+            }
+            label="Unmarried"
+          />
+        </FormGroup>
 
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="Marital_Status"
-            // value={value}
-            onChange={handleCheckboxChange1}
-          >
-            <FormControlLabel
-              value="Married" control={<Radio />} label="Married"
-            />
-            <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
-          </RadioGroup>
-        </FormControl>
-
-        {/* <h5>Martial Status</h5>
-        <label>
-          <TextField
-            type="radio"
-            name="Marital_Status"
-            value="Married"
-            checked={selectedMS === "Married"}
-            onChange={handleCheckboxChange}
-          />
-          Married
-        </label>
-        <label>
-          <TextField
-            type="radio"
-            name="Marital_Status"
-            value="Unmarried"
-            checked={selectedMS === "Unmarried"}
-            onChange={handleCheckboxChange}
-          />
-          Unmarried
-        </label> */}
-        {/* <h5>Gender</h5>
-        <label>
-          <TextField
-            type="radio"
-            name="Gender"
-            value="Female"
-            checked={selectedGender === "Female"}
-            onChange={handleCheckboxChange1}
-          />
-          Female
-        </label>
-        <label>
-          <TextField
-            type="radio"
-            name="Gender"
-            value="Male"
-            checked={selectedGender === "Male"}
-            onChange={handleCheckboxChange1}
-          />
-          Male
-        </label> */}
-
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormGroup>
           <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="Gender"
-            // value={value}
-            onChange={handleCheckboxChange1}
-          >
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-          </RadioGroup>
-        </FormControl>
-
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="Nationality"
-            // value={value}
-            onChange={handleCheckboxChange2}
-          >
-            <FormControlLabel value="Indian" control={<Radio />} label="Indian" />
-            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
-          </RadioGroup>
-        </FormControl>
-
-        {/* <h5>Nationality</h5>
-        <label>
-          <TextField
-            type="radio"
-            name="Nationality"
-            value="Indian"
-            checked={selectedNationality === "Indian"}
-            onChange={handleCheckboxChange2}
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Female"
+                checked={selectedGender === "Female"}
+                name="Gender"
+                onChange={handleCheckboxChange1}
+              />
+            }
+            label="Female"
           />
-          Indian
-        </label>
-        <label>
-          <TextField
-            type="radio"
-            name="Nationality"
-            value="Foreigner"
-            checked={selectedNationality === "Foreigner"}
-            onChange={handleCheckboxChange2}
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Male"
+                checked={selectedGender === "Male"}
+                name="Gender"
+                onChange={handleCheckboxChange1}
+              />
+            }
+            label="Male"
           />
-          Foreigner
-        </label> */}
+        </FormGroup>
+
+        <FormGroup>
+          <FormLabel id="demo-controlled-radio-buttons-group">
+            Nationality
+          </FormLabel>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Indian"
+                checked={selectedNationality === "Indian"}
+                name="Nationality"
+                onChange={handleCheckboxChange2}
+              />
+            }
+            label="Indian"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Foreigner"
+                checked={selectedGender === "Foreigner"}
+                name="Nationality"
+                onChange={handleCheckboxChange2}
+              />
+            }
+            label="Foreigner"
+          />
+        </FormGroup>
 
         <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">Physically Handicapped</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">
+            Physically Handicapped
+          </InputLabel>
           <Select
             required
             name="Physically_handicapped"
@@ -526,26 +452,11 @@ function NewStudent() {
             <MenuItem value="">
               <em>-- Physically Handicapped --</em>
             </MenuItem>
-            <MenuItem value="1">
-              Yes
-            </MenuItem>
-            <MenuItem value="0">
-              No
-            </MenuItem>
+            <MenuItem value="1">Yes</MenuItem>
+            <MenuItem value="0">No</MenuItem>
           </Select>
         </FormControl>
 
-        {/* <select
-          name="Physically_handicapped"
-          placeholder="Physically Handicapped"
-          className="form-physically-handicapped"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Physically Handicapped --</option>
-          <option value="1"> YES </option>
-          <option value="0"> NO </option>
-        </select> */}
         <TextField
           required
           type="text"
@@ -589,43 +500,37 @@ function NewStudent() {
           name="Guardian_Number"
           onChange={handleChange}
         />
-        {/* <h5>Status</h5>
-        <label>
-          <TextField
-            type="radio"
-            name="Student_type"
-            value="Day Scholar"
-            checked={selectedStatus === "Day Scholar"}
-            onChange={handleCheckboxChange3}
-          />
-          Day Scholar
-        </label>
-        <label>
-          <TextField
-            type="radio"
-            name="Student_type"
-            value="Hosteller"
-            checked={selectedStatus === "Hosteller"}
-            onChange={handleCheckboxChange3}
-          />
-          Hosteller
-        </label> */}
 
-        <FormControl sx={{ m: 1, minWidth: 200 }}>
+        <FormGroup>
           <FormLabel id="demo-controlled-radio-buttons-group">Status</FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="Student_type"
-            // value={value}
-            onChange={handleCheckboxChange3}
-          >
-            <FormControlLabel value="Day Scholar" control={<Radio />} label="Day Scholar" />
-            <FormControlLabel value="Foreigner" control={<Radio />} label="Foreigner" />
-          </RadioGroup>
-        </FormControl>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Day Scholar"
+                checked={selectedStatus === "Day Scholar"}
+                name="Student_type"
+                onChange={handleCheckboxChange3}
+              />
+            }
+            label="Day Scholar"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Hosteller"
+                checked={selectedStatus === "Hosteller"}
+                name="Student_type"
+                onChange={handleCheckboxChange3}
+              />
+            }
+            label="Hosteller"
+          />
+        </FormGroup>
 
         <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">Select City</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">
+            Select City
+          </InputLabel>
           <Select
             required
             name="City"
@@ -646,7 +551,9 @@ function NewStudent() {
         </FormControl>
 
         <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">Select State</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">
+            Select State
+          </InputLabel>
           <Select
             required
             name="State"
@@ -679,20 +586,7 @@ function NewStudent() {
             </MenuItem>
           ))}
         </select> */}
-        {/* <select
-          name="State"
-          placeholder="Select State"
-          className="form-select-state"
-          onChange={handleChange}
-          required
-        >
-          <MenuItem value="">-- Select State --</MenuItem>
-          {state.map((item) => (
-            <MenuItem key={item.state_id} value={item.state_name}>
-              {item.state_name}
-            </MenuItem>
-          ))}
-        </select> */}
+
         <TextField
           required
           type="number"
@@ -721,9 +615,8 @@ function NewStudent() {
           name="Permanent_Add"
           onChange={handleChange}
         />
-        {/* <TextField type="date" onChange={handleChange} ref={dateTextFieldRef} /> */}
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 130 }}>
           <InputLabel id="demo-simple-select-label">Degree</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -760,13 +653,25 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-
         <TextField
-          required
-          type="date"
           name="Date_of_admission"
+          label="Date of Admission"
+          type="date"
           onChange={handleChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
+
+        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            required
+            name="Date_of_admission"
+            label="Date of Admission"
+            // value={value}
+            onChange={handleChange}
+          />
+        </LocalizationProvider> */}
 
         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
@@ -786,7 +691,6 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-
 
         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Payment-Type</InputLabel>
@@ -826,7 +730,9 @@ function NewStudent() {
           </Select>
         </FormControl>
 
-        <Button variant="contained" onClick={handleClickadd}>Add</Button>
+        <Button variant="contained" onClick={handleClickadd}>
+          Add
+        </Button>
       </div>
     </Box>
   );

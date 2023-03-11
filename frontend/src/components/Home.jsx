@@ -68,8 +68,10 @@ function Home() {
         </button>
       </p>
       {/* <Navigation/>
+      <div className='d-flex'>
+      <SideBar/>
       <StudentDashboard/>
-      <SideBar/> */}
+      </div> */}
       
 
     </>
