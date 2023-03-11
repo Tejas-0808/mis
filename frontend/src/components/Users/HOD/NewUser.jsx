@@ -2,22 +2,35 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import {
+  Button,
+  Checkbox,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+  TextField,
+  Radio,
+  Box,
+  Typography,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+} from "@mui/material";
 
 function NewUser() {
-
   const [staffdetails, setStaffDetails] = useState({
-First_Name:"",
-Middle_Name:"",
-Last_Name:"",
-Branch_id:"",
-Qualifications:"",
-role_id:"",
-Email_id:"",
-Phone_no:"",
-Address:"",
-Gender:"",
-Marital_Status:""
-   
+    First_Name: "",
+    Middle_Name: "",
+    Last_Name: "",
+    Branch_id: "",
+    Qualifications: "",
+    role_id: "",
+    Email_id: "",
+    Phone_no: "",
+    Address: "",
+    Gender: "",
+    Marital_Status: "",
   });
 
   const navigate = useNavigate();
@@ -27,15 +40,15 @@ Marital_Status:""
   };
 
   const handleClickadd = async (e) => {
-        e.preventDefault();
-        try {
-          await axios.post("http://localhost:3001/newuser", staffdetails);
-          navigate("/");
-        } catch (err) {
-          console.log(err);
-          // setError(true)
-        }
-      };
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/newuser", staffdetails);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      // setError(true)
+    }
+  };
 
   const [branch, setBranch] = useState([]);
 
@@ -48,7 +61,6 @@ Marital_Status:""
       .catch((error) => {
         console.error(error);
       });
-   
   }, []);
   const [role, setRole] = useState([]);
 
@@ -61,7 +73,6 @@ Marital_Status:""
       .catch((error) => {
         console.error(error);
       });
-   
   }, []);
 
   const [selectedMS, setSelectedMS] = useState(null);
@@ -76,137 +87,202 @@ Marital_Status:""
   };
 
   return (
-    <div className="form">
-        New User
-      <hr></hr>
-      <br></br>
-     
-      <input
-        type="text"
-        placeholder="First Name"
-        name="First_Name"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Middle Name"
-        name="Middle_Name"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        name="Last_Name"
-        onChange={handleChange}
-      />
-      <select
-        name="Branch_id"
-        placeholder="Select Program"
-        className="form-select-Program"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Program --</option>
-        {branch.map((item) => (
-          <option key={item.Branch_id} value={item.Branch_id}>
-            {item.Branch_name}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Enter Qualifications"
-        name="Qualifications"
-        onChange={handleChange}
-      />
-      {/* <input
-        type="text"
-        placeholder="Role-Faculty"
-        name="role_id"
-        // onChange={handleChange}
-        // value="4"
-        defaultValue={"4"}
-        readOnly
-      /> */}
-      <select
-        name="role_id"
-        placeholder="Select Role"
-        className="form-select-Role"
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Role --</option>
-        {role.map((item) => (
-          <option key={item.role_id} value={item.role_id}>
-            {item.role}
-          </option>
-        ))} 
-      </select>
-      <input
-        type="email"
-        placeholder="Email id"
-        name="Email_id"
-        onChange={handleChange}
-      />
-      <input
-        type="number"
-        placeholder="Phone No"
-        name="Phone_no"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Address"
-        name="Address"
-        onChange={handleChange}
-      />
-      <h5>Gender</h5>
-      <label>
-        <input
-          type="radio"
-          name="Gender"
-          value="Female"
-          checked={selectedGender === "Female"}
-          onChange={handleCheckboxChange1}
-        />
-        Female
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="Gender"
-          value="Male"
-          checked={selectedGender === "Male"}
-          onChange={handleCheckboxChange1}
-        />
-        Male
-      </label>
-      <h5>Martial Status</h5>
-      <label>
-        <input
-          type="radio"
-          name="Marital_Status"
-          value="Married"
-          checked={selectedMS === "Married"}
-          onChange={handleCheckboxChange}
-        />
-        Married
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="Marital_Status"
-          value="Unmarried"
-          checked={selectedMS === "Unmarried"}
-          onChange={handleCheckboxChange}
-        />
-        Unmarried
-      </label>
+    <Box
+      component="form"
+      sx={{
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div className="form">
+        <Typography variant="h4">New User</Typography>
 
-      
-    
-      <button onClick={handleClickadd}>Add</button>
-    </div>
+        <TextField
+          type="text"
+          variant="outlined"
+          label="First Name"
+          name="First_Name"
+          onChange={handleChange}
+          required
+        />
+        <TextField
+          type="text"
+          variant="outlined"
+          label="Middle Name"
+          name="Middle_Name"
+          onChange={handleChange}
+          required
+        />
+        <TextField
+          type="text"
+          variant="outlined"
+          label="Last Name"
+          name="Last_Name"
+          onChange={handleChange}
+          required
+        />
+        <FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-label">
+            ---Select Program---
+          </InputLabel>
+          <Select
+            labelId="Branch_id"
+            label="Select Program"
+            name="Branch_id"
+            className="form-select-Program"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {branch.map((item) => (
+              <MenuItem key={item.Branch_id} value={item.Branch_id}>
+                {item.Branch_name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <TextField
+          type="text"
+          label="Enter Qualifications"
+          variant="outlined"
+          name="Qualifications"
+          onChange={handleChange}
+          required
+        />
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
+          <InputLabel id="demo-simple-select-label">
+            ---Select Role---
+          </InputLabel>
+          <Select
+            required
+            name="role_id"
+            labelId="role_id"
+            id="select"
+            label="---Select Role---"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {role.map((item) => (
+              <MenuItem key={item.role_id} value={item.role_id}>
+                {item.role}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField
+          type="email"
+          variant="outlined"
+          label="Email id"
+          name="Email_id"
+          onChange={handleChange}
+          required
+        />
+        <TextField
+          type="number"
+          variant="outlined"
+          label="Phone No"
+          name="Phone_no"
+          onChange={handleChange}
+          required
+        />
+        <TextField
+          type="text"
+          variant="outlined"
+          label="Address"
+          name="Address"
+          onChange={handleChange}
+          required
+        />
+        {/* <h5>Gender</h5>
+        <label>
+          <input
+            type="radio"
+            name="Gender"
+            value="Female"
+            checked={selectedGender === "Female"}
+            onChange={handleCheckboxChange1}
+          />
+          Female
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="Gender"
+            value="Male"
+            checked={selectedGender === "Male"}
+            onChange={handleCheckboxChange1}
+          />
+          Male
+        </label> */}
+
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
+          <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="Gender"
+            // value={value}
+            onChange={handleCheckboxChange1}
+          >
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
+
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+          </RadioGroup>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, minWidth: 150 }}>
+          <FormLabel id="demo-controlled-radio-buttons-group">
+            Martial Status
+          </FormLabel>
+
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="Marital_Status"
+            // value={value}
+            onChange={handleCheckboxChange1}
+          >
+            <FormControlLabel
+              value="Married" control={<Radio />} label="Married"
+            />
+            <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
+          </RadioGroup>
+          {/* <Typography>Martial Status</Typography>
+          <InputLabel>
+            <Radio
+              type="radio"
+              name="Marital_Status"
+              value="Married"
+              checked={selectedMS === "Married"}
+              onChange={handleCheckboxChange}
+            />
+            Married
+          </InputLabel>
+          <InputLabel>
+            <Radio
+              type="radio"
+              name="Marital_Status"
+              value="Unmarried"
+              checked={selectedMS === "Unmarried"}
+              onChange={handleCheckboxChange}
+            />
+            Unmarried
+          </InputLabel> */}
+        </FormControl>
+
+        <Button variant="contained" onClick={handleClickadd}>
+          Add
+        </Button>
+      </div>
+    </Box>
   );
 }
 

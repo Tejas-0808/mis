@@ -11,7 +11,7 @@ const query = util.promisify(pool.query).bind(pool);
 router.get("/b_o_s", async (req, res) => {
   try {
     (async () => {
-      const data = await query("SELECT * FROM b_o_s");
+      const data = await query("SELECT * FROM departments");
       const result = await data;
       return res.json(result);
 
@@ -30,7 +30,7 @@ router.get("/b_o_s/:id", async (req, res) => {
   const BosId = req.params.id;
   try {
     (async () => {
-      const data = await query("SELECT * FROM b_o_s WHERE bos_id = ?", BosId);
+      const data = await query("SELECT * FROM departments WHERE dept_id = ?", BosId);
       const result = await data[0];
       console.log(result);
       return res.json(result);
@@ -43,9 +43,9 @@ router.get("/b_o_s/:id", async (req, res) => {
 
 
 router.post("/b_o_s", async (req, res) => {
-  const { bos_id, bos_name } = req.body;
+  const { dept_id, department } = req.body;
 
-  if (!bos_id || !bos_name) {
+  if (!dept_id || !department) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
@@ -62,9 +62,9 @@ router.post("/b_o_s", async (req, res) => {
       if (true) {
         (async () => {
           try {
-            const data = await query("INSERT INTO b_o_s VALUES(?,?)", [
-              bos_id,
-              bos_name,
+            const data = await query("INSERT INTO departments VALUES(?,?)", [
+              dept_id,
+              department,
             ]);
             console.log(data[0]);
             res.status(200).json({ msg: "b_o_s added successfully" });

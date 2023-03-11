@@ -64,7 +64,7 @@ router.post('/district', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM district WHERE district_name=?",[district_name]);
+                    const data = await query("SELECT * FROM district WHERE district_id=?", [district_id]);
                     districtExists = await data[0];
                 }
                 finally{

@@ -30,6 +30,22 @@ router.get("/state", async (req,res)=> {
     }
 })
 
+//get particular state
+
+router.get("/state/:id", async (req, res) => {
+    const stateId = req.params.id;
+    try{
+        (async()=> {
+            const data = await query("SELECT * FROM state_list WHERE state_id = ?", stateId);
+            const result = await data[0];
+            console.log(result);
+            return res.json(result);
+        })()
+    }catch(err){
+        console.log(err);
+        return res.status(400).json({error: err})
+    }
+})
 
 router.post('/state', async (req, res) => {
 
@@ -99,6 +115,27 @@ router.delete("/state/:id", async (req, res) => {
     }
     
 })
+
+router.put("/state/:id", async(req, res) => {
+    const stateId = req.params.id;
+    console.log(stateId);
+    try{
+        (async()=>{
+            const q = "UPDATE state_list SET `state_id` = ?, `state_name` = ? WHERE state_id = ?"
+            const value = [
+                req.body.state_id,
+                req.body.state_name
+            ]
+
+            pool.query(q, [...value, stateId], (err, data)=>{
+                if(err) return res.json(err);
+                return res.json("State has been updated.");
+            })
+        })()
+    }catch(err){
+        console.log(err);
+    }
+});
 
 
 module.exports = router;

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { Box, Button, TextField } from "@mui/material";
 
 
 function UpdateCity(){
@@ -41,14 +42,55 @@ function UpdateCity(){
         
     }
 
-    return (<div className='edit_form'>
-        <h2>EDIT</h2>
-        <input type="number" placeholder="City ID" name="city_id" value={City.city_id} onChange={handleChange}/>
-        <input type="text" placeholder="City Name" name="city_name" value={City.city_name} onChange={handleChange}/>
-        <input type="text" placeholder="District" name="isDistrict" value={City.isDistrict} onChange={handleChange}/>
-        <input type="number" placeholder="State Id" name="state_id" value={City.state_id} onChange={handleChange}/>
-        <button onClick={handleEdit}>Submit</button>
-    </div>)
+    return (<Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div className="form">
+        <h1>EDIT CITY</h1>
+            <hr></hr>
+            <br></br>
+            <TextField
+          required
+          type="number"
+          variant="outlined"
+          label="City ID"
+          name="city_id"
+          value={City.city_id}
+          onChange={handleChange}
+        />
+      <TextField
+          required
+          variant="outlined"
+          name="city_name"
+          label="City Name"
+          value={City.city_name}
+          onChange={handleChange}
+        />
+      <TextField
+          required
+          variant="outlined"
+          name="isDistrict"
+          label="Is District"
+          value={City.isDistrict}
+          onChange={handleChange}
+        />
+      <TextField
+          required
+          type="number"
+          variant="outlined"
+          label="State ID"
+          name="state_id"
+          value={City.state_id}
+          onChange={handleChange}/>
+        
+        <Button variant="contained" onClick={handleEdit}>Submit</Button>
+    </div>
+    </Box>)
 }
 
 export default UpdateCity;

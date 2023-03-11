@@ -2,7 +2,16 @@ import React, { useEffect } from 'react'
 import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import { Box, Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 
 function UpdateCategory(){
     const [Category, setCategory] = useState({category_id: "" ,category_name: ""});
@@ -42,11 +51,43 @@ function UpdateCategory(){
     }
 
     return (<div className='edit_form'>
-        <h2>EDIT</h2>
+    <Box
+    component="form"
+    sx={{
+      "& .MuiTextField-root": { m: 1, width: "25ch" },
+    }}
+    noValidate
+    autoComplete="off"
+  >
+    <h1>UPDATE CATEGORY</h1>
+        <hr></hr>
+        <br></br>
+      <TextField
+          required
+          type="number"
+          variant="outlined"
+          label="Category ID"
+          name="category_id"
+          value={Category.category_id}
+          onChange={handleChange}
+        />
+        <TextField
+          required
+          variant="outlined"
+          name="category_name"
+          label="Category Name"
+          value={Category.category_name}
+          onChange={handleChange}
+        />
+        <Button variant="contained" onClick={handleEdit}>SUBMIT</Button>
+        {/* <h2>UPDATE CATEGORY</h2>
         <input type="number" placeholder="ID" name="category_id" value={Category.category_id} onChange={handleChange}/>
         <input type="text" placeholder="Category Name" name="category_name" value={Category.category_name} onChange={handleChange}/>
-        <button onClick={handleEdit}>Submit</button>
+        <button onClick={handleEdit}>Submit</button> */}
+
+        </Box>
     </div>)
+   
 }
 
 export default UpdateCategory;

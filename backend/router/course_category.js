@@ -36,7 +36,7 @@ router.get("/course_category/:id", async (req, res) => {
     const CoursecatId = req.params.id;
     try{
         (async()=> {
-            const data = await query("SELECT * FROM course_category WHERE course_id = ?", CoursecatId);
+            const data = await query("SELECT * FROM course_category WHERE course_category_id = ?", CoursecatId);
             const result = await data[0];
             console.log(result);
             return res.json(result);
@@ -60,7 +60,7 @@ router.post("/course_category", async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM course_category WHERE course_id=?",[course_id]);
+                    const data = await query("SELECT * FROM course_category WHERE course_category_id=?",[course_id]);
                     userExists = await data[0];
                 }
                 finally{
@@ -72,7 +72,7 @@ router.post("/course_category", async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO course_category VALUES(?,?,?)",[course_id, name, code ]);
+                          const data = await query("INSERT INTO course_category VALUES(?,?,?)",[course_category_id, name, code ]);
                           console.log(data[0]);
                           res.status(200).json({msg: "Course Category added successfully"})
                         }
@@ -98,7 +98,7 @@ router.post("/course_category", async (req, res) => {
         try{
       
             (async()=>{
-                    const q = "Delete from course_category where course_id = ?"
+                    const q = "Delete from course_category where course_category_id = ?"
       
                     pool.query(q,[CoursecatId],(err,data)=>{
                         if(err) return res.json(err);
@@ -119,9 +119,9 @@ router.post("/course_category", async (req, res) => {
         console.log(CoursecatId);
         try{
             (async()=>{
-                const q = "UPDATE course_category SET `course_id` = ?, `name` = ?, `code` = ? WHERE course_id = ?"
+                const q = "UPDATE course_category SET `course_category_id` = ?, `name` = ?, `code` = ? WHERE course_category_id = ?"
                 const value = [
-                    req.body.course_id,
+                    req.body.course_category_id,
                     req.body.name,
                     req.body.code
                 ]

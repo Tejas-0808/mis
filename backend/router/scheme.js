@@ -26,15 +26,16 @@ router.get("/scheme", async (req, res) => {
 
 router.post("/scheme", async (req, res) => {
   const { scid, master_sch_id, category, ft, pt } = req.body;
-
-  if (!scid || !master_sch_id || !category || !ft || !pt) {
+  console.log(category);
+  const course_category_id = category;
+  if (!scid || !master_sch_id  || !ft || !pt) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
   try {
     (async () => {
       try{
-          const data = await query("SELECT * FROM scheme WHERE category=?",[category]);
+          const data = await query("SELECT * FROM scheme WHERE course_category_id=?",[category]);
           userExists = await data[0];
       }
       finally{

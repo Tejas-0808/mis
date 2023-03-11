@@ -26,6 +26,7 @@ import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
 import UpdateCity from "./components/Studentsection/Academic/Masters/UpdateCity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
+import UpdateState from "./components/Studentsection/Academic/Masters/UpdateState";
 import Scheme from "./components/Admin/Academic/Scheme";
 import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
@@ -64,10 +65,11 @@ import Schemeallotment from "./components/Users/Academic/Studentsectiontransacti
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
 
-
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
+import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
+
 
 function App() {
   return (
@@ -94,11 +96,13 @@ function App() {
           <Route path="/addcity" element={<Addcity/>}/> */}
           <Route path="/state" element={<State />} />
           <Route path="/addstate" element={<AddState />} />
+          <Route path="/updatestate/:id" element={<UpdateState />} />
           <Route path="/update/:id" element={<Update />} />
           <Route path="/scheme" element={<Scheme />} />
           <Route path="/addscheme" element={<Addscheme />} />
           <Route path="/masterscheme" element={<Masterscheme />} />
           <Route path="/addmasterscheme" element={<AddMasterscheme />} />
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
 
           <Route path="/category" element={<Category />} />
           <Route path="/addcategory" element={<AddCategory />} />
@@ -119,9 +123,10 @@ function App() {
           <Route path="/updatecity/:id" element={<UpdateCity />} />
           <Route path="/addcity" element={<Addcity />} />
 
-          <Route path="/religion" element={<Religion />} />
-          <Route path="/addreligion" element={<AddReligion />} />
-          <Route path="/updatereligion/:id" element={<UpdateReligion />} />
+          <Route path="/caste" element={<Caste/>} />
+          <Route path="/addcaste" element={<AddCaste />} />
+          <Route path="/updatecaste/:id" element={<UpdateCaste />} />
+
 
           <Route path="/district" element={<District />} />
           <Route path="/adddistrict" element={<AddDistrict />} />
@@ -141,18 +146,19 @@ function App() {
           <Route path="session" element={<Session />} />
 
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
-          <Route path="/imageshow" element={<Imagetest/>}/>
+          {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
           <Route path="/identitycard" element={<IdentityCard/>}/>
           <Route path="/schemeallotment" element={<Schemeallotment/>}/>
           <Route path="/rolllist" element={<Rolllist/>}/>
           <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
           <Route path="/promotion" element={<Promotion/>}/>
 
-          
+          <Route path="/branchchange" element={<Branchchange/>}/>
           <Route path="/offeredcourses" element={<Offeredcourses/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
-
           <Route path="/coursereg" element={<CourseRegActivity/>}/>
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
+          
           <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
 
         </Routes>
