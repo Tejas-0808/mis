@@ -98,6 +98,8 @@ function NewStudent() {
   const [payment, setPayment] = useState([]);
   const [branch, setBranch] = useState([]);
   const [batch, setBatch] = useState([]);
+  const [emailError, setEmailError] = useState("");
+  const [Email_id, setEmail] = useState("");
 
   useEffect(() => {
     axios
@@ -211,6 +213,15 @@ function NewStudent() {
     handleChange(event);
   };
 
+  const validateEmail = (Email_id) => {
+    // regex pattern for email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(Email_id)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+  };
   return (
     <Box
       component="form"
@@ -260,11 +271,20 @@ function NewStudent() {
           variant="outlined"
           label="Email ID"
           name="Email_id"
-          onChange={handleChange}
-        />
+          value={Email_id}
+          onChange={(event) => {
+            setEmail(event.target.value);
+            validateEmail(event.target.value);
+          }}
+          />
+          {emailError && <span>{emailError}</span>}
+
+    
         <TextField
           required
-          type="number"
+          // type="tel"
+          // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+           type="number"
           variant="outlined"
           label="Phone Number"
           name="Phone_No"
