@@ -68,6 +68,9 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
+import Createuserlogin from "./components/Admin/Login/Createuserlogin";
+import Createstudlogin from "./components/Admin/Login/Createstudlogin";
+
 
 
 function App() {
@@ -157,7 +160,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/coursereg" element={<CourseRegActivity/>}/>
           <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
-          
+          <Route path="/createuserlogin" element={<Createuserlogin/>}/>
+          <Route path="/createstudlogin" element={<Createstudlogin/>}/>
         </Routes>
       </BrowserRouter>
     </div>

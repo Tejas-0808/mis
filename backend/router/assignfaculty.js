@@ -26,7 +26,7 @@ router.post('/assignfaculty', (req, res) => {
 
 
   //to get students from 
-  router.post("/facultyrolllists", async (req,res)=> {
+  router.post("/studentrolllists", async (req,res)=> {
 
     const Degree = req.body.Degree;
     const Branch = req.body.Branch.slice(2);
@@ -37,7 +37,7 @@ router.post('/assignfaculty', (req, res) => {
 
         (async()=>{
             
-            const data = await query("SELECT roll_no,First_Name FROM student_info where Branch = ? and Semester= ? and Admission_batch = ?",[Branch,Semester,Batch]);
+            const data = await query("SELECT roll_no, First_Name FROM student_info where Degree = ? and Branch = ? and Semester= ? and Admission_batch = ?",[Degree, Branch,Semester,Batch]);
             const result = await data;
             // console.log(data);
             return res.json(result);

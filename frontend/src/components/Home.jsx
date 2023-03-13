@@ -14,12 +14,12 @@ function Home() {
       </p>
       <p>
         <button>
-            <Link to="/NewUser">Faculty</Link>
+            <Link to="/NewUser">New Staff</Link>
         </button>
       </p>
       <p>
         <button>
-            <Link to="/NewStudent">Student</Link>
+            <Link to="/NewStudent">New Student</Link>
         </button>
       </p>
       <p>
@@ -65,6 +65,16 @@ function Home() {
       <p>
         <button>
             <Link to="/offeredcourses">Offered Courses</Link>
+        </button>
+      </p>
+      <p>
+        <button>
+            <Link to="/createuserlogin">login creation</Link>
+        </button>
+      </p>
+      <p>
+        <button>
+            <Link to="/createstudlogin">student login creation</Link>
         </button>
       </p>
       {/* <Navigation/>

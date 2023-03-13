@@ -33,9 +33,23 @@ function NewUser() {
     Marital_Status: "",
   });
 
+  // const [email, setEmail] = useState("");
+  // const [isValid, setIsValid] = useState(false);
+  const [emailError, setEmailError] = useState("");
+
+
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    setStaffDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setStaffDetails((prev) => ({ ...prev, [name]: value }));
+    if (name === "Email_id") {
+      setEmailError(
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ""
+          : "Invalid email address"
+      );
+    }
+    // setStaffDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log(staffdetails);
   };
 
@@ -176,13 +190,24 @@ function NewUser() {
           </Select>
         </FormControl>
         <TextField
+        required
+        type="email"
+        variant="outlined"
+        label="Email ID"
+        name="Email_id"
+        // value={Email_id}
+        onChange={handleChange}
+        error={Boolean(emailError)}
+        helperText={emailError}
+      />
+        {/* <TextField
           type="email"
           variant="outlined"
           label="Email id"
           name="Email_id"
           onChange={handleChange}
           required
-        />
+        /> */}
         <TextField
           type="number"
           variant="outlined"
