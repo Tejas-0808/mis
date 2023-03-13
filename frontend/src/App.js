@@ -6,6 +6,7 @@ import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 import NewUser from "./components/Users/HOD/NewUser";
+import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import Staff from "./components/Staff";
 //import Add from "./components/Add";
 import Category from "./components/Studentsection/Academic/Masters/Category";
@@ -47,7 +48,7 @@ import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation"
-
+import Profile from "./components/Student/Profile/Profile";
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import Structure from "./components/Admin/Academic/Structure";

@@ -130,4 +130,4 @@ function Add_per_d() {
   )
 }
 
-export default Add_per_d
+export default Add_per_d;
