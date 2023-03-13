@@ -60,7 +60,7 @@ app.use(require('./router/courselist'));
 app.use(require('./router/offercourses'));
 app.use(require('./router/courseactivity'));
 
-app.use(require('./router/studpassword'));
+app.use(require('./router/login/studpassword'));
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

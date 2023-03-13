@@ -127,16 +127,16 @@ function Createstudlogin(props) {
     const selectedStudents = studentlist.filter((student) => checkedValues.includes(student.roll_no));
     
     // Make an API call to insert the student names as passwords into the login table
-    const passwordData = selectedStudents.map((student) => ({
+    const users = selectedStudents.map((student) => ({
       username: student.roll_no,
       password: student.roll_no, // Using the student's name as the password is not secure!
       role_id: props.selectedRoleId,
     }));
     
-    console.log(passwordData);
+    console.log(typeof(users));
 
     try {
-      await axios.post("http://localhost:3001/studpassword", passwordData);
+      await axios.post("http://localhost:3001/studpassword", users);
       navigate("/");
     } catch (err) {
       console.log(err);
