@@ -61,6 +61,9 @@ import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
 import AddBos from "./components/Admin/Academic/AddBos";
 import B_o_s from "./components/Admin/Academic/B_o_s";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
+import Navigation from "./components/Navbar/navbar";
+import SideBar from "./components/Sidebar/sidebar";
+import Profile from "./components/Student/Profile/Profile";
 function App() {
   return (
     <div className="App">
@@ -73,6 +76,9 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
+          <Route path="/fill_profile" element={<Add_per_d />} />
+          <Route path="/profile" element={<Profile />} />
+
           <Route path="/contact_details" element={<Student_info />} />
           <Route path="/Add_contact_details" element={<Add_C_d />} />
           <Route path="/Add_Education_details" element={<Add_EducationDetails />} />
