@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-hook-form": "^7.43.5",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4",
-    "validator": "^13.9.0"
-  }
-}
