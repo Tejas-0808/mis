@@ -6,6 +6,7 @@ import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
 import NewUser from "./components/Users/HOD/NewUser";
+import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import Staff from "./components/Staff";
 //import Add from "./components/Add";
 import Category from "./components/Studentsection/Academic/Masters/Category";
@@ -47,7 +48,7 @@ import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation"
-
+import Profile from "./components/Student/Profile/Profile";
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import Structure from "./components/Admin/Academic/Structure";
@@ -69,6 +70,9 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
+import Createuserlogin from "./components/Admin/Login/Createuserlogin";
+import Createstudlogin from "./components/Admin/Login/Createstudlogin";
+
 
 
 function App() {
@@ -84,6 +88,9 @@ function App() {
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
+          <Route path="/fill_profile" element={<Add_per_d />} />
+          <Route path="/profile" element={<Profile />} />
+
           <Route path="/contact_details" element={<Student_info />} />
           <Route path="/Add_contact_details" element={<Add_C_d />} />
           <Route path="/Add_Education_details" element={<Add_EducationDetails />} />
@@ -123,7 +130,7 @@ function App() {
           <Route path="/updatecity/:id" element={<UpdateCity />} />
           <Route path="/addcity" element={<Addcity />} />
 
-          <Route path="/caste" element={<Caste/>} />
+          <Route path="/caste" element={<Caste />} />
           <Route path="/addcaste" element={<AddCaste />} />
           <Route path="/updatecaste/:id" element={<UpdateCaste />} />
 
@@ -135,10 +142,10 @@ function App() {
           <Route path="/addbos" element={<AddBos />} />
           <Route path="/updatebos/:id" element={<UpdateBos />} />
 
-          <Route path="/structure" element={<Structure/>}/>
-          <Route path="addstructure" element={<AddStructure/>}/>
-          <Route path="/updatestructure/:id" element={<UpdateStructure/>}/>
-          <Route path="/rollnogeneration" element={<RollNoGeneration/>}/>
+          <Route path="/structure" element={<Structure />} />
+          <Route path="addstructure" element={<AddStructure />} />
+          <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="/rollnogeneration" element={<RollNoGeneration />} />
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
@@ -147,20 +154,21 @@ function App() {
 
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
           {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
-          <Route path="/identitycard" element={<IdentityCard/>}/>
-          <Route path="/schemeallotment" element={<Schemeallotment/>}/>
-          <Route path="/rolllist" element={<Rolllist/>}/>
-          <Route path="/facultyadvisor" element={<Facultyadvisor/>}/>
-          <Route path="/promotion" element={<Promotion/>}/>
+          <Route path="/identitycard" element={<IdentityCard />} />
+          <Route path="/schemeallotment" element={<Schemeallotment />} />
+          <Route path="/rolllist" element={<Rolllist />} />
+          <Route path="/facultyadvisor" element={<Facultyadvisor />} />
+          <Route path="/promotion" element={<Promotion />} />
 
-          <Route path="/branchchange" element={<Branchchange/>}/>
-          <Route path="/offeredcourses" element={<Offeredcourses/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/coursereg" element={<CourseRegActivity/>}/>
-          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
-          
-          <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
+          <Route path="/branchchange" element={<Branchchange />} />
+          <Route path="/offeredcourses" element={<Offeredcourses />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/coursereg" element={<CourseRegActivity />} />
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme />} />
 
+          <Route path="/courseconfirm" element={<CourseConfirmation />} />
+          <Route path="/createuserlogin" element={<Createuserlogin/>}/>
+<Route path="/createstudlogin" element={<Createstudlogin/>}/>
         </Routes>
       </BrowserRouter>
     </div>
