@@ -9,11 +9,13 @@ function IdentityCard() {
   const [batch, setBatch] = useState([]);
   const [sem, setSem] = useState([]);
   const [IdentityCard, setIdentityCard] = useState({
-    admission_batch: "",
-    department: "",
-    degree: "",
-    semester: "",
+    Batch: "",
+    Branch: "",
+    Degree: "",
+    // semester: "",
   });
+
+  const [studentlist, setstudentlist] = useState([]);
 
   const fetchDegree = async () => {
     try {
@@ -53,6 +55,19 @@ function IdentityCard() {
     }
   };
 
+  const fetchStudents = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:3001/identitycard", IdentityCard);
+      setstudentlist(res.data);
+      // setBranch(res.data);
+      // console.log(res.data+"!");
+      console.log(res.data + "123");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,40 +75,49 @@ function IdentityCard() {
     fetchBranch();
     fetchDegree();
     fetchSem();
-    // fetchBranchCode(department);
+    fetchStudents();
+    // fetchBranchCode(Branch);
   }, []);
+
+
+  const generate = (IdentityCard) => {
+    const { Branch, Degree, Batch } = IdentityCard;
+
+
+    return null;
+  };
+
 
   const handleChange = (e) => {
     setIdentityCard((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-
-
   return (
-    <div>
+    <><div>
       <h1>
         Identity Card Generation
       </h1>
+      &nbsp;&nbsp;
       <label>
         Degree:
         <select
-          name="degree"
+          name="Degree"
           placeholder="Select Degree"
-          className="form-select-degree"
+          className="form-select-Degree"
           onChange={handleChange}
           required
         >
           <option value="">-- Select Degree --</option>
-          {Degree.map((degree) => (
-            <option value={degree.degree_name}>{degree.degree_name}</option>
+          {Degree.map((Degree) => (
+            <option value={Degree.degree_name}>{Degree.degree_name}</option>
           ))}
         </select>
       </label>
-  
+      &nbsp;&nbsp;
       <label>
-        Department:
+        Branch:
         <select
-          name="department"
+          name="Branch"
           placeholder="Select Branch"
           className="form-select-branch"
           onChange={handleChange}
@@ -105,11 +129,11 @@ function IdentityCard() {
           ))}
         </select>
       </label>
-
+      &nbsp;&nbsp;
       <label>
         Admission Batch:
         <select
-          name="admission_batch"
+          name="Batch"
           placeholder="Select Admission Batch"
           className="form-select-batch"
           onChange={handleChange}
@@ -122,8 +146,42 @@ function IdentityCard() {
         </select>
       </label>
 
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" className="Generate" value="Get" onClick={fetchStudents}>
+        Generate
+      </button>
+      <div>
+      {studentlist.map((student) => (
+              <table>
+                <tr>
+                  <td>
+                    <div key={student.roll_no}>
+                      <input
+                        type="checkbox"
+                        value={student.roll_no}
+                        // checked={checkedValues.includes(student.roll_no)}
+                        // onChange={handleCheckboxChange}
+                      /> &nbsp;&nbsp;
+                      <span>{student.roll_no}</span> &nbsp;&nbsp;
+                      <span>{student.First_Name}</span> &nbsp;&nbsp;
+                      <span>{student.Middle_Name}</span> &nbsp;&nbsp;
+                      <span>{student.Last_Name}</span> &nbsp;&nbsp;
+                      <span>{student.Branch}</span> &nbsp;&nbsp;
+                      <span>{student.Phone_No}</span> &nbsp;&nbsp;
+                      <span>{student.Blood_grp}</span> &nbsp;&nbsp;
+                      <span>{student.D_O_B}</span> &nbsp;&nbsp;
+                      <span>{student.Permanent_Add}</span> &nbsp;&nbsp;
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            ))}
+        </div>
 
     </div>
+
+
+    </>
   )
 }
 

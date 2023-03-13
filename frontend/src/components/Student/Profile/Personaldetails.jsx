@@ -6,16 +6,31 @@ import { Link, useNavigate } from "react-router-dom";
 const PersonalDetails = () => {
 
   const [personaldetails, setpersonaldetails] = useState([]);
+  const [image, setImage] = useState(null);
+
 
   const fetchAllPersonalDetails = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/student");
-      setpersonaldetails(res.data);
-      console.log(res.data.Signature);
-    } catch (err) {
-      console.log(err);
+        const res = await axios.get("http://localhost:3001/student");
+        // const imgres = await axios.get("http://localhost:3001/images/"+"1");
+        // const blob =  await imgres.blob();
+        
+        console.log(res.data[0].Signature.data);
+        const tryb = res.data[0].Signature.data;
+        let blob = new Blob([JSON.stringify(tryb,null,2)],{type:''});
+        console.log(blob);
+        // var image1 = new Image();
+        // image1.src = URL.createObjectURL(blob);
+        // document.body.appendChild(image1);
+        setImage(URL.createObjectURL(blob));
+        setpersonaldetails(res.data);
+        console.log(URL.createObjectURL(blob));
+        // const blob = await res.blob();  
+    } catch(err) {
+        console.log(err);
     }
   }
+console.log(image);
 
   useEffect(() => {
 
@@ -44,19 +59,23 @@ const PersonalDetails = () => {
     <div>
       <h1>
         Student Personal Details
+           {image && <img src={image} alt="uploaded image" />}
       </h1>
       <div className="personaldetails">
         {personaldetails.map((personaldetails) => (
           <div key={personaldetails.Reg_Id} className="personaldetails">
-            <h2>{personaldetails.Reg_Id}</h2>
+            {/* <h2>{personaldetails.Reg_Id}</h2> */}
             <p>{personaldetails.roll_no}</p>
+            <p>{personaldetails.Branch}</p>
             <p>{personaldetails.First_Name}</p>
             <p>{personaldetails.Middle_Name}</p>
             <p>{personaldetails.Last_Name}</p>
+            <p>{personaldetails.Permanent_Add}</p>
+            <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Email_id}</p>
             <p>{personaldetails.Mobile_No}</p>
-            <p>{personaldetails.Caste}</p>
             <p>{personaldetails.Religion}</p>
+            <p>{personaldetails.Caste}</p>
             <p>{personaldetails.Nationality}</p>
             <p>{personaldetails.Category}</p>
             <p>{personaldetails.Blood_group}</p>
@@ -67,13 +86,12 @@ const PersonalDetails = () => {
             <p>{personaldetails.Seat_type}</p>
             <p>{personaldetails.Student_type}</p>
             <p>{personaldetails.Addhar_no}</p>
-            <p>{personaldetails.Permanent_Add}</p>
-            <p>{personaldetails.Current_Add}</p>
             <p>{personaldetails.Physically_handicapped}</p>
             <p>{personaldetails.Branch}</p>
-            {/* <p>{personaldetails.Photo}</p> */}
-
+            {/* <p>{personaldetails.Photo}</p> */}{/* <img src={URL.createObjectURL()} alt="signature" srcset="" /> */}
             {/* <p>{personaldetails.Signature}</p> */}
+
+            <h1>Father,Mother And Guardian Details</h1>
             <p>{personaldetails.Fathers_Name}</p>
             <p>{personaldetails.Fathers_email}</p>
             <p>{personaldetails.Fathers_mobile}</p>
@@ -89,7 +107,10 @@ const PersonalDetails = () => {
             <p>{personaldetails.Guardian_mobile}</p>
             <p>{personaldetails.Guardian_occupation}</p>
             <p>{personaldetails.Guardian_officeno}</p>
+
+            <h1>Admission Details</h1>
             <p>{personaldetails.Date_of_admission}</p>
+            <p>{personaldetails.Degree}</p>
             <p>{personaldetails.Payment_type}</p>
             <p>{personaldetails.State_eligibility}</p>
             <p>{personaldetails.Year}</p>

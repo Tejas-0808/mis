@@ -17,6 +17,7 @@ app.use(cors());
 app.use(require('./router/hod'));
 app.use(require('./router/student'));
 app.use(require('./router/newstudent'));
+app.use(require('./router/newuser'));
 app.use(require('./router/branch'));
 app.use(require('./router/batch'));
 app.use(require('./router/prerequisite'));
@@ -40,9 +41,24 @@ app.use(require('./router/attendance'));
 app.use(require('./router/time_table'));
 app.use(require('./router/citylist'));
 app.use(require('./router/state'));
+app.use(require('./router/district'));
 app.use(require('./router/particularstudent'));
+app.use(require('./router/entrance_exam_details'));
 app.use(require('./router/courses_taken'));
+app.use(require('./router/session'));
+app.use(require('./router/rollgen'))
+app.use(require('./router/course_category'));
 
+app.use(require("./router/images"));
+app.use(require('./router/rolllist'));
+app.use(require('./router/assignscheme'));
+app.use(require('./router/promotestudent'));
+
+app.use(require('./router/identitycard'));
+app.use(require('./router/assignfaculty'));
+app.use(require('./router/courselist'));
+app.use(require('./router/offercourses'));
+app.use(require('./router/courseactivity'));
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

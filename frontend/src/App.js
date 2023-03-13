@@ -5,17 +5,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
 import NewStudent from "./components/Studentsection/Academic/Admission/Newstudent";
-//import Staff from "./components/Staff";
+import NewUser from "./components/Users/HOD/NewUser";
+import Staff from "./components/Staff";
 //import Add from "./components/Add";
-// import Category from "./components/Studentsection/Academic/Masters/Category";
-// import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-// import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-// import Religion from "./components/Studentsection/Academic/Masters/Religion";
-// import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-// import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-// import District from "./components/Studentsection/Academic/Masters/District";
-// import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-// import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
+import Category from "./components/Studentsection/Academic/Masters/Category";
+import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
+import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
+import Religion from "./components/Studentsection/Academic/Masters/Religion";
+import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
+import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
+import District from "./components/Studentsection/Academic/Masters/District";
+import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
+import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Caste from "./components/Studentsection/Academic/Masters/Caste";
 import UpdateCaste from "./components/Studentsection/Academic/Masters/UpdateCaste";
 import AddCaste from "./components/Studentsection/Academic/Masters/AddCaste";
@@ -25,6 +26,7 @@ import Addcity from "./components/Studentsection/Academic/Masters/Addcity";
 import UpdateCity from "./components/Studentsection/Academic/Masters/UpdateCity";
 import State from "./components/Studentsection/Academic/Masters/State";
 import AddState from "./components/Studentsection/Academic/Masters/AddState";
+import UpdateState from "./components/Studentsection/Academic/Masters/UpdateState";
 import Scheme from "./components/Admin/Academic/Scheme";
 import Addscheme from "./components/Admin/Academic/Addscheme";
 import Masterscheme from "./components/Admin/Academic/Masterscheme";
@@ -41,29 +43,34 @@ import Student_info from "./components/Student/Profile/Contactdetails";
 import Add_C_d from "./components/Student/Profile/Add_contact_details";
 import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
 import Educationdetails from "./components/Student/Profile/Educationdetails";
-import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
+import CourseConfirmation from "./components/Users/Academic/courseConfirmation"
+
+
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
-import Religion from "./components/Studentsection/Academic/Masters/Religion";
-import AddReligion from "./components/Studentsection/Academic/Masters/AddReligion";
-import UpdateReligion from "./components/Studentsection/Academic/Masters/UpdateReligion";
-import Category from "./components/Studentsection/Academic/Masters/Category";
-import AddCategory from "./components/Studentsection/Academic/Masters/AddCategory";
-import UpdateCategory from "./components/Studentsection/Academic/Masters/UpdateCategory";
-import District from "./components/Studentsection/Academic/Masters/District";
-import AddDistrict from "./components/Studentsection/Academic/Masters/AddDistrict";
-import UpdateDistrict from "./components/Studentsection/Academic/Masters/UpdateDistrict";
 import Structure from "./components/Admin/Academic/Structure";
 import AddStructure from "./components/Admin/Academic/AddStructure";
 import UpdateStructure from "./components/Admin/Academic/UpdateStructure";
-import AddBos from "./components/Admin/Academic/AddBos";
 import B_o_s from "./components/Admin/Academic/B_o_s";
+import AddBos from "./components/Admin/Academic/AddBos";
 import UpdateBos from "./components/Admin/Academic/UpdateBos";
-import Navigation from "./components/Navbar/navbar";
-import SideBar from "./components/Sidebar/sidebar";
-import Profile from "./components/Student/Profile/Profile";
+import Session from "./components/Admin/Academic/Session";
+import AddSession from "./components/Admin/Academic/AddSession";
+
+import Imagetest from "./components/Admin/Academic/Imagetest";
+import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard'
+import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
+import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
+import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
+
+import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
+import Dashboard from "./components/Student/Dashboard/dashboard";
+import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
+import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
+
+
 function App() {
   return (
     <div className="App">
@@ -74,6 +81,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/branch" element={<Branch />} />
           <Route path="/add" element={<Add />} />
+          <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
           <Route path="/fill_profile" element={<Add_per_d />} />
@@ -91,11 +99,13 @@ function App() {
           <Route path="/addcity" element={<Addcity/>}/> */}
           <Route path="/state" element={<State />} />
           <Route path="/addstate" element={<AddState />} />
+          <Route path="/updatestate/:id" element={<UpdateState />} />
           <Route path="/update/:id" element={<Update />} />
           <Route path="/scheme" element={<Scheme />} />
           <Route path="/addscheme" element={<Addscheme />} />
           <Route path="/masterscheme" element={<Masterscheme />} />
           <Route path="/addmasterscheme" element={<AddMasterscheme />} />
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
 
           <Route path="/category" element={<Category />} />
           <Route path="/addcategory" element={<AddCategory />} />
@@ -116,9 +126,10 @@ function App() {
           <Route path="/updatecity/:id" element={<UpdateCity />} />
           <Route path="/addcity" element={<Addcity />} />
 
-          <Route path="/religion" element={<Religion />} />
-          <Route path="/addreligion" element={<AddReligion />} />
-          <Route path="/updatereligion/:id" element={<UpdateReligion />} />
+          <Route path="/caste" element={<Caste />} />
+          <Route path="/addcaste" element={<AddCaste />} />
+          <Route path="/updatecaste/:id" element={<UpdateCaste />} />
+
 
           <Route path="/district" element={<District />} />
           <Route path="/adddistrict" element={<AddDistrict />} />
@@ -130,6 +141,29 @@ function App() {
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="/rollnogeneration" element={<RollNoGeneration />} />
+          <Route path="/structure" element={<Structure />} />
+          <Route path="addstructure" element={<AddStructure />} />
+          <Route path="/updatestructure/:id" element={<UpdateStructure />} />
+          <Route path="addsession" element={<AddSession />} />
+          <Route path="session" element={<Session />} />
+
+          <Route path="rollnogeneration" element={<RollNoGeneration />} />
+          {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
+          <Route path="/identitycard" element={<IdentityCard />} />
+          <Route path="/schemeallotment" element={<Schemeallotment />} />
+          <Route path="/rolllist" element={<Rolllist />} />
+          <Route path="/facultyadvisor" element={<Facultyadvisor />} />
+          <Route path="/promotion" element={<Promotion />} />
+
+          <Route path="/branchchange" element={<Branchchange />} />
+          <Route path="/offeredcourses" element={<Offeredcourses />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/coursereg" element={<CourseRegActivity />} />
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme />} />
+
+          <Route path="/courseconfirm" element={<CourseConfirmation />} />
+
         </Routes>
       </BrowserRouter>
     </div>

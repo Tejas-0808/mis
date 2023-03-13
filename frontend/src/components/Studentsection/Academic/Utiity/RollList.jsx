@@ -5,17 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Rolllist = () => {
 
-  const [rollno, setrollno] = useState([]);
+  const [Rolllists, SetRolllists] = useState({
+    Degree: "",
+    Branch: "",
+    Semester: "",
+    Batch: ""
+  });
 
-//   const fetchAllrollno = async () => {
-//     try {
-//         const res = await axios.get("http://localhost:3001/student");
-//         setrollno(res.data);
-//         console.log(res.data);
-//     } catch(err) {
-//         console.log(err);
-//     }
-// }
+  const [studentlist, setstudentlist] = useState([]);
+
+
 
 //   useEffect(() => {
 
@@ -24,11 +23,11 @@ const Rolllist = () => {
 //   }, []);
   const navigate = useNavigate();
 
-  console.log(rollno);
+ // console.log(Rolllist);
+
+
   const handleChange = (e) => {
-    setrollno
-    
-    ((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
 const [degree, setdegree] = useState([]);
@@ -84,10 +83,25 @@ const [batch, setbatch] = useState([]);
       });
   }, []);
 
+  const fetchStudents = async (e) => {
+    e.preventDefault();
+    try {
+        const res = await axios.post("http://localhost:3001/rolllist",Rolllists);
+        setstudentlist(res.data);
+        // setBranch(res.data);
+        // console.log(res.data+"!");
+        console.log(res.data);
+       
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+  console.log(Rolllists);
   return (
     <div>
       <select
-        name="dropdown"
+        name="Degree"
         placeholder="Select Degree"
         className="form-select-degree"
         onChange={handleChange}
@@ -95,14 +109,14 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Degree --</option>
         {degree.map((item) => (
-          <option key={item.degree_id} value={item.degree_id }>
+          <option key={item.degree_id} value={item.degree_name }>
             {item.degree_name}
           </option>
         ))}
       </select>
   
       <select
-        name="dropdown"
+        name="Branch"
         placeholder="Select Branch"
         className="form-select-branch"
         onChange={handleChange}
@@ -110,13 +124,13 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Branch --</option>
         {branch.map((item) => (
-          <option key={item.Branch_id} value={item.Branch_id }>
+          <option key={item.Branch_id} value={item.Branch_name }>
             {item.Branch_name}
           </option>
         ))}
       </select>
       <select
-        name="dropdown"
+        name="Semester"
         placeholder="Select Semester"
         className="form-select-semester"
         onChange={handleChange}
@@ -124,13 +138,13 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Semester --</option>
         {semester.map((item) => (
-          <option key={item.sem_id} value={item.sem_id }>
+          <option key={item.sem_id} value={item.sem }>
             {item.sem}
           </option>
         ))}
       </select>
       <select
-        name="dropdown"
+        name="Batch"
         placeholder="Select Batch"
         className="form-select-batch"
         onChange={handleChange}
@@ -138,11 +152,25 @@ const [batch, setbatch] = useState([]);
       >
         <option value="">-- Select Batch --</option>
         {batch.map((item) => (
-          <option key={item.batch_id} value={item.batch_id }>
+          <option key={item.batch_id} value={item.year}>
             {item.year}
           </option>
         ))}
-      </select>  
+      </select>
+      <button onClick={fetchStudents}>fetch</button>
+      <br></br>
+      <br></br>
+      {studentlist.map((student) => (
+              <table>
+                <tr>
+                  <td>
+                    <div key={student.roll_no}>
+                      <span>{student.roll_no}</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            ))}
     </div>
   )
 }

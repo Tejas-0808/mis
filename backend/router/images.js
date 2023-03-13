@@ -28,8 +28,8 @@ router.post('/upload', upload.single('image'), (req, res) => {
     try{
 
         (async()=>{
-            const data = await query("SELECT image_data FROM images WHERE id = ?",3);
-            console.log(data[0].image_data);
+            const data = await query("SELECT image_data FROM images where id = ?",3);
+            console.log(data[0]);
             return res.end(data[0].image_data);
         })()
     }
