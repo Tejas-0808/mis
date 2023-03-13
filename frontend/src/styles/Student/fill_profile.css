@@ -1,0 +1,21 @@
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    box-shadow: none;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #0080ff;
+    box-shadow: 0 0 5px #0080ff;
+}
