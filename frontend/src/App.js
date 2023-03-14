@@ -168,7 +168,10 @@ function App() {
           <Route path="/coursereg" element={<CourseRegActivity/>}/>
           <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
           
+          <Route path="/createuserlogin" element={<Createuserlogin/>}/>
+          
           <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
+          
           <Route path="/loginuser" element={<Loginuser/>}/>
         </Routes>
       </BrowserRouter>
