@@ -69,7 +69,7 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
-
+import Loginuser from "./components/Admin/Configuration/Loginuser"
 
 function App() {
   return (
@@ -160,7 +160,7 @@ function App() {
           <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
           
           <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
-
+          <Route path="/loginuser" element={<Loginuser/>}/>
         </Routes>
       </BrowserRouter>
     </div>
