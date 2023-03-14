@@ -2,11 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
+import { Box, Button, TextField, InputLabel, FormControl } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
@@ -330,7 +327,7 @@ function NewStudent() {
               <MenuItem key={item.category_id} value={item.category_name}>
                 {item.category_name}
               </MenuItem>
-            ))}
+            ))} 
           </Select>
         </FormControl>
 
@@ -464,6 +461,7 @@ function NewStudent() {
           name="DTE application ID"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -471,6 +469,7 @@ function NewStudent() {
           name="Birth_Place"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -478,6 +477,7 @@ function NewStudent() {
           name="Last School/College"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="number"
@@ -485,6 +485,7 @@ function NewStudent() {
           name="Addhar_no"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -493,6 +494,7 @@ function NewStudent() {
           name="Guardian_Name"
           onChange={handleChange}
         />
+        
         <TextField
           required
           type="number"

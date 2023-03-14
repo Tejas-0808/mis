@@ -7,7 +7,7 @@ import StudentDashboard from './Student/Dashboard/dashboard'
 function Home() {
   return (
     <>
-      <p>
+      <p> 
         <button>
             <Link to="/branch">Branch</Link>
         </button>
