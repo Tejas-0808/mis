@@ -101,7 +101,7 @@ function Facultyadvisor() {
     setCheckedValues([]);
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/facultyrolllists", Rolllists);
+      const res = await axios.post("http://localhost:3001/studentrolllists", Rolllists);
       setstudentlist(res.data);
       // setBranch(res.data);
       // console.log(res.data+"!");

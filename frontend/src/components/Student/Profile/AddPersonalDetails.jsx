@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, Button, Card, CardContent, CardHeader, TextField, } from "@mui/material";
 
+import "../../../styles/Student/fill_profile.css";
 
 function Add_per_d() {
   const [personaldetails, setPersonalDetails] = useState({
@@ -145,4 +146,4 @@ function Add_per_d() {
   )
 }
 
-export default Add_per_d
+export default Add_per_d;

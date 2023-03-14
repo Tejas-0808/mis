@@ -25,9 +25,9 @@ router.get("/login_details", async (req, res) => {
 });
 
 router.post("/login_details", async (req, res) => {
-  const { login_id, username, password, role_id } = req.body;
+  const {  username, password, role_id } = req.body;
 
-  if (!login_id || !username || !password || !role_id) {
+  if (!username || !password || !role_id) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
@@ -44,8 +44,8 @@ router.post("/login_details", async (req, res) => {
       if (true) {
         (async () => {
           try {
-            const data = await query("INSERT INTO login_details VALUES(?,?,?,?)",
-              [login_id, username, password, role_id]
+            const data = await query("INSERT INTO login_details  (username, password, role_id)  VALUES(?,?,?)",
+              [ username, password, role_id]
             );
             console.log(data[0]);
             res.status(200).json({ msg: "Login_Details added successfully" });
@@ -53,7 +53,7 @@ router.post("/login_details", async (req, res) => {
           }
         })();
       } else {
-        return res.status(422).json({ error: "Scheme already exists" });
+        return res.status(422).json({ error: "Login_Details already exists" });
       }
     })();
   } catch (err) {
