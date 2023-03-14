@@ -106,7 +106,7 @@ export const navData = [
         "childrens": [
             {
                 "title": "Fill Profile",
-                "path": "/profile"
+                "path": "/fill_profile"
             },
             {
                 "title": "Settings",

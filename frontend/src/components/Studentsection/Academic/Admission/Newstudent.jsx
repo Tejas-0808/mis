@@ -2,11 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
+import { Box, Button, TextField, InputLabel, FormControl } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
@@ -98,6 +95,8 @@ function NewStudent() {
   const [payment, setPayment] = useState([]);
   const [branch, setBranch] = useState([]);
   const [batch, setBatch] = useState([]);
+  const [emailError, setEmailError] = useState("");
+  const [Email_id, setEmail] = useState("");
 
   useEffect(() => {
     axios
@@ -211,6 +210,15 @@ function NewStudent() {
     handleChange(event);
   };
 
+  const validateEmail = (Email_id) => {
+    // regex pattern for email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(Email_id)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+  };
   return (
     <Box
       component="form"
@@ -260,11 +268,20 @@ function NewStudent() {
           variant="outlined"
           label="Email ID"
           name="Email_id"
-          onChange={handleChange}
-        />
+          value={Email_id}
+          onChange={(event) => {
+            setEmail(event.target.value);
+            validateEmail(event.target.value);
+          }}
+          />
+          {emailError && <span>{emailError}</span>}
+
+    
         <TextField
           required
-          type="number"
+          // type="tel"
+          // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+           type="number"
           variant="outlined"
           label="Phone Number"
           name="Phone_No"
@@ -330,7 +347,7 @@ function NewStudent() {
               <MenuItem key={item.category_id} value={item.category_name}>
                 {item.category_name}
               </MenuItem>
-            ))}
+            ))} 
           </Select>
         </FormControl>
 
@@ -464,6 +481,7 @@ function NewStudent() {
           name="DTE application ID"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -471,6 +489,7 @@ function NewStudent() {
           name="Birth_Place"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -478,6 +497,7 @@ function NewStudent() {
           name="Last School/College"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="number"
@@ -485,6 +505,7 @@ function NewStudent() {
           name="Addhar_no"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -493,6 +514,7 @@ function NewStudent() {
           name="Guardian_Name"
           onChange={handleChange}
         />
+        
         <TextField
           required
           type="number"
