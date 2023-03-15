@@ -2,11 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
+import { Box, Button, TextField, InputLabel, FormControl } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
@@ -62,19 +59,55 @@ function NewStudent() {
     Admission_batch: "",
     Semester: "",
   });
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    const value =
-      //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
-      // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
-      setPersonalDetails((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }));
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+
+  //     //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  //     // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
+  //     setPersonalDetails((prev) => ({
+  //       ...prev,
+  //       [name]: value,
+  //     }));
+  //     if (name === "Phone_No") {
+  //       setPhoneError(
+  //         /^\d{10}$/.test(value)
+  //           ? ""
+  //           : "Invalid Phone Number"
+  //       );
+  //     }
+  //   console.log(personaldetails);
+  // };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+  
+    setPersonalDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  
+    if (name === "Phone_No") {
+      setPhoneError(
+        /^\d{10}$/.test(value)
+          ? ""
+          : "Invalid Phone Number"
+      );
+    }
+  
+    if (name === "Email_id") {
+      setEmailError(
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ""
+          : "Invalid email address"
+      );
+    }
+  
     console.log(personaldetails);
   };
-
+  
   const handleClickadd = async (e) => {
     e.preventDefault();
     try {
@@ -98,6 +131,7 @@ function NewStudent() {
   const [payment, setPayment] = useState([]);
   const [branch, setBranch] = useState([]);
   const [batch, setBatch] = useState([]);
+
 
   useEffect(() => {
     axios
@@ -211,6 +245,7 @@ function NewStudent() {
     handleChange(event);
   };
 
+  
   return (
     <Box
       component="form"
@@ -254,23 +289,24 @@ function NewStudent() {
           name="Last_Name"
           onChange={handleChange}
         />
-        <TextField
-          required
-          type="email"
-          variant="outlined"
-          label="Email ID"
-          name="Email_id"
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          type="number"
-          variant="outlined"
-          label="Phone Number"
-          name="Phone_No"
-          onChange={handleChange}
-        />
+          
+          <TextField
+  label="Email"
+  name="Email_id"
+  value={personaldetails.Email_id}
+  onChange={handleChange}
+  error={Boolean(emailError)}
+  helperText={emailError}
+/>
 
+      <TextField
+  label="Phone No"
+  name="Phone_No"
+  value={personaldetails.Phone_No}
+  onChange={handleChange}
+  error={Boolean(phoneError)}
+  helperText={phoneError}
+/>
         <TextField
           label="Date of Birth"
           name="D_O_B"
@@ -330,7 +366,7 @@ function NewStudent() {
               <MenuItem key={item.category_id} value={item.category_name}>
                 {item.category_name}
               </MenuItem>
-            ))}
+            ))} 
           </Select>
         </FormControl>
 
@@ -464,6 +500,7 @@ function NewStudent() {
           name="DTE application ID"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -471,6 +508,7 @@ function NewStudent() {
           name="Birth_Place"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -478,6 +516,7 @@ function NewStudent() {
           name="Last School/College"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="number"
@@ -485,6 +524,7 @@ function NewStudent() {
           name="Addhar_no"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -493,6 +533,7 @@ function NewStudent() {
           name="Guardian_Name"
           onChange={handleChange}
         />
+        
         <TextField
           required
           type="number"

@@ -33,11 +33,53 @@ function NewUser() {
     Marital_Status: "",
   });
 
+  // const [email, setEmail] = useState("");
+  // const [isValid, setIsValid] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  
+  const [phoneError, setPhoneError] = useState("");
+  
+
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    setStaffDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+//  const handleChange = (event) => {
+//     const { name, value } = event.target;
+//     setStaffDetails((prev) => ({ ...prev, [name]: value }));
+//     if (name === "Email_id" ) {
+//       setEmailError(
+//         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+//           ? ""
+//           : "Invalid email address"
+//       );
+  
+//     console.log(staffdetails);
+//   }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+  
+    setStaffDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  
+    if (name === "Phone_No") {
+      setPhoneError(
+        /^\d{10}$/.test(value)
+          ? ""
+          : "Invalid Phone Number"
+      );
+    }
+  
+    if (name === "Email_id") {
+      setEmailError(
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ""
+          : "Invalid email address"
+      );
+    }
+  
     console.log(staffdetails);
   };
+   
 
   const handleClickadd = async (e) => {
     e.preventDefault();
@@ -175,22 +217,25 @@ function NewUser() {
             ))}
           </Select>
         </FormControl>
-        <TextField
-          type="email"
-          variant="outlined"
-          label="Email id"
-          name="Email_id"
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          type="number"
-          variant="outlined"
-          label="Phone No"
-          name="Phone_no"
-          onChange={handleChange}
-          required
-        />
+
+         <TextField
+  label="Email"
+  name="Email_id"
+  value={staffdetails.Email_id}
+  onChange={handleChange}
+  error={Boolean(emailError)}
+  helperText={emailError}
+/>
+
+      <TextField
+  label="Phone No"
+  name="Phone_No"
+  value={staffdetails.Phone_No}
+  onChange={handleChange}
+  error={Boolean(phoneError)}
+  helperText={phoneError}
+/>
+       
         <TextField
           type="text"
           variant="outlined"
