@@ -62,19 +62,55 @@ function NewStudent() {
     Admission_batch: "",
     Semester: "",
   });
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    const value =
-      //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
-      // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
-      setPersonalDetails((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }));
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+
+  //     //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  //     // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
+  //     setPersonalDetails((prev) => ({
+  //       ...prev,
+  //       [name]: value,
+  //     }));
+  //     if (name === "Phone_No") {
+  //       setPhoneError(
+  //         /^\d{10}$/.test(value)
+  //           ? ""
+  //           : "Invalid Phone Number"
+  //       );
+  //     }
+  //   console.log(personaldetails);
+  // };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+  
+    setPersonalDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  
+    if (name === "Phone_No") {
+      setPhoneError(
+        /^\d{10}$/.test(value)
+          ? ""
+          : "Invalid Phone Number"
+      );
+    }
+  
+    if (name === "Email_id") {
+      setEmailError(
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ""
+          : "Invalid email address"
+      );
+    }
+  
     console.log(personaldetails);
   };
-
+  
   const handleClickadd = async (e) => {
     e.preventDefault();
     try {
@@ -98,8 +134,7 @@ function NewStudent() {
   const [payment, setPayment] = useState([]);
   const [branch, setBranch] = useState([]);
   const [batch, setBatch] = useState([]);
-  const [emailError, setEmailError] = useState("");
-  const [Email_id, setEmail] = useState("");
+
 
   useEffect(() => {
     axios
@@ -213,15 +248,7 @@ function NewStudent() {
     handleChange(event);
   };
 
-  const validateEmail = (Email_id) => {
-    // regex pattern for email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(Email_id)) {
-      setEmailError("Please enter a valid email address");
-    } else {
-      setEmailError("");
-    }
-  };
+  
   return (
     <Box
       component="form"
@@ -265,32 +292,24 @@ function NewStudent() {
           name="Last_Name"
           onChange={handleChange}
         />
-        <TextField
-          required
-          type="email"
-          variant="outlined"
-          label="Email ID"
-          name="Email_id"
-          value={Email_id}
-          onChange={(event) => {
-            setEmail(event.target.value);
-            validateEmail(event.target.value);
-          }}
-          />
-          {emailError && <span>{emailError}</span>}
+          
+          <TextField
+  label="Email"
+  name="Email_id"
+  value={personaldetails.Email_id}
+  onChange={handleChange}
+  error={Boolean(emailError)}
+  helperText={emailError}
+/>
 
-    
-        <TextField
-          required
-          // type="tel"
-          // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-           type="number"
-          variant="outlined"
-          label="Phone Number"
-          name="Phone_No"
-          onChange={handleChange}
-        />
-
+      <TextField
+  label="Phone No"
+  name="Phone_No"
+  value={personaldetails.Phone_No}
+  onChange={handleChange}
+  error={Boolean(phoneError)}
+  helperText={phoneError}
+/>
         <TextField
           label="Date of Birth"
           name="D_O_B"
