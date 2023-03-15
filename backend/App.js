@@ -59,8 +59,12 @@ app.use(require('./router/assignfaculty'));
 app.use(require('./router/courselist'));
 app.use(require('./router/offercourses'));
 app.use(require('./router/courseactivity'));
+app.use(require('./router/login'));
 
-app.use(require('./router/studpassword'));
+app.use(require('./router/login/studpassword'));
+app.use(require('./router/login/otherlogins'));
+app.use(require('./router/login/facultyrolllist'));
+app.use(require('./router/login/addusername_staff'));
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

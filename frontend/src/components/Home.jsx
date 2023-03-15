@@ -1,12 +1,46 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from './Navbar/navbar'
 import SideBar from './Sidebar/sidebar'
 import StudentDashboard from './Student/Dashboard/dashboard'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+
+
 function Home() {
+
+  const [username, setUsername] = useState('');
+  const [role, setRole] = useState('');
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+  //    setToken(localStorage.getItem('token'))
+    console.log(token);
+    if (token) {
+      axios.get('http://localhost:3001/me', {
+        headers: { Authorization: token }
+      }).then((response) => {
+        setUsername(response.data.username);
+      }).catch((err) => {
+        localStorage.setItem('token', "");
+        console.error(err);
+      });
+    }
+  }, []);
+
+  const Logout = () => {
+    localStorage.setItem('token', "");
+    window.location.reload();
+  };
+
   return (
     <>
       <p>
+      <p>Welcome, {username}!</p>
+      <button onClick={Logout}>logout</button>
+      </p>
+      <p> 
         <button>
           <Link to="/branch">Branch</Link>
         </button>

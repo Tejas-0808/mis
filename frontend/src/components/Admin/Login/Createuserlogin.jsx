@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Createstudlogin from "./Createstudlogin";
+import Createstafflogin from "./Createstafflogin";
+import Createotherlogin from "./Createotherlogin";
 import {
   Button,
   Checkbox,
@@ -20,52 +22,13 @@ import {
 } from "@mui/material";
 
 function Createuserlogin() {
-  const [staffdetails, setStaffDetails] = useState({
-    First_Name: "",
-    Middle_Name: "",
-    Last_Name: "",
-    Branch_id: "",
-    Qualifications: "",
-    role_id: "",
-    Email_id: "",
-    Phone_no: "",
-    Address: "",
-    Gender: "",
-    Marital_Status: "",
-  });
-
-  const [selectedRoleId, setSelectedRoleId] = useState('');
-  
+  const [selectedRoleId, setSelectedRoleId] = useState("");
 
   const navigate = useNavigate();
   const handleChange = (event) => {
     setSelectedRoleId(event.target.value);
-    console.log(staffdetails);
   };
 
-  // const handleClickadd = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await axios.post("http://localhost:3001/newuser", staffdetails);
-  //     navigate("/");
-  //   } catch (err) {
-  //     console.log(err);
-  //     // setError(true)
-  //   }
-  // };
-
-  const [branch, setBranch] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/branch")
-      .then((response) => {
-        setBranch(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
   const [role, setRole] = useState([]);
 
   useEffect(() => {
@@ -114,8 +77,18 @@ function Createuserlogin() {
             })}
           </Select>
         </FormControl>
-        <Createstudlogin selectedRoleId={selectedRoleId} />
-        {/* <Createstudlogin myProp={role.role_id}/> */}
+        {selectedRoleId && selectedRoleId === 5 ? (
+          <Createstudlogin selectedRoleId={selectedRoleId} />
+        ) : selectedRoleId ? (
+          <Createstafflogin selectedRoleId={selectedRoleId} />
+        ) : null}
+        {/* {selectedRoleId && selectedRoleId === 5 ? (
+          <Createstudlogin selectedRoleId={selectedRoleId} />
+        ) : selectedRoleId && selectedRoleId === 4 ? (
+          <Createstafflogin selectedRoleId={selectedRoleId} />
+        ) : selectedRoleId ? (
+          <Createotherlogin selectedRoleId={selectedRoleId} />
+        ) : null} */}
       </div>
     </Box>
   );

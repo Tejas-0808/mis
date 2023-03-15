@@ -45,6 +45,7 @@ import Add_C_d from "./components/Student/Profile/Add_contact_details";
 import Add_EducationDetails from "./components/Student/Profile/Add_EducationaDetails";
 import Educationdetails from "./components/Student/Profile/Educationdetails";
 import PersonalDetails from "./components/Student/Profile/Personaldetails";
+import AddPersonalDetails from "./components/Student/Profile/AddPersonalDetails";
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation"
@@ -70,8 +71,8 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
+import Loginuser from "./components/Admin/Configuration/Loginuser"
 import Createuserlogin from "./components/Admin/Login/Createuserlogin";
-import Createstudlogin from "./components/Admin/Login/Createstudlogin";
 
 
 
@@ -93,9 +94,10 @@ function App() {
 
           <Route path="/contact_details" element={<Student_info />} />
           <Route path="/Add_contact_details" element={<Add_C_d />} />
-          <Route path="/Add_Education_details" element={<Add_EducationDetails />} />
+          <Route path="/Add_Educationdetails" element={<Add_EducationDetails />} />
           <Route path="/Education_details" element={<Educationdetails />} />
           <Route path="/PersonalDetails" element={<PersonalDetails />} />
+          <Route path="/addPersonalDetails" element={<AddPersonalDetails />} />
 
           <Route path="/addPayment" element={<AddPaymentType />} />
           <Route path="/payment" element={<PaymentType />} />
@@ -160,15 +162,17 @@ function App() {
           <Route path="/facultyadvisor" element={<Facultyadvisor />} />
           <Route path="/promotion" element={<Promotion />} />
 
-          <Route path="/branchchange" element={<Branchchange />} />
-          <Route path="/offeredcourses" element={<Offeredcourses />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/coursereg" element={<CourseRegActivity />} />
-          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme />} />
-
-          <Route path="/courseconfirm" element={<CourseConfirmation />} />
+          <Route path="/branchchange" element={<Branchchange/>}/>
+          <Route path="/offeredcourses" element={<Offeredcourses/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/coursereg" element={<CourseRegActivity/>}/>
+          <Route path="/updatemasterscheme/:id" element={<UpdateMasterscheme/>}/>
+          
           <Route path="/createuserlogin" element={<Createuserlogin/>}/>
-<Route path="/createstudlogin" element={<Createstudlogin/>}/>
+          
+          <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
+          
+          <Route path="/loginuser" element={<Loginuser/>}/>
         </Routes>
       </BrowserRouter>
     </div>
