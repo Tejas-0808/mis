@@ -145,7 +145,7 @@ function Facultyadvisor() {
         .catch((error) => {
           console.error(error);
         });
-      navigate("/");
+      navigate("/userdashboard");
     }
   };
 

@@ -1,25 +1,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-  TextField,
-  Button,
-  Box,
-} from "@mui/material/";
-import Profile from "./Profile";
-import Createuserlogin from "../Login/Createuserlogin";
+import { TextField, Button, Box } from "@mui/material/";
+import AdminDashboard from "../Admin/AdminDashboard";
 
 // import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [role, setRole] = useState('');
-  const [token, setToken] = useState('');
+  const [role, setRole] = useState("");
+  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const [error, setError] = useState("");
   //   const navigate = useNavigate();
   const SubmitBtn = async (event) => {
@@ -40,11 +35,11 @@ const LoginForm = () => {
         setUsername("");
         setPassword("");
         console.log(response.data.message);
-        
       } catch (error) {
+        console.log("ithe error ahe");
         console.error(error.response.data.message);
       }
-      // navigate("/");
+      navigate("/login");
     } else {
       alert("fill the values");
     }
@@ -79,32 +74,25 @@ const LoginForm = () => {
           Login
         </Button>
         <div className="ListContainer">
-        {token && (
-        <>
-          {role === 1 && (
-
+          {token && (
             <>
-            <Createuserlogin/>
-    <p>Welcome Admin!</p>
-    <p>You have access to the admin dashboard.</p>
-              {/* <Createuserlogin/>
-              <p>Welcome Admin!</p>
-              
+              {role === 1 && (
+                <>
+                  <p>Welcome Admin!</p>
+                  <p>You have access to the admin dashboard.</p>
+                  <AdminDashboard />
+                </>
+              )}
 
-              <p>You have access to the admin dashboard.</p> */}
+              {role === 4 && (
+                <div>
+                  <p>Welcome User!</p>
+                  <p>You have access to your user dashboard.</p>
+                </div>
+              )}
             </>
-          )} 
-
-          {role === 4 && (
-            <div>
-              <p>Welcome User!</p>
-              <p>You have access to your user dashboard.</p>
-            </div>
           )}
-        </>
-      )}
         </div>
-        
       </div>
       {/* <div> */}
 
@@ -125,10 +113,9 @@ const LoginForm = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
       </div> */}
-      {/* {error && <div>{error}</div>}
-      <button type="submit">Log in</button> */}
- 
-     </Box>
+       {error && <div>{error}</div>}
+      {/*<button type="submit">Log in</button> */}
+    </Box>
   );
 };
 
