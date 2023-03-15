@@ -89,7 +89,7 @@ function NewStudent() {
       [name]: value,
     }));
   
-    if (name === "Phone_No") {
+    if (name === "Phone_No" || name === "Fathers_mobile" || name === "Guardian_Number") {
       setPhoneError(
         /^\d{10}$/.test(value)
           ? ""
@@ -97,7 +97,7 @@ function NewStudent() {
       );
     }
   
-    if (name === "Email_id") {
+    if (name === "Email_id" || name ==="Fathers_email ") {
       setEmailError(
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
           ? ""
@@ -564,12 +564,13 @@ function NewStudent() {
           onChange={handleChange}
         />
         
-        <TextField
-          required
-          type="number"
-          label="Guardian Number"
+         <TextField
+          label="Guardian Phone No"
           name="Guardian_Number"
+          value={personaldetails.Guardian_Number}
           onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
         />
 
         <FormGroup>
@@ -688,18 +689,21 @@ function NewStudent() {
           onChange={handleChange}
         />
         <TextField
-          required
-          type="number"
           label="Father's Phone No"
           name="Fathers_mobile"
+          value={personaldetails.Fathers_mobile}
           onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
         />
-        <TextField
-          required
-          type="email"
-          label="Father's email"
+      
+          <TextField
+          label="Father's Email"
           name="Fathers_email"
+          value={personaldetails.Fathers_email}
           onChange={handleChange}
+          error={Boolean(emailError)}
+          helperText={emailError}
         />
         <TextField
           required
