@@ -71,7 +71,7 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
-import Loginuser from "./components/Admin/Configuration/Loginuser"
+import Loginform from "./components/Admin/Configuration/LoginForm"
 import Createuserlogin from "./components/Admin/Login/Createuserlogin";
 
 
@@ -172,7 +172,7 @@ function App() {
           
           <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
           
-          <Route path="/loginuser" element={<Loginuser/>}/>
+          <Route path="/loginform" element={<Loginform/>}/>
         </Routes>
       </BrowserRouter>
     </div>

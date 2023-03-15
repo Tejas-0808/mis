@@ -6,11 +6,11 @@ import Home from '../../Home';
 
 const Loginuser = () => {
   const token = localStorage.getItem('token');
-console.log(token+"123");
-const roles = 2;
+console.log(token);
+const roles = undefined;
 // const roles = localStorage.getItem('role');
 
-console.log(roles);
+// console.log(roles);
   return (
      <div>
       {token && roles===1 ? <Home /> : <>

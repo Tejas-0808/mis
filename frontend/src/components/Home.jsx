@@ -12,11 +12,12 @@ function Home() {
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
 
-
+  const token = localStorage.getItem('token');
+  console.log(token);
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
   //    setToken(localStorage.getItem('token'))
-    console.log(token);
+    // console.log(token);
     if (token) {
       axios.get('http://localhost:3001/me', {
         headers: { Authorization: token }
@@ -42,7 +43,7 @@ function Home() {
       </p>
       <p> 
         <button>
-          <Link to="/branch">Branch</Link>
+          <Link to="/loginform">login</Link>
         </button>
       </p>
       <p>
