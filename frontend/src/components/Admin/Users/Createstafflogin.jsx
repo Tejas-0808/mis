@@ -4,10 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 // import { DataGrid } from '@mui/x-data-grid';
 import {
   TextField,
-  InputLabel,
-  FormControl,
-  Select,
-  MenuItem,
   Button,
   Box,
 } from "@mui/material/";
@@ -64,10 +60,15 @@ function Createstafflogin(props) {
       setFaculty(res.data);
       if (res.data.length > 0) {
         const faculty = res.data[0];
-        setFormValues((prevValues) => ({
+        if (faculty.Staff_username) {
+          console.log("Faculty staff username exists!");
+        }
+        else{
+          setFormValues((prevValues) => ({
           ...prevValues,
           username: faculty.Staff_username || prevValues.username,
         }));
+      }
       }
       // setBranch(res.data);
       // console.log(res.data+"!");
@@ -81,6 +82,7 @@ function Createstafflogin(props) {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3001/addusername_staff", formValues);
+      console.log('Username created successfully');
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -89,6 +91,7 @@ function Createstafflogin(props) {
     try {
       console.log(formValues);
       await axios.post("http://localhost:3001/otherlogins", formValues);
+      console.log('User registered successfully');
       navigate("/");
     } catch (err) {
       console.log(err);

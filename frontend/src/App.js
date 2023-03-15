@@ -71,8 +71,15 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
-import Loginuser from "./components/Admin/Configuration/Loginuser"
-import Createuserlogin from "./components/Admin/Login/Createuserlogin";
+
+import Createuserlogin from "./components/Admin/Users/Createuserlogin";
+
+import Login from "./components/Login/Login";
+import Loginform from "./components/Login/LoginForm";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import StudentDashboard from "./components/Student/StudentDashboard";
+import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
+import UserDashboard from "./components/Users/UserDashboard";
 
 
 
@@ -172,7 +179,13 @@ function App() {
           
           <Route path="/courseconfirm" element={<CourseConfirmation/>}/>
           
-          <Route path="/loginuser" element={<Loginuser/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/loginform" element={<Loginform/>}/>
+          <Route path="/admin" element={<AdminDashboard/>}/>
+          <Route path="/studentdashboard" element={<StudentDashboard/>}/>
+          <Route path="/studentsection" element={<StudentsectionDashboard/>}/>
+          <Route path="/user" element={<UserDashboard/>}/>
+      
         </Routes>
       </BrowserRouter>
     </div>

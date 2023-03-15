@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 http = require("http");
 const util = require("util");
+const bcrypt = require("bcrypt");
 const { pool } = require("../../db/mySql");
 const { use, route } = require("../auth");
 const query = util.promisify(pool.query).bind(pool);
@@ -35,11 +36,12 @@ router.post("/studpassword", async (req, res) => {
   try {
     for (const user of users) {
       const { username, password, role_id } = user;
+      const hashedPassword = bcrypt.hashSync(password, 10);
       const data = await query("SELECT * FROM login_details WHERE username=?", [username]);
       const userExists = data[0];
       
       if (!userExists) {
-        await query("INSERT INTO login_details(username, password, role_id) VALUES(?,?,?)", [username, password, role_id]);
+        await query("INSERT INTO login_details(username, password, role_id) VALUES(?,?,?)", [username, hashedPassword, role_id]);
       } else {
         return res.status(422).json({ error: "User already exists" });
       }

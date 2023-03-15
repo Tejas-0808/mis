@@ -34,24 +34,30 @@ function verifyToken(token) {
   }
 }
 
-router.post("/register", (req, res) => {
-  const { login_id, username, password } = req.body;
-
-  const hashedPassword = bcrypt.hashSync(password, 10);
-
-  pool.query(
-    "INSERT INTO login_details (login_id,username, password, role_id) VALUES (?, ?, ?, ?)",
-    [login_id, username, hashedPassword, 1],
-    (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ message: "Error registering user" });
-      } else {
-        res.status(200).json({ message: "User registered successfully" });
-      }
-    }
-  );
-});
+// router.post("/register", async  (req, res) => {
+//   const { login_id, username, password } = req.body;
+//   // const salt =  bcrypt.genSalt();
+//   // const hashPassword =  bcrypt.hash(password, salt);
+//   const hashedPassword = bcrypt.hashSync(password, 10);
+//   try {
+//     await pool.query(
+//       "INSERT INTO login_details (login_id, username, password, role_id) VALUES (?, ?, ?, ?)",
+//       [login_id, username, hashedPassword, 1],
+//       (err, result) => {
+//         if (err) {
+//           console.error(err);
+//           res.status(500).json({ message: "Error registering user" });
+//         } else {
+//           res.status(200).json({ message: "User registered successfully" });
+//         }
+//       }
+//     );
+//     res.json({msg: "Registration Successful"});
+// } catch (error) {
+//     console.log(error);
+// }
+  
+// });
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
@@ -71,7 +77,7 @@ router.post("/login", (req, res) => {
           if (passwordMatch) {
             // const token = jwt.sign({ id: user.id, username: user.username }, 'secretkey');
             const token = generateToken(user);
-            res.status(200).json({ message: "Login successful", token,role });
+            res.status(200).json({ message: "Login successful", token, role });
           } else {
             res.status(401).json({ message: "Invalid username or password" });
           }

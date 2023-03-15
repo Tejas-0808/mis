@@ -1,13 +1,14 @@
 import React from 'react';
-import LoginForm from './LoginForm';
+import LoginForm from '../../Login/LoginForm';
 import RegistrationForm from './RegistrationForm';
 import Profile from './Profile';
 import Home from '../../Home';
 
 const Loginuser = () => {
   const token = localStorage.getItem('token');
-console.log(token+"123");
-const roles = 2;
+  const role = localStorage.getItem('role');
+console.log(token);
+const roles = undefined;
 // const roles = localStorage.getItem('role');
 
 console.log(roles);
