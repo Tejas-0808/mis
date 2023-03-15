@@ -13,6 +13,7 @@ const sessionTimeout = 6; // 1 hour in seconds
 function generateToken(user) {
   const payload = {
     username: user.username,
+    role: user.role_id,
     expires: Date.now() + sessionTimeout * 1000,
   };
   return jwt.sign(payload, secretKey);
@@ -22,6 +23,7 @@ function verifyToken(token) {
   try {
     const payload = jwt.verify(token, secretKey);
     console.log(payload.expires + "  7 ");
+    console.log(payload);
     console.log(Date.now());
     if (payload.expires < Date.now()) {
       return null;
@@ -65,11 +67,11 @@ router.post("/login", (req, res) => {
         if (results.length > 0) {
           const user = results[0];
           const passwordMatch = bcrypt.compareSync(password, user.password);
-
+          const role = user.role_id;
           if (passwordMatch) {
             // const token = jwt.sign({ id: user.id, username: user.username }, 'secretkey');
             const token = generateToken(user);
-            res.status(200).json({ message: "Login successful", token });
+            res.status(200).json({ message: "Login successful", token,role });
           } else {
             res.status(401).json({ message: "Invalid username or password" });
           }

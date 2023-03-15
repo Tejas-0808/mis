@@ -10,6 +10,7 @@ import axios from 'axios';
 function Home() {
 
   const [username, setUsername] = useState('');
+  const [role, setRole] = useState('');
 
 
   useEffect(() => {
