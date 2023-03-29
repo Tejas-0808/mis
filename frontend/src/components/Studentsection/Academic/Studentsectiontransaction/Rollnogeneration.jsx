@@ -7,6 +7,7 @@ function RollNoGeneration() {
   const [Degree, setDegree] = useState([]);
   const [branch, setBranch] = useState([]);
   const [sem, setSem] = useState([]);
+  const [checkedValues, setCheckedValues] = useState([]);
   const [rollGen, setRollGen] = useState({
     admission_batch: "",
     department: "",
@@ -14,10 +15,18 @@ function RollNoGeneration() {
     semester: "",
   });
   const [SData, SetSData] = useState([]);
-  const [mapData, setMapData] = useState({name: ""})
+  const [mapData, setMapData] = useState([])
+
+  const [Data, setData] = useState({
+    key: "",
+    rolln: ""
+  })
 
 
-
+  /*
+  try catch for posting the data to database
+  remove and make a separate function outside the genarate function 
+  */
 
   const fetchBatch = async () => {
     try {
@@ -59,86 +68,177 @@ function RollNoGeneration() {
 
   const navigate = useNavigate();
 
-  const generate = (rollGen, SData, name) => {
+
+  const set_sdata = (SData) => {
+    const names = SData.map(({ First_Name, Middle_Name, Last_Name }) => `${First_Name} ${Middle_Name} ${Last_Name}`);
+
+
+    // sort the names array by last name and then by first name
+    names.sort(function (a, b) {
+      a = a.toLowerCase();
+      b = b.toLowerCase();
+      var aLast = a.split(" ")[2];
+      var bLast = b.split(" ")[2];
+      var aFirst = a.split(" ")[0];
+      var bFirst = b.split(" ")[0];
+      if (aLast < bLast) { return -1; }
+      if (aLast > bLast) { return 1; }
+      if (aFirst < bFirst) { return -1; }
+      if (aFirst > bFirst) { return 1; }
+      return 0;
+    });
+
+    setMapData(names);
+    console.log(mapData);
+  }
+console.log(mapData);
+  const generate =async (rollGen, mapData) => {
+
+
     const { admission_batch, department, degree, semester } = rollGen;
-    
-    for (let i = 0; i < SData.length; i++) {
-      var { First_Name, Middle_Name, Last_Name } = SData[i]
-      var name = First_Name+" "+Middle_Name+" "+Last_Name
-      setMapData((prev) => ({ ...prev, name }));
-      console.log(mapData);
+    // const names = SData.map(({ First_Name, Middle_Name, Last_Name }) => `${First_Name} ${Middle_Name} ${Last_Name}`);
+
+
+    // // sort the names array by last name and then by first name
+    // names.sort(function(a, b) {
+    //   a = a.toLowerCase();
+    //   b = b.toLowerCase();
+    //   var aLast = a.split(" ")[2];
+    //   var bLast = b.split(" ")[2];
+    //   var aFirst = a.split(" ")[0];
+    //   var bFirst = b.split(" ")[0];
+    //   if (aLast < bLast) { return -1; }
+    //   if (aLast > bLast) { return 1; }
+    //   if (aFirst < bFirst) { return -1; }
+    //   if (aFirst > bFirst) { return 1; }
+    //   return 0;
+    // });
+
+    // setMapData(names);
+
+    var roll = 1;
+
+    const nameroll = {};
+    for (var i = 0; i < SData.length; i++) {
+
+      var d = "";
+      var t = "";
+      var s = "";
+
+      var branchCode = department[0];
+      if (department[0].length === 1) {
+        branchCode = "0" + department[0];
+      } else {
+        branchCode = department[0];
+      }
+
+      if (degree === "B.Tech") {
+        d = "BT";
+        t = "F";
+      } else if (degree === "M.Tech") {
+        d = "MT";
+        t = "F";
+      } else if (degree === "MCA") {
+        d = "MCA";
+        t = "F";
+      } else if (degree === "B.Tech PART TIME") {
+        d = "BT";
+        t = "P";
+      } else if (degree === "M.Tech PART TIME") {
+        d = "MT";
+        t = "P";
+      }
+
+      if (semester === "I" || semester === "II") s = "F";
+      else s = "S";
+
+      const batchCode = admission_batch.slice(-2);
+
+      if (roll < 10) {
+        roll = "00" + roll;
+      } else {
+        roll = "0" + roll;
+      }
+      const r = d + batchCode + s + branchCode + t + roll;
+
+      var key = await mapData[i];
+      var value = r;
+
+console.log(key);
+
+    setData({ key: key, rolln: value })
+      console.log(Data);
+      nameroll[key] = value;
+      roll++;
+      console.log(Data);
+
+      try {
+        (async () => {
+          await axios.post("http://localhost:3001/rollgen", Data);
+          setData({key: "", rolln: ""});
+        })()
+      } catch (err) {
+        console.log(err);
+      }
     }
-    
-    // console.log(First_Name)
-    // console.log(Middle_Name)
-    // console.log(Last_Name)
-    var d = "";
-    var t = "";
-    var s = "";
 
-    // const { branchId, branchName } = department;
-    console.log(department[0]);
-    console.log(department.slice(2));
-    var branchCode = department[0];
-    if (department[0].length === 1) {
-      branchCode = "0" + department[0];
-    } else {
-      branchCode = department[0];
-    }
+    // console.log(nameroll);
+    // const keys = Object.keys(nameroll);
+    // console.log(keys);
 
-    if (degree === "B.Tech") {
-      d = "BT";
-      t = "F";
-    } else if (degree === "M.Tech") {
-      d = "MT";
-      t = "F";
-    } else if (degree === "MCA") {
-      d = "MCA";
-      t = "F";
-    } else if (degree === "B.Tech PART TIME") {
-      d = "BT";
-      t = "P";
-    } else if (degree === "M.Tech PART TIME") {
-      d = "MT";
-      t = "P";
-    }
-
-    if (semester === "I" || semester === "II") s = "F";
-    else s = "S";
-
-    const batchCode = admission_batch.slice(-2);
-
-    return d + batchCode + s + branchCode + t + "037";
+    // for(var i = 0; i < names.length; i++) {
+    //   try {
+    //     (async() => {
+    //       await axios.post("http://localhost:3001/rollgen",nameroll[i]);
+    //     })()
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
   };
+
 
   useEffect(() => {
     fetchBatch();
     fetchBranch();
     fetchDegree();
     fetchSem();
+    set_sdata(SData);
   }, []);
 
   const handleChange = (e) => {
     setRollGen((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    generate(rollGen, SData);
-    console.log(generate(rollGen, SData));
-  };
+  function handleCheckboxChange(event) {
+    const { value, checked } = event.target;
+
+    if (checked) {
+      setCheckedValues([...checkedValues, value]);
+    } else {
+      setCheckedValues(checkedValues.filter((val) => val !== value));
+    }
+  }
+
 
   const handleShow = async (rollGen) => {
     const { admission_batch, department, degree, semester } = rollGen
     const dept = department.slice(2);
     try {
-      const res = await axios.get("http://localhost:3001/rollgen?admission_batch="+admission_batch+"&department="+dept+"&degree="+degree+"&semester="+semester);
+      const res = await axios.get("http://localhost:3001/rollgen?admission_batch=" + admission_batch + "&department=" + dept + "&degree=" + degree + "&semester=" + semester);
       SetSData(res.data);
       console.log(res.data)
     } catch (err) {
       console.log(err);
     }
   }
+  const handleClick = async (e) => {
+    // e.preventDefault();
+   set_sdata(SData);
+   
+    generate(rollGen, mapData);
+    // console.log(generate(rollGen, SData));
+  };
 
   return (
     <div>
@@ -211,6 +311,31 @@ function RollNoGeneration() {
       </label>
       <div>
         <button className="Show" onClick={() => handleShow(rollGen)}>Show</button>
+        <div>
+          <table id="courselist">
+            {SData.map((stud) => (
+              <table >
+                <tr>
+                  <td>
+                    <div key={stud.First_Name}>
+                      {/* <input
+                                            // type="text"
+                                            value={stud.First_Name}
+                                            // checked={checkedValues.includes(stud.First_Name)}
+                                            
+                                            // onChange={handleCheckboxChange}
+                                            
+                                        /> */}
+                      <span>{stud.First_Name + "-" + stud.Middle_Name + "-" + stud.Last_Name}</span>
+                      {/* <input type="text" value={stud.value} onChange={(event) => handleCheckboxChange(event, stud.id)} />  */}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            ))}
+          </table>
+          {/* <p>Selected items: {JSON.stringify(checkedValues)}</p> */}
+        </div>
         <button className="submit" onClick={handleClick}>
           Submit
         </button>

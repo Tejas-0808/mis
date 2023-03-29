@@ -2,11 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
+import { Box, Button, TextField, InputLabel, FormControl } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
@@ -62,19 +59,55 @@ function NewStudent() {
     Admission_batch: "",
     Semester: "",
   });
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    const value =
-      //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
-      // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
-      setPersonalDetails((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value,
-      }));
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+
+  //     //   e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  //     // setPersonalDetails((prev) => ({ ...prev, [e.target.name]: value }));
+  //     setPersonalDetails((prev) => ({
+  //       ...prev,
+  //       [name]: value,
+  //     }));
+  //     if (name === "Phone_No") {
+  //       setPhoneError(
+  //         /^\d{10}$/.test(value)
+  //           ? ""
+  //           : "Invalid Phone Number"
+  //       );
+  //     }
+  //   console.log(personaldetails);
+  // };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+  
+    setPersonalDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  
+    if (name === "Phone_No" || name === "Fathers_mobile" || name === "Guardian_Number") {
+      setPhoneError(
+        /^\d{10}$/.test(value)
+          ? ""
+          : "Invalid Phone Number"
+      );
+    }
+  
+    if (name === "Email_id" || name ==="Fathers_email ") {
+      setEmailError(
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ""
+          : "Invalid email address"
+      );
+    }
+  
     console.log(personaldetails);
   };
-
+  
   const handleClickadd = async (e) => {
     e.preventDefault();
     try {
@@ -98,6 +131,7 @@ function NewStudent() {
   const [payment, setPayment] = useState([]);
   const [branch, setBranch] = useState([]);
   const [batch, setBatch] = useState([]);
+
 
   useEffect(() => {
     axios
@@ -210,7 +244,38 @@ function NewStudent() {
     setSelectedStatus(event.target.value);
     handleChange(event);
   };
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState('');
 
+
+
+  useEffect(() => {
+    fetch("http://localhost:3001/state")
+      .then((response) => response.json())
+      .then((data) => setStates(data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    if (selectedState) {
+      // Fetch the list of cities for the selected state ID from the API
+      fetch("http://localhost:3001/city?state_id=${selectedState} ")
+      .then(response => response.json())
+      .then(data => setCities(data))
+      .catch(error => console.error(error));
+    }}, [selectedState]);
+  
+      const handleCityChange = (event) => {
+        setSelectedCity(event.target.value);
+      };
+    
+
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+  };
+  
   return (
     <Box
       component="form"
@@ -254,23 +319,24 @@ function NewStudent() {
           name="Last_Name"
           onChange={handleChange}
         />
+          
         <TextField
-          required
-          type="email"
-          variant="outlined"
-          label="Email ID"
+          label="Email"
           name="Email_id"
+          value={personaldetails.Email_id}
           onChange={handleChange}
-        />
-        <TextField
-          required
-          type="number"
-          variant="outlined"
-          label="Phone Number"
-          name="Phone_No"
-          onChange={handleChange}
+          error={Boolean(emailError)}
+          helperText={emailError}
         />
 
+        <TextField
+          label="Phone No"
+          name="Phone_No"
+          value={personaldetails.Phone_No}
+          onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
+        />
         <TextField
           label="Date of Birth"
           name="D_O_B"
@@ -330,7 +396,7 @@ function NewStudent() {
               <MenuItem key={item.category_id} value={item.category_name}>
                 {item.category_name}
               </MenuItem>
-            ))}
+            ))} 
           </Select>
         </FormControl>
 
@@ -464,6 +530,7 @@ function NewStudent() {
           name="DTE application ID"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -471,6 +538,7 @@ function NewStudent() {
           name="Birth_Place"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -478,6 +546,7 @@ function NewStudent() {
           name="Last School/College"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="number"
@@ -485,6 +554,7 @@ function NewStudent() {
           name="Addhar_no"
           onChange={handleChange}
         />
+
         <TextField
           required
           type="text"
@@ -493,12 +563,14 @@ function NewStudent() {
           name="Guardian_Name"
           onChange={handleChange}
         />
-        <TextField
-          required
-          type="number"
-          label="Guardian Number"
+        
+         <TextField
+          label="Guardian Phone No"
           name="Guardian_Number"
+          value={personaldetails.Guardian_Number}
           onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
         />
 
         <FormGroup>
@@ -526,8 +598,30 @@ function NewStudent() {
             label="Hosteller"
           />
         </FormGroup>
+        <div>
+    <label htmlFor="state-select">Select a state:</label>
+    <select id="state-select" value={selectedState} onChange={handleStateChange}>
+      <option value="">--Select a state--</option>
+      {states.map(state => (
+        <option key={state.state_id} value={state.state_id}>{state.state_name}</option>
+      ))}
+    </select>
 
-        <FormControl sx={{ m: 1, minWidth: 250 }}>
+    {selectedState && (
+      <>
+        <br />
+        <label htmlFor="city-select">Select a city:</label>
+        <select id="city-select" value={selectedCity} onChange={handleCityChange}>
+          <option value="">--Select a city--</option>
+          {cities.map(city => (
+            <option key={city.city_id} value={city.city_id}>{city.city_name}</option>
+          ))}
+        </select>
+      </>
+    )}
+  </div>
+  
+        {/* <FormControl sx={{ m: 1, minWidth: 250 }}>
           <InputLabel id="demo-simple-select-helper-label">
             Select City
           </InputLabel>
@@ -571,7 +665,7 @@ function NewStudent() {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
         {/* <select
           name="City"
           placeholder="Select City"
@@ -595,18 +689,21 @@ function NewStudent() {
           onChange={handleChange}
         />
         <TextField
-          required
-          type="number"
           label="Father's Phone No"
           name="Fathers_mobile"
+          value={personaldetails.Fathers_mobile}
           onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
         />
-        <TextField
-          required
-          type="email"
-          label="Father's email"
+      
+          <TextField
+          label="Father's Email"
           name="Fathers_email"
+          value={personaldetails.Fathers_email}
           onChange={handleChange}
+          error={Boolean(emailError)}
+          helperText={emailError}
         />
         <TextField
           required

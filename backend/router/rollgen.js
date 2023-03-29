@@ -23,4 +23,29 @@ router.get("/rollgen", async (req, res) => {
     }
 })
 
+router.post("/rollgen", async(req,res) => {
+    const data = await req.body;
+    console.log(data);
+    const name = data.key;
+    const roll = data.rolln;
+    const nameParts = name.split(" ");
+    const fname = nameParts[0];
+    const mname = nameParts[1];
+    const lname = nameParts[2];
+    console.log(fname);
+    console.log(mname);
+    console.log(lname);
+    // const [key,value] = Object.entries(namerollobj)[0];
+    // console.log(key);
+    // console.log(value);
+    try{
+        (async()=>{
+            query('update student_info set `roll_no` = ? where First_Name = ? and Middle_Name = ? and Last_Name =?', [roll, fname, mname, lname])
+        })()
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+
 module.exports = router;
