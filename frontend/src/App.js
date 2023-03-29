@@ -49,7 +49,6 @@ import AddPersonalDetails from "./components/Student/Profile/AddPersonalDetails"
 import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchange";
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation"
-import Add_per_d from "./components/Student/Profile/AddPersonalDetails";
 import Profile from "./components/Student/Profile/Profile";
 
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
@@ -72,9 +71,6 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import UpdateMasterscheme from "./components/Admin/Academic/UpdateMasterScheme";
-import Navigation from "./components/Navbar/navbar";
-import SideBar from "./components/Sidebar/sidebar";
-import Profile from "./components/Student/Profile/Profile";
 
 import Createuserlogin from "./components/Admin/Users/Createuserlogin";
 
