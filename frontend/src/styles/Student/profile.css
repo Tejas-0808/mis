@@ -55,7 +55,7 @@ form:before {
 }
 
 input {
-    width: 60%;
+    /* width: 60%; */
     padding: 10px;
     box-sizing: border-box;
     background: none;

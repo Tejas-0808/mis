@@ -143,7 +143,6 @@ function App() {
           <Route path="/addcaste" element={<AddCaste />} />
           <Route path="/updatecaste/:id" element={<UpdateCaste />} />
 
-
           <Route path="/district" element={<District />} />
           <Route path="/adddistrict" element={<AddDistrict />} />
           <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
@@ -185,7 +184,6 @@ function App() {
           <Route path="/studentdashboard" element={<StudentDashboard />} />
           <Route path="/studentsection" element={<StudentsectionDashboard />} />
           <Route path="/user" element={<UserDashboard />} />
-
         </Routes>
       </BrowserRouter>
     </div>
