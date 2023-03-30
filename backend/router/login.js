@@ -8,7 +8,7 @@ const { pool } = require("../db/mySql");
 const query = util.promisify(pool.query).bind(pool);
 
 const secretKey = "secret_key";
-const sessionTimeout = 6; // 1 hour in seconds
+const sessionTimeout = 60 * 60; // 1 hour in seconds
 
 function generateToken(user) {
   const payload = {
