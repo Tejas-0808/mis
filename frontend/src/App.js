@@ -1,6 +1,6 @@
 // import { createRoot } from "react-dom/client";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Branch from "./components/Admin/Academic/Branch";
 import Student from "./components/Student";
@@ -81,8 +81,16 @@ import StudentDashboard from "./components/Student/StudentDashboard";
 import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
 import UserDashboard from "./components/Users/UserDashboard";
 
-
-
+const USER_TYPES = {
+  STUDENTSECTION_USER : "3",
+  NORMAL_USER : "2",
+  ADMIN_USER : "1",
+  STUDENT_USER: "5"
+}
+const role = localStorage.getItem('role');
+const CURRENT_USER_TYPE = role
+console.log(CURRENT_USER_TYPE);
+console.log(USER_TYPES.ADMIN_USER);
 function App() {
   return (
     <div className="App">
@@ -90,7 +98,7 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Branch />} /> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<PublicElement><Home /></PublicElement>} />
           <Route path="/branch" element={<Branch />} />
           <Route path="/add" element={<Add />} />
           <Route path="/newuser" element={<NewUser />} />
@@ -179,17 +187,59 @@ function App() {
 
           <Route path="/courseconfirm" element={<CourseConfirmation />} />
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<AdminElement><Login /></AdminElement>} />
           <Route path="/loginform" element={<Loginform />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
           <Route path="/studentdashboard" element={<StudentDashboard />} />
           <Route path="/studentsection" element={<StudentsectionDashboard />} />
           <Route path="/user" element={<UserDashboard />} />
+          <Route path="*" element={<div>Page not found</div>} />
 
         </Routes>
       </BrowserRouter>
     </div>
   );
+}
+
+function PublicElement({ children }) {
+  return <>{children}</>
+}
+
+function AdminElement({ children }) {
+  if(CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER){
+    return <>{children}</>;
+  }else{
+    // return <Navigate to={"/"} />
+    return <div>You dont have access to this page!</div>
+  }
+}
+
+function StudentSectionElement({ children }) {
+  if(CURRENT_USER_TYPE === USER_TYPES.STUDENTSECTION_USER){
+    return <>{children}</>;
+  }else{
+    // return <Navigate to={"/"} />
+    return <div>You dont have access to this page!</div>
+  }
+}
+
+function UserElement({ children }) {
+  if(CURRENT_USER_TYPE=== USER_TYPES.ADMIN_USER ||
+    CURRENT_USER_TYPE=== USER_TYPES.NORMAL_USER){
+    return <>{children}</>;
+  }else{
+    return <Navigate to={"/"} />
+    // return <div>You dont have access to this page!</div>
+  }
+}
+
+function StudentElement({ children }) {
+  if(CURRENT_USER_TYPE=== USER_TYPES.STUDENT_USER){
+    return <>{children}</>;
+  }else{
+    return <Navigate to={"/"} />
+    // return <div>You dont have access to this page!</div>
+  }
 }
 
 export default App;
