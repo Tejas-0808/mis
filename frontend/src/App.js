@@ -86,9 +86,9 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 
 
 const USER_TYPES = {
-  STUDENTSECTION_USER : "3",
-  NORMAL_USER : "2",
-  ADMIN_USER : "1",
+  STUDENTSECTION_USER: "3",
+  NORMAL_USER: "2",
+  ADMIN_USER: "1",
   STUDENT_USER: "5"
 }
 
@@ -194,39 +194,39 @@ function PublicElement({ children }) {
 }
 
 function AdminElement({ children }) {
-  if(CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER){
+  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) {
     return <>{children}</>;
-  }else{
+  } else {
     // return <Navigate to={"/"} />
     return <div>You dont have access to this page!</div>
   }
 }
 
 function StudentSectionElement({ children }) {
-  if(CURRENT_USER_TYPE === USER_TYPES.STUDENTSECTION_USER){
+  if (CURRENT_USER_TYPE === USER_TYPES.STUDENTSECTION_USER) {
     return <>{children}</>;
-  }else{
+  } else {
     // return <Navigate to={"/"} />
     return <div>You dont have access to this page!</div>
   }
 }
 
 function UserElement({ children }) {
-  if(CURRENT_USER_TYPE=== USER_TYPES.ADMIN_USER ||
-    CURRENT_USER_TYPE=== USER_TYPES.NORMAL_USER){
+  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ||
+    CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
     return <>{children}</>;
-  }else{
+  } else {
     return <Navigate to={"/"} />
     // return <div>You dont have access to this page!</div>
   }
 }
 
 function StudentElement({ children }) {
-  if(CURRENT_USER_TYPE=== USER_TYPES.STUDENT_USER){
+  if (CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
     return <>{children}</>;
-  }else{
-    // return <Navigate to={"/"} />
-    return <div>You dont have access to this page!</div>
+  } else {
+    return <Navigate to={"/"} />
+    // return <div>You dont have access to this page!</div>
   }
 }
 

@@ -75,7 +75,7 @@ function Add_per_d() {
   console.log(personaldetails);
   return (
     <Card sx={{ minWidth: 275 }}>
-      <h1>Personal Detail</h1><hr/>
+      <h1>Personal Detail</h1><hr />
       <CardContent>
         <Box
           component="form"
@@ -84,9 +84,9 @@ function Add_per_d() {
           autoComplete="off"
         >
           <CardHeader
-            style={{backgroundColor: "lightblue"}}
+            style={{ backgroundColor: "lightblue" }}
             title="Student Personal Details"
-          /> 
+          />
 
           <div className="form">
 
