@@ -37,9 +37,10 @@ function Home() {
   // };
 
   return (
-    /*<>
+    <>
       <LoginForm />
     </>
+    /*
     <p> 
 
       <button>
@@ -115,14 +116,14 @@ function Home() {
       <button>
           <Link to="/createstudlogin">student login creation</Link>
       </button>
-    </p> */
+    </p> 
     <>
       <Navigation />
       <div className='d-flex'>
         <SideBar />
         <StudentDashboard />
       </div>
-    </>
+    </>*/
 
   );
 }

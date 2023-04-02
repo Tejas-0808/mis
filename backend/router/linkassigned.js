@@ -62,4 +62,21 @@ router.post("/linkassigned", async (req, res) => {
   }
 });
 
+
+router.get("/links", async (req, res) => {
+  try {
+    (async () => {
+      const data = await query("SELECT file_path FROM links");
+      const result = await data;
+      return res.json(result);
+
+      // return res.json(data);
+      console.log(result);
+    })();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err });
+  }
+});
+
 module.exports = router;

@@ -56,6 +56,7 @@ import Loginform from "./components/Login/LoginForm";
 import Staff from "./components/Staff";
 //import Add from "./components/Add";
 import Home from "./components/Home";
+import DirectoryTree from "./components/DirectoryTree";
 
 
 // import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType";
@@ -180,6 +181,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/loginform" element={<Loginform />} />
+          <Route path="/directorytree" element={<DirectoryTree/>} />
 
           <Route path="*" element={<div>Page not found</div>} />
 
