@@ -81,6 +81,10 @@ import StudentDashboard from "./components/Student/StudentDashboard";
 import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
 import UserDashboard from "./components/Users/UserDashboard";
 
+import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
+import HomeStudentSection from "./components/HomeStudentSection";
+
+
 const USER_TYPES = {
   STUDENTSECTION_USER: "3",
   NORMAL_USER: "2",
@@ -99,6 +103,7 @@ function App() {
           {/* <Route path="/" element={<Branch />} /> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<PublicElement><Home /></PublicElement>} />
+          <Route path="/HomeStudentSection" element={<HomeStudentSection/>} />
           <Route path="/branch" element={<Branch />} />
           <Route path="/add" element={<Add />} />
           <Route path="/newuser" element={<NewUser />} />
@@ -194,6 +199,10 @@ function App() {
           <Route path="/studentsection" element={<StudentsectionDashboard />} />
           <Route path="/user" element={<UserDashboard />} />
           <Route path="*" element={<div>Page not found</div>} />
+          <Route path="/ssdashboard" element={<ssdashboard/>} />
+     
+          
+
 
         </Routes>
       </BrowserRouter>
