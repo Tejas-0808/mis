@@ -86,6 +86,10 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 
 
 
+import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
+import HomeStudentSection from "./components/HomeStudentSection";
+
+
 const USER_TYPES = {
   STUDENTSECTION_USER: "3",
   NORMAL_USER: "2",
@@ -105,6 +109,7 @@ function App() {
           {/* <Route path="/" element={<Branch />} /> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<PublicElement><Home /></PublicElement>} />
+          <Route path="/HomeStudentSection" element={<HomeStudentSection/>} />
 
           <Route path="/branch" element={<AdminElement><Branch /></AdminElement>} />
           <Route path="/addbranch" element={<AdminElement><Addbranch /></AdminElement>} />
@@ -184,6 +189,10 @@ function App() {
           <Route path="/directorytree" element={<DirectoryTree/>} />
 
           <Route path="*" element={<div>Page not found</div>} />
+          <Route path="/ssdashboard" element={<ssdashboard/>} />
+     
+          
+
 
         </Routes>
       </BrowserRouter>
