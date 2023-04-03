@@ -1,5 +1,5 @@
 // import { createRoot } from "react-dom/client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Branch from "./components/Admin/Academic/Branch";
@@ -80,6 +80,8 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import StudentDashboard from "./components/Student/StudentDashboard";
 import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
 import UserDashboard from "./components/Users/UserDashboard";
+import axios from "axios";
+import Protected from "./components/Protected";
 
 const USER_TYPES = {
   STUDENTSECTION_USER : "3",
@@ -87,11 +89,37 @@ const USER_TYPES = {
   ADMIN_USER : "1",
   STUDENT_USER: "5"
 }
+let linkarray = [];
 const role = localStorage.getItem('role');
+const username = localStorage.getItem('username');
 const CURRENT_USER_TYPE = role
 console.log(CURRENT_USER_TYPE);
 console.log(USER_TYPES.ADMIN_USER);
 function App() {
+  // const [linkarray,setLinkarray] =   useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+//    setToken(localStorage.getItem('token'))
+    console.log(token);
+    if (token) {
+      try {
+        (async () => {
+        const res = await axios.post("http://localhost:3001/links_id", username);
+        const linkarray = [...res.data];
+        // setLinkarray(linkarray);
+        console.log(linkarray);
+  
+        })();
+      } catch (err) {
+        console.log(err);
+      }
+    }else{
+      <div>login Again</div>
+    }
+  }); 
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -100,7 +128,8 @@ function App() {
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<PublicElement><Home /></PublicElement>} />
           <Route path="/branch" element={<Branch />} />
-          <Route path="/add" element={<Add />} />
+          {/* this Protected at app.js level */}
+          <Route path="/add" element={<Protected Component={Add} pageid="1" />} />
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
@@ -156,7 +185,7 @@ function App() {
           <Route path="/adddistrict" element={<AddDistrict />} />
           <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
           <Route path="/bos" element={<B_o_s />} />
-          <Route path="/addbos" element={<AddBos />} />
+          <Route path="/addbos" element={<Protected Component={AddBos} pageid="3" />} />
           <Route path="/updatebos/:id" element={<UpdateBos />} />
 
           <Route path="/structure" element={<Structure />} />
