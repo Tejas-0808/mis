@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { TextField, Button, Box } from "@mui/material/";
@@ -7,24 +7,56 @@ import LoginForm from "./LoginForm";
 import UserDashboard from "../Users/UserDashboard";
 import StudentsectionDashboard from "../Studentsection/StudentsectionDashboard";
 import StudentDashboard from "../Student/StudentDashboard";
-
-// import { useNavigate } from "react-router-dom";
+import Profile from "../Student/Profile/Profile";
 
 const Login = () => {
+  const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
     console.log(token);
     console.log(role);
+    // console.log(username);
     const Logout = () => {
     localStorage.setItem('token', "");
-    window.location.reload();
+    navigate("/");
+    // window.location.reload();
   };
+
+  const [username, setUsername] = useState('');
+  const [linkarray,setLinkarray] = useState([]);
+  console.log(username);
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+  //    setToken(localStorage.getItem('token'))
+      console.log(token);
+      if (token) {
+        axios.get('http://localhost:3001/me', {
+          headers: { Authorization: token }
+        }).then((response) => {
+          setUsername(response.data.username);
+        }).catch((err) => {
+          localStorage.setItem('token', "");
+          console.error(err);
+        });
+        try {
+          (async () => {
+          const res = await axios.post("http://localhost:3001/links_id", username);
+          const linkarray = [...res.data];
+          setLinkarray(linkarray);
+          console.log(linkarray);
+          })();
+        } catch (err) {
+          console.log(err);
+        }
+      }else{
+        <div>login Again</div>
+      }
+    },[]); 
 
   return (
     <Box>
       <button onClick={Logout}>logout</button>
-      
-      {token && (
+      {/* {token && (
             <>
               {role === '1' && (
                 <>
@@ -55,7 +87,41 @@ const Login = () => {
                 </>
               )}
             </>
-          )}
+          )} */}
+
+{token ? (
+            <>
+              {linkarray.includes('1') && role === '1' && (
+                <>
+                  <p>Welcome Admin!</p>
+                  <p>You have access to the admin dashboard.</p>
+                  <AdminDashboard />
+                </>
+              )}
+              {(role === '2'|| role === '4') && (
+                <>
+                  <p>Welcome user!</p>
+                  <p>You have access to your user dashboard.</p>
+                  <UserDashboard />
+                </>
+              )}
+              {role === '3' && (
+                <>
+                  <p>Student Section</p>
+                  <p>You have access to your studentsection dashboard.</p>
+                  <StudentsectionDashboard/>
+                </>
+              )}
+              {role === '5' && (
+                <>
+                  <p>Welcome Student!</p>
+                  <p>You have access to your Student dashboard.</p>
+                  <StudentDashboard/>
+                </>
+              )}
+            </>
+          ): <LoginForm/>
+          }
    </Box>
   
 
