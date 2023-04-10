@@ -89,7 +89,7 @@ function NewStudent() {
       [name]: value,
     }));
   
-    if (name === "Phone_No") {
+    if (name === "Phone_No" || name === "Fathers_mobile" || name === "Guardian_Number") {
       setPhoneError(
         /^\d{10}$/.test(value)
           ? ""
@@ -97,7 +97,7 @@ function NewStudent() {
       );
     }
   
-    if (name === "Email_id") {
+    if (name === "Email_id" || name ==="Fathers_email ") {
       setEmailError(
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
           ? ""
@@ -244,7 +244,38 @@ function NewStudent() {
     setSelectedStatus(event.target.value);
     handleChange(event);
   };
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState('');
 
+
+
+  useEffect(() => {
+    fetch("http://localhost:3001/state")
+      .then((response) => response.json())
+      .then((data) => setStates(data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    if (selectedState) {
+      // Fetch the list of cities for the selected state ID from the API
+      fetch("http://localhost:3001/city?state_id=${selectedState} ")
+      .then(response => response.json())
+      .then(data => setCities(data))
+      .catch(error => console.error(error));
+    }}, [selectedState]);
+  
+      const handleCityChange = (event) => {
+        setSelectedCity(event.target.value);
+      };
+    
+
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+  };
+  
   return (
     <Box component="form" sx={{ "& .MuiTextField-root": { m: 2, width: "28ch" }, }} >
       <div className="form">
@@ -287,23 +318,23 @@ function NewStudent() {
           onChange={handleChange}
         />
           
-          <TextField
-  label="Email"
-  name="Email_id"
-  value={personaldetails.Email_id}
-  onChange={handleChange}
-  error={Boolean(emailError)}
-  helperText={emailError}
-/>
+        <TextField
+          label="Email"
+          name="Email_id"
+          value={personaldetails.Email_id}
+          onChange={handleChange}
+          error={Boolean(emailError)}
+          helperText={emailError}
+        />
 
-      <TextField
-  label="Phone No"
-  name="Phone_No"
-  value={personaldetails.Phone_No}
-  onChange={handleChange}
-  error={Boolean(phoneError)}
-  helperText={phoneError}
-/>
+        <TextField
+          label="Phone No"
+          name="Phone_No"
+          value={personaldetails.Phone_No}
+          onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
+        />
         <TextField
           label="Date of Birth"
           name="D_O_B"
@@ -531,12 +562,13 @@ function NewStudent() {
           onChange={handleChange}
         />
         
-        <TextField
-          required
-          type="number"
-          label="Guardian Number"
+         <TextField
+          label="Guardian Phone No"
           name="Guardian_Number"
+          value={personaldetails.Guardian_Number}
           onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
         />
 
         <FormGroup>
@@ -564,8 +596,30 @@ function NewStudent() {
             label="Hosteller"
           />
         </FormGroup>
+        <div>
+    <label htmlFor="state-select">Select a state:</label>
+    <select id="state-select" value={selectedState} onChange={handleStateChange}>
+      <option value="">--Select a state--</option>
+      {states.map(state => (
+        <option key={state.state_id} value={state.state_id}>{state.state_name}</option>
+      ))}
+    </select>
 
-        <FormControl sx={{ m: 1, minWidth: 250 }}>
+    {selectedState && (
+      <>
+        <br />
+        <label htmlFor="city-select">Select a city:</label>
+        <select id="city-select" value={selectedCity} onChange={handleCityChange}>
+          <option value="">--Select a city--</option>
+          {cities.map(city => (
+            <option key={city.city_id} value={city.city_id}>{city.city_name}</option>
+          ))}
+        </select>
+      </>
+    )}
+  </div>
+  
+        {/* <FormControl sx={{ m: 1, minWidth: 250 }}>
           <InputLabel id="demo-simple-select-helper-label">
             Select City
           </InputLabel>
@@ -609,7 +663,7 @@ function NewStudent() {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
         {/* <select
           name="City"
           placeholder="Select City"
@@ -633,18 +687,21 @@ function NewStudent() {
           onChange={handleChange}
         />
         <TextField
-          required
-          type="number"
           label="Father's Phone No"
           name="Fathers_mobile"
+          value={personaldetails.Fathers_mobile}
           onChange={handleChange}
+          error={Boolean(phoneError)}
+          helperText={phoneError}
         />
-        <TextField
-          required
-          type="email"
-          label="Father's email"
+      
+          <TextField
+          label="Father's Email"
           name="Fathers_email"
+          value={personaldetails.Fathers_email}
           onChange={handleChange}
+          error={Boolean(emailError)}
+          helperText={emailError}
         />
         <TextField
           required

@@ -1,5 +1,6 @@
 import React from 'react'
 import "../../../styles/Student/profile.css";
+import StuNavbar from './student_navbar';
 
 function Profile() {
     // $(function () {
