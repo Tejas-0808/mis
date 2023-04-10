@@ -245,14 +245,8 @@ function NewStudent() {
     handleChange(event);
   };
 
-  
   return (
-    <Box
-      component="form"
-      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
-      noValidate
-      autoComplete="off"
-    >
+    <Box component="form" sx={{ "& .MuiTextField-root": { m: 2, width: "28ch" }, }} >
       <div className="form">
         <h1>NEW STUDENT ENTRY</h1>
         <hr></hr>
@@ -260,12 +254,15 @@ function NewStudent() {
         <TextField
           required
           type="number"
+          id="outlined-basic"
           variant="outlined"
           label="Registration ID"
           name="Reg_Id"
           onChange={handleChange}
         />
+
         <TextField
+          id="outlined-basic"
           required
           variant="outlined"
           name="First_Name"
