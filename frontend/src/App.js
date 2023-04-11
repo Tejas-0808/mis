@@ -89,12 +89,7 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 import HomeStudentSection from "./components/HomeStudentSection";
 
-import Login from "./components/Login/Login";
-import Loginform from "./components/Login/LoginForm";
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import StudentDashboard from "./components/Student/StudentDashboard";
-import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
-import UserDashboard from "./components/Users/UserDashboard";
+
 import axios from "axios";
 import Protected from "./components/Protected";
 
@@ -164,7 +159,7 @@ function App() {
           <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
           <Route path="/branch" element={<Branch />} />
           {/* this Protected at app.js level */}
-          <Route path="/add" element={<Protected Component={Add} pageid="1" />} />
+          {/* <Route path="/add" element={<Protected Component={Add} pageid="1" />} /> */}
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
