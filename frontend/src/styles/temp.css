@@ -1,0 +1,23 @@
+.ul {
+    list-style: none;
+    display: flex;
+    padding: 22px;
+    color: black;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+}
+
+.li {
+    margin-left: 20px;
+    margin-right: 40px;
+    cursor: pointer;
+    font-size: large;
+    padding: 6px;
+    border: 2px solid rgb(140, 140, 140);
+    border-radius: 4px;
+    background-color: rgb(247, 247, 247);
+}
+
+.li:hover {
+    background-color: rgb(204, 206, 206);
+}

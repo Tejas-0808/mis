@@ -13,10 +13,9 @@ import DrawerComponent from "./drawer";
 
 const useStyles = makeStyles((theme) => ({
     navlinks: {
-        marginLeft: theme.spacing(2),
         display: "flex",
         overflowX: 'scroll',
-        width: "fit - content"
+        width: "90vw"
     },
     logo: {
         flexGrow: "1",
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: "none",
         color: "white",
         fontSize: "20px",
-        marginLeft: theme.spacing(10),
+        marginLeft: theme.spacing(15),
         borderBottom: "1px solid transparent",
         "&:hover": {
             color: "yellow",
