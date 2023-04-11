@@ -74,6 +74,7 @@ import Profile from "./components/Student/Profile/Profile";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import StudentDashboard from "./components/Student/StudentDashboard";
+import Studentinformation from "./components/Student/studentinformation";
 
 
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation";
@@ -97,7 +98,7 @@ const USER_TYPES = {
   STUDENTSECTION_USER: "3",
   NORMAL_USER: "2",
   ADMIN_USER: "1",
-  STUDENT_USER: "5"
+  STUDENT_USER: "4"
 }
 let linkarray = [];
 const role = localStorage.getItem('role');
@@ -165,6 +166,7 @@ function App() {
           <Route path="/student" element={<Student />} />
           <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/studentinformation" element={<Studentinformation />} />
 
 
           <Route path="/newstudent" element={<NewStudent />} />
