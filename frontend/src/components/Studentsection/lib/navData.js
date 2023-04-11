@@ -7,6 +7,7 @@ import { HiIdentification } from "react-icons/hi";
 import { MdAccountCircle, MdEmail, MdOutlineFeedback, MdReport, MdOutlinePayment } from 'react-icons/md';
 import { TbBooks } from "react-icons/tb";
 import '../../../styles/sidebar.css';
+import IdentityCard from '../Academic/Academicreports/Identitycard';
 
 export const navData = [
     {
@@ -117,6 +118,7 @@ export const navData = [
                     },
                     {
                         "title": "Identity Card",
+                        "path":"identitycard"
                        
                     },
                     {
@@ -125,6 +127,7 @@ export const navData = [
                     },
                     {
                         "title": "Student Roll List",
+                        "path":"rolllist"
                         
                     },
         
@@ -146,6 +149,7 @@ export const navData = [
                         "title": "Branch Change ",
                         "path": "branchchange"
                     },
+                  
                 ]
             },
 

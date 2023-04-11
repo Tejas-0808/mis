@@ -130,7 +130,7 @@ function App() {
           <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
 
 
-          <Route path="/newstudent" element={<StudentSectionElement><NewStudent /></StudentSectionElement>} />
+          <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
           <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} />
           {/* <Route path="/city" element={<City/>}/>
@@ -150,23 +150,23 @@ function App() {
           <Route path="/city" element={<StudentSectionElement><City /></StudentSectionElement>} />
           <Route path="/updatecity/:id" element={<StudentSectionElement><UpdateCity /></StudentSectionElement>} />
           <Route path="/addcity" element={<StudentSectionElement><Addcity /></StudentSectionElement>} />
-          <Route path="/caste" element={<StudentSectionElement><Caste /></StudentSectionElement>} />
-          <Route path="/addcaste" element={<StudentSectionElement><AddCaste /></StudentSectionElement>} />
+          <Route path="/caste" element={<Caste />} />
+          <Route path="/addcaste" element={<AddCaste />} />
           <Route path="/updatecaste/:id" element={<StudentSectionElement><UpdateCaste /></StudentSectionElement>} />
           <Route path="rollnogeneration" element={<StudentSectionElement><RollNoGeneration /></StudentSectionElement>} />
           {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
-          <Route path="/identitycard" element={<StudentSectionElement><IdentityCard /></StudentSectionElement>} />
-          <Route path="/rolllist" element={<StudentSectionElement><Rolllist /></StudentSectionElement>} />
-          <Route path="/branchchange" element={<StudentSectionElement><Branchchange /></StudentSectionElement>} />
+          <Route path="/identitycard" element={<IdentityCard />} />
+          <Route path="/rolllist" element={<Rolllist />} />
+          <Route path="/branchchange" element={<Branchchange />} />
           <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
 
 
           <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
-          <Route path="/fill_profile" element={<StudentElement><Add_per_d /></StudentElement>} />
+          <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<StudentElement><Profile /></StudentElement>} />
           <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
           <Route path="/Add_contact_details" element={<StudentElement><Add_C_d /></StudentElement>} />
-          <Route path="/Add_Educationdetails" element={<StudentElement><Add_EducationDetails /></StudentElement>} />
+          <Route path="/Add_Educationdetails" element={<Add_EducationDetails />} />
           <Route path="/Education_details" element={<StudentElement><Educationdetails /></StudentElement> }/>
           <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
