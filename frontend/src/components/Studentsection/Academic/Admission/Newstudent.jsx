@@ -292,12 +292,15 @@ function NewStudent() {
         <TextField
           required
           type="number"
+          id="outlined-basic"
           variant="outlined"
           label="Registration ID"
           name="Reg_Id"
           onChange={handleChange}
         />
+
         <TextField
+          id="outlined-basic"
           required
           variant="outlined"
           name="First_Name"
