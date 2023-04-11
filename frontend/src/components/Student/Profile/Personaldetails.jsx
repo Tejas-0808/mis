@@ -11,20 +11,22 @@ const PersonalDetails = () => {
 
   const fetchAllPersonalDetails = async () => {
     try {
-        const res = await axios.get("http://localhost:3001/student");
+      const roll_no = localStorage.getItem('username');
+      const res = await axios.get("http://localhost:3001/student/"+roll_no);
+      console.log(res);
         // const imgres = await axios.get("http://localhost:3001/images/"+"1");
         // const blob =  await imgres.blob();
         
-        console.log(res.data[0].Signature.data);
-        const tryb = res.data[0].Signature.data;
-        let blob = new Blob([JSON.stringify(tryb,null,2)],{type:''});
-        console.log(blob);
+        // console.log(res.data[0].Signature.data);
+        // const tryb = res.data[0].Signature.data;
+        // let blob = new Blob([JSON.stringify(tryb,null,2)],{type:''});
+        // console.log(blob);
         // var image1 = new Image();
         // image1.src = URL.createObjectURL(blob);
         // document.body.appendChild(image1);
-        setImage(URL.createObjectURL(blob));
+        // setImage(URL.createObjectURL(blob));
         setpersonaldetails(res.data);
-        console.log(URL.createObjectURL(blob));
+        // console.log(URL.createObjectURL(blob));
         // const blob = await res.blob();  
     } catch(err) {
         console.log(err);

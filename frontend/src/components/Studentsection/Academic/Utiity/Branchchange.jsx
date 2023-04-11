@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect} from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Box, Button, Card, CardContent, CardHeader, TextField, } from "@mui/material";
 
 
 function Branchchange() {
@@ -64,15 +65,37 @@ function Branchchange() {
   // let bro =  branch[0];
   console.log(Branchchange);
   return (
+    <Card sx={{ minWidth: 275 }}>
+      <h1>&nbsp;&nbsp;Utility</h1><hr />
+      <CardContent>
+        <Box
+          component="form"
+          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+          noValidate
+          autoComplete="off"
+        >
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Branch Change"
+          />
+
     <div className="form">
-      Branch Change
+    
       <br/>
       <input type="text" placeholder="Roll No" name="roll_no" value={Branchchange.roll_no} onChange={handleChange}/>
+      &nbsp;&nbsp;
       <input type="text" placeholder="Branch" name="Branch" value={Branchchange.Branch} onChange={handleChange}/>
-      <button onClick={fetchStubranch}>fetch</button>
-      <button onClick={handleClick}>Update</button>
-
+      &nbsp;&nbsp;
+      {/* <button onClick={fetchStubranch}>Fetch</button>
+      <button onClick={handleClick}>Update</button> */}
+      &nbsp;&nbsp;
+      <Button variant="contained" onClick={fetchStubranch}size="medium" >Fetch</Button>
+      &nbsp;&nbsp;
+      <Button variant="contained" onClick={handleClick}size="medium">Update</Button>
     </div>
+    </Box>
+    </CardContent>
+    </Card>
   )
 }
 

@@ -9,20 +9,22 @@ import StudentsectionDashboard from "../Studentsection/StudentsectionDashboard";
 import StudentDashboard from "../Student/StudentDashboard";
 import Profile from "../Student/Profile/Profile";
 
-// import { useNavigate } from "react-router-dom";
-
 const Login = () => {
+  const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
     console.log(token);
     console.log(role);
+    // console.log(username);
     const Logout = () => {
     localStorage.setItem('token', "");
-    window.location.reload();
+    navigate("/");
+    // window.location.reload();
   };
 
   const [username, setUsername] = useState('');
-  
+  const [linkarray,setLinkarray] = useState([]);
+  console.log(username);
     useEffect(() => {
       const token = localStorage.getItem('token');
   //    setToken(localStorage.getItem('token'))
@@ -36,12 +38,24 @@ const Login = () => {
           localStorage.setItem('token', "");
           console.error(err);
         });
+        try {
+          (async () => {
+          const res = await axios.post("http://localhost:3001/links_id", username);
+          const linkarray = [...res.data];
+          setLinkarray(linkarray);
+          console.log(linkarray);
+          })();
+        } catch (err) {
+          console.log(err);
+        }
+      }else{
+        <div>login Again</div>
       }
-    }); 
+    },[]); 
 
   return (
     <Box>
-      {/* <button onClick={Logout}>logout</button> */}
+      <button onClick={Logout}>logout</button>
       {/* {token && (
             <>
               {role === '1' && (
@@ -77,7 +91,7 @@ const Login = () => {
 
 {token ? (
             <>
-              {role === '1' && (
+              {linkarray.includes('1') && role === '1' && (
                 <>
                   <p>Welcome Admin!</p>
                   <p>You have access to the admin dashboard.</p>

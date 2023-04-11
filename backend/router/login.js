@@ -8,7 +8,7 @@ const { pool } = require("../db/mySql");
 const query = util.promisify(pool.query).bind(pool);
 
 const secretKey = "secret_key";
-const sessionTimeout = 60 * 60; // 1 hour in seconds
+const sessionTimeout = 6; // 1 hour in seconds
 
 function generateToken(user) {
   const payload = {
@@ -19,12 +19,36 @@ function generateToken(user) {
   return jwt.sign(payload, secretKey);
 }
 
-function verifyToken(token) {
+// function verifyToken(token) {
+//   try {
+//     const payload = jwt.verify(token, secretKey);
+//     // console.log(payload.expires + "  7 ");
+//     // console.log(payload);
+//     // console.log(Date.now());
+//     if (payload.expires < Date.now()) {
+//       return null;
+//     }
+//     return payload.username;
+//   } catch (err) {
+//     return null;
+//   }
+// }
+
+function verifyToken(req,res,token) {
   try {
-    const payload = jwt.verify(token, secretKey);
-    console.log(payload.expires + "  7 ");
-    console.log(payload);
-    console.log(Date.now());
+   
+
+    const payload = jwt.verify(token, secretKey,(err,valid)=>{
+      if(err){
+        res.status(401).send({result: "please provide valid token"})
+      }else{
+        next();
+      }
+    }); 
+    
+    // console.log(payload.expires + "  7 ");
+    // console.log(payload);
+    // console.log(Date.now());
     if (payload.expires < Date.now()) {
       return null;
     }
@@ -59,7 +83,22 @@ function verifyToken(token) {
   
 // });
 
-router.post("/login", (req, res) => {
+//check individual id links assigned
+router.post("/links_id", async(req, res) => {
+  const username = req.body;
+  // console.log(username);
+  const linkdata = await query("SELECT link_id from linkassigned where staff_username=?",['1']);
+  const staff_id = linkdata;
+  const assigned_link = [];
+  for(const val of linkdata) {
+    // console.log(val.link_id)
+    assigned_link.push(val.link_id);
+}
+  // console.log(assigned_link);
+  return res.json(assigned_link);
+})
+
+router.post("/login", async(req, res) => {
   const { username, password } = req.body;
 
   pool.query(
@@ -88,6 +127,22 @@ router.post("/login", (req, res) => {
     }
   );
 });
+// const username = localStorage.getItem('username');
+// router.get("/user_id", async (req, res) => {
+//   try {
+//     (async () => {
+//       const data = await query("SELECT staffID from staff_details where Staff_username=?",[username]);
+//       const result = await data;
+//       return res.json(result);
+
+//       // return res.json(data);
+//       console.log(result);
+//     })();
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(400).json({ error: err });
+//   }
+// });
 
 router.get("/me", (req, res) => {
   const token = req.headers.authorization;
