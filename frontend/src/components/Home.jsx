@@ -7,9 +7,6 @@ import LoginForm from './Login/LoginForm'
 
 function Home() {
   return (
-    <>
-      <LoginForm />
-    </>
     /*
     <p> 
 
@@ -86,14 +83,14 @@ function Home() {
       <button>
           <Link to="/createstudlogin">student login creation</Link>
       </button>
-    </p> 
+    </p> */
     <>
       <Navigation />
       <div className='d-flex'>
         <SideBar />
         <StudentDashboard />
       </div>
-    </>*/
+    </>
 
   );
 }

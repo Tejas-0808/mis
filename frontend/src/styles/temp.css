@@ -1,9 +1,8 @@
 .ul {
     list-style: none;
     display: flex;
-    padding: 22px;
+    padding: 12px;
     color: black;
-    background-color: rgb(0, 0, 0);
     width: 100%;
 }
 
@@ -11,9 +10,8 @@
     margin-left: 20px;
     margin-right: 40px;
     cursor: pointer;
-    font-size: large;
+    font-size: medium;
     padding: 6px;
-    border: 2px solid rgb(140, 140, 140);
     border-radius: 4px;
     background-color: rgb(247, 247, 247);
 }

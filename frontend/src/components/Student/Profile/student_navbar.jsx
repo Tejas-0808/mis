@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     AppBar,
     Toolbar,
@@ -9,6 +9,9 @@ import {
     useMediaQuery,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import Add_EducationDetails from "./Add_EducationaDetails";
+import Add_per_d from "./AddPersonalDetails";
+import Add_C_d from "./Add_contact_details";
 import DrawerComponent from "./drawer";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,33 +38,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StuNavbar() {
+    const [currentPage, setCurrentPage] = useState(<Add_per_d />);
+
     const classes = useStyles();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+    const pages = [
+        { name: "Add Personal Details", component: <Add_per_d /> },
+        { name: "Add Contact Details", component: <Add_C_d /> },
+        { name: "Add educational details", component: <Add_EducationDetails /> },
+        { name: "Add Achievements", component: <Add_per_d /> },
+        { name: "Add Documents", component: <Add_C_d /> },
+        { name: "Add internship details", component: <Add_C_d /> },
+    ];
     return (
         <AppBar position="static" className={classes.AppBar}>
-            <CssBaseline />
             <Toolbar>
                 {isMobile ? (
                     <DrawerComponent />
                 ) : (
                     <div className={classes.navlinks}>
-                        <Link to="/fill_profile" className={classes.link}>
-                            Profile
-                        </Link>
-                        <Link to="/addPersonalDetails" className={classes.link}>
-                            Personal details
-                        </Link>
-                        <Link to="/Add_Educationdetails" className={classes.link}>
-                            Educational details
-                        </Link>
-                        <Link to="/Add_contact_details" className={classes.link}>
-                            Contact details
-                        </Link>
-                        <Link to="/faq" className={classes.link}>
-                            Achievements
-                        </Link>
+                        {pages.map((page) => (
+                            <Link class="li" key={page.name} className={classes.link} onClick={() => setCurrentPage(page.component)}>
+                                {page.name}
+                            </Link>
+                        ))}
+                        {currentPage}
                     </div>
                 )}
             </Toolbar>

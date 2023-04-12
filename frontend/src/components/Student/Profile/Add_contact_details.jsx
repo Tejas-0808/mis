@@ -1,8 +1,15 @@
-import React from 'react'
-import { useState, } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Box, Button, Card, CardContent, CardHeader, TextField, } from "@mui/material";
+import React from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  TextField,
+} from '@mui/material';
 
 
 function Add_C_d() {
@@ -32,31 +39,35 @@ function Add_C_d() {
   };
 
   console.log(student_info);
+  const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <h1>Contact Detail</h1><hr />
+    <Card sx={{ minWidth: 350, marginTop: 5 }}>
+      <CardHeader
+        sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
+        title="Contact Details"
+      />
       <CardContent>
         <Box
           component="form"
-          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+          sx={{
+            '& .MuiTextField-root': {
+              m: 4,
+              width: '25ch',
+            },
+            border: '1px solid black',
+            borderRadius: '8px',
+            p: 4,
+            boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2)',
+          }}
           noValidate
           autoComplete="off"
-        >
-          <CardHeader
-            style={{ backgroundColor: "lightblue" }}
-            title="Student Contact Details"
-          />
-
-          <div className="form">
-
-            <TextField required type="text" label="Email Id" name="Email_id" onChange={handleChange} />
-            <TextField required type="number" label="Mobile Number" name="Phone_No" onChange={handleChange} />
-            <TextField required type="text" label="Permanent Address " name="Permanent_Add" onChange={handleChange} />
-            <TextField required type="text" label="Current Address" name="Current_Add" onChange={handleChange} />
-            <TextField required type="text" label="Father's Email" name="Fathers_email" onChange={handleChange} />
-            <TextField required type="text" label="Father's Name" name="Father_name" onChange={handleChange} />
-            <Button variant='contained' onClick={handleClick}>Add</Button>
-          </div>
+        ><TextField required type="text" label="Email Id" name="Email_id" onChange={handleChange} />
+          <TextField required type="number" label="Mobile Number" name="Phone_No" onChange={handleChange} />
+          <TextField required type="text" label="Permanent Address " name="Permanent_Add" onChange={handleChange} />
+          <TextField required type="text" label="Current Address" name="Current_Add" onChange={handleChange} />
+          <TextField required type="text" label="Father's Email" name="Fathers_email" onChange={handleChange} />
+          <TextField required type="text" label="Father's Name" name="Father_name" onChange={handleChange} />
+          <Button variant="contained" style={btnstyle} onClick={handleClick} fullWidth>Add</Button>
         </Box>
       </CardContent>
     </Card>)
