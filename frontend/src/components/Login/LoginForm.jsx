@@ -37,7 +37,7 @@ const LoginForm = () => {
         setPassword("");
         console.log(response.data.message);
       } catch (error) {
-        console.log("ithe error ahe");
+        console.log(" error ");
         console.error(error.response.data.message);
       }
       navigate("/login");
@@ -85,7 +85,7 @@ const LoginForm = () => {
                 </>
               )}
 
-              {role === 4 && (
+              {role === 3 && (
                 <div>
                   <p>Welcome User!</p>
                   <p>You have access to your user dashboard.</p>

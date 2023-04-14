@@ -19,7 +19,7 @@ import UpdateBos from "./components/Admin/Academic/UpdateBos";
 import Session from "./components/Admin/Academic/Session";
 import AddSession from "./components/Admin/Academic/AddSession";
 import Createuserlogin from "./components/Admin/Users/Createuserlogin";
-import AdminDashboard from "./components/Admin/AdminDashboard";
+// import AdminDashboard from "./components/Admin/AdminDashboard";
 import Imagetest from "./components/Admin/Academic/Imagetest";
 
 
@@ -48,11 +48,11 @@ import Branchchange from "./components/Studentsection/Academic/Utiity/Branchchan
 import Rolllist from "./components/Studentsection/Academic/Utiity/RollList";
 import RollNoGeneration from "./components/Studentsection/Academic/Studentsectiontransaction/Rollnogeneration";
 import IdentityCard from './components/Studentsection/Academic/Academicreports/Identitycard';
-import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
+// import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
 
 
-import Login from "./components/Login/Login";
-import Loginform from "./components/Login/LoginForm";
+// import Login from "./components/Login/Login";
+// import Loginform from "./components/Login/LoginForm";
 import Staff from "./components/Staff";
 //import Add from "./components/Add";
 import Home from "./components/Home";
@@ -73,7 +73,7 @@ import AddPersonalDetails from "./components/Student/Profile/AddPersonalDetails"
 import Profile from "./components/Student/Profile/Profile";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
-import StudentDashboard from "./components/Student/StudentDashboard";
+// import StudentDashboard from "./components/Student/StudentDashboard";
 
 
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation";
@@ -81,7 +81,7 @@ import NewUser from "./components/Users/HOD/NewUser";
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
-import UserDashboard from "./components/Users/UserDashboard";
+// import UserDashboard from "./components/Users/UserDashboard";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 
 
@@ -97,12 +97,13 @@ import StudentsectionDashboard from "./components/Studentsection/StudentsectionD
 import UserDashboard from "./components/Users/UserDashboard";
 import axios from "axios";
 import Protected from "./components/Protected";
+import AssignedLinks from "./components/AssignedLinks";
 
 const USER_TYPES = {
-  STUDENTSECTION_USER: "3",
-  NORMAL_USER: "2",
+  STUDENTSECTION_USER: "2",
+  NORMAL_USER: "3",
   ADMIN_USER: "1",
-  STUDENT_USER: "5"
+  STUDENT_USER: "4"
 }
 let linkarray = [];
 const role = localStorage.getItem('role');
@@ -145,8 +146,8 @@ function App() {
           <Route path="/HomeStudentSection" element={<HomeStudentSection/>} />
 
           <Route path="/branch" element={<AdminElement><Branch /></AdminElement>} />
-          <Route path="/addbranch" element={<AdminElement><Addbranch /></AdminElement>} />
-          <Route path="/update/:id" element={<AdminElement><Update /></AdminElement>} />
+          <Route path="/academics/master/addbranch" element={<UserElement><Addbranch /></UserElement>} />
+          <Route path="/update/:id" element={<AssignedLinks><Update /></AssignedLinks>} />
           <Route path="/scheme" element={<AdminElement><Scheme /></AdminElement>} />
           <Route path="/addscheme" element={<AdminElement><Addscheme /></AdminElement>} />
           <Route path="/masterscheme" element={<AdminElement><Masterscheme /></AdminElement>} />
@@ -164,7 +165,7 @@ function App() {
           <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
           <Route path="/branch" element={<Branch />} />
           {/* this Protected at app.js level */}
-          <Route path="/add" element={<Protected Component={Add} pageid="1" />} />
+          <Route path="/add" element={<Protected Component={Addbranch} pageid="1" />} />
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
@@ -222,9 +223,6 @@ function App() {
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
           <Route path="/rollnogeneration" element={<RollNoGeneration />} />
-          <Route path="/structure" element={<Structure />} />
-          <Route path="addstructure" element={<AddStructure />} />
-          <Route path="/updatestructure/:id" element={<UpdateStructure />} />
           <Route path="addsession" element={<AddSession />} />
           <Route path="session" element={<Session />} />
 
@@ -264,9 +262,6 @@ function App() {
 
           <Route path="*" element={<div>Page not found</div>} />
           <Route path="/ssdashboard" element={<ssdashboard/>} />
-     
-          
-
 
         </Routes>
       </BrowserRouter>

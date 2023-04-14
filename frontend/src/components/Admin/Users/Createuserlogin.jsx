@@ -54,12 +54,11 @@ function Createuserlogin() {
       <div className="form">
         <Typography variant="h4">New User</Typography>
 
-        <FormControl variant="filled" size="small" sx={{ m: 1, minWidth: 150 }}>
-          <InputLabel id="demo-simple-select-label">Role</InputLabel>
+        <FormControl variant="filled" size="small" sx={{ m: 1, minWidth: 165 }}>
+          <InputLabel id="demo-simple-select-label">Select User Type</InputLabel>
           <Select
             required
             name="role_id"
-            label="-- Select Role --"
             onChange={handleChange}
           >
             <MenuItem value="">
@@ -77,7 +76,7 @@ function Createuserlogin() {
             })}
           </Select>
         </FormControl>
-        {selectedRoleId && selectedRoleId === 5 ? (
+        {selectedRoleId && selectedRoleId === 4 ? (
           <Createstudlogin selectedRoleId={selectedRoleId} />
         ) : selectedRoleId ? (
           <Createstafflogin selectedRoleId={selectedRoleId} />

@@ -38,16 +38,16 @@ const Login = () => {
           localStorage.setItem('token', "");
           console.error(err);
         });
-        try {
-          (async () => {
-          const res = await axios.post("http://localhost:3001/links_id", username);
-          const linkarray = [...res.data];
-          setLinkarray(linkarray);
-          console.log(linkarray);
-          })();
-        } catch (err) {
-          console.log(err);
-        }
+        // try {
+        //   (async () => {
+        //   const res = await axios.post("http://localhost:3001/links_id", username);
+        //   const linkarray = [...res.data];
+        //   setLinkarray(linkarray);
+        //   console.log(linkarray);
+        //   })();
+        // } catch (err) {
+        //   console.log(err);
+        // }
       }else{
         <div>login Again</div>
       }
@@ -91,28 +91,28 @@ const Login = () => {
 
 {token ? (
             <>
-              {linkarray.includes('1') && role === '1' && (
+              { role === '1' && (
                 <>
                   <p>Welcome Admin!</p>
                   <p>You have access to the admin dashboard.</p>
                   <AdminDashboard />
                 </>
               )}
-              {(role === '2'|| role === '4') && (
+              {(role === '3'|| role === '5') && (
                 <>
                   <p>Welcome user!</p>
                   <p>You have access to your user dashboard.</p>
                   <UserDashboard />
                 </>
               )}
-              {role === '3' && (
+              {role === '2' && (
                 <>
                   <p>Student Section</p>
                   <p>You have access to your studentsection dashboard.</p>
                   <StudentsectionDashboard/>
                 </>
               )}
-              {role === '5' && (
+              {role === '4' && (
                 <>
                   <p>Welcome Student!</p>
                   <p>You have access to your Student dashboard.</p>
