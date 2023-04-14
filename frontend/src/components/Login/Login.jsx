@@ -11,19 +11,19 @@ import Profile from "../Student/Profile/Profile";
 
 const Login = () => {
   const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
-    console.log(token);
-    console.log(role);
-    // console.log(username);
-    const Logout = () => {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
+  console.log(token);
+  console.log(role);
+  // console.log(username);
+  const Logout = () => {
     localStorage.setItem('token', "");
     navigate("/");
     // window.location.reload();
   };
 
   const [username, setUsername] = useState('');
-  const [linkarray,setLinkarray] = useState([]);
+  const [linkarray, setLinkarray] = useState([]);
   console.log(username);
     useEffect(() => {
       const token = localStorage.getItem('token');
@@ -55,7 +55,7 @@ const Login = () => {
 
   return (
     <Box>
-      <button onClick={Logout}>logout</button>
+
       {/* {token && (
             <>
               {role === '1' && (

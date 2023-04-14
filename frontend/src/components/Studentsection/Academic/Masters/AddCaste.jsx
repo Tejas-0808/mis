@@ -12,7 +12,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-
+import {Card, CardContent, CardHeader} from "@mui/material";
 
 function AddCaste() {
   const [caste, setCaste] = useState({
@@ -38,6 +38,19 @@ function AddCaste() {
 
 //   console.log(branch);
   return (
+    <Card sx={{ minWidth: 275 }}>
+      <h1>&nbsp;&nbsp;Masters</h1><hr />
+      <CardContent>
+        <Box
+          component="form"
+          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+          noValidate
+          autoComplete="off"
+        >
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Add Caste"
+          />
     <Box
     component="form"
     sx={{
@@ -47,9 +60,9 @@ function AddCaste() {
     autoComplete="off"
   >
     <div className="form">
-    <h1>ADD CASTE</h1>
-        <hr></hr>
-        <br></br>
+ 
+        {/* <hr></hr>
+        <br></br> */}
       <TextField
           required
           type="number"
@@ -66,11 +79,17 @@ function AddCaste() {
           label="Caste Name"
           onChange={handleChange}
         />
+    
       {/* <input type="text" placeholder="Caste Name" name="caste_name" onChange={handleChange}/> */}
-      <Button variant="contained" onClick={handleClick}>Add</Button>
+     
+      <Button variant="contained" onClick={handleClick}size="medium" style={{ marginTop: '12px' }}>Add</Button>
+    
       {/* <button onClick={handleClick}>Add</button> */}
     </div>
     </Box>
+    </Box>
+    </CardContent>
+    </Card>
   )
 }
 

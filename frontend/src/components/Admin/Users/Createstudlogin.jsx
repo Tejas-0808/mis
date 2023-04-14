@@ -101,6 +101,8 @@ function Createstudlogin(props) {
    
   };
 
+  console.log(studentlist);
+
   function handleCheckboxChange(e) {
     const value = e.target.value;
     if (checkedValues.includes(value)) {
@@ -134,7 +136,7 @@ function Createstudlogin(props) {
     }));
     
     console.log(typeof(users));
-
+  
     try {
       await axios.post("http://localhost:3001/studpassword", users);
       navigate("/");

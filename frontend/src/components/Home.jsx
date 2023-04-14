@@ -1,45 +1,12 @@
-import { Link } from "react-router-dom";
-import Navigation from "./Navbar/navbar";
-import SideBar from "./Sidebar/sidebar";
-import StudentDashboard from "./Student/Dashboard/dashboard";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import LoginForm from "./Login/LoginForm";
-import {
-  Box,
-} from "@mui/material/";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Navigation from './Navbar/navbar'
+import SideBar from './Sidebar/sidebar'
+import StudentDashboard from './Student/Dashboard/dashboard'
+import LoginForm from './Login/LoginForm'
 
 function Home() {
-  // const [username, setUsername] = useState('');
-  // const [role, setRole] = useState('');
-
-  // const token = localStorage.getItem('token');
-  // console.log(token);
-  // useEffect(() => {
-  //   // const token = localStorage.getItem('token');
-  // //    setToken(localStorage.getItem('token'))
-  //   // console.log(token);
-  //   if (token) {
-  //     axios.get('http://localhost:3001/me', {
-  //       headers: { Authorization: token }
-  //     }).then((response) => {
-  //       setUsername(response.data.username);
-  //     }).catch((err) => {
-  //       localStorage.setItem('token', "");
-  //       console.error(err);
-  //     });
-  //   }
-  // }, []);
-
-  // const Logout = () => {
-  //   localStorage.setItem('token', "");
-  //   window.location.reload();
-  // };
-
   return (
-    <>
-      <LoginForm />
-    </>
     /*
     <p> 
 
@@ -116,16 +83,16 @@ function Home() {
       <button>
           <Link to="/createstudlogin">student login creation</Link>
       </button>
-    </p> 
+    </p> */
     <>
       <Navigation />
       <div className='d-flex'>
         <SideBar />
         <StudentDashboard />
       </div>
-    </>*/
+    </>
 
   );
 }
 
-export default Home;
+export default Home
