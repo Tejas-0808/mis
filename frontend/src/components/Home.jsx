@@ -7,13 +7,14 @@ import LoginForm from './Login/LoginForm'
 
 function Home() {
   return (
-    /*
+    
     <p> 
 
       <button>
         <Link to="/loginform">login</Link>
       </button>
     </p>
+    /*
      <p>
     <p>Welcome, {username}!</p>
     <button onClick={Logout}>logout</button>
@@ -84,13 +85,13 @@ function Home() {
           <Link to="/createstudlogin">student login creation</Link>
       </button>
     </p> */
-    <>
-      <Navigation />
-      <div className='d-flex'>
-        <SideBar />
-        <StudentDashboard />
-      </div>
-    </>
+    // <>
+    //   <Navigation />
+    //   <div className='d-flex'>
+    //     <SideBar />
+    //     <StudentDashboard />
+    //   </div>
+    // </>
 
   );
 }
