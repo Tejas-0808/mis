@@ -5,17 +5,16 @@ const util = require("util");
 const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
+const verifyToken = require("./verifyToken");
 
 //get session
-router.get("/session", async (req, res) => {
+router.get("/session",verifyToken, async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM sessions");
       const result = await data;
       return res.json(result);
 
-      // return res.json(data);
-      console.log(result);
     })();
   } catch (err) {
     console.log(err);
@@ -24,7 +23,7 @@ router.get("/session", async (req, res) => {
 });
 
 //adding session
-router.post("/session", async (req, res) => {
+router.post("/session", verifyToken, async (req, res) => {
     // const session_id = req.body.session_id;
   const { session_id, term, year } = req.body;
   console.log(session_id);
@@ -76,7 +75,7 @@ const session_name1 = `${term} ${academic_year_formatted}`;
 });
 
 //update the session
-router.put("/session/:id", async (req, res) => {
+router.put("/session/:id",verifyToken, async (req, res) => {
   const sessionid = req.params.id;
   console.log(sessionid);
   try {
@@ -104,7 +103,7 @@ router.put("/session/:id", async (req, res) => {
 });
 
 //delete the session
-router.delete("/session/:id", async (req, res) => {
+router.delete("/session/:id", verifyToken, async (req, res) => {
   const sessionid = req.params.id;
   console.log(sessionid);
   try {

@@ -9,7 +9,9 @@ const Masterscheme = () => {
 
   const fetchAllMasterscheme = async () => {
     try {
-        const res = await axios.get("http://localhost:3001/master_scheme");
+        const res = await axios.get("http://localhost:3001/master_scheme",{
+          headers: { authorization: localStorage.getItem('token') }
+        });
         setMasterscheme(res.data);
         console.log(res.data);
     } catch(err) {
@@ -28,8 +30,12 @@ const Masterscheme = () => {
   const handleDelete= async (id) =>{
     try{
       console.log(id)
-      await axios.delete("http://localhost:3001/master_scheme/"+id);
-      const res = await axios.get("http://localhost:3001/master_scheme");
+      await axios.delete("http://localhost:3001/master_scheme/"+id,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
+      const res = await axios.get("http://localhost:3001/master_scheme",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
         setMasterscheme(res.data);
       // window.location.reload()
       // navigate("/");

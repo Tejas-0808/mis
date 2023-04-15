@@ -41,7 +41,9 @@ function AddStructure() {
 
   const fetchScheme = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/master_scheme");
+      const res = await axios.get("http://localhost:3001/master_scheme",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setScheme(res.data);
       console.log(res.data);
     } catch (err) {
@@ -51,7 +53,9 @@ function AddStructure() {
 
   const fetchCategory = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/course_category");
+      const res = await axios.get("http://localhost:3001/course_category",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCategory(res.data);
       console.log(res.data);
     } catch (err) {
@@ -61,7 +65,9 @@ function AddStructure() {
 
   const fetchSem = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/semester");
+      const res = await axios.get("http://localhost:3001/semester",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setSem(res.data);
       console.log(res.data);
     } catch (err) {
@@ -71,7 +77,9 @@ function AddStructure() {
 
   const fetchBranch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/branch");
+      const res = await axios.get("http://localhost:3001/branch",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setBranch(res.data);
       console.log(res.data);
     } catch (err) {
@@ -81,7 +89,9 @@ function AddStructure() {
 
   const fetchBos = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/b_o_s");
+      const res = await axios.get("http://localhost:3001/b_o_s",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setBos(res.data);
       console.log(res.data);
     } catch (err) {
@@ -107,7 +117,9 @@ function AddStructure() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/structure", Structure);
+      await axios.post("http://localhost:3001/structure", Structure,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/structure");
     } catch (err) {
       console.log(err);

@@ -14,7 +14,9 @@ function UpdateBos(){
 
     const fetchBos = async() => {
         try{
-            const res = await axios.get("http://localhost:3001/b_o_s/"+ C_id);
+            const res = await axios.get("http://localhost:3001/b_o_s/"+ C_id,{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setBos(res.data);
             console.log(Bos);
         }catch(err){
@@ -33,7 +35,9 @@ function UpdateBos(){
     const handleEdit = async (e) => {
         e.preventDefault();
         try{
-            await axios.put("http://localhost:3001/b_o_s/" + C_id, Bos);
+            await axios.put("http://localhost:3001/b_o_s/" + C_id, Bos,{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             navigate("/bos");
         }catch(err){
             console.log(err);
@@ -49,7 +53,7 @@ function UpdateBos(){
       >
         <div className='edit_form'>
         <h2>EDIT BOS</h2> <hr />
-        <TextField type="number" required label="BOS ID" name="bos_id" value={Bos.bos_id} onChange={handleChange} />
+        <TextField type="number" required label="BOS ID" name="bos_id" value={Bos.dept_id} onChange={handleChange} />
         <TextField type="text" required label="BOS Name" name="bos_name" value={Bos.bos_name}onChange={handleChange} />
         <Button variant="contained" onClick={handleEdit}>Submit</Button>
     </div>

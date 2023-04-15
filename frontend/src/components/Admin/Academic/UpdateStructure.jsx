@@ -35,7 +35,9 @@ function UpdateStructure() {
 
     const fetchStructure = async () => {
         try {
-            const res = await axios.get("http://localhost:3001/structure/" + C_id);
+            const res = await axios.get("http://localhost:3001/structure/" + C_id,{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setStructure(res.data);
             console.log(Structure);
         } catch (err) {
@@ -54,7 +56,9 @@ function UpdateStructure() {
     const handleEdit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put("http://localhost:3001/structure/" + C_id, Structure);
+            await axios.put("http://localhost:3001/structure/" + C_id, Structure,{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             navigate("/structure");
         } catch (err) {
             console.log(err);

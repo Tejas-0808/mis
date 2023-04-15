@@ -25,7 +25,9 @@ function Addscheme() {
 
   const fetchCourseCategory = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/course_category");
+      const res = await axios.get("http://localhost:3001/course_category",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCourseCategory(res.data);
       console.log(res.data);
     } catch (err) {
@@ -35,7 +37,9 @@ function Addscheme() {
 
   const fetchMasterScheme = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/master_scheme");
+      const res = await axios.get("http://localhost:3001/master_scheme",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setMasterScheme(res.data);
     } catch (err) {
       console.log(err);
@@ -55,7 +59,9 @@ function Addscheme() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/scheme", scheme);
+      await axios.post("http://localhost:3001/scheme", scheme,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/scheme");
     } catch (err) {
       console.log(err);

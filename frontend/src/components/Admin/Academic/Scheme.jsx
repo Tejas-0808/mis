@@ -9,7 +9,9 @@ const Scheme = () => {
 
   const fetchAllScheme = async () => {
     try {
-        const res = await axios.get("http://localhost:3001/scheme");
+        const res = await axios.get("http://localhost:3001/scheme",{
+          headers: { authorization: localStorage.getItem('token') }
+        });
         setScheme(res.data);
         console.log(res.data);
     } catch(err) {
@@ -28,8 +30,12 @@ const Scheme = () => {
   const handleDelete= async (id) =>{
     try{
       console.log(id)
-      await axios.delete("http://localhost:3001/scheme/"+id)
-      const res = await axios.get("http://localhost:3001/scheme");
+      await axios.delete("http://localhost:3001/scheme/"+id,{
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      const res = await axios.get("http://localhost:3001/scheme",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
         setScheme(res.data);
       // window.location.reload()
       // navigate("/");
