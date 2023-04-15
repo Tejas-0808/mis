@@ -93,8 +93,8 @@ import axios from "axios";
 import Protected from "./components/Protected";
 
 const USER_TYPES = {
-  STUDENTSECTION_USER: "3",
-  NORMAL_USER: "2",
+  STUDENTSECTION_USER: "2",
+  NORMAL_USER: "3",
   ADMIN_USER: "1",
   STUDENT_USER: "4"
 }

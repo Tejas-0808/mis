@@ -47,7 +47,7 @@ const LoginForm = () => {
         setPassword("");
         console.log(response.data.message);
       } catch (error) {
-        console.log("ithe error ahe");
+        console.log(" error ");
         console.error(error.response.data.message);
       }
       navigate("/login");
@@ -58,14 +58,24 @@ const LoginForm = () => {
   };
 
   return (
-    <Grid>
+    
+    <Grid container spacing={2}>
+      
       <Paper elevation={14} style={paperStyle}>
         <Grid align='center'>
           <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
           <h2 style={heading}>Sign In</h2>
         </Grid>
-        <TextField label='Username' placeholder='Enter username' variant="outlined" fullWidth required value={username} onChange={(e) => setUsername(e.target.value)} />
-        <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField label='Username' placeholder='Enter username' variant="outlined" fullWidth required value={username} onChange={(e) => setUsername(e.target.value)} />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required value={password} onChange={(e) => setPassword(e.target.value)} />
+          </Grid>
+        </Grid>
+        
+        
         <FormControlLabel
           control={
             <Checkbox

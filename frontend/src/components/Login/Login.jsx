@@ -37,15 +37,6 @@ const Login = () => {
         localStorage.setItem('token', "");
         console.error(err);
       });
-      // try {
-      //   (async () => {
-      //     const res = await axios.post("http://localhost:3001/links_id", username);
-      //     const linkarray = [...res.data];
-      //           console.log(linkarray);
-      //   })();
-      // } catch (err) {
-      //   console.log(err);
-      // }
     } else {
       <div>login Again</div>
     }
@@ -90,7 +81,7 @@ const Login = () => {
 
       {token ? (
         <>
-          {role === '1' && (
+          { role === '1' && (
             <>
               <p>Welcome Admin!</p>
               <p>You have access to the admin dashboard.</p>

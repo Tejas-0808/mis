@@ -70,6 +70,10 @@ function Createstafflogin(props) {
         }));
       }
       }
+      else{
+        setEmailError("Mail ID doesn't exists.");
+        console.log("Mail not exists");
+      }
       // setBranch(res.data);
       // console.log(res.data+"!");
       // console.log("Email ID or Role Id doesn't matched");
@@ -79,6 +83,7 @@ function Createstafflogin(props) {
   };
 
   const handleClicked = async (e) => {
+    
     e.preventDefault();
     try {
       await axios.post("http://localhost:3001/addusername_staff", formValues);
@@ -88,15 +93,15 @@ function Createstafflogin(props) {
       console.log(err);
       // setError(true)
     }
-    try {
-      console.log(formValues);
-      await axios.post("http://localhost:3001/otherlogins", formValues);
-      console.log('User registered successfully');
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-      // setError(true)
-    }
+    // try {
+    //   console.log(formValues);
+    //   await axios.post("http://localhost:3001/otherlogins", formValues);
+    //   console.log('User registered successfully');
+    //   navigate("/");
+    // } catch (err) {
+    //   console.log(err);
+    //   // setError(true)
+    // }
   };
 
   return (
