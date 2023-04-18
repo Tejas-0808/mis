@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
 
 function OfferedCourses() {
   const [Courseslists, SetCourselists] = useState({
@@ -185,164 +185,180 @@ function OfferedCourses() {
 
   //   console.log(Rolllists);
   return (
-    <Box>
-      <div>
-
-        <h1>Courses Offered</h1>
-        <hr></hr>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Session ID</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="SessionID"
-            placeholder="Select Session"
-            className="form-select-session"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              None
-            </MenuItem>
-            {session.map((item) => (
-              <MenuItem key={item.session_id} value={item.session_id}>
-                {item.session_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Term</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="term"
-            placeholder="select Term"
-            className="form-select-term"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Offered to term --</MenuItem>
-            {semester.map((item) => (
-              <MenuItem key={item.sem_id} value={item.sem}>
-                {item.sem}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Degree</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Degree"
-            placeholder="Select Degree"
-            className="form-select-degree"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Degree --</MenuItem>
-            {degree.map((item) => (
-              <MenuItem key={item.degree_id} value={item.degree_name}>
-                {item.degree_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="BranchID"
-            placeholder="Select Branch"
-            className="form-select-branch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Branch --</MenuItem>
-            {branch.map((item) => (
-              <MenuItem key={item.Branch_id} value={item.Branch_id}>
-                {item.Branch_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Scheme</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="SchemeID"
-            placeholder="Select Scheme"
-            className="form-select-scheme"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Scheme --</MenuItem>
-            {scheme.map((item) => (
-              <MenuItem key={item.mastersch_id} value={item.mastersch_id}>
-                {item.master_scheme}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Semester</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Semester"
-            placeholder="Select Semester"
-            className="form-select-semester"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Semester --</MenuItem>
-            {semester.map((item) => (
-              <MenuItem key={item.sem_id} value={item.sem}>
-                {item.sem}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <Button variant="contained" onClick={fetchCourses}>Show Courses</Button>
-
-        <br></br>
-        <br></br>
-        Offered Courses
-        <div className="offercourses">
+    <Card sx={{ m: 4, minWidth: 275 }}>
+      <Box component="form"
+        sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
+        noValidate
+        autoComplete="off">
+        <CardContent>
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Courses Offered"
+          />
+          <br></br>
           <div>
-            <table id="studentList">
-              {courselt.map((course) => (
-                <table>
-                  <tr>
-                    <td>
-                      <div key={course.coursecode}>
-                        <input
-                          type="checkbox"
-                          value={course.coursecode}
-                          checked={initiallyCheckedValues.includes(course.coursecode) || checkedValues.includes(course.coursecode)}
-                          // checked={checkedValues.includes(course.coursecode)}
-                          onChange={handleCheckboxChange}
-                        />
-                        <span>{course.coursecode}</span>
-                      </div>
-                    </td>
-                  </tr>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Session ID</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="SessionID"
+                placeholder="Select Session"
+                className="form-select-session"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  None
+                </MenuItem>
+                {session.map((item) => (
+                  <MenuItem key={item.session_id} value={item.session_id}>
+                    {item.session_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Term</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="term"
+                placeholder="select Term"
+                className="form-select-term"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Offered to term --</MenuItem>
+                {semester.map((item) => (
+                  <MenuItem key={item.sem_id} value={item.sem}>
+                    {item.sem}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Degree</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Degree"
+                placeholder="Select Degree"
+                className="form-select-degree"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Degree --</MenuItem>
+                {degree.map((item) => (
+                  <MenuItem key={item.degree_id} value={item.degree_name}>
+                    {item.degree_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="BranchID"
+                placeholder="Select Branch"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Branch --</MenuItem>
+                {branch.map((item) => (
+                  <MenuItem key={item.Branch_id} value={item.Branch_id}>
+                    {item.Branch_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Scheme</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="SchemeID"
+                placeholder="Select Scheme"
+                className="form-select-scheme"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Scheme --</MenuItem>
+                {scheme.map((item) => (
+                  <MenuItem key={item.mastersch_id} value={item.mastersch_id}>
+                    {item.master_scheme}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Semester</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Semester"
+                placeholder="Select Semester"
+                className="form-select-semester"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Semester --</MenuItem>
+                {semester.map((item) => (
+                  <MenuItem key={item.sem_id} value={item.sem}>
+                    {item.sem}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button variant="contained" onClick={fetchCourses}>Show Courses</Button>
+
+            <br></br>
+            <br></br>
+            Offered Courses
+            <div className="offercourses">
+              <div>
+                <table id="studentList">
+                  {courselt.map((course) => (
+                    <table>
+                      <tr>
+                        <td>
+                          <div key={course.coursecode}>
+                            <input
+                              type="checkbox"
+                              value={course.coursecode}
+                              checked={initiallyCheckedValues.includes(course.coursecode) || checkedValues.includes(course.coursecode)}
+                              // checked={checkedValues.includes(course.coursecode)}
+                              onChange={handleCheckboxChange}
+                            />
+                            <span>{course.coursecode}</span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  ))}
                 </table>
-              ))}
-            </table>
-            <p>Selected items: {JSON.stringify(checkedValues)}</p>
-            <br />
+                <p>Selected items: {JSON.stringify(checkedValues)}</p>
+                <br />
+                <Box
+                  m={1}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Button variant="contained" onClick={handleUpdateButtonClick}>Offer Courses </Button>
+                </Box>
 
-
-            <Button variant="contained" onClick={handleUpdateButtonClick}>Offer Courses </Button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </Box>
+        </CardContent>
+      </Box >
+    </Card >
+
   );
 }
 

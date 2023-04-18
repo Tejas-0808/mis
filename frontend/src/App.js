@@ -84,17 +84,19 @@ import Promotion from "./components/Users/Academic/Studentsectiontransaction/Pro
 import UserDashboard from "./components/Users/UserDashboard";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 
+import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
+
 
 
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 import HomeStudentSection from "./components/HomeStudentSection";
 
-import Login from "./components/Login/Login";
-import Loginform from "./components/Login/LoginForm";
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import StudentDashboard from "./components/Student/StudentDashboard";
-import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
-import UserDashboard from "./components/Users/UserDashboard";
+// import Login from "./components/Login/Login";
+// import Loginform from "./components/Login/LoginForm";
+// import AdminDashboard from "./components/Admin/AdminDashboard";
+// import StudentDashboard from "./components/Student/StudentDashboard";
+// import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
+// import UserDashboard from "./components/Users/UserDashboard";
 import axios from "axios";
 import Protected from "./components/Protected";
 
@@ -164,7 +166,7 @@ function App() {
           <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
           <Route path="/branch" element={<Branch />} />
           {/* this Protected at app.js level */}
-          <Route path="/add" element={<Protected Component={Add} pageid="1" />} />
+          {/* <Route path="/add" element={<Protected Component={Add} pageid="1" />} /> */}
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
@@ -231,7 +233,8 @@ function App() {
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
           {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
           <Route path="/identitycard" element={<StudentSectionElement><IdentityCard /></StudentSectionElement>} />
-          <Route path="/rolllist" element={<StudentSectionElement><Rolllist /></StudentSectionElement>} />
+          <Route path="/rolllist" element={<Rolllist />} />
+          {/* <Route path="/rolllist" element={<StudentSectionElement><Rolllist /></StudentSectionElement>} /> */}
           <Route path="/branchchange" element={<StudentSectionElement><Branchchange /></StudentSectionElement>} />
           <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
 
@@ -264,10 +267,10 @@ function App() {
 
           <Route path="*" element={<div>Page not found</div>} />
           <Route path="/ssdashboard" element={<ssdashboard/>} />
-     
+
+          <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
+
           
-
-
         </Routes>
       </BrowserRouter>
     </div>
