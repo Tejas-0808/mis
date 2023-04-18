@@ -7,6 +7,7 @@ import { HiIdentification } from "react-icons/hi";
 import { MdAccountCircle, MdEmail, MdOutlineFeedback, MdReport, MdOutlinePayment } from 'react-icons/md';
 import { TbBooks } from "react-icons/tb";
 import '../../../styles/sidebar.css';
+import CourseRegActivity from '../Coursereg/Courseregactivity';
 
 export const navData = [
     {
@@ -16,7 +17,7 @@ export const navData = [
             {
                 "title": "My gaurdian",
                 "icon": <GiGuards className="icons" />,
-                "path": "/"
+                "path": "/",
             },
             {
                 "title": "ID Card",
@@ -34,7 +35,7 @@ export const navData = [
                 "childrens": [
                     {
                         "title": "Course Registration",
-                        "path": "academics/course-registration"
+                        "path": <CourseRegActivity />
                     },
                     {
                         "title": "Registration Reciepts",
@@ -106,7 +107,7 @@ export const navData = [
         "childrens": [
             {
                 "title": "Fill Profile",
-                "path": "/fill_profile"
+                "path": "/student"
             },
             {
                 "title": "Settings",

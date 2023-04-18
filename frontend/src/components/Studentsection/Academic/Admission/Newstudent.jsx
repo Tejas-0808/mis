@@ -10,6 +10,7 @@ import FormLabel from "@mui/material/FormLabel";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
 
+
 function NewStudent() {
   const [personaldetails, setPersonalDetails] = useState({
     Reg_Id: "",
@@ -277,7 +278,13 @@ function NewStudent() {
   };
   
   return (
-    <Box component="form" sx={{ "& .MuiTextField-root": { m: 2, width: "28ch" }, }} >
+    
+    <Box
+      component="form"
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+      noValidate
+      autoComplete="off"
+    >
       <div className="form">
         <h1>NEW STUDENT ENTRY</h1>
         <hr></hr>
@@ -830,6 +837,7 @@ function NewStudent() {
         </Button>
       </div>
     </Box>
+ 
   );
 }
 

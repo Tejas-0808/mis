@@ -1,4 +1,3 @@
-// import { createRoot } from "react-dom/client";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -74,7 +73,7 @@ import Profile from "./components/Student/Profile/Profile";
 import Dashboard from "./components/Student/Dashboard/dashboard";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 import StudentDashboard from "./components/Student/StudentDashboard";
-
+import Studentinformation from "./components/Student/studentinformation";
 
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation";
 import NewUser from "./components/Users/HOD/NewUser";
@@ -91,20 +90,14 @@ import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffe
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 import HomeStudentSection from "./components/HomeStudentSection";
 
-// import Login from "./components/Login/Login";
-// import Loginform from "./components/Login/LoginForm";
-// import AdminDashboard from "./components/Admin/AdminDashboard";
-// import StudentDashboard from "./components/Student/StudentDashboard";
-// import StudentsectionDashboard from "./components/Studentsection/StudentsectionDashboard";
-// import UserDashboard from "./components/Users/UserDashboard";
 import axios from "axios";
 import Protected from "./components/Protected";
 
 const USER_TYPES = {
-  STUDENTSECTION_USER: "3",
-  NORMAL_USER: "2",
+  STUDENTSECTION_USER: "2",
+  NORMAL_USER: "3",
   ADMIN_USER: "1",
-  STUDENT_USER: "5"
+  STUDENT_USER: "4"
 }
 let linkarray = [];
 const role = localStorage.getItem('role');
@@ -115,28 +108,6 @@ console.log(USER_TYPES.ADMIN_USER);
 function App() {
   // const [linkarray,setLinkarray] =   useState([]);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-//    setToken(localStorage.getItem('token'))
-    console.log(token);
-    if (token) {
-      try {
-        (async () => {
-        const res = await axios.post("http://localhost:3001/links_id", username);
-        const linkarray = [...res.data];
-        // setLinkarray(linkarray);
-        console.log(linkarray);
-  
-        })();
-      } catch (err) {
-        console.log(err);
-      }
-    }else{
-      <div>login Again</div>
-    }
-  }); 
-
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -144,8 +115,7 @@ function App() {
           {/* <Route path="/" element={<Branch />} /> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
           <Route path="/" element={<PublicElement><Home /></PublicElement>} />
-          <Route path="/HomeStudentSection" element={<HomeStudentSection/>} />
-
+          <Route path="/HomeStudentSection" element={<HomeStudentSection />} />
           <Route path="/branch" element={<AdminElement><Branch /></AdminElement>} />
           <Route path="/addbranch" element={<AdminElement><Addbranch /></AdminElement>} />
           <Route path="/update/:id" element={<AdminElement><Update /></AdminElement>} />
@@ -170,11 +140,9 @@ function App() {
           <Route path="/newuser" element={<NewUser />} />
           <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/student" element={<Student />} />
-          <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<Profile />} />
-
-
-          <Route path="/newstudent" element={<StudentSectionElement><NewStudent /></StudentSectionElement>} />
+          <Route path="/studentinformation" element={<Studentinformation />} />
+          <Route path="/newstudent" element={<NewStudent />} />
           <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
           <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} />
           {/* <Route path="/city" element={<City/>}/>
@@ -188,38 +156,29 @@ function App() {
           <Route path="/masterscheme" element={<Masterscheme />} />
           <Route path="/addmasterscheme" element={<AddMasterscheme />} />
           <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
-
           <Route path="/category" element={<Category />} />
           <Route path="/addcategory" element={<AddCategory />} />
           <Route path="/updatecategory/:id" element={<UpdateCategory />} />
-
           <Route path="/city" element={<City />} />
           <Route path="/addcity" element={<Addcity />} />
-
           <Route path="/religion" element={<Religion />} />
           <Route path="/addreligion" element={<AddReligion />} />
           <Route path="/updatereligion/:id" element={<UpdateReligion />} />
-
           <Route path="/district" element={<District />} />
           <Route path="/adddistrict" element={<AddDistrict />} />
           <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
-
           <Route path="/city" element={<City />} />
           <Route path="/updatecity/:id" element={<UpdateCity />} />
           <Route path="/addcity" element={<Addcity />} />
-
           <Route path="/caste" element={<Caste />} />
           <Route path="/addcaste" element={<AddCaste />} />
           <Route path="/updatecaste/:id" element={<UpdateCaste />} />
-
-
           <Route path="/district" element={<District />} />
           <Route path="/adddistrict" element={<AddDistrict />} />
           <Route path="/updatedistrict/:id" element={<UpdateDistrict />} />
           <Route path="/bos" element={<B_o_s />} />
           <Route path="/addbos" element={<AddBos />} />
           <Route path="/updatebos/:id" element={<UpdateBos />} />
-
           <Route path="/structure" element={<Structure />} />
           <Route path="addstructure" element={<AddStructure />} />
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
@@ -229,48 +188,45 @@ function App() {
           <Route path="/updatestructure/:id" element={<UpdateStructure />} />
           <Route path="addsession" element={<AddSession />} />
           <Route path="session" element={<Session />} />
-
           <Route path="rollnogeneration" element={<RollNoGeneration />} />
           {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
-          <Route path="/identitycard" element={<StudentSectionElement><IdentityCard /></StudentSectionElement>} />
+          <Route path="/identitycard" element={<IdentityCard />} />
           <Route path="/rolllist" element={<Rolllist />} />
-          {/* <Route path="/rolllist" element={<StudentSectionElement><Rolllist /></StudentSectionElement>} /> */}
-          <Route path="/branchchange" element={<StudentSectionElement><Branchchange /></StudentSectionElement>} />
+          <Route path="/branchchange" element={<Branchchange />} />
           <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
-
-
           <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
-          <Route path="/fill_profile" element={<StudentElement><Add_per_d /></StudentElement>} />
+          <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<StudentElement><Profile /></StudentElement>} />
           <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
           <Route path="/Add_contact_details" element={<StudentElement><Add_C_d /></StudentElement>} />
-          <Route path="/Add_Educationdetails" element={<StudentElement><Add_EducationDetails /></StudentElement>} />
-          <Route path="/Education_details" element={<StudentElement><Educationdetails /></StudentElement> }/>
+          <Route path="/Add_Educationdetails" element={<Add_EducationDetails />} />
+          <Route path="/Education_details" element={<StudentElement><Educationdetails /></StudentElement>} />
           <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
           <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
           <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
           <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} />
-
-
           <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
           <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
           <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
           <Route path="/offeredcourses" element={<UserElement><Offeredcourses /></UserElement>} />
           <Route path="/courseconfirm" element={<UserElement><CourseConfirmation /></UserElement>} />
-          <Route path="/newuser" element={<UserElement><NewUser/></UserElement>} />
-          <Route path="/user" element={<UserElement><UserDashboard/></UserElement>} />
-
+          <Route path="/newuser" element={<UserElement><NewUser /></UserElement>} />
+          <Route path="/user" element={<UserElement><UserDashboard /></UserElement>} /> 
           <Route path="/login" element={<Login />} />
           <Route path="/loginform" element={<Loginform />} />
-          <Route path="/directorytree" element={<DirectoryTree/>} />
-
+          <Route path="/directorytree" element={<DirectoryTree />} />
           <Route path="*" element={<div>Page not found</div>} />
           <Route path="/ssdashboard" element={<ssdashboard/>} />
 
           <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
 
           
+          <Route path="/ssdashboard" element={<ssdashboard />} />
+
+
+
+
         </Routes>
       </BrowserRouter>
     </div>
