@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 
 const secretKey = "secret_key";
-
+ 
 const verifyToken = function verifyToken(req,res,next) {
   const token = req.headers['authorization'];
   if(token){
@@ -12,13 +12,12 @@ const verifyToken = function verifyToken(req,res,next) {
         res.status(401).send({result: "Please provide valid token"})
         console.log("err");
       }else{
-        // next();
+        // next(); 
       }
     });
   }else{
     res.status(403).send({result: "Please add token with header"})
     console.log("err1");
-
   }
   console.log("middle ware called",token)
   next();

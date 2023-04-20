@@ -21,7 +21,6 @@
     background-color: rgba(22, 22, 22, 1);
     overflow: auto;
     color: #fff;
-    min-height: 100%
 }
 
 .sidebarClosed {
@@ -33,7 +32,6 @@
     color: #fff;
     transition: width 0.3s ease-in-out;
     width: 60px;
-    min-height: 100%
 }
 
 .sidebarClosed .subtitle,

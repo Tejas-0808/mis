@@ -9,14 +9,14 @@ const Student = () => {
 
   return (
     <>
-      <Navigation />
-      <div className='d-flex'>
-        <SideBar />
+      {/* <Navigation /> */}
+      {/* <div className='d-flex'>
+        <SideBar /> */}
         <div className='d-flex flex'>
           {/* <StuNavbar /> */}
           <SecondaryNavbar />
         </div>
-      </div>
+      {/* </div> */}
     </>
   )
 }

@@ -91,6 +91,10 @@ import HomeStudentSection from "./components/HomeStudentSection";
 
 import axios from "axios";
 import Protected from "./components/Protected";
+import SideBar from "./components/Sidebar/sidebar";
+import Sidebar from './components/components/Sidebar'
+import Navigation from "./components/Navbar/navbar";
+import Studentlayout from "./layouts/Studentlayout";
 
 const USER_TYPES = {
   STUDENTSECTION_USER: "2",
@@ -110,6 +114,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Navigation/>
+      <div className="d-flex">
+
+      {/* <SideBar /> */}
+      <Studentlayout><StudentElement/></Studentlayout>
         <Routes>
           {/* <Route path="/" element={<Branch />} /> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
@@ -193,7 +202,7 @@ function App() {
           <Route path="/rolllist" element={<Rolllist />} />
           <Route path="/branchchange" element={<Branchchange />} />
           <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
-          <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
+          {/* <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
           <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<StudentElement><Profile /></StudentElement>} />
           <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
@@ -204,7 +213,7 @@ function App() {
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
           <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
           <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-          <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} />
+          <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
           <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
           <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
           <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
@@ -222,6 +231,8 @@ function App() {
 
 
         </Routes>
+      </div>
+
       </BrowserRouter>
     </div>
   );
@@ -259,7 +270,7 @@ function UserElement({ children }) {
   }
 }
 
-function StudentElement({ children }) {
+function StudentElement({ children }) { 
   if (CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
     return <>{children}</>;
   } else {

@@ -36,7 +36,9 @@ function RollNoGeneration() {
 
   const fetchBranch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/branch");
+      const res = await axios.get("http://localhost:3001/branch" ,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setBranch(res.data);
     } catch (err) {
       console.log(err);

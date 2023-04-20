@@ -1,15 +1,15 @@
 import { useState } from "react"
 import '../../styles/sidebar.css';
 import { BsChevronCompactDown } from 'react-icons/bs';
+import { Link } from "react-router-dom";
 
 export default function SidebarItem({ item }) {
     const [open, setOpen] = useState(false)
 
-
     if (item.childrens) {
         return (
             <div className={open ? "sidebar-item open" : "sidebar-item"}>
-                <div className="sidebar-title">
+                <div className="sidebar-title" onClick={() => setOpen(!open)}>
                     <span>
                         {item.icon}
                         <span className="subtitle">{item.title}</span>
@@ -23,10 +23,11 @@ export default function SidebarItem({ item }) {
         )
     } else {
         return (
-            <a href={item.path || "#"} className="sidebar-item plain">
+            <Link to={item.path || "#"} className="sidebar-item plain">
                 {item.icon}
+                
                 {item.title}
-            </a>
+            </Link>
         )
     }
 }
