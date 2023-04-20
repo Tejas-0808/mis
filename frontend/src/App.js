@@ -83,11 +83,12 @@ import Promotion from "./components/Users/Academic/Studentsectiontransaction/Pro
 import UserDashboard from "./components/Users/UserDashboard";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 
+import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
+
 
 
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 import HomeStudentSection from "./components/HomeStudentSection";
-
 
 import axios from "axios";
 import Protected from "./components/Protected";
@@ -225,6 +226,11 @@ function App() {
           <Route path="/loginform" element={<Loginform />} />
           <Route path="/directorytree" element={<DirectoryTree />} />
           <Route path="*" element={<div>Page not found</div>} />
+          <Route path="/ssdashboard" element={<ssdashboard/>} />
+
+          <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
+
+          
           <Route path="/ssdashboard" element={<ssdashboard />} />
 
 

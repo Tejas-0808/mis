@@ -7,7 +7,7 @@ const State = () => {
 
   const [state, setState] = useState([]);
 
-  const fetchAllBranch = async () => {
+  const fetchAllState = async () => {
     try {
         const res = await axios.get("http://localhost:3001/state");
         setState(res.data);
@@ -19,7 +19,7 @@ const State = () => {
 
   useEffect(() => {
 
-    fetchAllBranch();
+    fetchAllState();
     // eslint-disable-next-line
   }, []);
   const navigate = useNavigate();
