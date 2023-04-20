@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { TextField, Button, Box } from "@mui/material/";
+import { Button, Box } from "@mui/material/";
 import AdminDashboard from "../Admin/AdminDashboard";
 import LoginForm from "./LoginForm";
 import UserDashboard from "../Users/UserDashboard";
 import StudentsectionDashboard from "../Studentsection/StudentsectionDashboard";
-import StudentDashboard from "../Student/StudentDashboard";
-import Profile from "../Student/Profile/Profile";
+import Dashboard from "../Student/Dashboard/dashboard";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -81,7 +80,7 @@ const Login = () => {
 
       {token ? (
         <>
-          { role === '1' && (
+          {role === '1' && (
             <>
               <p>Welcome Admin!</p>
               <p>You have access to the admin dashboard.</p>
@@ -106,7 +105,7 @@ const Login = () => {
             <>
               <p>Welcome Student!</p>
               <p>You have access to your Student dashboard.</p>
-              <StudentDashboard />
+              <Dashboard />
             </>
           )}
         </>
