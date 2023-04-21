@@ -56,7 +56,9 @@ function Facultyadvisor() {
       });
 
     axios
-      .get("http://localhost:3001/branch")
+      .get("http://localhost:3001/branch" ,{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setbranch(response.data);
 

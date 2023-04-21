@@ -8,7 +8,8 @@ const { pool } = require("../db/mySql");
 const query = util.promisify(pool.query).bind(pool);
 
 const secretKey = "secret_key";
-const sessionTimeout = 6; // 1 hour in seconds
+const sessionTimeout = 60 * 60; // 1 hour in seconds
+
 
 function generateToken(user) {
   const payload = {
@@ -34,29 +35,9 @@ function generateToken(user) {
 //   }
 // }
 
-function verifyToken(req,res,token) {
-  try {
-   
-
-    const payload = jwt.verify(token, secretKey,(err,valid)=>{
-      if(err){
-        res.status(401).send({result: "please provide valid token"})
-      }else{
-        next();
-      }
-    }); 
-    
-    // console.log(payload.expires + "  7 ");
-    // console.log(payload);
-    // console.log(Date.now());
-    if (payload.expires < Date.now()) {
-      return null;
-    }
-    return payload.username;
-  } catch (err) {
-    return null;
-  }
-}
+// const vr = function verifyToken(req,res,next) {
+//   console.log("middle ware called")
+// }
 
 // router.post("/register", async  (req, res) => {
 //   const { login_id, username, password } = req.body;

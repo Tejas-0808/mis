@@ -20,7 +20,9 @@ function AddMasterscheme() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/master_scheme", Masterscheme);
+      await axios.post("http://localhost:3001/master_scheme", Masterscheme,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/Masterscheme");
     } catch (err) {
       console.log(err);

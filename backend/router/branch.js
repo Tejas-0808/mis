@@ -5,17 +5,40 @@ const util = require("util");
 const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
+const verifyToken = require("./verifyToken");
+// const jwt = require("jsonwebtoken");
 
+
+// const secretKey = "secret_key";
+
+// function verifyToken(req,res,next) {
+//   const token = req.headers['authorization'];
+//   if(token){
+//     console.log(token);
+//     jwt.verify(token,secretKey, (err,valid)=> {
+//       if(err) {
+//         res.status(401).send({result: "Please provide valid token"})
+//         console.log("err");
+//       }else{
+//         // next();
+//       }
+//     });
+//   }else{
+//     res.status(403).send({result: "Please add token with header"})
+//     console.log("err1");
+
+//   }
+//   console.log("middle ware called",token)
+//   next();
+// }
 //adding branch
-router.get("/branch", async (req, res) => {
+
+router.get("/branch",verifyToken, async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM branch");
       const result = await data;
       return res.json(result);
-
-      // return res.json(data);
-      console.log(result);
     })();
   } catch (err) {
     console.log(err);
@@ -24,7 +47,7 @@ router.get("/branch", async (req, res) => {
 });
 
 //fetching data of particular id
-router.get("/branch/:id", async (req, res) => {
+router.get("/branch/:id",verifyToken, async (req, res) => {
   const Branchid = req.params.id;
 
   try {
@@ -45,7 +68,7 @@ router.get("/branch/:id", async (req, res) => {
   }
 });
 
-router.post("/branch", async (req, res) => {
+router.post("/branch",verifyToken, async (req, res) => {
   const { Branch_id, Branch_name, HOD, Students_enrolled } = req.body;
   console.log(Branch_id);
   console.log(Branch_name);
@@ -91,7 +114,7 @@ router.post("/branch", async (req, res) => {
 });
 
 //update the branch
-router.put("/branch/:id", async (req, res) => {
+router.put("/branch/:id",verifyToken, async (req, res) => {
   const Branchid = req.params.id;
   console.log(Branchid);
   try {
@@ -118,7 +141,7 @@ router.put("/branch/:id", async (req, res) => {
   }
 });
 
-router.delete("/branch/:id", async (req, res) => {
+router.delete("/branch/:id",verifyToken, async (req, res) => {
   const Branchid = req.params.id;
   console.log(Branchid);
   try {

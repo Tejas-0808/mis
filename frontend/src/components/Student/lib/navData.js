@@ -1,4 +1,3 @@
-import { FiSettings, FiInfo } from 'react-icons/fi';
 import { FaHome, FaUniversity } from 'react-icons/fa';
 import { AiFillProfile } from "react-icons/ai";
 import { BsQuestionSquareFill } from 'react-icons/bs';
@@ -7,24 +6,12 @@ import { HiIdentification } from "react-icons/hi";
 import { MdAccountCircle, MdEmail, MdOutlineFeedback, MdReport, MdOutlinePayment } from 'react-icons/md';
 import { TbBooks } from "react-icons/tb";
 import '../../../styles/sidebar.css';
-import CourseRegActivity from '../Coursereg/Courseregactivity';
 
 export const navData = [
     {
-        "title": "Admission",
-        "icon": <FaUniversity className="icons" />,
-        "childrens": [
-            {
-                "title": "My gaurdian",
-                "icon": <GiGuards className="icons" />,
-                "path": "/",
-            },
-            {
-                "title": "ID Card",
-                "icon": <HiIdentification className="icons" />,
-                "path": "/about"
-            }
-        ]
+        "title": "Home",
+        "icon": <FaHome className="icons" />,
+        "path": "/",
     },
     {
         "title": "Academics",
@@ -35,11 +22,11 @@ export const navData = [
                 "childrens": [
                     {
                         "title": "Course Registration",
-                        "path": <CourseRegActivity />
+                        "path": "/coursereg"
                     },
                     {
                         "title": "Registration Reciepts",
-                        "path": "academics/reciepts"
+                        "path": "/finalcoursesoffered"
                     },
                 ]
             },

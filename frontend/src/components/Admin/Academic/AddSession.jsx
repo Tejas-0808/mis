@@ -36,7 +36,9 @@ const handleChange = (e) => {
     ...prevState,
     session_name: session_name1
   }));
-      await axios.post("http://localhost:3001/session", Session);
+      await axios.post("http://localhost:3001/session", Session,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/session");
     } catch (err) {
       console.log(err);

@@ -3,7 +3,6 @@ import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
-// import { checkLinksExists } from '../../Userservice';
 // import { useEffect } from 'react';
 const pageid = "2";//IN FUTURE WE WILL FETCH IT FROM DATABASE 
 
@@ -35,11 +34,12 @@ function AddBos() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/b_o_s", Bos);
+      await axios.post("http://localhost:3001/b_o_s", Bos,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/bos");
     } catch (err) {
       console.log(err);
-      // setError(true)
     }
   };
 

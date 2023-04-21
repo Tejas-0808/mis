@@ -8,7 +8,9 @@ const B_o_s = () => {
 
     const fetchB_o_s = async () => {
         try{
-            const res = await axios.get("http://localhost:3001/b_o_s");
+            const res = await axios.get("http://localhost:3001/b_o_s",{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setB_o_s(res.data);
             console.log(res.data);
         }   catch(err){
@@ -25,8 +27,12 @@ const B_o_s = () => {
     const handleDelete= async (id) =>{
         try{
             console.log(id)
-            await axios.delete("http://localhost:3001/b_o_s/"+id)
-            const res = await axios.get("http://localhost:3001/b_o_s");
+            await axios.delete("http://localhost:3001/b_o_s/"+id,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
+            const res = await axios.get("http://localhost:3001/b_o_s",{
+                headers: { authorization: localStorage.getItem('token') }
+              });
               setB_o_s(res.data);
             // window.location.reload()
             // navigate("/"); 
