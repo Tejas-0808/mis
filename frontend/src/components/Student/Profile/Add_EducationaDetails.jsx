@@ -80,6 +80,7 @@ function Add_EducationDetails() {
           <Button variant="contained" style={btnstyle} onClick={handleClick} fullWidth>Add</Button>
       </CardContent>
     </Card>
+    </Box>
     )
 }
 
