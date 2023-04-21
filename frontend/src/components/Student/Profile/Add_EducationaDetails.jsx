@@ -37,15 +37,16 @@ function Add_EducationDetails() {
 
   console.log(Edudetails);
   return (
+    <Box>
     <Card sx={{ minWidth: 275 }}>
       <h1>Educational Detail</h1><hr />
       <CardContent>
-        <Box
+       
           component="form"
           sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
           noValidate
           autoComplete="off"
-        >
+        
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
             title="Student Educational Details"
@@ -65,9 +66,10 @@ function Add_EducationDetails() {
 
             <Button variant='contained' onClick={handleClick}>Add</Button>
           </div>
-        </Box>
       </CardContent>
     </Card>
+    </Box>
+
     )
 }
 
