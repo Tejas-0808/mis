@@ -17,7 +17,9 @@ const Session = () => {
 
   const fetchAllSession = async () => {
     try {
-        const res = await axios.get("http://localhost:3001/session");
+        const res = await axios.get("http://localhost:3001/session",{
+          headers: { authorization: localStorage.getItem('token') }
+        });
         setSession(res.data);
         console.log(res.data);
     } catch(err) {
@@ -36,7 +38,9 @@ const Session = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3001/session')
+    axios.get('http://localhost:3001/session',{
+      headers: { authorization: localStorage.getItem('token') }
+    })
       .then(response => {
         const data = response.data;
         // const updatedSessions = data.map(item => ({
@@ -53,8 +57,12 @@ const Session = () => {
   const handleDelete= async (id) =>{
     try{
       console.log(id)
-      await axios.delete("http://localhost:3001/session/"+id)
-      const res = await axios.get("http://localhost:3001/session");
+      await axios.delete("http://localhost:3001/session/"+id,{
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      const res = await axios.get("http://localhost:3001/session",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       console.log(res.data);
         setSession(res.data);
       // window.location.reload()

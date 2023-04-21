@@ -14,7 +14,9 @@ function UpdateMasterscheme() {
 
     const fetchMasterscheme = async () => {
         try {
-            const res = await axios.get("http://localhost:3001/masterscheme/" + C_id);
+            const res = await axios.get("http://localhost:3001/masterscheme/" + C_id ,{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setMasterscheme(res.data);
             console.log(Masterscheme);
         } catch (err) {
@@ -33,7 +35,9 @@ function UpdateMasterscheme() {
     const handleEdit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put("http://localhost:3001/masterscheme/" + C_id, Masterscheme);
+            await axios.put("http://localhost:3001/masterscheme/" + C_id, Masterscheme ,{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             navigate("/masterscheme");
         } catch (err) {
             console.log(err);

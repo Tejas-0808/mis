@@ -5,10 +5,10 @@ const util = require("util");
 const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
-
+const verifyToken = require("./verifyToken");
 //adding branch
 
-router.get("/structure", async (req, res) => {
+router.get("/structure",verifyToken, async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM structure");
@@ -24,7 +24,7 @@ router.get("/structure", async (req, res) => {
   }
 });
 
-router.get("/structure/:id", async (req, res) => {
+router.get("/structure/:id",verifyToken, async (req, res) => {
   const strId = req.params.id;
   try {
     (async () => {
@@ -42,7 +42,7 @@ router.get("/structure/:id", async (req, res) => {
   }
 });
 
-router.post("/structure", async (req, res) => {
+router.post("/structure", verifyToken, async (req, res) => {
   const {
     mastersch_id,
     course_category,
@@ -141,7 +141,7 @@ router.post("/structure", async (req, res) => {
   }
 });
 
-router.delete("/structure/:id", async (req, res) => {
+router.delete("/structure/:id",verifyToken, async (req, res) => {
   const strId = req.params.id;
   console.log(strId);
   try {
@@ -160,7 +160,7 @@ router.delete("/structure/:id", async (req, res) => {
   }
 });
 
-router.put("/structure/:id", async (req, res) => {
+router.put("/structure/:id", verifyToken, async (req, res) => {
   const strId = req.params.id;
   console.log(strId);
   try {

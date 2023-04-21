@@ -1,8 +1,15 @@
-import React from 'react'
-import { useState, } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Box, Button, Card, CardContent, CardHeader, TextField, } from "@mui/material";
+import React from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  TextField,
+} from '@mui/material';
 
 
 function Add_EducationDetails() {
@@ -36,40 +43,43 @@ function Add_EducationDetails() {
   };
 
   console.log(Edudetails);
+  const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
     <Box>
-    <Card sx={{ minWidth: 275 }}>
-      <h1>Educational Detail</h1><hr />
+    <Card sx={{ minWidth: 275, marginTop: 5 }}>
+      <CardHeader
+        sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
+        title="Educational Details"
+      />
       <CardContent>
        
           component="form"
-          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+          sx={{
+            '& .MuiTextField-root': {
+              m: 2,
+              width: '25ch',
+            },
+            border: '1px solid black',
+            borderRadius: '8px',
+            p: 4,
+            boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2)',
+          }}
           noValidate
           autoComplete="off"
-        
-          <CardHeader
-            style={{ backgroundColor: "lightblue" }}
-            title="Student Educational Details"
-          />
+        <TextField required type="number" label="Registration ID" name="Reg_id" onChange={handleChange} />
+          <TextField required type="text" label="Custom ID" name="Custom_Id" onChange={handleChange} />
+          <TextField required type="text" label="Exam Type " name="Exam_type" onChange={handleChange} />
+          <TextField required type="text" label="Month of passing" name="Month_of_Passing" onChange={handleChange} />
+          <TextField required type="number" label="Year of exam" name="Year_of_exam" onChange={handleChange} />
+          <TextField required type="text" label="Board " name="Board" onChange={handleChange} />
+          <TextField required type="text" label="School/College name" name="School_college_name" onChange={handleChange} />
+          <TextField required type="text" label="Address of school/college" name="Address_School_college" onChange={handleChange} />
+          <TextField required type="number" label="Marks Obtained" name="Marks_obtained" onChange={handleChange} />
+          <TextField required type="number" label="Out of " name="Out_of_marks" onChange={handleChange} />
 
-          <div className="form">
-            <TextField required type="number" label="Registration ID" name="Reg_id" onChange={handleChange} />
-            <TextField required type="text" label="Custom ID" name="Custom_Id" onChange={handleChange} />
-            <TextField required type="text" label="Exam Type " name="Exam_type" onChange={handleChange} />
-            <TextField required type="text" label="Month of passing" name="Month_of_Passing" onChange={handleChange} />
-            <TextField required type="number" label="Year of exam" name="Year_of_exam" onChange={handleChange} />
-            <TextField required type="text" label="Board " name="Board" onChange={handleChange} />
-            <TextField required type="text" label="School/College name" name="School_college_name" onChange={handleChange} />
-            <TextField required type="text" label="Address of school/college" name="Address_School_college" onChange={handleChange} />
-            <TextField required type="number" label="Marks Obtained" name="Marks_obtained" onChange={handleChange} />
-            <TextField required type="number" label="Out of " name="Out_of_marks" onChange={handleChange} />
-
-            <Button variant='contained' onClick={handleClick}>Add</Button>
-          </div>
+          <Button variant="contained" style={btnstyle} onClick={handleClick} fullWidth>Add</Button>
       </CardContent>
     </Card>
-    </Box>
-
     )
 }
 

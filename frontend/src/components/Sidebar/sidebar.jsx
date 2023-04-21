@@ -11,6 +11,7 @@ export default function SideBar() {
     }
 
     return (
+        
         <div className={open ? "sidebar" : "sidebarClosed"}>
             <button className="menuBtn" onClick={toggleOpen}>
                 {open ? <AiOutlineDoubleLeft size={20} /> : <AiOutlineDoubleRight size={20} />}

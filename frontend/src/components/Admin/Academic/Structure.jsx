@@ -7,7 +7,9 @@ const Structure = () => {
 
   const fetchAllStructure = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/structure");
+      const res = await axios.get("http://localhost:3001/structure",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setStructure(res.data);
       console.log(res.data);
     } catch (err) {
@@ -24,8 +26,12 @@ const Structure = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id);
-      await axios.delete("http://localhost:3001/structure/" + id);
-      const res = await axios.get("http://localhost:3001/structure");
+      await axios.delete("http://localhost:3001/structure/" + id,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
+      const res = await axios.get("http://localhost:3001/structure",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setStructure(res.data);
       // window.location.reload()
       // navigate("/");

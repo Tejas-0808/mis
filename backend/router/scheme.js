@@ -5,10 +5,10 @@ const util = require("util");
 const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
-
+const verifyToken = require("./verifyToken");
 //adding branch
 
-router.get("/scheme", async (req, res) => {
+router.get("/scheme",verifyToken, async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM scheme");
