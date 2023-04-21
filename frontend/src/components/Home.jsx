@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from './Navbar/navbar'
-import SideBar from './Sidebar/sidebar'
 import StudentDashboard from './Student/Dashboard/dashboard'
 import LoginForm from './Login/LoginForm'
 

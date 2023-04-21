@@ -1,17 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import SideBar from "../components/Student/sidebar";
-import Add_per_d from "../components/Student/Profile/AddPersonalDetails";
-import Student_info from "../components/Student/Profile/Contactdetails";
-import Add_C_d from "../components/Student/Profile/Add_contact_details";
-import Add_EducationDetails from "../components/Student/Profile/Add_EducationaDetails";
-import Educationdetails from "../components/Student/Profile/Educationdetails";
-import PersonalDetails from "../components/Student/Profile/Personaldetails";
-import AddPersonalDetails from "../components/Student/Profile/AddPersonalDetails";
-import Profile from "../components/Student/Profile/Profile";
-import Dashboard from "../components/Student/Dashboard/dashboard";
-import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
 
-function Studentlayout({ children }) {
+function Userslayout({ children }) {
     console.log(children);
     const StudentElement = children.StudentElemnt;
     return (
@@ -33,4 +23,4 @@ function Studentlayout({ children }) {
     );
 }
 
-export default Studentlayout;
+export default Userslayout;

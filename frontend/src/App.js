@@ -66,6 +66,8 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
 import Navigation from "./components/Navbar/navbar";
 import Studentlayout from "./layouts/Studentlayout";
+import StudentSectionlayout from "./layouts/StudentSectionlayout";
+
 
 const USER_TYPES = {
   STUDENTSECTION_USER: "2",
@@ -90,6 +92,7 @@ function App() {
 
           {/* <SideBar /> */}
           <Studentlayout><StudentElement /></Studentlayout>
+          <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout>
           <Routes>
             {/* <Route path="/" element={<Branch />} /> */}
             {/* <Route path="/edit/:id" element={<Edit/>}/> */}
@@ -121,8 +124,8 @@ function App() {
             <Route path="/student" element={<Student />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/newstudent" element={<NewStudent />} />
-            <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
-            <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} />
+            {/* <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
+            <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} /> */}
             {/* <Route path="/city" element={<City/>}/>
           <Route path="/addcity" element={<Addcity/>}/> */}
             <Route path="/state" element={<State />} />
