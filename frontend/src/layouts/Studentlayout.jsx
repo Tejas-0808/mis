@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import SideBar from "../components/Sidebar/sidebar";
+import { Routes, Route } from "react-router-dom";
+import SideBar from "../components/Student/sidebar";
 import Add_per_d from "../components/Student/Profile/AddPersonalDetails";
 import Student_info from "../components/Student/Profile/Contactdetails";
 import Add_C_d from "../components/Student/Profile/Add_contact_details";

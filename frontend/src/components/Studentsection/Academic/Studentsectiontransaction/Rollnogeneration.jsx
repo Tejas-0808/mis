@@ -98,7 +98,6 @@ function RollNoGeneration() {
 
   const generate = async (rollGen, mapData) => {
 
-
     const { admission_batch, department, degree, semester } = rollGen;
 
 
@@ -106,7 +105,6 @@ function RollNoGeneration() {
 
     const objects = [];
 
-    // const nameroll = {};
     for (var i = 0; i < SData.length; i++) {
 
       var d = "";
@@ -166,20 +164,6 @@ function RollNoGeneration() {
     }
 
     setData(objects);
-
-    // console.log(nameroll);
-    // const keys = Object.keys(nameroll);
-    // console.log(keys);
-
-    // for(var i = 0; i < names.length; i++) {
-    //   try {
-    //     (async() => {
-    //       await axios.post("http://localhost:3001/rollgen",nameroll[i]);
-    //     })()
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
   };
 
 
