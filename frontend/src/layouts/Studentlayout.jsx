@@ -11,15 +11,17 @@ import Profile from "../components/Student/Profile/Profile";
 import Dashboard from "../components/Student/Dashboard/dashboard";
 import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
 import StudentDashboard from "../components/Student/StudentDashboard";
-function Studentlayout({ children }) {
-    console.log(children);
-    const StudentElement = children.StudentElemnt;
+function Studentlayout({ StudentElement }) {
+    // console.log(children);
+    // const StudentElement = children.StudentElement;
+    console.log(StudentElement);
+
 return (
 	<>
 	<SideBar />
 	<Routes>
 
-    {/* <Route path="/student" element={<StudentElemen  t><Student /></StudentElement>} /> */}
+    {/* <Route path="/student" element={<StudentElemen t><Student /></StudentElement>} /> */}
           <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<StudentElement><Profile /></StudentElement>} />
           <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />

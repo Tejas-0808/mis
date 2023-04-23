@@ -4,7 +4,6 @@ import Navigation from './Navbar/navbar'
 import SideBar from './Sidebar/sidebar'
 import StudentDashboard from './Student/Dashboard/dashboard'
 import LoginForm from './Login/LoginForm'
-import Sidebar from './components/Sidebar'
 
 
 function Home() {

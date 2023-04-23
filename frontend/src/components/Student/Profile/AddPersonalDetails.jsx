@@ -87,7 +87,7 @@ function Add_per_d() {
         title="Student Personal Details"
       />
       <CardContent>
-        <Box
+        <Box style={{maxHeight: 400, overflow: 'auto'}}
           component="form"
           sx={{
             '& .MuiTextField-root': {

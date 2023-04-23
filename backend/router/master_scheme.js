@@ -9,7 +9,7 @@ const verifyToken = require("./verifyToken");
 
 //adding branch
 
-router.get("/master_scheme",verifyToken, async (req, res) => {
+router.get("/master_scheme", async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM master_scheme");

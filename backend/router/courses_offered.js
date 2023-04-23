@@ -12,7 +12,7 @@ const query = util.promisify(pool.query).bind(pool);
 
 router.get("/courses_offered", async (req,res)=> {
     try{
-
+ 
         (async()=>{
             
             const data = await query("SELECT * FROM courses_offered");

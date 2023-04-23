@@ -65,7 +65,7 @@ const SecondaryNavbar = () => {
                         {page.name}
                     </ListItem>
                 ))}
-            </List>
+            </List> 
             {currentPage}
         </div>
     );

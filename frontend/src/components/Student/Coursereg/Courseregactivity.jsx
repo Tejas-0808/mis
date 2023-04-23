@@ -39,7 +39,9 @@ const CourseRegActivity = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/branch")
+            .get("http://localhost:3001/branch"  ,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
             .then((response) => {
                 setbranch(response.data);
 
@@ -58,7 +60,9 @@ const CourseRegActivity = () => {
             });
 
         axios
-            .get("http://localhost:3001/session")
+            .get("http://localhost:3001/session" ,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
             .then((response) => {
                 setsession(response.data);
             })

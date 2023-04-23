@@ -93,9 +93,9 @@ import HomeStudentSection from "./components/HomeStudentSection";
 import axios from "axios";
 import Protected from "./components/Protected";
 import SideBar from "./components/Sidebar/sidebar";
-import Sidebar from './components/components/Sidebar'
 import Navigation from "./components/Navbar/navbar";
 import Studentlayout from "./layouts/Studentlayout";
+import Batchallotment from "./components/Users/Academic/Studentsectiontransaction/Batchallotment";
 
 const USER_TYPES = {
   STUDENTSECTION_USER: "2",
@@ -119,7 +119,8 @@ function App() {
       <div className="d-flex">
 
       {/* <SideBar /> */}
-      <Studentlayout><StudentElement/></Studentlayout>
+      {/* <Studentlayout><StudentElement/></Studentlayout> */}
+      <Studentlayout StudentElement={StudentElement}/>
         <Routes>
           {/* <Route path="/" element={<Branch />} /> */}
           {/* <Route path="/edit/:id" element={<Edit/>}/> */}
@@ -213,8 +214,8 @@ function App() {
           <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
           <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
-          <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-          <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
+            <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
+            <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
           <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
           <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
           <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
@@ -232,6 +233,7 @@ function App() {
 
           
           <Route path="/ssdashboard" element={<ssdashboard />} />
+          <Route path="/batchallotment" element={<Batchallotment/>} />
 
 
 
@@ -277,7 +279,7 @@ function UserElement({ children }) {
 }
 
 function StudentElement({ children }) { 
-  if (CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
+  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER || CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
     return <>{children}</>;
   } else {
     return <Navigate to={"/"} />
