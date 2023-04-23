@@ -68,12 +68,11 @@ import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffe
 
 
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
-import HomeStudentSection from "./components/HomeStudentSection";
+// import HomeStudentSection from "./components/HomeStudentSection";
 
 import axios from "axios";
 import Protected from "./components/Protected";
-import SideBar from "./components/Sidebar/sidebar";
-import Sidebar from './components/components/Sidebar'
+// import SideBar from "./components/Sidebar/sidebar";
 import Navigation from "./components/Navbar/navbar";
 import Studentlayout from "./layouts/Studentlayout";
 import Batchallotment from "./components/Users/Academic/Studentsectiontransaction/Batchallotment";

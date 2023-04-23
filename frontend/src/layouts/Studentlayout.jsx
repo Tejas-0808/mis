@@ -10,7 +10,7 @@ import AddPersonalDetails from "../components/Student/Profile/AddPersonalDetails
 import Profile from "../components/Student/Profile/Profile";
 import Dashboard from "../components/Student/Dashboard/dashboard";
 import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
-import StudentDashboard from "../components/Student/StudentDashboard";
+// import StudentDashboard from "../components/Student/StudentDashboard";
 function Studentlayout({ StudentElement }) {
     // console.log(children);
     // const StudentElement = children.StudentElement;
@@ -32,7 +32,7 @@ return (
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
           <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
           <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-          <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} />
+          {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
 	</Routes>
 	</>
 );
