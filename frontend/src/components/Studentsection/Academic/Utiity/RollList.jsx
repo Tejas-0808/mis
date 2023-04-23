@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-
+import { Box, Button, Card, CardContent, CardHeader, TextField, } from "@mui/material";
 
 const Rolllist = () => {
 
@@ -99,6 +99,20 @@ const [batch, setbatch] = useState([]);
 
   console.log(Rolllists);
   return (
+    <Card sx={{ minWidth: 275 }}>
+      <h1>&nbsp;&nbsp;Utility</h1><hr />
+      <CardContent>
+        <Box
+          component="form"
+          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+          noValidate
+          autoComplete="off"
+        >
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Roll List"
+          />
+
     <div>
       <select
         name="Degree"
@@ -157,7 +171,9 @@ const [batch, setbatch] = useState([]);
           </option>
         ))}
       </select>
-      <button onClick={fetchStudents}>fetch</button>
+      {/* <button onClick={fetchStudents}>fetch</button> */}
+      &nbsp;&nbsp;
+      <Button variant="contained" onClick={fetchStudents}size="medium" >Fetch</Button>
       <br></br>
       <br></br>
       {studentlist.map((student) => (
@@ -172,6 +188,9 @@ const [batch, setbatch] = useState([]);
               </table>
             ))}
     </div>
+    </Box>
+    </CardContent>
+    </Card>
   )
 }
 

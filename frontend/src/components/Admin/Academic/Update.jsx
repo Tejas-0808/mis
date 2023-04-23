@@ -19,7 +19,9 @@ function Update() {
 
   const fetchBranch = async () => {
     try {
-        const res = await axios.get("http://localhost:3001/branch/"+ B_id);
+        const res = await axios.get("http://localhost:3001/branch/"+ B_id,{
+          headers: { authorization: localStorage.getItem('token') }
+        });
         setBranch(res.data);
         // console.log(res.data+"!");
         console.log(branch);
@@ -42,17 +44,15 @@ function Update() {
   const handleClick = async (e) => {
         e.preventDefault();
         try {
-          await axios.put("http://localhost:3001/branch/" + B_id, branch);
+          await axios.put("http://localhost:3001/branch/" + B_id, branch,{
+            headers: { authorization: localStorage.getItem('token') }
+          });
           navigate("/branch");
         } catch (err) {
           console.log(err);
-          // setError(true)
         }
       };
 
-  // console.log(branch[0]);
-  // let bro =  branch[0];
-  console.log(branch[0]);
   return (
     <div className="form">
       Update Branch

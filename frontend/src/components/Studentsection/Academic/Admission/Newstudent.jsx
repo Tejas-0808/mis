@@ -4,11 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, Button, TextField, InputLabel, FormControl } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
+import {Card, CardContent, CardHeader} from "@mui/material";
 
 function NewStudent() {
   const [personaldetails, setPersonalDetails] = useState({
@@ -277,25 +278,42 @@ function NewStudent() {
   };
   
   return (
-    <Box
+    <Card sx={{ minWidth: 275 }}>
+      {/* <h1>Educational Detail</h1><hr /> */}
+      <CardContent>
+        <Box
+          component="form"
+          sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" }, whiteSpace: 'normal', border: 1, alignContent:'center', justifyContent:'center', display:'-ms-inline-grid' }}
+          noValidate
+          autoComplete="off"
+        >
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Academic->Admission->New Student"
+          />
+    <Box display="block"
       component="form"
       sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"
     >
-      <div className="form">
-        <h1>NEW STUDENT ENTRY</h1>
+      <div>
+       
+        <h1 style={{ fontSize: "30px",marginRight: "1000px" }}>NEW STUDENT ENTRY</h1>
         <hr></hr>
 
         <TextField
           required
           type="number"
+          id="outlined-basic"
           variant="outlined"
           label="Registration ID"
           name="Reg_Id"
           onChange={handleChange}
         />
+
         <TextField
+          id="outlined-basic"
           required
           variant="outlined"
           name="First_Name"
@@ -342,6 +360,7 @@ function NewStudent() {
           name="D_O_B"
           type="date"
           onChange={handleChange}
+          sx={{ height: 45}}
           // defaultValue="2017-05-24"
           // className={classes.textField}
           InputLabelProps={{
@@ -357,7 +376,8 @@ function NewStudent() {
           name="Blood_group"
           onChange={handleChange}
         />
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+
+        <FormControl sx={{ m: 1, minWidth: "25ch"}}>
           <InputLabel id="demo-simple-select-helper-label">Caste</InputLabel>
           <Select
             required
@@ -367,6 +387,7 @@ function NewStudent() {
             id="demo-simple-select-helper"
             label="Caste"
             onChange={handleChange}
+            sx={{ height: 45}}
           >
             <MenuItem value="">
               <em>-- Select Caste --</em>
@@ -379,7 +400,7 @@ function NewStudent() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch"}}>
           <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
           <Select
             required
@@ -388,6 +409,7 @@ function NewStudent() {
             labelId="demo-simple-select-helper-label"
             label="Category"
             onChange={handleChange}
+            sx={{ height: 45}}
           >
             <MenuItem value="">
               <em>-- Select Category --</em>
@@ -400,7 +422,7 @@ function NewStudent() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: 220 }}>
           <InputLabel id="demo-simple-select-helper-label">Religion</InputLabel>
           <Select
             required
@@ -409,6 +431,7 @@ function NewStudent() {
             labelId="demo-simple-select-helper-label"
             label="Religion"
             onChange={handleChange}
+            sx={{ height: 45}}
           >
             <MenuItem value="">
               <em>-- Select Religion --</em>
@@ -432,6 +455,7 @@ function NewStudent() {
                 checked={selectedMS === "Married"}
                 name="Marital_Status"
                 onChange={handleCheckboxChange}
+                
               />
             }
             label="Married"
@@ -832,6 +856,10 @@ function NewStudent() {
         </Button>
       </div>
     </Box>
+    </Box>
+      </CardContent>
+    </Card>
+ 
   );
 }
 

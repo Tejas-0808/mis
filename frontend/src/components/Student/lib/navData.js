@@ -1,4 +1,3 @@
-import { FiSettings, FiInfo } from 'react-icons/fi';
 import { FaHome, FaUniversity } from 'react-icons/fa';
 import { AiFillProfile } from "react-icons/ai";
 import { BsQuestionSquareFill } from 'react-icons/bs';
@@ -10,20 +9,9 @@ import '../../../styles/sidebar.css';
 
 export const navData = [
     {
-        "title": "Admission",
-        "icon": <FaUniversity className="icons" />,
-        "childrens": [
-            {
-                "title": "My gaurdian",
-                "icon": <GiGuards className="icons" />,
-                "path": "/"
-            },
-            {
-                "title": "ID Card",
-                "icon": <HiIdentification className="icons" />,
-                "path": "/about"
-            }
-        ]
+        "title": "Home",
+        "icon": <FaHome className="icons" />,
+        "path": "/",
     },
     {
         "title": "Academics",
@@ -34,11 +22,11 @@ export const navData = [
                 "childrens": [
                     {
                         "title": "Course Registration",
-                        "path": "academics/course-registration"
+                        "path": "/coursereg"
                     },
                     {
                         "title": "Registration Reciepts",
-                        "path": "academics/reciepts"
+                        "path": "/finalcoursesoffered"
                     },
                 ]
             },
@@ -106,7 +94,7 @@ export const navData = [
         "childrens": [
             {
                 "title": "Fill Profile",
-                "path": "/fill_profile"
+                "path": "/student"
             },
             {
                 "title": "Settings",

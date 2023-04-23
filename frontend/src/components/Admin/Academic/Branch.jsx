@@ -6,10 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 const Branch = () => {
 
   const [branch, setBranch] = useState([]);
-
+  const token = localStorage.getItem('token')
   const fetchAllBranch = async () => {
     try {
-        const res = await axios.get("http://localhost:3001/branch");
+        const res = await axios.get("http://localhost:3001/branch",{
+          headers: { authorization: token  }
+        });
         setBranch(res.data);
         console.log(res.data);
     } catch(err) {
@@ -27,9 +29,13 @@ const Branch = () => {
   
   const handleDelete= async (id) =>{
     try{
-      console.log(id)
-      await axios.delete("http://localhost:3001/branch/"+id)
-      const res = await axios.get("http://localhost:3001/branch");
+      console.log(id);
+      await axios.delete("http://localhost:3001/branch/"+id,{
+        headers: { authorization: token }
+      });
+      const res = await axios.get("http://localhost:3001/branch",{
+        headers: { authorization: token }
+      });
         setBranch(res.data);
       // window.location.reload()
       // navigate("/");

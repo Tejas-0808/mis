@@ -7,7 +7,7 @@ const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
 
 
-
+ 
 //adding branch
 
 router.get("/privilege", async (req,res)=> {
@@ -18,10 +18,9 @@ router.get("/privilege", async (req,res)=> {
             const data = await query("SELECT * FROM privilege");
             const result = await data;
             return res.json(result);
-
             // return res.json(data);
             console.log(result);
-            
+        
         })()
     }
     catch (err) {
@@ -59,7 +58,7 @@ router.post('/privilege', async (req, res) => {
                           res.status(200).json({msg: "privilege added successfully"})
                         }
                         finally{
-                            
+                             
                         } 
                     })()
                 }

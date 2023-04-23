@@ -5,18 +5,16 @@ const util = require("util");
 const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
+const verifyToken = require("./verifyToken");
 
 //adding branch
 
-router.get("/master_scheme", async (req, res) => {
+router.get("/master_scheme",verifyToken, async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM master_scheme");
       const result = await data;
       return res.json(result);
-
-      // return res.json(data);
-      console.log(result);
     })();
   } catch (err) {
     console.log(err);
@@ -26,7 +24,7 @@ router.get("/master_scheme", async (req, res) => {
 
 //get particular religion
 
-router.get("/masterscheme/:id", async (req, res) => {
+router.get("/masterscheme/:id",verifyToken, async (req, res) => {
   const masterschemeId = req.params.id;
   try {
     (async () => {
@@ -44,7 +42,7 @@ router.get("/masterscheme/:id", async (req, res) => {
   }
 });
 
-router.post("/master_scheme", async (req, res) => {
+router.post("/master_scheme",verifyToken, async (req, res) => {
   const { mastersch_id, master_scheme, from_year, to_year } = req.body;
 
   if (!mastersch_id || !master_scheme || !from_year || !to_year) {
@@ -72,7 +70,8 @@ router.post("/master_scheme", async (req, res) => {
             );
             console.log(data[0]);
             res.status(200).json({ msg: "Scheme added successfully" });
-          } finally {
+          } catch {
+            
           }
         })();
       } else {
@@ -84,7 +83,7 @@ router.post("/master_scheme", async (req, res) => {
   }
 });
 
-router.delete("/master_scheme/:id", async (req, res) => {
+router.delete("/master_scheme/:id",verifyToken, async (req, res) => {
   const masterschemeid = req.params.id;
   console.log(masterschemeid);
   try {
@@ -103,7 +102,7 @@ router.delete("/master_scheme/:id", async (req, res) => {
   }
 });
 
-router.put("/masterscheme/:id", async (req, res) => {
+router.put("/masterscheme/:id",verifyToken, async (req, res) => {
   const masterschemeId = req.params.id;
   console.log(masterschemeId);
   try {

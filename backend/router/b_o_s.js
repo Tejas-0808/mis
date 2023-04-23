@@ -5,10 +5,11 @@ const util = require("util");
 const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
+const verifyToken = require("./verifyToken");
 
 //adding branch
 
-router.get("/b_o_s", async (req, res) => {
+router.get("/b_o_s",verifyToken, async (req, res) => {
   try {
     (async () => {
       const data = await query("SELECT * FROM departments");
@@ -26,7 +27,7 @@ router.get("/b_o_s", async (req, res) => {
 
 //get particular religion
 
-router.get("/b_o_s/:id", async (req, res) => {
+router.get("/b_o_s/:id",verifyToken, async (req, res) => {
   const BosId = req.params.id;
   try {
     (async () => {
@@ -42,7 +43,7 @@ router.get("/b_o_s/:id", async (req, res) => {
 })
 
 
-router.post("/b_o_s", async (req, res) => {
+router.post("/b_o_s",verifyToken, async (req, res) => {
   const { dept_id, department } = req.body;
 
   if (!dept_id || !department) {
@@ -79,5 +80,6 @@ router.post("/b_o_s", async (req, res) => {
     console.log(err);
   }
 });
+
 
 module.exports = router;

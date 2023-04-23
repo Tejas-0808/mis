@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SidebarItem from "./SidebarItem";
-import { navData } from '../Student/lib/navData';
+import SidebarItem from "../Sidebar/SidebarItem";
+import { navData } from './lib/navData';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 import '../../styles/sidebar.css';
 
@@ -11,6 +11,7 @@ export default function SideBar() {
     }
 
     return (
+
         <div className={open ? "sidebar" : "sidebarClosed"}>
             <button className="menuBtn" onClick={toggleOpen}>
                 {open ? <AiOutlineDoubleLeft size={20} /> : <AiOutlineDoubleRight size={20} />}

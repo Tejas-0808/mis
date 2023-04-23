@@ -7,9 +7,7 @@ const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
 
 
-
 //adding branch
-
 router.get("/state", async (req,res)=> {
     try{
 

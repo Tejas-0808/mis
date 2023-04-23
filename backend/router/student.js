@@ -5,13 +5,16 @@ const util = require('util');
 const { pool } = require('../db/mySql');
 const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
+const verifyToken = require('./login')
 
-router.get("/student", async (req,res)=> {
+router.get("/student/:roll_no", verifyToken, async (req,res)=> {
     try{
-
+        const roll_no = req.params.roll_no;
+         //const roll_no = 'BE19F01F018'
+        console.log(roll_no);
         (async()=>{
             
-            const data = await query("SELECT * FROM student_info");
+            const data = await query("SELECT * FROM student_info where roll_no=?",roll_no);
             const result = await data;
             console.log(result);
             return res.json(result);

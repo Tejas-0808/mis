@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import { Box, Button, Card, CardContent, CardHeader, TextField, } from "@mui/material";
 
 
 function IdentityCard() {
@@ -93,13 +94,24 @@ function IdentityCard() {
   };
 
   return (
+    <Card sx={{ minWidth: 275 }}>
+      <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
+      <CardContent>
+        <Box
+          component="form"
+          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+          noValidate
+          autoComplete="off"
+        >
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Identity Card Generation"
+          />
+
     <><div>
-      <h1>
-        Identity Card Generation
-      </h1>
       &nbsp;&nbsp;
       <label>
-        Degree:
+        {/* Degree: */}
         <select
           name="Degree"
           placeholder="Select Degree"
@@ -115,7 +127,7 @@ function IdentityCard() {
       </label>
       &nbsp;&nbsp;
       <label>
-        Branch:
+        {/* Branch: */}
         <select
           name="Branch"
           placeholder="Select Branch"
@@ -131,7 +143,7 @@ function IdentityCard() {
       </label>
       &nbsp;&nbsp;
       <label>
-        Admission Batch:
+        {/* Admission Batch: */}
         <select
           name="Batch"
           placeholder="Select Admission Batch"
@@ -147,9 +159,10 @@ function IdentityCard() {
       </label>
 
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" className="Generate" value="Get" onClick={fetchStudents}>
+      {/* <button type="button" className="Generate" value="Get" onClick={fetchStudents}>
         Generate
-      </button>
+      </button> */}
+       <Button variant="contained" className="Generate" value="Get" onClick={fetchStudents}size="medium" >Generate</Button>
       <div>
       {studentlist.map((student) => (
               <table>
@@ -182,6 +195,9 @@ function IdentityCard() {
 
 
     </>
+    </Box>
+      </CardContent>
+    </Card>
   )
 }
 

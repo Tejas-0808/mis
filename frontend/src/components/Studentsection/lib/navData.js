@@ -1,4 +1,3 @@
-import { FiSettings, FiInfo } from 'react-icons/fi';
 import { FaHome, FaUniversity } from 'react-icons/fa';
 import { AiFillProfile } from "react-icons/ai";
 import { BsQuestionSquareFill } from 'react-icons/bs';
@@ -10,155 +9,92 @@ import '../../../styles/sidebar.css';
 
 export const navData = [
     {
-        "title": "Configuration",
-        "icon": <FaUniversity className="icons" />,
+        "title": "Home",
+        "icon": <FaHome className="icons" />,
+        "path": "/",
+    },
+    {
+        "title": "Academics",
+        "icon": <MdAccountCircle className="icons" />,
         "childrens": [
             {
-                "title": "Create Notice",
-                "icon": <GiGuards className="icons" />,
-                
+                "title": "Course Registration",
+                "childrens": [
+                    {
+                        "title": "Course Registration",
+                        "path": "/coursereg"
+                    },
+                    {
+                        "title": "Registration Reciepts",
+                        "path": "/finalcoursesoffered"
+                    },
+                ]
+            },
+            {
+                "title": "Time Table",
+                "path": "/academic/time-table"
+            },
+            {
+                "title": "Attendance",
+                "path": "/academic/attendance"
+            },
+            {
+                "title": "Academic Calendar",
+                "path": "/academic/calender",
             },
         ]
     },
     {
-        "title": "Academic",
-        "icon": <MdAccountCircle className="icons" />,
+        "title": "Fees Payment",
+        "icon": <MdOutlinePayment className="icons" />,
         "childrens": [
             {
-                "title": "Masters",
-                "childrens": [
-                    {
-                        "title": "Payment Type",
-                       
-                    },
-                    {
-                        "title": "Caste",
-                        "path": "caste"
-                    },
-                    {
-                        "title": "Category",
-                        "path": "category"
-                    },
-                    {
-                        "title": "Religion",
-                        "path": "religion"
-                    },
-                    {
-                        "title": "Nationality",
-                        
-                    },
-                    {
-                        "title": "City",
-                        "path": "city"
-                    },
-                    {
-                        "title": "District",
-                        "path": "district"
-                    },
-                    {
-                        "title": "State",
-                        "path": "state"
-                    },
-                ]
+                "title": "Fees Payment",
+                "path": "/settings/fees/academic-payment"
             },
             {
-                "title": "Student Section-Transaction",
-                "childrens": [
-                    {
-                        "title": "Roll Number Generation",
-                       
-                    }, 
-                ]
+                "title": "Exam Fees",
+                "path": "/settings/fees/exam"
             },
             {
-                "title": "Fees Collection",
+                "title": "Re Exam Fees",
+                "path": "/settings/fees/re-exam"
             },
             {
-                "title": "Admission",
-                "childrens": [
-                    {
-                        "title": "New Student",
-                        "path": "newstudent"
-                    },
-                    {
-                        "title": "Student Information",
-                       
-                    },
-                    {
-                        "title": "Student Detail Search",
-                       
-                    },
-                    {
-                        "title": "Admission Cancel",
-                        
-                    },
-                    {
-                        "title": "Student Information lock",
-                        
-                    },
-                    {
-                        "title": "Student Admission Form",
-                       
-                    },
-        
-                ]
-            },
-            {
-                "title": "Academic Reports",
-            
-                "childrens": [
-                    {
-                        "title": "Course Registration Report",
-                        
-                    },
-                    {
-                        "title": "Admission Regsistration ",
-                        
-                    },
-                    {
-                        "title": "Identity Card",
-                       
-                    },
-                    {
-                        "title": "Certificate",
-                        
-                    },
-                    {
-                        "title": "Student Roll List",
-                        
-                    },
-        
-                ]
-            },
-            {
-                "title": "Fees Defination",
-              
-            },
-            {
-                "title": "Utility",
-              
-                "childrens": [
-                    {
-                        "title": "Bulk Update Of Photo",
-                        
-                    },
-                    {
-                        "title": "Branch Change ",
-                        "path": "branchchange"
-                    },
-                ]
-            },
-
+                "title": "Payment Reciepts",
+                "path": "/settings/fees/reciepts"
+            }
         ]
     },
-  
+    {
+        "title": "Examination",
+        "icon": <TbBooks className="icons" />,
+        "childrens": [
+            {
+                "title": "Exam Registration",
+                "path": "/exam-registration"
+            },
+            {
+                "title": "Start Exam",
+                "path": "/start-exam"
+            },
+            {
+                "title": "Re- Exam Registration",
+                "path": "/re-exam-registration"
+            },
+            {
+                "title": "Grade Cards",
+                "path": "/grade-cards"
+            }
+        ]
+    },
     {
         "title": "Profile",
         "icon": <AiFillProfile className="icons" />,
         "childrens": [
             {
                 "title": "Fill Profile",
-               // "path": "/fill_profile"
+                "path": "/student"
             },
             {
                 "title": "Settings",
@@ -184,7 +120,11 @@ export const navData = [
             }
         ]
     },
-  
+    {
+        "title": "DigiLocker",
+        "icon": <GiLockedDoor className="icons" />,
+        "path": "/support"
+    },
     {
         "title": "Institute Level FeedBack",
         "icon": <MdOutlineFeedback className="icons" />,
