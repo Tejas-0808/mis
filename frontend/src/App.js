@@ -67,6 +67,7 @@ import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffe
 import Navigation from "./components/Navbar/navbar";
 import Studentlayout from "./layouts/Studentlayout";
 import StudentSectionlayout from "./layouts/StudentSectionlayout";
+import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
 
 
 const USER_TYPES = {
@@ -175,8 +176,8 @@ function App() {
             <Route path="/rolllist" element={<Rolllist />} />
             <Route path="/branchchange" element={<Branchchange />} />
             <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
-            {/* <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
-          <Route path="/fill_profile" element={<Add_per_d />} />
+            <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
+          {/* <Route path="/fill_profile" element={<Add_per_d />} />
           <Route path="/profile" element={<StudentElement><Profile /></StudentElement>} />
           <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
           <Route path="/Add_contact_details" element={<StudentElement><Add_C_d /></StudentElement>} />
@@ -184,9 +185,9 @@ function App() {
           <Route path="/Education_details" element={<StudentElement><Educationdetails /></StudentElement>} />
           <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
-          <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
-          <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-          <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
+          <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} /> */}
+          <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} /> 
+          {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} />  */}
             <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
             <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
             <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
