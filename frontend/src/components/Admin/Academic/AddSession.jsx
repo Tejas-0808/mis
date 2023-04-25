@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from "@mui/material/TextField";
+import {Card, CardContent, CardHeader} from "@mui/material";
 
 
 function AddSession() {
@@ -60,15 +61,27 @@ const handleChange = (e) => {
     // </select>
     //   <input type="number" placeholder="From Year" name="year" onChange={handleChange}/>
     //   <button onClick={handleClick}>Add</button>
-    // </div>
+    // </div> 
     <Box
+  component="form"
+  sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+  noValidate
+  autoComplete="off">
+  <Card sx={{ minWidth: 275 }}>
+    <CardContent>
+        <CardHeader
+          title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px" }}>Add Session</h1>}
+          style={{ backgroundColor: "lightblue",padding: "1px"  }}
+        />
+        <br></br>
+    {/* <Box
       component="form"
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
       autoComplete="off"
-    >
+    > */}
     <TextField
     required
     type="text"
@@ -77,7 +90,7 @@ const handleChange = (e) => {
     name="session_id"
     onChange={handleChange}
   />
-    <FormControl sx={{ m: 1, minWidth: 150 }}>
+    <FormControl sx={{ m: 1, minWidth:"25ch" }}>
       <InputLabel id="demo-simple-select-label">Term</InputLabel>
       <Select
         required
@@ -87,6 +100,7 @@ const handleChange = (e) => {
         //value={term}
         label="Term"
         onChange={handleChange}
+        sx={{ height: 45}}
       >
         <MenuItem value="odd">ODD</MenuItem>
         <MenuItem value="even">EVEN</MenuItem>
@@ -100,10 +114,18 @@ const handleChange = (e) => {
         name="year"
         onChange={handleChange}
       />
-   <Button variant="contained" onClick={handleClick}>Add</Button>
+      
+   <Button variant="contained"
+    onClick={handleClick}
+    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 45 }} >Add</Button>
+  
+   </CardContent>
+  </Card>
+
 
   </Box>
   )
 }
 
 export default AddSession
+

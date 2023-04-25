@@ -10,7 +10,7 @@ const verifyToken = require('./login')
 router.get("/student/:roll_no", verifyToken, async (req,res)=> {
     try{
         const roll_no = req.params.roll_no;
-        // const roll_no = 'BE19F01F018'
+         //const roll_no = 'BE19F01F018'
         console.log(roll_no);
         (async()=>{
             

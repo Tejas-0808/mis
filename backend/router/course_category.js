@@ -18,7 +18,7 @@ router.get("/course_category", async (req,res)=> {
             const data = await query("SELECT * FROM course_category");
             const result = await data;
             return res.json(result);
-
+ 
             // return res.json(data);
             console.log(result);
             

@@ -170,6 +170,7 @@ function Schemeallotment() {
           <InputLabel id="demo-simple-select-label">Degree</InputLabel>
           <Select
             labelId="demo-simple-select-label"
+            name="Degree"
             placeholder="Select Degree"
             className="form-select-degree"
             onChange={handleChange}

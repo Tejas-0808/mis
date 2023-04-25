@@ -35,6 +35,11 @@ router.post("/confirmcourse", async(req, res)=>{
     const sem = req.body.semester;
     const session = req.body.session;
     const courses = req.body.courses;
+    console.log(s_no);
+    console.log(roll);
+    console.log(sem);
+    console.log(session);
+    console.log(courses);
 
 
     // if (!s_no || !roll || !sem || !session || !courses) {
@@ -55,8 +60,7 @@ router.post("/confirmcourse", async(req, res)=>{
             if (!userExists) {
             (async () => {
                 try {
-                const data = await query("INSERT INTO courses_taken VALUES(?,?,?,?,?)", [
-                    s_no,
+                const data = await query("INSERT INTO courses_taken (`roll_no`, `semester`, `session`, `courses`) VALUES(?,?,?,?)", [
                     roll,
                     sem,
                     session,

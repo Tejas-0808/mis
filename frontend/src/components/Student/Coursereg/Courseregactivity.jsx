@@ -36,10 +36,30 @@ const CourseRegActivity = () => {
         }
     });
 
+    const sem =  fetchcourses.semester;
+    const Session =  fetchcourses.session.slice(2);
+    const courses = {
+        BS: [],
+        ES: [],
+        HS: [],
+        PC: [],
+        PE: [],
+        OE: [],
+        MC: [],
+        PR: [],
+        AB: []
+    }
+
+    console.log(sem);
+    console.log(Session);
+    console.log(courses);
 
     useEffect(() => {
+        console.log(sem);
         axios
-            .get("http://localhost:3001/branch")
+            .get("http://localhost:3001/branch"  ,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
             .then((response) => {
                 setbranch(response.data);
 
@@ -58,66 +78,24 @@ const CourseRegActivity = () => {
             });
 
         axios
-            .get("http://localhost:3001/session")
+            .get("http://localhost:3001/session" ,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
             .then((response) => {
                 setsession(response.data);
             })
             .catch((error) => {
                 console.error(error);
             });
-    }, [])
 
-    const handleChange = (e) => {
-        setfetchcourses((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }
-
-    const fetchCourses = async () => {
-        // e.preventDefault();
-        try {
-            const res = await axios.post("http://localhost:3001/courseactivity", fetchcourses)
-            setCourseList(res.data);
-            // console.log(courselist);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-
-
-    function handleCheckboxChange(event) {
-        const { value, checked } = event.target;
-
-        if (checked) {
-            setCheckedValues([...checkedValues, value]);
-        } else {
-            setCheckedValues(checkedValues.filter((val) => val !== value));
-        }
-    }
-
-    // console.log(checkedValues)
-
-    const handleConfirm = async (fetchCourses, courselist, checkedValues) => {
-        const sem = await fetchCourses.semester;
-        const session = await fetchCourses.session.slice(2);
-        const courses = {
-            BS: [],
-            ES: [],
-            HS: [],
-            PC: [],
-            PE: [],
-            OE: [],
-            MC: [],
-            PR: [],
-            AB: []
-        }
-
+            setCourseTaken(prev => ({ ...prev, sr_no: 1, roll_no: "BE19F01F018", semester: sem, session: Session, courses: courses }))
         for (let i = 0; i < checkedValues.length; i++) {
-            let temp_course = await checkedValues[i];
+            let temp_course = checkedValues[i];
             console.log(temp_course);
             let c_cat = ""
             for (let j = 0; j < courselist.length; j++) {
                 if (temp_course === courselist[j].coursecode) {
-                    c_cat = await courselist[j].course_category
+                    c_cat = courselist[j].course_category
                     break;
                 }
             }
@@ -144,23 +122,62 @@ const CourseRegActivity = () => {
                 courses.AB.push(temp_course)
             }
         }
+        
+    },[checkedValues,])
 
 
-        console.log(checkedValues);
-        // setCourseTaken()
-        setCourseTaken(prev => ({ ...prev, sr_no: 1, roll_no: "BE19F01F018", semester: sem, session: session, courses: courses }))
+    const handleChange = (e) => {
+        setfetchcourses((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+
+    }
+
+    const fetchCourses = async () => {
+        // e.preventDefault();
         try {
+            const res = await axios.post("http://localhost:3001/courseactivity", fetchcourses)
+            setCourseList(res.data);
+            // console.log(courselist);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+    function handleCheckboxChange(event) {
+        const { value, checked } = event.target;
+
+
+
+        if (checked) {
+            setCheckedValues([...checkedValues, value]);
+
+        } else {
+            setCheckedValues(checkedValues.filter((val) => val !== value));
+        }
+        console.log(checkedValues);
+        
+
+    }
+
+    // console.log(checkedValues)
+
+
+    console.log(courseTaken);
+
+    const handleConfirm = async () => {
+
+
+        
+        try {
+            console.log(courseTaken);
             await axios.post("http://localhost:3001/confirmcourse", courseTaken);
         } catch (err) {
             console.log(err);
         }
     }
     
-    // console.log(courseTaken);
-
-
-
-    // console.log(courselist)
+    
     return (
         <div>
             <select

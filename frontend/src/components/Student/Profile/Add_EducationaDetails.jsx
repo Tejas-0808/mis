@@ -45,13 +45,14 @@ function Add_EducationDetails() {
   console.log(Edudetails);
   const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
+    <Box>
     <Card sx={{ minWidth: 275, marginTop: 5 }}>
       <CardHeader
         sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
         title="Educational Details"
       />
       <CardContent>
-        <Box
+       
           component="form"
           sx={{
             '& .MuiTextField-root': {
@@ -65,7 +66,7 @@ function Add_EducationDetails() {
           }}
           noValidate
           autoComplete="off"
-        ><TextField required type="number" label="Registration ID" name="Reg_id" onChange={handleChange} />
+        <TextField required type="number" label="Registration ID" name="Reg_id" onChange={handleChange} />
           <TextField required type="text" label="Custom ID" name="Custom_Id" onChange={handleChange} />
           <TextField required type="text" label="Exam Type " name="Exam_type" onChange={handleChange} />
           <TextField required type="text" label="Month of passing" name="Month_of_Passing" onChange={handleChange} />
@@ -77,10 +78,10 @@ function Add_EducationDetails() {
           <TextField required type="number" label="Out of " name="Out_of_marks" onChange={handleChange} />
 
           <Button variant="contained" style={btnstyle} onClick={handleClick} fullWidth>Add</Button>
-        </Box>
       </CardContent>
     </Card>
-  )
+    </Box>
+    )
 }
 
 export default Add_EducationDetails

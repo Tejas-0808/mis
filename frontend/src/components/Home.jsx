@@ -1,19 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from './Navbar/navbar'
-import SideBar from './Sidebar/sidebar'
 import StudentDashboard from './Student/Dashboard/dashboard'
 import LoginForm from './Login/LoginForm'
 
+
 function Home() {
   return (
-    
-    <p> 
 
-      <button>
-        <Link to="/loginform">login</Link>
-      </button>
-    </p>
+    // <p> 
+
+    //   <button>
+    //     <Link to="/loginform">login</Link>
+    //   </button>
+    // </p>
     /*
      <p>
     <p>Welcome, {username}!</p>
@@ -85,13 +85,12 @@ function Home() {
           <Link to="/createstudlogin">student login creation</Link>
       </button>
     </p> */
-    // <>
-    //   <Navigation />
-    //   <div className='d-flex'>
-    //     <SideBar />
-    //     <StudentDashboard />
-    //   </div>
-    // </>
+    <>
+
+      {/* <Sidebar /> */}
+      <StudentDashboard />
+
+    </>
 
   );
 }
