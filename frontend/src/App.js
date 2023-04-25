@@ -103,8 +103,8 @@ function App() {
 
           {/* <SideBar /> */}
           {/* <Studentlayout><StudentElement /></Studentlayout> */}
-      <Studentlayout StudentElement={StudentElement}/>
-          <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout>
+          <Studentlayout StudentElement={StudentElement}/>
+          {/* <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout> */}
           <Routes>
             {/* <Route path="/" element={<Branch />} /> */}
             {/* <Route path="/edit/:id" element={<Edit/>}/> */}
