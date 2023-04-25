@@ -76,7 +76,8 @@ function Addcity() {
           onChange={handleChange}
         />
       {/* <input type="number" placeholder="State" name="state_id" onChange={handleChange}/> */}
-      <Button variant="contained" onClick={handleClick}>Add</Button>
+      <Button variant="contained" onClick={handleClick}
+      sx = {{ml:1,alignSelf:'center',mt:1,height:55}}>Add</Button>
       {/* <button onClick={handleClick}>Add</button> */}
     </div>
     </Box>

@@ -244,7 +244,8 @@ function Schemeallotment() {
           </Select>
         </FormControl>
 
-        <Button variant="contained" onClick={fetchStudents}>Show Students</Button>
+        <Button variant="contained" onClick={fetchStudents}
+        sx = {{ml:1,alignSelf:'center',mt:1,height:55}}>Show Students</Button>
 
         <br></br>
         <br></br>
@@ -302,7 +303,9 @@ function Schemeallotment() {
               </Select>
             </FormControl>
 
-            <Button variant="contained" onClick={handleUpdateButtonClick}>Assign Scheme</Button>
+            <Button variant="contained" onClick={handleUpdateButtonClick} 
+            sx = {{ml:1,alignSelf:'center',mt:1,height:55}}
+            >Assign Scheme</Button>
           </div>
         </div>
       </div>

@@ -82,7 +82,8 @@ function AddCaste() {
     
       {/* <input type="text" placeholder="Caste Name" name="caste_name" onChange={handleChange}/> */}
      
-      <Button variant="contained" onClick={handleClick}size="medium" style={{ marginTop: '12px' }}>Add</Button>
+      {/* <Button variant="contained" onClick={handleClick}size="medium" style={{ marginTop: '12px' }}>Add</Button> */}
+      <Button variant="contained" onClick={handleClick}sx = {{ml:1,alignSelf:'center',mt:1,height:55}}>Add</Button>
     
       {/* <button onClick={handleClick}>Add</button> */}
     </div>
