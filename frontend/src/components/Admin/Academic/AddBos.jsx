@@ -3,8 +3,11 @@ import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
+
 // import { useEffect } from 'react';
 const pageid = "2";//IN FUTURE WE WILL FETCH IT FROM DATABASE 
+
 
 function AddBos() {
   const [Bos, setBos] = useState({
@@ -49,16 +52,28 @@ function AddBos() {
     noValidate
     autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD BOS"
+       />
       {true ? (
       <>
       <div className="form">
-        <h1>ADD BOS</h1>
+        {/* <h1>ADD BOS</h1> */}
         <hr />
         <TextField type="number" required label="BOS ID" name="bos_id" onChange={handleChange} />
         <TextField type="text" required label="BOS Name" name="bos_name" onChange={handleChange} />
-        <Button variant="contained" onClick={handleClick}>Add</Button>
+        <Button variant="contained" onClick={handleClick}sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button>
       </div>
     </>):<>You don't have access to this page</>}
+    </CardContent>
+      
+      </Card>
     </Box>
   )
 }
