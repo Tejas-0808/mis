@@ -26,6 +26,7 @@ function Add() {
       navigate("/branch");
     } catch (err) {
       console.log(err);
+      navigate("/loginform");
       // setError(true)
     }
   };
