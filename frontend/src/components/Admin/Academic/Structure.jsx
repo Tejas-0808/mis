@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
+
 
 const Structure = () => {
   const [structure, setStructure] = useState([]);
@@ -16,7 +19,7 @@ const Structure = () => {
       console.log(err);
     }
   };
-
+  
   useEffect(() => {
     fetchAllStructure();
     // eslint-disable-next-line
@@ -42,9 +45,23 @@ const Structure = () => {
   console.log(structure);
 
   return (
+    <Card sx={{ m: 4, minWidth: 275 }}> 
+    <Box component="form"
+    sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
+
+    noValidate
+    autoComplete="off"
+    >
+      
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="STRUCTURE"
+       />
     <div>
-      <h1>Structure</h1>
-      <div className="structure">
+      {/* <h1>Structure</h1> */}
+      {/* <div className="structure"> */}
         {structure.map((structure) => (
           <div key={structure.strid} className="structure">
             <h2>{structure.strid}</h2>
@@ -80,7 +97,11 @@ const Structure = () => {
           <Link to="/addstructure">Add new Structure</Link>
         </button>
       </div>
-    </div>
+    {/* </div> */}
+    </CardContent>
+    </Box>
+      </Card>
+
   );
 };
 

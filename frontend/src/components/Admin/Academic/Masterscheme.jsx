@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
 
 
 const Masterscheme = () => {
@@ -47,10 +49,22 @@ const Masterscheme = () => {
   console.log(Masterscheme);
 
   return (
+    <Box component="form"
+    sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+    noValidate
+    autoComplete="off"
+    >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title=" Master Scheme Info"
+       />
     <div>
-        <h1>
-            Master Scheme info
-        </h1>
+        
         <div className="Masterscheme">
         {Masterscheme.map((Masterscheme) => (
           <div key={Masterscheme.mastersch_id} className="Masterscheme">
@@ -66,6 +80,10 @@ const Masterscheme = () => {
         </button>
     </div>
     </div>
+    </CardContent>
+      
+      </Card>
+    </Box>
   )
 }
 
