@@ -11,6 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {CardContent, Card, CardHeader} from "@mui/material/";
+
 
 function Addscheme() {
   const [CourseCategory, setCourseCategory] = useState([]);
@@ -116,6 +118,15 @@ function Addscheme() {
       noValidate
       autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD MASTER SCHEME"
+       />
   
         
         <TextField
@@ -180,9 +191,12 @@ function Addscheme() {
           name="ft"
           onChange={handleChange}
         />  
-        <Button variant="contained" onClick={handleClick}>Add</Button>
-
+        <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button>
+        </CardContent>
+      
+      </Card>
     </Box>
+  
 
   )
 }

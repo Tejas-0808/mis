@@ -62,18 +62,33 @@ const handleChange = (e) => {
     //   <input type="number" placeholder="From Year" name="year" onChange={handleChange}/>
     //   <button onClick={handleClick}>Add</button>
     // </div> 
-    <Box
-  component="form"
-  sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
-  noValidate
-  autoComplete="off">
-  <Card sx={{ minWidth: 275 }}>
-    <CardContent>
-        <CardHeader
-          title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px" }}>Add Session</h1>}
-          style={{ backgroundColor: "lightblue",padding: "1px"  }}
-        />
-        <br></br>
+  //   <Box
+  // component="form"
+  // sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+  // noValidate
+  // autoComplete="off">
+  // <Card sx={{ minWidth: 275 }}>
+  //   <CardContent>
+  //       <CardHeader
+  //         title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px" }}>Add Session</h1>}
+  //         style={{ backgroundColor: "lightblue",padding: "1px"  }}
+  //       />
+  //       <br></br>
+        <Box
+      component="form"
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+      noValidate
+      autoComplete="off"
+    >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD SESSION"
+       />
     {/* <Box
       component="form"
       sx={{
@@ -100,7 +115,7 @@ const handleChange = (e) => {
         //value={term}
         label="Term"
         onChange={handleChange}
-        sx={{ height: 45}}
+        sx={{ height: 55}}
       >
         <MenuItem value="odd">ODD</MenuItem>
         <MenuItem value="even">EVEN</MenuItem>
@@ -117,7 +132,7 @@ const handleChange = (e) => {
       
    <Button variant="contained"
     onClick={handleClick}
-    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 45 }} >Add</Button>
+    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }} >Add</Button>
   
    </CardContent>
   </Card>
