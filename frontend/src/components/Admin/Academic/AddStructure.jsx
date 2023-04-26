@@ -10,7 +10,7 @@ import {
   Box,
   TextField,
 } from "@mui/material/";
-
+import { CardContent, Card, CardHeader} from "@mui/material/";
 function AddStructure() {
   const [Scheme, setScheme] = useState([]);
   const [Category, setCategory] = useState([]);
@@ -135,8 +135,17 @@ function AddStructure() {
       noValidate
       autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD STRUCTURE"
+       />
       <div className="form">
-        <h1>ADD Structure</h1>
+        {/* <h1>ADD Structure</h1> */}
         <br></br>
         <hr></hr>
 
@@ -337,10 +346,12 @@ function AddStructure() {
         />
 
         <br />
-        <Button variant="contained" onClick={handleClick}>
+        <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>
           Add
         </Button>
       </div>
+      </CardContent>
+  </Card>
     </Box>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
 
 const B_o_s = () => {
 
@@ -41,7 +42,21 @@ const B_o_s = () => {
           }
     };
 
-    return (<div>
+    return (
+        <Box component="form"
+        sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+        noValidate
+        autoComplete="off"
+        >
+           <Card sx={{ m: 1, minWidth: 275 }}>
+         
+            
+         <CardContent>
+    
+           <CardHeader
+             style={{ backgroundColor: "lightblue" }}
+             title="ADD BOS"
+           /><div>
         <h1>B_o_s Management</h1>
         <div className='B_o_s'>
         {B_o_s.map((B_o_s) => (
@@ -57,7 +72,12 @@ const B_o_s = () => {
         ))}
         </div>
         <button className='AddBos'><Link to='/addbos'>ADD B_o_s</Link></button>
-    </div>)
+    </div>
+    </CardContent>
+      
+      </Card>
+    </Box>
+    )
 }
 
 export default B_o_s;
