@@ -57,7 +57,8 @@ function AddReligion() {
           onChange={handleChange}
         />
       {/* <input type="text" placeholder="Religion Name" name="Religion_name" onChange={handleChange}/> */}
-      <Button variant="contained" onClick={handleClick}>Add</Button>
+      <Button variant="contained" onClick={handleClick}
+      sx = {{ml:1,alignSelf:'center',mt:1,height:55}}>Add</Button>
       {/* <button onClick={handleClick}>Add</button> */}
     </div>
     </Box>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
 
 function Batchallotment() {
-  const [Rolllists, SetRolllists] = useState({
+  const [Batchlist, SetBatchlists] = useState({
     Degree: "",
     Branch: "",
     Semester: "",
@@ -94,26 +94,26 @@ function Batchallotment() {
   }, []);
 
   console.log(faculty_advisor);
-  console.log(Rolllists.Branch.slice(0, 1));
+  console.log(Batchlist.Branch.slice(0, 1));
 
   const handleChange = async (e) => {
-    SetRolllists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    SetBatchlists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  console.log(Rolllists);
+  console.log(Batchlist);
 
   const fetchStudents = async (e) => {
     setCheckedValues([]);
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/studentrolllists", Rolllists);
+      const res = await axios.post("http://localhost:3001/studentBatchlist", Batchlist);
       setstudentlist(res.data);
       console.log(res.data + "123");
     } catch (err) {
       console.log(err);
     }
 
-    axios.get("http://localhost:3001/staff_details/" + Rolllists.Branch.slice(0, 1))
+    axios.get("http://localhost:3001/staff_details/" + Batchlist.Branch.slice(0, 1))
       .then((response) => {
         setFa(response.data);
       })
@@ -135,7 +135,7 @@ function Batchallotment() {
   }
 
   const handleUpdateButtonClick = () => {
-    const newData = Rolllists.Facultyadvisor;
+    const newData = Batchlist.Facultyadvisor;
     console.log(newData);
     if (checkedValues.length > 0) {
       axios.post('http://localhost:3001/assignfaculty', {
@@ -153,7 +153,7 @@ function Batchallotment() {
   };
 
 
-  console.log(Rolllists);
+  console.log(Batchlist);
   return (
     <Box>
       <div>

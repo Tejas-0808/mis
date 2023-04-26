@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Branch from "./components/Admin/Academic/Branch";
 import Addbranch from "./components/Admin/Academic/Addbranch";
 import Scheme from "./components/Admin/Academic/Scheme";
@@ -66,7 +66,6 @@ import Offeredcourses from "./components/Users/Academic/Studentsectiontransactio
 import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
 
 
-
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 // import HomeStudentSection from "./components/HomeStudentSection";
 
@@ -91,9 +90,31 @@ const role = localStorage.getItem('role');
 const username = localStorage.getItem('username');
 const CURRENT_USER_TYPE = role
 console.log(CURRENT_USER_TYPE);
-console.log(USER_TYPES.ADMIN_USER);
+// console.log(USER_TYPES.ADMIN_USER);
 function App() {
-  // const [linkarray,setLinkarray] =   useState([]);
+  // const navigate = useNavigate();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const token = localStorage.getItem('token');
+      //setToken(localStorage.getItem('token'))
+      //console.log(token);
+      if (token) {
+        axios.get('http://localhost:3001/me', {
+          headers: { Authorization: token }
+        }).then((response) => {
+          // setUsername(response.data.username);
+        }).catch((err) => {
+          localStorage.clear();
+         <Navigate to ={"/loginform"}/>
+          console.error(err);
+        });
+      } else {
+         <Navigate to ={"/loginform"}/>
+      }
+      console.log('This will run every one hour!');
+    }, 1000 *60 *60);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="App">
@@ -103,7 +124,7 @@ function App() {
 
           {/* <SideBar /> */}
           {/* <Studentlayout><StudentElement /></Studentlayout> */}
-          <Studentlayout StudentElement={StudentElement}/>
+      <Studentlayout StudentElement={StudentElement}/>
           {/* <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout> */}
           <Routes>
             {/* <Route path="/" element={<Branch />} /> */}
@@ -197,8 +218,8 @@ function App() {
           <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
           <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
           <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
-            <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-            <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
+          <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
+          <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
           <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
           <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
           <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
@@ -218,9 +239,6 @@ function App() {
           <Route path="/ssdashboard" element={<ssdashboard />} />
           <Route path="/batchallotment" element={<Batchallotment/>} />
 
-
-
-
         </Routes>
       </div>
 
@@ -237,8 +255,7 @@ function AdminElement({ children }) {
   if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) {
     return <>{children}</>;
   } else {
-    // return <Navigate to={"/"} />
-    return <div>You dont have access to this page!</div>
+    return <Navigate to={"/loginform"} />
   }
 }
 
@@ -246,8 +263,7 @@ function StudentSectionElement({ children }) {
   if (CURRENT_USER_TYPE === USER_TYPES.STUDENTSECTION_USER) {
     return <>{children}</>;
   } else {
-    // return <Navigate to={"/"} />
-    return <div>You dont have access to this page!</div>
+    return <Navigate to={"/loginform"} />
   }
 }
 
@@ -256,17 +272,15 @@ function UserElement({ children }) {
     CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
     return <>{children}</>;
   } else {
-    return <Navigate to={"/"} />
-    // return <div>You dont have access to this page!</div>
+    return <Navigate to={"/loginform"} />
   }
 }
 
 function StudentElement({ children }) { 
-  if (CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
+  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER || CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
     return <>{children}</>;
   } else {
-    return <Navigate to={"/"} />
-    // return <div>You dont have access to this page!</div>
+    return <Navigate to={"/loginform"} />
   }
 }
 

@@ -47,7 +47,7 @@ function AddCategory() {
     autoComplete="off"
   >
     <div className="form">
-    <h1>ADD STATE</h1>
+    <h1>ADD CATEGORY</h1>
         <hr></hr>
         <br></br>
       <TextField
@@ -68,7 +68,8 @@ function AddCategory() {
         />
       {/* <input type="text" placeholder="Category Name" name="category_name" onChange={handleChange}/> */}
       {/* <button onClick={handleClick}>Add</button> */}
-      <Button variant="contained" onClick={handleClick}>Add</Button>
+      <Button variant="contained" onClick={handleClick}
+      sx = {{ml:1,alignSelf:'center',mt:1,height:55}}>Add</Button>
     </div>
     </Box>
   )
