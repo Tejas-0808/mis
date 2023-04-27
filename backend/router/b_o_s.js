@@ -12,7 +12,7 @@ const verifyToken = require("./verifyToken");
 router.get("/b_o_s",verifyToken, async (req, res) => {
   try {
     (async () => {
-      const data = await query("SELECT * FROM departments");
+      const data = await query("SELECT * FROM b_o_s");
       const result = await data;
       return res.json(result);
 
@@ -31,7 +31,7 @@ router.get("/b_o_s/:id",verifyToken, async (req, res) => {
   const BosId = req.params.id;
   try {
     (async () => {
-      const data = await query("SELECT * FROM departments WHERE dept_id = ?", BosId);
+      const data = await query("SELECT * FROM b_o_s WHERE bos_id = ?", BosId);
       const result = await data[0];
       console.log(result);
       return res.json(result);

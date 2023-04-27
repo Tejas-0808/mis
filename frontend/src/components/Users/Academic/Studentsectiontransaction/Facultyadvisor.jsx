@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import { DataGrid } from '@mui/x-data-grid';
-import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -56,7 +56,7 @@ function Facultyadvisor() {
       });
 
     axios
-      .get("http://localhost:3001/branch" ,{
+      .get("http://localhost:3001/branch", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -155,120 +155,129 @@ function Facultyadvisor() {
   console.log(Rolllists);
   return (
     <Box>
-      <div>
-        <h1>Faculty Advisor</h1>
-        <hr></hr>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Degree</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Degree"
-            label="Select Degree"
-            className="form-select-degree"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              None
-            </MenuItem>
-            {degree.map((item) => (
-              <MenuItem key={item.degree_id} value={item.degree_name}>
-                {item.degree_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <Card sx={{ m: 1, minWidth: 275 }}>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Branch"
-            placeholder="Select Branch"
-            className="form-select-branch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              None
-            </MenuItem>
-            {branch.map((item) => (
-              <MenuItem key={item.Branch_id} value={item.Branch_id + "," + item.Branch_name}>
-                {item.Branch_id}.{item.Branch_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Semester</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Semester"
-            placeholder="Select Semester"
-            className="form-select-semester"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              None
-            </MenuItem>
-            {semester.map((item) => (
-              <MenuItem key={item.sem_id} value={item.sem}>
-                {item.sem}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <CardContent>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Batch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Batch"
-            placeholder="Select Batch"
-            className="form-select-batch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              <option value="">None</option>
-            </MenuItem>
-            {batch.map((item) => (
-              <MenuItem key={item.batch_id} value={item.year}>
-                {item.year}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Faculty Advisor"
+          />
 
-        <Button variant="contained" onClick={fetchStudents}>Fetch</Button>
-        <br></br>
-        <br></br>
-        <div className="facultyadv">
           <div>
-            <table id="studentList">
-              {studentlist.map((student) => (
-                <table>
-                  <tr>
-                    <td>
-                      <div key={student.roll_no}>
-                        <input
-                          type="checkbox"
-                          value={student.roll_no}
-                          checked={checkedValues.includes(student.roll_no)}
-                          onChange={handleCheckboxChange}
-                        />
-                        <span>{student.roll_no}</span>
-                        {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
-                      </div>
-                    </td>
-                  </tr>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Degree</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Degree"
+                label="Select Degree"
+                className="form-select-degree"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  None
+                </MenuItem>
+                {degree.map((item) => (
+                  <MenuItem key={item.degree_id} value={item.degree_name}>
+                    {item.degree_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Branch"
+                placeholder="Select Branch"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  None
+                </MenuItem>
+                {branch.map((item) => (
+                  <MenuItem key={item.Branch_id} value={item.Branch_id + "," + item.Branch_name}>
+                    {item.Branch_id}.{item.Branch_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Semester</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Semester"
+                placeholder="Select Semester"
+                className="form-select-semester"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  None
+                </MenuItem>
+                {semester.map((item) => (
+                  <MenuItem key={item.sem_id} value={item.sem}>
+                    {item.sem}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Batch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Batch"
+                placeholder="Select Batch"
+                className="form-select-batch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  <option value="">None</option>
+                </MenuItem>
+                {batch.map((item) => (
+                  <MenuItem key={item.batch_id} value={item.year}>
+                    {item.year}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button variant="contained" onClick={fetchStudents}>Fetch</Button>
+            <br></br>
+            <br></br>
+            <div className="facultyadv">
+              <div>
+                <table id="studentList">
+                  {studentlist.map((student) => (
+                    <table>
+                      <tr>
+                        <td>
+                          <div key={student.roll_no}>
+                            <input
+                              type="checkbox"
+                              value={student.roll_no}
+                              checked={checkedValues.includes(student.roll_no)}
+                              onChange={handleCheckboxChange}
+                            />
+                            <span>{student.roll_no}</span>
+                            {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  ))}
                 </table>
-              ))}
-            </table>
-            {/* <div style={{ height: 400, width: '100%' }}>
+                {/* <div style={{ height: 400, width: '100%' }}>
               <DataGrid
                 rows={studentlist}
                 columns={columns}
@@ -277,35 +286,37 @@ function Facultyadvisor() {
                 checkboxSelection
               />
             </div> */}
-                
-            <p>Selected items: {JSON.stringify(checkedValues)}</p>
-            <br />
 
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                name="Facultyadvisor"
-                placeholder="Select FA"
-                className="form-select-fa"
-                onChange={handleChange}
-                required
-              >
-                <MenuItem value="">
-                  -- Select FA --
-                </MenuItem>
-                {faculty_advisor.map((item) => (
-                  <MenuItem key={item.staffID} value={item.staffID}>
-                    {item.First_Name + " " + item.Last_Name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                <p>Selected items: {JSON.stringify(checkedValues)}</p>
+                <br />
 
-            <Button variant="contained" onClick={handleUpdateButtonClick}>Assign FA</Button>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="Facultyadvisor"
+                    placeholder="Select FA"
+                    className="form-select-fa"
+                    onChange={handleChange}
+                    required
+                  >
+                    <MenuItem value="">
+                      -- Select FA --
+                    </MenuItem>
+                    {faculty_advisor.map((item) => (
+                      <MenuItem key={item.staffID} value={item.staffID}>
+                        {item.First_Name + " " + item.Last_Name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <Button variant="contained" onClick={handleUpdateButtonClick}>Assign FA</Button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </Box>
   );
 }
