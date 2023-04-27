@@ -3,6 +3,8 @@ import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
+
 
 
 function UpdateStructure() {
@@ -66,15 +68,22 @@ function UpdateStructure() {
 
     }
 
-    return (<Box
-        component="form"
-        sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
+    return(
+         <Box component="form"
+    sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+    noValidate
+    autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
 
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD BOS"
+       />
+    
         <div className="form">
             <h1>EDIT Structure</h1>
             <br></br><hr></hr>
@@ -99,7 +108,11 @@ function UpdateStructure() {
             <TextField required type="number" label="Total Credits" name="total_credits" value={Structure.total_credits} onChange={handleChange} />
             <button onClick={handleEdit}>Submit</button>
         </div>
-    </Box>)
+            </CardContent>
+      
+            </Card>
+          </Box>
+    )
 }
 
 export default UpdateStructure;

@@ -25,7 +25,7 @@ const Structure = () => {
       console.log(err);
     }
   };
-
+  
   useEffect(() => {
     fetchAllStructure();
     // eslint-disable-next-line

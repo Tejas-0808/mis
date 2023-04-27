@@ -63,6 +63,9 @@ const B_o_s = () => {
             <div key={B_o_s.bos_id} className="B_o_s">
                 <p>{B_o_s.bos_id}</p>
                 <p>{B_o_s.bos_name}</p>
+                <p>{B_o_s.code}</p>
+
+
                 <button className='update'><Link to={`/updatebos/${B_o_s.bos_id}`}>Update</Link></button>
                 <button className="delete" onClick={()=>handleDelete(B_o_s.bos_id)}>Delete</button>
             </div>
