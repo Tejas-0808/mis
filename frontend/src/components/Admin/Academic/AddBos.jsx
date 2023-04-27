@@ -13,6 +13,7 @@ function AddBos() {
   const [Bos, setBos] = useState({
     bos_id: "",
     bos_name: "",
+    code:""
   });
 
 
@@ -68,6 +69,8 @@ function AddBos() {
         <hr />
         <TextField type="number" required label="BOS ID" name="bos_id" onChange={handleChange} />
         <TextField type="text" required label="BOS Name" name="bos_name" onChange={handleChange} />
+        <TextField type="text" required label="BOS code" name="code" onChange={handleChange} />
+
         <Button variant="contained" onClick={handleClick}sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button>
       </div>
     </>):<>You don't have access to this page</>}

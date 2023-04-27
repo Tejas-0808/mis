@@ -6,7 +6,7 @@ import { Box, TextField, Button } from '@mui/material/';
 import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
 
 
-function Add() {
+function Addbranch() {
   const [branch, setBranch] = useState({
     Branch_id: "",
     Branch_name: "",
@@ -52,7 +52,7 @@ function Add() {
       <div className="form">
         {/* <h1>ADD BRANCH</h1><hr /> */}
         <TextField required type="number" label="ID" name="Branch_id" onChange={handleChange} />
-        <TextField required type="text" label="Brach Name" name="Branch_name" onChange={handleChange} />
+        <TextField required type="text" label="Branch Name" name="Branch_name" onChange={handleChange} />
         <TextField required type="text" label="HOD " name="HOD" onChange={handleChange} />
         <TextField required type="number" label="Student enrolled" name="Students_enrolled" onChange={handleChange} />
         <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button>
@@ -64,5 +64,5 @@ function Add() {
   )
 }
 
-export default Add
+export default Addbranch
 
