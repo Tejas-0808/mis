@@ -5,11 +5,15 @@ import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardConte
 
 function Batchallotment() {
   const [Batchlist, SetBatchlists] = useState({
+    SessionID: "",
     Degree: "",
     Branch: "",
     Semester: "",
+    SchemeID: "",
+    CourseType: "",
+    Course: "",
     Batch: "",
-    Facultyadvisor: ""
+    Faculty: ""
   });
 
   const [studentlist, setstudentlist] = useState([]);
@@ -41,7 +45,9 @@ function Batchallotment() {
       });
 
     axios
-      .get("http://localhost:3001/degree")
+      .get("http://localhost:3001/degree", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setdegree(response.data);
       })
@@ -82,19 +88,50 @@ function Batchallotment() {
     //course ka fetch banana haI
 
     axios
+      .post("http://localhost:3001/courselist",Batchlist)
+      .then((response) => {
+        setCourse(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios
+      .get("http://localhost:3001/semester")
+      .then((response) => {
+        setsemester(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      axios
       .get("http://localhost:3001/master_scheme")
       .then((response) => {
         setscheme(response.data);
       })
       .catch((error) => {
         console.error(error);
-      });
-
-
+      }); 
   }, []);
 
-  console.log(faculty_advisor);
-  console.log(Batchlist.Branch.slice(0, 1));
+  const fetchCourses = async (e) => {
+    // setCheckedValues([]);
+    e.preventDefault();
+    try {
+
+      const res = await axios.post(
+        "http://localhost:3001/courselist",
+        Batchlist
+      );
+      setCourse(res.data);
+      console.log(course)
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
 
   const handleChange = async (e) => {
     SetBatchlists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -106,21 +143,14 @@ function Batchallotment() {
     setCheckedValues([]);
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/studentBatchlist", Batchlist);
+      const res = await axios.post("http://localhost:3001/courselist", Batchlist);
       setstudentlist(res.data);
       console.log(res.data + "123");
     } catch (err) {
       console.log(err);
     }
-
-    axios.get("http://localhost:3001/staff_details/" + Batchlist.Branch.slice(0, 1))
-      .then((response) => {
-        setFa(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+      
+ };
 
   const [checkedValues, setCheckedValues] = useState([]);
 
@@ -135,7 +165,7 @@ function Batchallotment() {
   }
 
   const handleUpdateButtonClick = () => {
-    const newData = Batchlist.Facultyadvisor;
+    const newData = Batchlist.Faculty;
     console.log(newData);
     if (checkedValues.length > 0) {
       axios.post('http://localhost:3001/assignfaculty', {
@@ -202,7 +232,7 @@ function Batchallotment() {
                   None
                 </MenuItem>
                 {degree.map((item) => (
-                  <MenuItem key={item.degree_id} value={item.degree_name}>
+                  <MenuItem key={item.degree_id} value={item.degree_id}>
                     {item.degree_name}
                   </MenuItem>
                 ))}
@@ -223,8 +253,8 @@ function Batchallotment() {
                   None
                 </MenuItem>
                 {branch.map((item) => (
-                  <MenuItem key={item.Branch_id} value={item.Branch_id + "," + item.Branch_name}>
-                    {item.Branch_id}.{item.Branch_name}
+                  <MenuItem key={item.Branch_id} value={item.Branch_id}>
+                    {item.Branch_name}
                   </MenuItem>
                 ))}
               </Select>
@@ -274,7 +304,7 @@ function Batchallotment() {
               <InputLabel id="demo-simple-select-label">Course Type</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
-                name="Degree"
+                name="CourseType"
                 label="Select Degree"
                 className="form-select-degree"
                 onChange={handleChange}
@@ -306,13 +336,12 @@ function Batchallotment() {
                 </MenuItem>
                 {course.map((item) => (
                   <MenuItem key={item.batch_id} value={item.year}>
-                    {item.year}
+                    {item.coursename}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
-
-            <Button variant="contained" onClick={fetchStudents}>Fetch</Button>
+            <Button variant="contained" onClick={fetchCourses}>Fetch</Button>
             <br></br>
             <br></br>
             <div className="facultyadv">
@@ -362,26 +391,26 @@ function Batchallotment() {
                   </Select>
                 </FormControl>
 
-                <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    name="Facultyadvisor"
-                    placeholder="Select FA"
-                    className="form-select-fa"
-                    onChange={handleChange}
-                    required
-                  >
-                    <MenuItem value="">
-                      -- Select FA --
-                    </MenuItem>
-                    {faculty_advisor.map((item) => (
-                      <MenuItem key={item.staffID} value={item.staffID}>
-                        {item.First_Name + " " + item.Last_Name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Faculty"
+                placeholder="Select FA"
+                className="form-select-fa"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  -- Select FA --
+                </MenuItem>
+                {faculty_advisor.map((item) => (
+                  <MenuItem key={item.staffID} value={item.staffID}>
+                    {item.First_Name + " " + item.Last_Name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
 
 
