@@ -125,7 +125,7 @@ function Addscheme() {
 
        <CardHeader
          style={{ backgroundColor: "lightblue" }}
-         title="ADD MASTER SCHEME"
+         title="ADD SCHEME"
        />
   
         

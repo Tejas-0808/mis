@@ -163,7 +163,7 @@ function Batchallotment() {
 
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
-            title="Faculty Advisor"
+            title="Batch Allotment"
           />
           <div>
 
