@@ -3,7 +3,7 @@ import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
+import { TextField, Card, CardHeader, CardContent } from "@mui/material";
 
 
 function AddState() {
@@ -20,51 +20,54 @@ function AddState() {
   };
 
   const handleClick = async (e) => {
-        e.preventDefault();
-        try {
-          await axios.post("http://localhost:3001/state", state);
-          navigate("/state");
-        } catch (err) {
-          console.log(err);
-          // setError(true)
-        }
-      };
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/state", state);
+      navigate("/state");
+    } catch (err) {
+      console.log(err);
+      // setError(true)
+    }
+  };
 
-//   console.log(branch);
+  //   console.log(branch);
   return (
     <Box
-    component="form"
-    sx={{
-      "& .MuiTextField-root": { m: 1, width: "25ch" },
-    }}
-    noValidate
-    autoComplete="off"
-  >
-    
-    <div className="form">
-    <h1>ADD STATE</h1>
-        <hr></hr>
-        <br></br>
-      <TextField
-          required
-          type="number"
-          variant="outlined"
-          label="State ID"
-          name="state_id"
-          onChange={handleChange}
-        />
-      {/* <input type="number" placeholder="State Id" name="state_id" onChange={handleChange}/> */}
-      {/* <input type="text" placeholder="State Name" name="state_name" onChange={handleChange}/> */}
-      <TextField
-          required
-          variant="outlined"
-          name="state_name"
-          label="State Name"
-          onChange={handleChange}
-        />
-      {/* <button onClick={handleClick}>Add</button> */}
-      <Button variant="contained" onClick={handleClick}>Add</Button>
-    </div>
+      component="form"
+      sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal' }}
+      noValidate
+      autoComplete="off">
+
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+
+          <CardHeader
+            title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px", textAlign: 'center' }}>Add State</h1>}
+            style={{ backgroundColor: "lightblue", padding: "1px" }}
+          />
+          <div className="form">
+            <TextField
+              required
+              type="number"
+              variant="outlined"
+              label="State ID"
+              name="state_id"
+              onChange={handleChange}
+            />
+            {/* <input type="number" placeholder="State Id" name="state_id" onChange={handleChange}/> */}
+            {/* <input type="text" placeholder="State Name" name="state_name" onChange={handleChange}/> */}
+            <TextField
+              required
+              variant="outlined"
+              name="state_name"
+              label="State Name"
+              onChange={handleChange}
+            />
+            {/* <button onClick={handleClick}>Add</button> */}
+            <Button sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }} variant="contained" onClick={handleClick}>Add</Button>
+          </div>
+        </CardContent>
+      </Card>
     </Box>
   );
 }

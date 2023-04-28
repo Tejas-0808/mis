@@ -59,6 +59,7 @@ function Branchchange() {
           console.log(err);
           // setError(true)
         }
+        navigate("/");
       };
 
   // console.log(branch[0]);

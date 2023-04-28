@@ -115,6 +115,7 @@ function Promotion() {
         .catch((error) => {
           console.error(error);
         });
+        navigate("/");
     }
   };
 

@@ -12,7 +12,7 @@ const verifyToken = require("./verifyToken");
 router.get("/b_o_s",verifyToken, async (req, res) => {
   try {
     (async () => {
-      const data = await query("SELECT * FROM departments");
+      const data = await query("SELECT * FROM b_o_s");
       const result = await data;
       return res.json(result);
 
@@ -31,7 +31,7 @@ router.get("/b_o_s/:id",verifyToken, async (req, res) => {
   const BosId = req.params.id;
   try {
     (async () => {
-      const data = await query("SELECT * FROM departments WHERE dept_id = ?", BosId);
+      const data = await query("SELECT * FROM b_o_s WHERE bos_id = ?", BosId);
       const result = await data[0];
       console.log(result);
       return res.json(result);
@@ -44,9 +44,9 @@ router.get("/b_o_s/:id",verifyToken, async (req, res) => {
 
 
 router.post("/b_o_s",verifyToken, async (req, res) => {
-  const { dept_id, department } = req.body;
+  const { bos_id, bos_name,code } = req.body;
 
-  if (!dept_id || !department) {
+  if (!bos_id || !bos_name || !code) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
@@ -63,9 +63,10 @@ router.post("/b_o_s",verifyToken, async (req, res) => {
       if (true) {
         (async () => {
           try {
-            const data = await query("INSERT INTO departments VALUES(?,?)", [
-              dept_id,
-              department,
+            const data = await query("INSERT INTO b_o_s VALUES(?,?,?)", [
+              bos_id,
+              bos_name,
+              code
             ]);
             console.log(data[0]);
             res.status(200).json({ msg: "b_o_s added successfully" });
@@ -79,6 +80,52 @@ router.post("/b_o_s",verifyToken, async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+  router.put("/b_o_s/:id",async (req, res) => {
+    const Branchid = req.params.id;
+    console.log(Branchid);
+    try {
+      (async () => {
+        const q =
+          "Update b_o_s set `bos_id` = ?, `bos_name` = ?, `code` = ? where bos_id = ?";
+  
+        const values = [
+          req.body.bos_id,
+          req.body.bos_name,
+          req.body.code,
+        
+        ];
+  
+        pool.query(q, [...values, Branchid], (err, data) => {
+          if (err) return res.json(err);
+  
+          return res.json("BOS has been updated succesfully");
+        });
+      })();
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: err });
+    }
+
+  
+    router.delete("/b_o_s/:id", async (req, res) => {
+      const Branchid = req.params.id;
+      console.log(Branchid);
+      try {
+        (async () => {
+          const q = "Delete from b_o_s where bos_id = ?";
+    
+          pool.query(q, [Branchid], (err, data) => {
+            if (err) return res.json(err);
+    
+            return res.json("BOS has been deleted");
+          });
+        })();
+      } catch (err) {
+        console.log(err);
+        return res.status(400).json({ error: err });
+      }
+  });
 });
 
 
