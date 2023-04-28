@@ -77,6 +77,7 @@ import Studentlayout from "./layouts/Studentlayout";
 import Batchallotment from "./components/Users/Academic/Studentsectiontransaction/Batchallotment";
 import StudentSectionlayout from "./layouts/StudentSectionlayout";
 import CourseRegActivity from "./components/Student/Coursereg/Courseregactivity";
+import Courseallotment from "./components/Users/Academic/Studentsectiontransaction/Courseallotment";
 
 
 const USER_TYPES = {
@@ -227,18 +228,15 @@ function App() {
           <Route path="/courseconfirm" element={<UserElement><CourseConfirmation /></UserElement>} />
           <Route path="/newuser" element={<UserElement><NewUser /></UserElement>} />
           <Route path="/user" element={<UserElement><UserDashboard /></UserElement>} /> 
+          <Route path="/batchallotment" element={<UserElement><Batchallotment/></UserElement>} />
           <Route path="/login" element={<Login />} />
           <Route path="/loginform" element={<Loginform />} />
           <Route path="/directorytree" element={<DirectoryTree />} />
           <Route path="*" element={<div>Page not found</div>} />
           <Route path="/ssdashboard" element={<ssdashboard/>} />
-
           <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
-
-          
           <Route path="/ssdashboard" element={<ssdashboard />} />
-          <Route path="/batchallotment" element={<Batchallotment/>} />
-
+          <Route path="/courseallotment" element = {<Courseallotment/>}></Route>
         </Routes>
       </div>
 
@@ -268,11 +266,15 @@ function StudentSectionElement({ children }) {
 }
 
 function UserElement({ children }) {
+  if(username){
   if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ||
     CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
     return <>{children}</>;
   } else {
     return <Navigate to={"/loginform"} />
+  }
+}else{
+  return <Navigate to={"/loginform"} />
   }
 }
 

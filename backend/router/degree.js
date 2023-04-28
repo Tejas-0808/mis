@@ -4,13 +4,14 @@ http = require('http');
 const util = require('util');
 const { pool } = require('../db/mySql');
 const { use, route } = require('./auth');
+const verifyToken = require('./verifyToken');
 const query = util.promisify(pool.query).bind(pool);
 
 
 
 //adding branch
 
-router.get("/degree", async (req,res)=> {
+router.get("/degree", verifyToken,async (req,res)=> {
     try{
 
         (async()=>{

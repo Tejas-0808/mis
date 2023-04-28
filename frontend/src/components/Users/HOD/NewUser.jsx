@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   Button,
-  Checkbox,
+  Card,
+  CardContent,
+  CardHeader,
   InputLabel,
   Select,
   MenuItem,
@@ -36,31 +38,31 @@ function NewUser() {
   // const [email, setEmail] = useState("");
   // const [isValid, setIsValid] = useState(false);
   const [emailError, setEmailError] = useState("");
-  
+
   const [phoneError, setPhoneError] = useState("");
-  
+
 
   const navigate = useNavigate();
-//  const handleChange = (event) => {
-//     const { name, value } = event.target;
-//     setStaffDetails((prev) => ({ ...prev, [name]: value }));
-//     if (name === "Email_id" ) {
-//       setEmailError(
-//         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-//           ? ""
-//           : "Invalid email address"
-//       );
-  
-//     console.log(staffdetails);
-//   }
+  //  const handleChange = (event) => {
+  //     const { name, value } = event.target;
+  //     setStaffDetails((prev) => ({ ...prev, [name]: value }));
+  //     if (name === "Email_id" ) {
+  //       setEmailError(
+  //         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  //           ? ""
+  //           : "Invalid email address"
+  //       );
+
+  //     console.log(staffdetails);
+  //   }
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setStaffDetails((prev) => ({
       ...prev,
       [name]: value,
     }));
-  
+
     if (name === "Phone_No") {
       setPhoneError(
         /^\d{10}$/.test(value)
@@ -68,7 +70,7 @@ function NewUser() {
           : "Invalid Phone Number"
       );
     }
-  
+
     if (name === "Email_id") {
       setEmailError(
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
@@ -76,10 +78,10 @@ function NewUser() {
           : "Invalid email address"
       );
     }
-  
+
     console.log(staffdetails);
   };
-   
+
 
   const handleClickadd = async (e) => {
     e.preventDefault();
@@ -96,7 +98,9 @@ function NewUser() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/branch")
+      .get("http://localhost:3001/branch",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setBranch(response.data);
       })
@@ -137,114 +141,124 @@ function NewUser() {
       noValidate
       autoComplete="off"
     >
-      <div className="form">
-        <Typography variant="h4">New User</Typography>
 
-        <TextField
-          type="text"
-          variant="outlined"
-          label="First Name"
-          name="First_Name"
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          type="text"
-          variant="outlined"
-          label="Middle Name"
-          name="Middle_Name"
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          type="text"
-          variant="outlined"
-          label="Last Name"
-          name="Last_Name"
-          onChange={handleChange}
-          required
-        />
-        <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-label">
-            ---Select Program---
-          </InputLabel>
-          <Select
-            labelId="Branch_id"
-            label="Select Program"
-            name="Branch_id"
-            className="form-select-Program"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {branch.map((item) => (
-              <MenuItem key={item.Branch_id} value={item.Branch_id}>
-                {item.Branch_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <Card sx={{ m: 1, minWidth: 275 }}>
 
-        <TextField
-          type="text"
-          label="Enter Qualifications"
-          variant="outlined"
-          name="Qualifications"
-          onChange={handleChange}
-          required
-        />
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <InputLabel id="demo-simple-select-label">
-            ---Select Role---
-          </InputLabel>
-          <Select
-            required
-            name="role_id"
-            labelId="role_id"
-            id="select"
-            label="---Select Role---"
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {role.map((item) => (
-              <MenuItem key={item.role_id} value={item.role_id}>
-                {item.role}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
 
-         <TextField
-  label="Email"
-  name="Email_id"
-  value={staffdetails.Email_id}
-  onChange={handleChange}
-  error={Boolean(emailError)}
-  helperText={emailError}
-/>
+        <CardContent>
 
-      <TextField
-  label="Phone No"
-  name="Phone_No"
-  value={staffdetails.Phone_No}
-  onChange={handleChange}
-  error={Boolean(phoneError)}
-  helperText={phoneError}
-/>
-       
-        <TextField
-          type="text"
-          variant="outlined"
-          label="Address"
-          name="Address"
-          onChange={handleChange}
-          required
-        />
-        {/* <h5>Gender</h5>
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="New User"
+          />
+
+          <div className="form">
+
+            <TextField
+              type="text"
+              variant="outlined"
+              label="First Name"
+              name="First_Name"
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Middle Name"
+              name="Middle_Name"
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Last Name"
+              name="Last_Name"
+              onChange={handleChange}
+              required
+            />
+            <FormControl sx={{ m: 1, minWidth: 250 }}>
+              <InputLabel id="demo-simple-select-label">
+                ---Select Program---
+              </InputLabel>
+              <Select
+                labelId="Branch_id"
+                label="Select Program"
+                name="Branch_id"
+                className="form-select-Program"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {branch.map((item) => (
+                  <MenuItem key={item.Branch_id} value={item.Branch_id}>
+                    {item.Branch_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <TextField
+              type="text"
+              label="Enter Qualifications"
+              variant="outlined"
+              name="Qualifications"
+              onChange={handleChange}
+              required
+            />
+            <FormControl sx={{ m: 1, minWidth: 150 }}>
+              <InputLabel id="demo-simple-select-label">
+                ---Select Role---
+              </InputLabel>
+              <Select
+                required
+                name="role_id"
+                labelId="role_id"
+                id="select"
+                label="---Select Role---"
+                onChange={handleChange}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {role.map((item) => (
+                  <MenuItem key={item.role_id} value={item.role_id}>
+                    {item.role}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Email"
+              name="Email_id"
+              value={staffdetails.Email_id}
+              onChange={handleChange}
+              error={Boolean(emailError)}
+              helperText={emailError}
+            />
+
+            <TextField
+              label="Phone No"
+              name="Phone_No"
+              value={staffdetails.Phone_No}
+              onChange={handleChange}
+              error={Boolean(phoneError)}
+              helperText={phoneError}
+            />
+
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Address"
+              name="Address"
+              onChange={handleChange}
+              required
+            />
+            {/* <h5>Gender</h5>
         <label>
           <input
             type="radio"
@@ -266,41 +280,41 @@ function NewUser() {
           Male
         </label> */}
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="Gender"
-            // value={value}
-            onChange={handleCheckboxChange1}
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
+            <FormControl sx={{ m: 1, minWidth: 150 }}>
+              <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="Gender"
+                // value={value}
+                onChange={handleCheckboxChange1}
+              >
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="Female"
+                />
 
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-          </RadioGroup>
-        </FormControl>
+                <FormControlLabel value="male" control={<Radio />} label="Male" />
+              </RadioGroup>
+            </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
-          <FormLabel id="demo-controlled-radio-buttons-group">
-            Martial Status
-          </FormLabel>
+            <FormControl sx={{ m: 1, minWidth: 150 }}>
+              <FormLabel id="demo-controlled-radio-buttons-group">
+                Martial Status
+              </FormLabel>
 
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="Marital_Status"
-            // value={value}
-            onChange={handleCheckboxChange1}
-          >
-            <FormControlLabel
-              value="Married" control={<Radio />} label="Married"
-            />
-            <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
-          </RadioGroup>
-          {/* <Typography>Martial Status</Typography>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="Marital_Status"
+                // value={value}
+                onChange={handleCheckboxChange1}
+              >
+                <FormControlLabel
+                  value="Married" control={<Radio />} label="Married"
+                />
+                <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
+              </RadioGroup>
+              {/* <Typography>Martial Status</Typography>
           <InputLabel>
             <Radio
               type="radio"
@@ -321,12 +335,15 @@ function NewUser() {
             />
             Unmarried
           </InputLabel> */}
-        </FormControl>
+            </FormControl>
 
-        <Button variant="contained" onClick={handleClickadd}>
-          Add
-        </Button>
-      </div>
+            <Button variant="contained" onClick={handleClickadd}>
+              Add
+            </Button>
+          </div>
+        </CardContent>
+
+      </Card>
     </Box>
   );
 }
