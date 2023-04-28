@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
+import { Button, InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -136,11 +136,15 @@ const Branch = () => {
                   <TableCell align="center">{branch.HOD}</TableCell>
                   <TableCell align="center">{branch.Students_enrolled}</TableCell>
                   <TableCell align="center">
-      <button className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</button>
+      {/* <button className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</button> */}
+      
+     
+      <Link to={`/update/${branch.Branch_id}`}><Button color='success' variant='contained'className='update'>Update</Button></Link>
       &nbsp;&nbsp;&nbsp;
-      <button className="update">
+      <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</Button>
+      {/* <button className="update">
         <Link to={`/update/${branch.Branch_id}`}>Update</Link>
-      </button>
+      </button> */}
     </TableCell>
                   {/* < button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
                 &nbsp;&nbsp;
@@ -154,9 +158,11 @@ const Branch = () => {
         
         <br></br>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <button>
+        {/* <button>
+        
         <Link to="/addbranch">Add new Branch</Link>
-           </button>
+           </button> */}
+           <Link to="/addbranch"><Button variant='contained' className='AddBos'>Add New Branch</Button></Link>
            </Box>
            {/* <Button variant="contained" onClick={handleClick}>
               Add New Session

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
+import {  Button, InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -119,11 +119,12 @@ const Masterscheme = () => {
                 <TableCell align="center">{Masterscheme.from_year}</TableCell>
                 <TableCell align="center">{Masterscheme.to_year}</TableCell>
                 <TableCell align="center">
-    <button className="delete" onClick={() => handleDelete(Masterscheme.mastersch_id)}>Delete</button>
-    &nbsp;&nbsp;&nbsp;
-    <button className="update">
-      <Link to={`/update/${Masterscheme.mastersch_id}`}>Update</Link>
-    </button>
+   
+                
+      <Link to={`/updatemasterscheme/${Masterscheme.mastersch_id}`}><Button color='success' variant='contained' className="update">Update</Button></Link>
+      &nbsp;&nbsp;&nbsp;
+      <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(Masterscheme.mastersch_id)}>Delete</Button>
+    
   </TableCell>
                 {/* < button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
               &nbsp;&nbsp;
@@ -140,9 +141,9 @@ const Masterscheme = () => {
       {/* <button>
       <Link to="/addbranch">Add new Branch</Link>
          </button> */}
-          <button>
-            <Link to="/addmasterscheme">Add new Master Scheme</Link>
-        </button>
+          
+            <Link to="/addmasterscheme"><Button variant='contained'>Add new Master Scheme</Button></Link>
+        
          </Box>
          {/* <Button variant="contained" onClick={handleClick}>
             Add New Session

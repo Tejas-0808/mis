@@ -114,7 +114,7 @@ return (
         <TableHead>
       
           <TableRow>
-            <TableCell align="center">Row</TableCell>
+            <TableCell align="center">ID</TableCell>
             {/* <TableCell align="right">Session ID</TableCell> */}
             <TableCell align="center">Master Scheme ID</TableCell>
             
@@ -150,10 +150,12 @@ return (
                 {Session.session_id}
               </TableCell> */}
               <TableCell align="center">{structure.strid}</TableCell>
-              <TableCell align="center">{structure.scheme_id}</TableCell>
-              <TableCell align="center">{structure.category}</TableCell>
+              <TableCell align="center">{structure.mastersch_id}</TableCell>
+              <TableCell align="center">{structure.course_category}</TableCell>
+              <TableCell align="center">{structure.semester}</TableCell>
               <TableCell align="center">{structure.branch_id}</TableCell>
               <TableCell align="center">{structure.board_of_study}</TableCell>
+              <TableCell align="center">{structure.session_id}</TableCell>
               <TableCell align="center">{structure.coursecode}</TableCell>
               <TableCell align="center">{structure.coursename}</TableCell>
               <TableCell align="center">{structure.lecture}</TableCell>
@@ -168,7 +170,7 @@ return (
               <TableCell align="center">{structure.total_marks}</TableCell>
               <TableCell align="center">{structure.total_credits}</TableCell>
               <TableCell align="center">
-            <button
+            {/* <button
             className="delete"
                onClick={() => handleDelete(structure.strid)}
            >
@@ -176,7 +178,10 @@ return (
            </button>
           <button className="update">
              <Link to={`/updatestructure/${structure.strid}`}>Update</Link>
-            </button>
+            </button> */}
+            <Link to={`/updatestructure/${structure.strid}`}><Button color='success' variant='contained' className="update">Update</Button></Link>
+      &nbsp;&nbsp;&nbsp;
+      <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(structure.strid)}>Delete</Button>
             </TableCell>
 
             </TableRow>
@@ -186,9 +191,10 @@ return (
     </TableContainer>
     <br></br>
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-    <button>
+    {/* <button>
     <Link to="/addstructure">Add New Structure</Link>
-       </button>
+       </button> */}
+       <Link to="/addstructure"><Button variant='contained'>Add New Structure</Button></Link>
        </Box>
        {/* <Button variant="contained" onClick={handleClick}>
           Add New Session

@@ -3,6 +3,7 @@ import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
 
 function UpdateMasterscheme() {
     const [Masterscheme, setMasterscheme] = useState({ mastersch_id: "", master_scheme: "", from_year: "", to_year: "" });
@@ -51,15 +52,27 @@ function UpdateMasterscheme() {
             noValidate
             autoComplete="off"
         >
+            <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="UPDATE MASTER SCHEME"
+       />
             <div className='edit_form'>
-                <h2>EDIT MASTER SCHEME</h2> <hr />
+                {/* <h2>EDIT MASTER SCHEME</h2> <hr /> */}
 
                 <TextField required type="number" label=" Master ID" name="mastersch_id" value={Masterscheme.mastersch_id} onChange={handleChange} />
                 <TextField required type="text" label="Master scheme" name="master_scheme" value={Masterscheme.master_scheme} onChange={handleChange} />
                 <TextField required type="number" label="From Year" name="from_year" value={Masterscheme.from_year} onChange={handleChange} />
                 <TextField required type="number" label="To Year" name="to_year" value={Masterscheme.to_year} onChange={handleChange} />
-                <Button variant="contained" onClick={handleEdit}>Submit</Button>
+                {/* <Button variant="contained" onClick={handleEdit}>Submit</Button> */}
+                <Button color='success' variant="contained" onClick={handleEdit}  sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Update</Button>
             </div>
+            </CardContent>
+      </Card>
         </Box>)
 }
 
