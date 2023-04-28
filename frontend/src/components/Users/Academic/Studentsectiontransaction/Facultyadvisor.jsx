@@ -154,9 +154,11 @@ function Facultyadvisor() {
 
   console.log(Rolllists);
   return (
-    <Box>
+    <div style={{ height: '100vh', width: '100%'}}>
+      
+    <Box sx={{ width: '100%', height: '100%'}}>
 
-      <Card sx={{ m: 1, minWidth: 275 }}>
+      <Card sx={{ m: 1, minWidth: 275, height:'90%', backgroundColor:'#F5F5F5' }}>
 
 
         <CardContent>
@@ -318,6 +320,9 @@ function Facultyadvisor() {
         </CardContent>
       </Card>
     </Box>
+    
+    </div>
+    
   );
 }
 
