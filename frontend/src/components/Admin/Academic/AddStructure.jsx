@@ -158,7 +158,7 @@ function AddStructure() {
           onChange={handleChange}
         /> */}
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">
             Scheme ID
           </InputLabel>
@@ -177,7 +177,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -194,7 +194,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">Semester</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -211,7 +211,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">Branch</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -228,7 +228,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">BOS</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -284,14 +284,22 @@ function AddStructure() {
           onChange={handleChange}
         />
 
-        <h3>
+        {/* <h3>
           <input
             type="number"
             placeholder="Total"
             name="total"
             value={result}
           />
-        </h3>
+        </h3> */}
+        <TextField
+          type="number"
+          value={result}
+          required
+          placeholder="Total"
+          name="total"
+          onChange={handleChange}
+        />
 
         <TextField
           type="number"
@@ -346,9 +354,13 @@ function AddStructure() {
         />
 
         <br />
-        <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>
+        {/* <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>
           Add
-        </Button>
+        </Button> */}
+        <Button variant="contained"
+    onClick={handleClick}
+    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }} >Add</Button>
+  
       </div>
       </CardContent>
   </Card>

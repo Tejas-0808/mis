@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
+import {  Button,InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -100,7 +100,8 @@ const Scheme = () => {
                 <TableCell align="center">{scheme.ft}</TableCell>
                 <TableCell align="center">{scheme.pt}</TableCell>
                 <TableCell align="center">
-                <button className="delete" onClick={()=>handleDelete(scheme.scid)}>Delete</button>
+                {/* <button className="delete" onClick={()=>handleDelete(scheme.scid)}>Delete</button> */}
+                <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(scheme.scid)}>Delete</Button>
 
   </TableCell>
                 {/* < button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
@@ -118,9 +119,10 @@ const Scheme = () => {
       {/* <button>
       <Link to="/addbranch">Add new Branch</Link>
          </button> */}
-          <button>
+          {/* <button>
           <Link to="/addscheme">Add new Scheme</Link>
-        </button>
+        </button> */}
+         <Link to="/addscheme"><Button variant='contained'>Add New Scheme</Button></Link>
          </Box>
          {/* <Button variant="contained" onClick={handleClick}>
             Add New Session

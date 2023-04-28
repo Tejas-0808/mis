@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import { CardContent, Card, CardHeader, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material/";
+import { Button, InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader,Box} from "@mui/material/";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const Branch = () => {
 
@@ -121,34 +128,40 @@ const Branch = () => {
                     {/* <TableCell component="th" scope="row">
                     {Session.session_id}
                   </TableCell> */}
-                    <TableCell align="center">{branch.Branch_id}</TableCell>
-                    <TableCell align="center">{branch.Branch_name}</TableCell>
-                    <TableCell align="center">{branch.HOD}</TableCell>
-                    <TableCell align="center">{branch.Students_enrolled}</TableCell>
-                    <TableCell align="center">
-                      <button className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</button>
-                      &nbsp;&nbsp;&nbsp;
-                      <button className="update">
-                        <Link to={`/update/${branch.Branch_id}`}>Update</Link>
-                      </button>
-                    </TableCell>
-                    {/* < button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
+                  <TableCell align="center">{branch.Branch_id}</TableCell>
+                  <TableCell align="center">{branch.Branch_name}</TableCell>
+                  <TableCell align="center">{branch.HOD}</TableCell>
+                  <TableCell align="center">{branch.Students_enrolled}</TableCell>
+                  <TableCell align="center">
+      {/* <button className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</button> */}
+      
+     
+      <Link to={`/update/${branch.Branch_id}`}><Button color='success' variant='contained'className='update'>Update</Button></Link>
+      &nbsp;&nbsp;&nbsp;
+      <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</Button>
+      {/* <button className="update">
+        <Link to={`/update/${branch.Branch_id}`}>Update</Link>
+      </button> */}
+    </TableCell>
+                  {/* < button className="delete" onClick={()=>handleDelete(branch.Branch_id)}>Delete</button>
                 &nbsp;&nbsp;
                  <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button> */}
-                  </TableRow>
-
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          <br></br>
-          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <button>
-              <Link to="/addbranch">Add new Branch</Link>
-            </button>
-          </Box>
-          {/* <Button variant="contained" onClick={handleClick}>
+                </TableRow>
+               
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        
+        <br></br>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        {/* <button>
+        
+        <Link to="/addbranch">Add new Branch</Link>
+           </button> */}
+           <Link to="/addbranch"><Button variant='contained' className='AddBos'>Add New Branch</Button></Link>
+           </Box>
+           {/* <Button variant="contained" onClick={handleClick}>
               Add New Session
             </Button> */}
         </CardContent>
