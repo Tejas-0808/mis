@@ -47,7 +47,9 @@ function Facultyadvisor() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/degree")
+      .get("http://localhost:3001/degree", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setdegree(response.data);
       })
@@ -68,7 +70,9 @@ function Facultyadvisor() {
       });
 
     axios
-      .get("http://localhost:3001/semester")
+      .get("http://localhost:3001/semester" , {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setsemester(response.data);
       })
@@ -77,7 +81,9 @@ function Facultyadvisor() {
       });
 
     axios
-      .get("http://localhost:3001/batch")
+      .get("http://localhost:3001/batch", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setbatch(response.data);
       })
