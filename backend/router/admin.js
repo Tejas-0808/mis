@@ -16,7 +16,7 @@ router.post('/student_info', async (req, res) => {
     if(!Reg_Id ||  !roll_no || !First_Name || !Middle_Name || !Last_Name || !Email_id || !Mobile_No || !Caste || !Religion || !Nationality || !Category || !Blood_group || !Gender || !D_O_B || !Birth_Place || !Marital_Status || !Seat_type || !Student_type || !Addhar_no || !Permanent_Add || !Current_Add || !Physically_handicapped ) {
         return res.status(422).json({error: "plz fill all fields properly"});
     }
-
+    
      try{
 
         (async()=>{
