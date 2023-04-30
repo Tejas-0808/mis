@@ -30,7 +30,9 @@ function OfferedCourses() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/session")
+      .get("http://localhost:3001/session",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setSession(response.data);
       })
@@ -46,7 +48,7 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/branch" ,{
+      .get("http://localhost:3001/branch", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -187,11 +189,12 @@ function OfferedCourses() {
 
   //   console.log(Rolllists);
   return (
-    <Card sx={{ m: 4, minWidth: 275 }}>
-      <Box component="form"
-        sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
-        noValidate
-        autoComplete="off">
+
+    <Box component="form"
+      sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
+      noValidate
+      autoComplete="off">
+      <Card sx={{ m: 4, minWidth: 275 }}>
         <CardContent>
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
@@ -358,9 +361,8 @@ function OfferedCourses() {
             </div>
           </div>
         </CardContent>
-      </Box >
-    </Card >
-
+      </Card >
+    </Box >
   );
 }
 

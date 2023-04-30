@@ -3,7 +3,7 @@ import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Box, Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
+import {TextField, Card, CardContent, CardHeader } from "@mui/material";
 
 
 function UpdateState() {
@@ -44,24 +44,29 @@ function UpdateState() {
 
     }
 
-    return (<Box
-        component="form"
-        sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-    >
+    return (
+        <Box
+            component="form"
+            sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal' }}
+            noValidate
+            autoComplete="off">
 
-        <div className="form">
-            <h1>EDIT STATE</h1>
-            <hr></hr>
-            <br></br>
-            <TextField required type="number" variant="outlined" label="State ID" name="state_id" value={State.state_id} onChange={handleChange} />
-            <TextField required type="text" variant="outlined" label="State Name" name="state_name" value={State.state_name} onChange={handleChange} />
-            <Button variant="contained" onClick={handleEdit}>Submit</Button>
-        </div>
-    </Box>)
+            <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+
+                    <CardHeader
+                        title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px", textAlign: 'center' }}>Edit State</h1>}
+                        style={{ backgroundColor: "lightblue", padding: "1px" }}
+                    />
+
+                    <div className="form">
+                        <TextField required type="number" variant="outlined" label="State ID" name="state_id" value={State.state_id} onChange={handleChange} />
+                        <TextField required type="text" variant="outlined" label="State Name" name="state_name" value={State.state_name} onChange={handleChange} />
+                        <Button sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }} variant="contained" onClick={handleEdit}>Submit</Button>
+                    </div>
+                </CardContent>
+            </Card>
+        </Box>)
 }
 
 export default UpdateState;

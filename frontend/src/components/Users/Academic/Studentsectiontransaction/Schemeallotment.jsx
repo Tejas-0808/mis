@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, CardContent, Card, CardHeader } from '@mui/material/';
 
 function Schemeallotment() {
   const [Rolllists, SetRolllists] = useState({
@@ -42,7 +42,9 @@ function Schemeallotment() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/branch")
+      .get("http://localhost:3001/branch", {
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then((response) => {
         setbranch(response.data);
       })
@@ -161,96 +163,103 @@ function Schemeallotment() {
   console.log(Rolllists);
   return (
     <Box>
-      <div>
-
-        <h1>Scheme Allotment</h1>
-        <hr></hr>
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Degree</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Degree"
-            placeholder="Select Degree"
-            className="form-select-degree"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Degree --</MenuItem>
-            {degree.map((item) => (
-              <MenuItem key={item.degree_id} value={item.degree_name}>
-                {item.degree_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <Card sx={{ m: 1, minWidth: 275 }}>
 
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Branch"
-            placeholder="Select Branch"
-            className="form-select-branch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Branch --</MenuItem>
-            {branch.map((item) => (
-              <MenuItem key={item.Branch_id} value={item.Branch_name}>
-                {item.Branch_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <CardContent>
+
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Scheme Allotment"
+          />
+          <div>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Degree</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Degree"
+                placeholder="Select Degree"
+                className="form-select-degree"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Degree --</MenuItem>
+                {degree.map((item) => (
+                  <MenuItem key={item.degree_id} value={item.degree_name}>
+                    {item.degree_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Semester</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Semester"
-            placeholder="Select Semester"
-            className="form-select-semester"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Semester --</MenuItem>
-            {semester.map((item) => (
-              <MenuItem key={item.sem_id} value={item.sem}>
-                {item.sem}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Branch"
+                placeholder="Select Branch"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Branch --</MenuItem>
+                {branch.map((item) => (
+                  <MenuItem key={item.Branch_id} value={item.Branch_name}>
+                    {item.Branch_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Batch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Batch"
-            placeholder="Select Batch"
-            className="form-select-batch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Batch --</MenuItem>
-            {batch.map((item) => (
-              <MenuItem key={item.batch_id} value={item.year}>
-                {item.year}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Semester</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Semester"
+                placeholder="Select Semester"
+                className="form-select-semester"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Semester --</MenuItem>
+                {semester.map((item) => (
+                  <MenuItem key={item.sem_id} value={item.sem}>
+                    {item.sem}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-        <Button variant="contained" onClick={fetchStudents}>Show Students</Button>
 
-        <br></br>
-        <br></br>
-        <div className="">
-          {/* {studentlist.map((student) => (
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Batch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Batch"
+                placeholder="Select Batch"
+                className="form-select-batch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Batch --</MenuItem>
+                {batch.map((item) => (
+                  <MenuItem key={item.batch_id} value={item.year}>
+                    {item.year}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button variant="contained" onClick={fetchStudents}
+              sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>Show Students</Button>
+
+            <br></br>
+            <br></br>
+            <div className="">
+              {/* {studentlist.map((student) => (
           <div key={student.roll_no} className="branch">
             <h2>{student.First_Name}</h2>
             <p>{branch.Branch_name}</p>
@@ -260,53 +269,57 @@ function Schemeallotment() {
             <button className="update"><Link to = {`/update/${branch.Branch_id}`}>Update</Link></button>
           </div>
         ))} */}
-          <div>
-            <div>
-              {studentlist.map((student) => (
-                <table>
-                  <tr>
-                    <td>
-                      <div key={student.roll_no}>
-                        <input
-                          type="checkbox"
-                          value={student.roll_no}
-                          checked={checkedValues.includes(student.roll_no)}
-                          onChange={handleCheckboxChange}
-                        />
-                        <span>{student.roll_no}</span>
-                        {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              ))}
+              <div>
+                <div>
+                  {studentlist.map((student) => (
+                    <table>
+                      <tr>
+                        <td>
+                          <div key={student.roll_no}>
+                            <input
+                              type="checkbox"
+                              value={student.roll_no}
+                              checked={checkedValues.includes(student.roll_no)}
+                              onChange={handleCheckboxChange}
+                            />
+                            <span>{student.roll_no}</span>
+                            {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  ))}
 
-              <p>Checked values: {JSON.stringify(checkedValues)}</p>
+                  <p>Checked values: {JSON.stringify(checkedValues)}</p>
+                </div>
+                <br />
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">Scheme to Be Alloted</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="Scheme"
+                    placeholder="Select Scheme"
+                    className="form-select-batch"
+                    onChange={handleChange}
+                    required
+                  >
+                    <MenuItem value="">-- Select Scheme --</MenuItem>
+                    {scheme.map((item) => (
+                      <MenuItem key={item.mastersch_id} value={item.mastersch_id}>
+                        {item.master_scheme}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <Button variant="contained" onClick={handleUpdateButtonClick}
+                  sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}
+                >Assign Scheme</Button>
+              </div>
             </div>
-            <br />
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Scheme to Be Alloted</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                name="Scheme"
-                placeholder="Select Scheme"
-                className="form-select-batch"
-                onChange={handleChange}
-                required
-              >
-                <MenuItem value="">-- Select Scheme --</MenuItem>
-                {scheme.map((item) => (
-                  <MenuItem key={item.mastersch_id} value={item.mastersch_id}>
-                    {item.master_scheme}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-
-            <Button variant="contained" onClick={handleUpdateButtonClick}>Assign Scheme</Button>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </Box>
   );
 }

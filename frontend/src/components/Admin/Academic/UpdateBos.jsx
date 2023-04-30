@@ -3,9 +3,11 @@ import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
+
 
 function UpdateBos(){
-    const [Bos, setBos] = useState({bos_id: "" , bos_name: ""});
+    const [Bos, setBos] = useState({bos_id: "" , bos_name: "", code:""});
     const navigate = useNavigate();
     const location = useLocation();
     
@@ -51,13 +53,28 @@ function UpdateBos(){
         noValidate
         autoComplete="off"
       >
+       
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="UPDATE BRANCH"
+       />
         <div className='edit_form'>
-        <h2>EDIT BOS</h2> <hr />
-        <TextField type="number" required label="BOS ID" name="bos_id" value={Bos.dept_id} onChange={handleChange} />
+        {/* <h2>EDIT BOS</h2> <hr /> */}
+        <TextField type="number" required label="BOS ID" name="bos_id" value={Bos.bos_id} onChange={handleChange} />
         <TextField type="text" required label="BOS Name" name="bos_name" value={Bos.bos_name}onChange={handleChange} />
-        <Button variant="contained" onClick={handleEdit}>Submit</Button>
+        <TextField type="text" required label="BOS Code" name="code" value={Bos.code}onChange={handleChange} />
+        {/* <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button> */}
+        <Button color='success' variant="contained" onClick={handleEdit}  sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Update</Button>
     </div>
-    </Box>
+    </CardContent>
+      </Card>
+      </Box>
+ 
     )
 }
 

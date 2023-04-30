@@ -3,6 +3,7 @@ import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
 
 function AddMasterscheme() {
   const [Masterscheme, setMasterscheme] = useState({
@@ -37,14 +38,26 @@ function AddMasterscheme() {
       noValidate
       autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD MASTER SCHEME"
+       />
       <div className="form">
-        <h1>ADD MASTER SCHEME</h1> <hr></hr>
+        {/* <h1>ADD MASTER SCHEME</h1> <hr></hr> */}
         <TextField required type="number" label=" Master ID" name="mastersch_id" onChange={handleChange} />
         <TextField required type="text" label="Master scheme" name="master_scheme" onChange={handleChange} />
         <TextField required type="number" label="From Year" name="from_year" onChange={handleChange} />
         <TextField required type="number" label="To Year" name="to_year" onChange={handleChange} />
-        <Button variant="contained" onClick={handleClick}>Add</Button>
+        <Button variant="contained" onClick={handleClick}sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button>
       </div>
+      </CardContent>
+      
+      </Card>
     </Box>
   )
 }

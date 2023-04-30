@@ -183,9 +183,10 @@ return (
     </TableContainer>
     <br></br>
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-    <button>
+    {/* <button>
            <Link to="/addsession" >Add new Session</Link>
-       </button>
+       </button> */}
+        <Link to="/addsession"><Button variant='contained'>Add New Session</Button></Link>
        </Box>
        {/* <Button variant="contained" onClick={handleClick}>
           Add New Session

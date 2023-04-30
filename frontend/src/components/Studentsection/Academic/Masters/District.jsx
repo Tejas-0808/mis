@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import { Box, Button, Card, CardContent, CardHeader, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const District = () => {
 
@@ -35,20 +36,56 @@ const District = () => {
           }
     };
 
-    return (<div>
-        <h1>District Management</h1>
-        <div className='District'>
-        {District.map((District) => (
-            <div key={District.district_id} className="District">
-                <p>{District.district_id}</p>
-                <p>{District.district_name}</p>
-                <button className='update'><Link to={`/updatedistrict/${District.district_id}`}>Update</Link></button>
-                <button className="delete" onClick={()=>handleDelete(District.district_id)}>Delete</button>
-            </div>
-        ))}
-        </div>
-        <button className='AddDistrict'><Link to='/adddistrict'>ADD District</Link></button>
-    </div>)
+    return (
+    
+    
+        <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <CardHeader
+            style={{ backgroundColor: "lightblue", textAlign: 'center' }}
+            title="District Management"
+          />
+  
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">District Id</TableCell>
+                  <TableCell align="center">District Name</TableCell>
+                  <TableCell align="center"></TableCell>
+                </TableRow>
+  
+              </TableHead>
+              <TableBody>
+                {District.map((District) => (
+                  <TableRow
+                  key={District.district_id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell align="center">{District.district_id}</TableCell>
+                    <TableCell align="center">{District.district_name}</TableCell>
+                    <TableCell align="center">
+                      <Link to={`/updatedistrict/${District.district_id}`}><Button variant='contained' color='success'>Update</Button></Link>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <Button variant='contained' color='error' onClick={() => handleDelete(District.district_id)}>Delete</Button>
+                    </TableCell>
+                  </TableRow>
+  
+                ))}
+  
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <br></br>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+  
+            <Link to="/adddistrict"><Button variant='contained'>Add new District</Button></Link>
+  
+          </Box>
+        </CardContent>
+      </Card>
+    
+    )
 }
 
 export default District;

@@ -10,7 +10,7 @@ import {
   Box,
   TextField,
 } from "@mui/material/";
-
+import { CardContent, Card, CardHeader} from "@mui/material/";
 function AddStructure() {
   const [Scheme, setScheme] = useState([]);
   const [Category, setCategory] = useState([]);
@@ -135,8 +135,17 @@ function AddStructure() {
       noValidate
       autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
+
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD STRUCTURE"
+       />
       <div className="form">
-        <h1>ADD Structure</h1>
+        {/* <h1>ADD Structure</h1> */}
         <br></br>
         <hr></hr>
 
@@ -149,7 +158,7 @@ function AddStructure() {
           onChange={handleChange}
         /> */}
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">
             Scheme ID
           </InputLabel>
@@ -168,7 +177,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -185,7 +194,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">Semester</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -202,7 +211,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">Branch</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -219,7 +228,7 @@ function AddStructure() {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 150 }}>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
           <InputLabel id="demo-simple-select-helper-label">BOS</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -275,14 +284,22 @@ function AddStructure() {
           onChange={handleChange}
         />
 
-        <h3>
+        {/* <h3>
           <input
             type="number"
             placeholder="Total"
             name="total"
             value={result}
           />
-        </h3>
+        </h3> */}
+        <TextField
+          type="number"
+          value={result}
+          required
+          placeholder="Total"
+          name="total"
+          onChange={handleChange}
+        />
 
         <TextField
           type="number"
@@ -337,10 +354,16 @@ function AddStructure() {
         />
 
         <br />
-        <Button variant="contained" onClick={handleClick}>
+        {/* <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>
           Add
-        </Button>
+        </Button> */}
+        <Button variant="contained"
+    onClick={handleClick}
+    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }} >Add</Button>
+  
       </div>
+      </CardContent>
+  </Card>
     </Box>
   );
 }

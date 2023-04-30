@@ -16,7 +16,7 @@ const Login = () => {
   console.log(role);
   // console.log(username);
   const Logout = () => {
-    localStorage.setItem('token', "");
+    localStorage.clear();
     navigate("/");
     // window.location.reload();
   };
@@ -33,11 +33,11 @@ const Login = () => {
       }).then((response) => {
         setUsername(response.data.username);
       }).catch((err) => {
-        localStorage.setItem('token', "");
+        localStorage.clear();
         console.error(err);
       });
     } else {
-      <div>login Again</div>
+      navigate("/loginform");
     }
   }, []);
   const btnstyle = { margin: '3px 720px', padding: 10, float: "center" }

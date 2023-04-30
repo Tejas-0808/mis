@@ -3,6 +3,8 @@ import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
+import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
+
 
 
 function UpdateStructure() {
@@ -66,21 +68,28 @@ function UpdateStructure() {
 
     }
 
-    return (<Box
-        component="form"
-        sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
+    return(
+         <Box component="form"
+    sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+    noValidate
+    autoComplete="off"
     >
+       <Card sx={{ m: 1, minWidth: 275 }}>
+     
+        
+     <CardContent>
 
+       <CardHeader
+         style={{ backgroundColor: "lightblue" }}
+         title="ADD BOS"
+       />
+    
         <div className="form">
-            <h1>EDIT Structure</h1>
+            {/* <h1>EDIT Structure</h1> */}
             <br></br><hr></hr>
             <TextField required type="number" label="Structure ID" name="strid" value={Structure.strid} onChange={handleChange} />
-            <TextField required type="number" label="Scheme Id" name="scheme_id" value={Structure.scheme_id} onChange={handleChange} />
-            <TextField required type="text" label="category" name="category" value={Structure.category} onChange={handleChange} />
+            <TextField required type="number" label="Scheme Id" name="scheme_id" value={Structure.mastersch_id} onChange={handleChange} />
+            <TextField required type="text" label="category" name="category" value={Structure.course_category} onChange={handleChange} />
             <TextField required type="text" label="Semester" name="semester" value={Structure.semester} onChange={handleChange} />
             <TextField required type="number" label="Branch Id" name="branch_id" value={Structure.branch_id} onChange={handleChange} />
             <TextField required type="text" label="Board of Study" name="board_of_study" value={Structure.board_of_study} onChange={handleChange} />
@@ -97,9 +106,14 @@ function UpdateStructure() {
             <TextField required type="number" label="End Sem" name="ese" value={Structure.ese} onChange={handleChange} />
             <TextField required type="number" label="Total Marks" name="total_marks" value={Structure.total_marks} onChange={handleChange} />
             <TextField required type="number" label="Total Credits" name="total_credits" value={Structure.total_credits} onChange={handleChange} />
-            <button onClick={handleEdit}>Submit</button>
+            {/* <button onClick={handleEdit}>Submit</button> */}
+            <Button color='success' variant="contained" onClick={handleEdit}  sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Update</Button>
         </div>
-    </Box>)
+            </CardContent>
+      
+            </Card>
+          </Box>
+    )
 }
 
 export default UpdateStructure;

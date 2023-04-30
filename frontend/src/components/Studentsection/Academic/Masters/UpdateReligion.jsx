@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Card, CardContent, CardHeader } from "@mui/material";
 
 
 function UpdateReligion() {
@@ -42,36 +42,42 @@ function UpdateReligion() {
 
     }
 
-    return (<Box
-        component="form"
-        sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-    >
-        <div className="form">
-            <h1>EDIT RELIGION</h1>
-            <hr></hr>
-            <br></br>
-            <TextField
-                required
-                type="number"
-                variant="outlined"
-                label="Religion ID"
-                name="religion_id"
-                value={Religion.religion_id}
-                onChange={handleChange} />
-            <TextField
-                required
-                variant="outlined"
-                name="Religion_name"
-                label="Religion Name"
-                value={Religion.Religion_name}
-                onChange={handleChange} />
-            <Button variant="contained" onClick={handleEdit}>Submit</Button>
-        </div>
-    </Box>)
+    return (
+
+        <Box
+            component="form"
+            sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal' }}
+            noValidate
+            autoComplete="off">
+
+            <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+
+                    <CardHeader
+                        title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px", textAlign: 'center' }}>Update Religion</h1>}
+                        style={{ backgroundColor: "lightblue", padding: "1px" }}
+                    />
+                    <div className="form">
+                        <TextField
+                            required
+                            type="number"
+                            variant="outlined"
+                            label="Religion ID"
+                            name="religion_id"
+                            value={Religion.religion_id}
+                            onChange={handleChange} />
+                        <TextField
+                            required
+                            variant="outlined"
+                            name="Religion_name"
+                            label="Religion Name"
+                            value={Religion.Religion_name}
+                            onChange={handleChange} />
+                        <Button sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }} variant="contained" onClick={handleEdit}>Submit</Button>
+                    </div>
+                </CardContent>
+            </Card>
+        </Box>)
 }
 
 export default UpdateReligion;
