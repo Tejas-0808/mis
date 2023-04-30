@@ -20,20 +20,20 @@ function generateToken(user) {
   return jwt.sign(payload, secretKey);
 }
 
-// function verifyToken(token) {
-//   try {
-//     const payload = jwt.verify(token, secretKey);
-//     // console.log(payload.expires + "  7 ");
-//     // console.log(payload);
-//     // console.log(Date.now());
-//     if (payload.expires < Date.now()) {
-//       return null;
-//     }
-//     return payload.username;
-//   } catch (err) {
-//     return null;
-//   }
-// }
+function verifyToken(token) {
+  try {
+    const payload = jwt.verify(token, secretKey);
+    // console.log(payload.expires + "  7 ");
+    // console.log(payload);
+    // console.log(Date.now());
+    if (payload.expires < Date.now()) {
+      return null;
+    }
+    return payload.username;
+  } catch (err) {
+    return null;
+  }
+}
 
 // const vr = function verifyToken(req,res,next) {
 //   console.log("middle ware called")

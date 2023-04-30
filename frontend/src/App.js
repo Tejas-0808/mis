@@ -64,6 +64,7 @@ import Promotion from "./components/Users/Academic/Studentsectiontransaction/Pro
 import UserDashboard from "./components/Users/UserDashboard";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
+import Facultyadvisorconfirm from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisorconfirm";
 
 
 
@@ -104,7 +105,7 @@ function App() {
           {/* <SideBar /> */}
           {/* <Studentlayout><StudentElement /></Studentlayout> */}
       <Studentlayout StudentElement={StudentElement}/>
-          <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout>
+          {/* <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout> */}
           <Routes>
             {/* <Route path="/" element={<Branch />} /> */}
             {/* <Route path="/edit/:id" element={<Edit/>}/> */}
@@ -217,6 +218,7 @@ function App() {
           
           <Route path="/ssdashboard" element={<ssdashboard />} />
           <Route path="/batchallotment" element={<Batchallotment/>} />
+          <Route path="/facultyconfirm" element={<Facultyadvisorconfirm/>} />
 
 
 
@@ -262,11 +264,11 @@ function UserElement({ children }) {
 }
 
 function StudentElement({ children }) { 
-  if (CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
+  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER || CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
     return <>{children}</>;
   } else {
-    return <Navigate to={"/"} />
-    // return <div>You dont have access to this page!</div>
+    // return <Navigate to={"/"} />
+    return <div>You dont have access to this page!</div>
   }
 }
 
