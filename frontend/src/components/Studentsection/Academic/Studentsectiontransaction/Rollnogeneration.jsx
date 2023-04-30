@@ -28,7 +28,9 @@ function RollNoGeneration() {
 
   const fetchBatch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/batch");
+      const res = await axios.get("http://localhost:3001/batch", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setBatch(res.data);
     } catch (err) {
       console.log(err);
@@ -58,7 +60,9 @@ function RollNoGeneration() {
 
   const fetchDegree = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/degree");
+      const res = await axios.get("http://localhost:3001/degree", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setDegree(res.data);
       console.log(res.data);
     } catch (err) {
