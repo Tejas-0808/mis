@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box } from '@mui/material/';
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
 
 function Courseallotment() {
 
-    const [Batchlist, SetBatchlists] = useState({
+    const [Courseallotment, SetCourseAllotments] = useState({
         SessionID: "",
         Degree: "",
         Branch: "",
@@ -13,8 +13,9 @@ function Courseallotment() {
         SchemeID: "",
         CourseType: "",
         Course: "",
-        Batch: "",
-        Faculty: ""
+        TeacherDepartment: "",
+        Teacher: "",
+        AddTeacher: ""
     });
 
     const [studentlist, setstudentlist] = useState([]);
@@ -47,7 +48,9 @@ function Courseallotment() {
             });
 
         axios
-            .get("http://localhost:3001/degree")
+            .get("http://localhost:3001/degree", {
+              headers: { authorization: localStorage.getItem('token') }
+          })
             .then((response) => {
                 setdegree(response.data);
             })
@@ -61,6 +64,7 @@ function Courseallotment() {
             })
             .then((response) => {
                 setbranch(response.data);
+                setTeacherDepartment(response.data);
             })
             .catch((error) => {
                 console.error(error);
@@ -76,25 +80,57 @@ function Courseallotment() {
             });
 
             axios
-            .post("http://localhost:3001/courselist", Batchlist)
+            .post("http://localhost:3001/courselist", Courseallotment)
             .then((response) => {
                 setCourse(response.data);
             })
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+
+            axios.get("http://localhost:3001/staff_details/" + Courseallotment.TeacherDepartment)
+            .then((response) => {
+              setTeacher(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+            axios.get("http://localhost:3001/semester")
+            .then((response) => {
+              setsemester(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+            axios.post("http://localhost:3001/courselist",Courseallotment)
+            .then((response) => {
+              setCourse(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+            
+    }, [Courseallotment] );
 
     const handleChange = async (e) => {
-        SetBatchlists((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+        SetCourseAllotments((prev) => ({ ...prev, [e.target.name]: e.target.value }))
       }
-
+      console.log(Courseallotment);
     return (
-        <Box>
-        <div>
-          <h1>Batch Allotment</h1>
-          <hr></hr>
-  
+      <Box>
+      <Card sx={{ m: 1, minWidth: 275 }}>
+
+
+        <CardContent>
+
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Course Allotment"
+          />
+          <div>
+
           <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-label">Session ID</InputLabel>
             <Select
@@ -239,6 +275,71 @@ function Courseallotment() {
               ))}
             </Select>
           </FormControl>
+
+          <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">Teacher from Department</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="TeacherDepartment"
+                    placeholder="Select FA"
+                    className="form-select-fa"
+                    onChange={handleChange}
+                    required
+                  >
+                    <MenuItem value="">
+                      -- Select Department --
+                    </MenuItem>
+                    {teacherDepartment.map((item) => (
+                      <MenuItem key={item.Branch_id} value={item.Branch_id}>
+                        {item.Branch_name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">Teachers</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="Teacher"
+                    placeholder="Select FA"
+                    className="form-select-fa"
+                    onChange={handleChange}
+                    required
+                  >
+                    <MenuItem value="">
+                      -- Select Teacher --
+                    </MenuItem>
+                    {teacher.map((item) => (
+                      <MenuItem key={item.staffID} value={item.staffID}>
+                        {item.First_Name + " " + item.Last_Name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">Addition Teacher</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    name="AddTeacher"
+                    placeholder="Select FA"
+                    className="form-select-fa"
+                    onChange={handleChange}
+                    required
+                  >
+                    <MenuItem value="">
+                      -- Select Addition Teacher --
+                    </MenuItem>
+                    {addteacher.map((item) => ( 
+                      <MenuItem key={item.staffID} value={item.staffID}>
+                        {item.First_Name + " " + item.Last_Name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                
           {/* <Button variant="contained" onClick={fetchCourses}>Fetch</Button> */}
           <br></br>
           <br></br>
@@ -315,6 +416,8 @@ function Courseallotment() {
             </div>
           </div>
         </div>
+        </CardContent>
+        </Card>
       </Box>
     )
 }

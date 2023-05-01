@@ -56,15 +56,19 @@ import DirectoryTree from "./components/DirectoryTree";
 // import AddPaymentType from "./components/Studentsection/Academic/Masters/AddPaymentType";
 // import PaymentType from "./components/Studentsection/Academic/Masters/PaymentType";
 // import Update from "./components/Admin/Academic/Update";
-// import Student from "./components/Student";
-// import CourseConfirmation from "./components/Users/Academic/courseConfirmation";
-// import NewUser from "./components/Users/HOD/NewUser";
-// import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
-// import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
-// import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
-// import UserDashboard from "./components/Users/UserDashboard";
-// import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
-// import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
+import Student from "./components/Student";
+import Profile from "./components/Student/Profile/Profile";
+import CourseConfirmation from "./components/Users/Academic/courseConfirmation";
+import NewUser from "./components/Users/HOD/NewUser";
+import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
+import Facultyadvisor from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
+import Promotion from "./components/Users/Academic/Studentsectiontransaction/Promotion";
+import UserDashboard from "./components/Users/UserDashboard";
+import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
+import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
+
+
+import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 // import HomeStudentSection from "./components/HomeStudentSection";
 // import SideBar from "./components/Sidebar/sidebar";
 // import Batchallotment from "./components/Users/Academic/Studentsectiontransaction/Batchallotment";
@@ -199,17 +203,22 @@ function App() {
           <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
           <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
           <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
-            {/* <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
+            <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
             <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
             <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
             <Route path="/offeredcourses" element={<UserElement><Offeredcourses /></UserElement>} />
             <Route path="/courseconfirm" element={<UserElement><CourseConfirmation /></UserElement>} />
             <Route path="/newuser" element={<UserElement><NewUser /></UserElement>} />
             <Route path="/user" element={<UserElement><UserDashboard /></UserElement>} />
-            <Route path="/batchallotment" element={<UserElement><Batchallotment /></UserElement>} /> */}
-            {/* <Route path="/ssdashboard" element={<ssdashboard />} /> */}
-            {/* user<Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
-            user<Route path="/courseallotment" element={<Courseallotment />}></Route> */}
+            <Route path="/batchallotment" element={<UserElement><Batchallotment /></UserElement>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/loginform" element={<Loginform />} />
+            <Route path="/directorytree" element={<DirectoryTree />} />
+            <Route path="*" element={<div>Page not found</div>} />
+            <Route path="/ssdashboard" element={<ssdashboard />} />
+            <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
+            <Route path="/ssdashboard" element={<ssdashboard />} />
+            <Route path="/courseallotment" element={<Courseallotment />}></Route>
           </Routes>
         </div>
 
