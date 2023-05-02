@@ -20,12 +20,29 @@ import Paper from '@mui/material/Paper';
 
 
 function AddSession() {
-      const [Session1, setSession1] = useState({
-      session_id: "",
-      session_name : "",
-      term: "",
-      year: ""
-    });
+  const [Session, setSession] = useState([]);
+  const [Addsession, setAddSession] = useState({
+    term : "",
+    year : ""
+});
+
+  const fetchAllSession = async () => {
+    try {
+        const res = await axios.get("http://localhost:3001/session",{
+          headers: { authorization: localStorage.getItem('token') }
+        });
+        setSession(res.data);
+        console.log(res.data);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+  useEffect(() => {
+
+    fetchAllSession();
+    // eslint-disable-next-line
+  }, []);
    
   const [Session, setSession] = useState([]);
 
@@ -50,7 +67,7 @@ function AddSession() {
 const navigate = useNavigate();
 const handleChange = (e) => {
   
-    setSession1((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   
 
@@ -58,14 +75,14 @@ const handleChange = (e) => {
 
     e.preventDefault();
     try {
-      const session_name1=  `${Session.term} ${Session.year}-${(Session.year%100+1)}`
+      // const session_name1=  `${Session.term} ${Session.year}-${(Session.year%100+1)}`
 
       console.log(Session);
-  setSession(prevState => ({
-    ...prevState,
-    session_name: session_name1
-  }));
-      await axios.post("http://localhost:3001/session", Session,{
+  // setSession(prevState => ({
+  //   ...prevState,
+  //   // session_name: session_name1
+  // }));
+      await axios.post("http://localhost:3001/session", Addsession,{
         headers: { authorization: localStorage.getItem('token') }
       });
       // navigate("/session");

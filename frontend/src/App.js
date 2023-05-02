@@ -51,7 +51,7 @@ import Staff from "./components/Staff";
 import Home from "./components/Home";
 import DirectoryTree from "./components/DirectoryTree";
 import Student from "./components/Student";
-import Profile from "./components/Student/Profile/Profile";
+// import Profile from "./components/Student/Profile/Profile";
 import CourseConfirmation from "./components/Users/Academic/courseConfirmation";
 import NewUser from "./components/Users/HOD/NewUser";
 import Schemeallotment from "./components/Users/Academic/Studentsectiontransaction/Schemeallotment";
@@ -60,6 +60,9 @@ import Promotion from "./components/Users/Academic/Studentsectiontransaction/Pro
 import UserDashboard from "./components/Users/UserDashboard";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
+import Facultyadvisorconfirm from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisorconfirm";
+
+
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
 import axios from "axios";
 import Protected from "./components/Protected";

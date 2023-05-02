@@ -30,12 +30,11 @@ router.post("/courseactivity", async(req ,res)=>{
 
 //to add courses into courses taken table
 router.post("/confirmcourse", async(req, res)=>{
-    const s_no = req.body.sr_no;
     const roll = req.body.roll_no;
     const sem = req.body.semester;
     const session = req.body.session;
     const courses = req.body.courses;
-    console.log(s_no);
+    const fac_id = req.body.fac_id;
     console.log(roll);
     console.log(sem);
     console.log(session);
@@ -48,35 +47,53 @@ router.post("/confirmcourse", async(req, res)=>{
     
     try {
         (async () => {
-            try {
-            const data = await query("SELECT * FROM courses_taken WHERE serial_no=?", [
-                [s_no]
-            ]);
-            userExists = await data[0];
-            } finally {
-            // pool.end();
-            }
+            // try {
+            // const data = await query("SELECT * FROM courses_taken WHERE serial_no=?", [
+            //     [s_no]
+            // ]);
+            // userExists = await data[0];
+            // } finally {
+            // // pool.end();
+            // }
 
-            if (!userExists) {
+           
             (async () => {
                 try {
-                const data = await query("INSERT INTO courses_taken (`roll_no`, `semester`, `session`, `courses`) VALUES(?,?,?,?)", [
+                const data = await query("INSERT INTO courses_taken (`roll_no`, `semester`, `session`, `courses`,`fac_adv_id`) VALUES(?,?,?,?,?)", [
                     roll,
                     sem,
                     session,
-                    JSON.stringify(courses)
+                    JSON.stringify(courses),
+                    fac_id
                 ]);
                 console.log(data[0]);
                 res.status(200).json({ msg: "courses registration added successfully" });
                 } finally {
                 }
             })();
-            } else {
-            return res.status(422).json({ error: "student and sem already exists already exists" });
-            }
+           
         })();
     } catch (err) {
         console.log(err);
+    }
+})
+
+
+router.get("/getfacultyid", async(req,res) => {
+    const uname = req.query.username;
+    console.log("222" + uname);
+    try {
+        (async () => {
+          const data = await query("select faculty_adv_id from student_info where roll_no = ?", [uname]);
+          const result = await data;
+          console.log(result);
+          return res.json(result);
+    
+          // return res.json(data);
+        })();
+    } catch (err) {
+        console.log(err);
+        return res.status(400).json({ error: err });
     }
 })
 

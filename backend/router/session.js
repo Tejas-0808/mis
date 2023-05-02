@@ -25,8 +25,8 @@ router.get("/session",verifyToken, async (req, res) => {
 //adding session
 router.post("/session", verifyToken, async (req, res) => {
     // const session_id = req.body.session_id;
-  const { session_id, term, year } = req.body;
-  console.log(session_id);
+  const { term, year } = req.body;
+  // console.log(session_id);
   console.log(term);
   console.log(year);
 const academic_year = `${year}-${(year % 100) + 1}`;
@@ -36,26 +36,25 @@ const session_name1 = `${term} ${academic_year_formatted}`;
   // session_name=  `${term} ${year}-${(year%100+1)}`;
   console.log(session_name1);
 
-  if (!session_id || !term || !year || !session_name1) {
+  if (!term || !year || !session_name1) {
     return res.status(422).json({ error: "please fill all fields properly" });
   }
 
   try {
     (async () => {
-      try {
-        const data = await query("SELECT * FROM sessions WHERE session_id=?", [
-          session_id,
-        ]);
-        userExists = await data[0];
-      } finally {
-        // pool.end();
-      }
+      // try {
+      //   const data = await query("SELECT * FROM sessions WHERE session_id=?", [
+      //     session_id,
+      //   ]);
+      //   userExists = await data[0];
+      // } finally {
+      //   // pool.end();
+      // }
 
-      if (!userExists) {
+      if (true) {
         (async () => {
           try {
-            const data = await query("INSERT INTO sessions VALUES(?,?,?,?)", [
-              session_id,
+            const data = await query("INSERT INTO sessions (session_name, term, year) VALUES(?,?,?)", [
               session_name1,
               term,
               year,
