@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent,Grid, CardHeader } from '@mui/material/';
 
 function Batchallotment() {
   const [Batchlist, SetBatchlists] = useState({
@@ -68,7 +68,9 @@ function Batchallotment() {
       });
 
     axios
-      .get("http://localhost:3001/semester")
+      .get("http://localhost:3001/semester", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setsemester(response.data);
       })
@@ -97,7 +99,9 @@ function Batchallotment() {
       });
 
       axios
-      .get("http://localhost:3001/semester")
+      .get("http://localhost:3001/semester", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setsemester(response.data);
       })
@@ -106,14 +110,25 @@ function Batchallotment() {
       });
 
       axios
-      .get("http://localhost:3001/master_scheme")
+      .get("http://localhost:3001/master_scheme", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setscheme(response.data);
       })
       .catch((error) => {
         console.error(error);
       }); 
-  }, []);
+
+      axios.post("http://localhost:3001/courselist1",Batchlist)
+            .then((response) => {
+              setCourse(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+  }, [Batchlist]);
 
   const fetchCourses = async (e) => {
     // setCheckedValues([]);
@@ -121,7 +136,7 @@ function Batchallotment() {
     try {
 
       const res = await axios.post(
-        "http://localhost:3001/courselist",
+        "http://localhost:3001/courselist1",
         Batchlist
       );
       setCourse(res.data);
@@ -185,8 +200,11 @@ function Batchallotment() {
 
   console.log(Batchlist);
   return (
-    <Box>
-      <Card sx={{ m: 1, minWidth: 275 }}>
+    <div style={{ height: '100%', width: '100%'}}>
+      
+    <Box sx={{ width: '100%', height: '100%'}}>
+    {/* <Box> */}
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor:'#F5F5F5' }}>
 
 
         <CardContent>
@@ -195,9 +213,13 @@ function Batchallotment() {
             style={{ backgroundColor: "lightblue" }}
             title="Batch Allotment"
           />
-          <div>
 
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+
+<div style={{ padding: '15px'}}  >
+          {/* <Grid container spacing={2} sx={{ width: '100%' }}> */}
+          <Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Session ID</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -217,8 +239,9 @@ function Batchallotment() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Degree</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -238,8 +261,9 @@ function Batchallotment() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Branch</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -259,8 +283,9 @@ function Batchallotment() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Semester</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -280,8 +305,11 @@ function Batchallotment() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Scheme</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -299,8 +327,9 @@ function Batchallotment() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 200 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 200 }}>
               <InputLabel id="demo-simple-select-label">Course Type</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -320,8 +349,9 @@ function Batchallotment() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Course</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -335,13 +365,21 @@ function Batchallotment() {
                   <option value="">None</option>
                 </MenuItem>
                 {course.map((item) => (
-                  <MenuItem key={item.batch_id} value={item.year}>
+                  <MenuItem key={item.strid} value={item.coursename}>
                     {item.coursename}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
-            <Button variant="contained" onClick={fetchCourses}>Fetch</Button>
+            </Grid>
+          </Grid>
+
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' , marginTop:'15px' }}>
+              <Button variant="contained" onClick={fetchCourses}>Filter</Button>
+            </div>
+          <div>
+            {/* <Button variant="contained" onClick={fetchCourses}>Fetch</Button> */}
             <br></br>
             <br></br>
             <div className="facultyadv">
@@ -421,6 +459,7 @@ function Batchallotment() {
         </CardContent>
       </Card>
     </Box>
+    </div>
   );
 }
 

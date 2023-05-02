@@ -21,6 +21,10 @@ import Paper from '@mui/material/Paper';
 
 function AddSession() {
   const [Session, setSession] = useState([]);
+  const [Addsession, setAddSession] = useState({
+    term : "",
+    year : ""
+});
 
   const fetchAllSession = async () => {
     try {
@@ -40,10 +44,9 @@ function AddSession() {
     // eslint-disable-next-line
   }, []);
    
-const navigate = useNavigate();
-const handleChange = (e) => {
+  const handleChange = (e) => {
   
-    setSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAddSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   
 
@@ -51,17 +54,17 @@ const handleChange = (e) => {
 
     e.preventDefault();
     try {
-      const session_name1=  `${Session.term} ${Session.year}-${(Session.year%100+1)}`
+      // const session_name1=  `${Session.term} ${Session.year}-${(Session.year%100+1)}`
 
       console.log(Session);
-  setSession(prevState => ({
-    ...prevState,
-    session_name: session_name1
-  }));
-      await axios.post("http://localhost:3001/session", Session,{
+  // setSession(prevState => ({
+  //   ...prevState,
+  //   // session_name: session_name1
+  // }));
+      await axios.post("http://localhost:3001/session", Addsession,{
         headers: { authorization: localStorage.getItem('token') }
       });
-      navigate("/session");
+      // navigate("/session");
     } catch (err) {
       console.log(err);
       // setError(true)
@@ -189,14 +192,12 @@ const handleChange = (e) => {
           <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650}} aria-label="simple table">
         <TableHead style={{ backgroundColor: '#1976d2' }}>
-      
           <TableRow>
             {/* <TableCell align="right">Session ID</TableCell> */}
             <TableCell align="center">Session Name</TableCell>
             <TableCell align="center">Term</TableCell>
             <TableCell align="center">Year</TableCell>
           </TableRow>
-    
         </TableHead>
         <TableBody>
           {Session.map((Session) => (
@@ -216,11 +217,6 @@ const handleChange = (e) => {
       </Table>
           </TableContainer>
           </div>
-    
-   
-       
-     
-  
    </CardContent>
   </Card>
 
