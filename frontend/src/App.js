@@ -65,6 +65,7 @@ import UserDashboard from "./components/Users/UserDashboard";
 import Offeredcourses from "./components/Users/Academic/Studentsectiontransaction/Offeredcourses";
 import FinalCoursesOffered from "./components/Student/Coursereg/FinalCoursesOffered";
 import Facultyadvisorconfirm from "./components/Users/Academic/Studentsectiontransaction/Facultyadvisorconfirm";
+import Editcourses from "./components/Users/Academic/Studentsectiontransaction/Editcourses"
 
 
 import ssdashboard from "./components/Studentsection/ssdashboard/ssdashboard";
@@ -239,6 +240,7 @@ function App() {
           <Route path="/ssdashboard" element={<ssdashboard />} />
           <Route path="/batchallotment" element={<Batchallotment/>} />
           <Route path="/facultyconfirm" element={<Facultyadvisorconfirm/>} />
+          <Route path="/editcourses/:id" element={<Editcourses/>} />
 
 
 
