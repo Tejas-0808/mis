@@ -44,10 +44,9 @@ function AddSession() {
     // eslint-disable-next-line
   }, []);
    
-const navigate = useNavigate();
-const handleChange = (e) => {
+  const handleChange = (e) => {
   
-  setAddSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAddSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   
 

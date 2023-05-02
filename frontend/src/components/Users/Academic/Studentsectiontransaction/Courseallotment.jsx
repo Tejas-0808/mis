@@ -32,6 +32,7 @@ function Courseallotment() {
     const [teacherDepartment, setTeacherDepartment] = useState([]);
     const [teacher, setTeacher] = useState([]);
     const [addteacher, setaddTeacher] = useState([]);
+    const [courseteacherlist, setCourseteacherlist] = useState([]);
 
 
     useEffect(() => {
@@ -91,6 +92,7 @@ function Courseallotment() {
             axios.get("http://localhost:3001/staff_details/" + Courseallotment.TeacherDepartment)
             .then((response) => {
               setTeacher(response.data);
+              setaddTeacher(response.data);
             })
             .catch((error) => {
               console.error(error);
@@ -104,7 +106,7 @@ function Courseallotment() {
               console.error(error);
             });
 
-            axios.post("http://localhost:3001/courselist",Courseallotment)
+            axios.post("http://localhost:3001/courselist1",Courseallotment)
             .then((response) => {
               setCourse(response.data);
             })
@@ -269,7 +271,7 @@ function Courseallotment() {
                 <option value="">None</option>
               </MenuItem>
               {course.map((item) => (
-                <MenuItem key={item.batch_id} value={item.year}>
+                <MenuItem key={item.strid} value={item.coursename}>
                   {item.coursename}
                 </MenuItem>
               ))}
@@ -346,7 +348,7 @@ function Courseallotment() {
           <div className="facultyadv">
             <div>
               <table id="studentList">
-                {studentlist.map((student) => (
+                {courseteacherlist.map((student) => (
                   <table>
                     <tr>
                       <td>

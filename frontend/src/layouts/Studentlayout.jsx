@@ -15,7 +15,7 @@ import Student from "../components/Student";
 function Studentlayout({ StudentElement }) {
     // console.log(children);
     // const StudentElement = children.StudentElement;
-    console.log(StudentElement);
+    // console.log(StudentElement);
 
     return (
         <>
