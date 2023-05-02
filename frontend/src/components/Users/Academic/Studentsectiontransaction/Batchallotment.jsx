@@ -113,7 +113,16 @@ function Batchallotment() {
       .catch((error) => {
         console.error(error);
       }); 
-  }, []);
+
+      axios.post("http://localhost:3001/courselist1",Batchlist)
+            .then((response) => {
+              setCourse(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+  }, [Batchlist]);
 
   const fetchCourses = async (e) => {
     // setCheckedValues([]);
@@ -121,7 +130,7 @@ function Batchallotment() {
     try {
 
       const res = await axios.post(
-        "http://localhost:3001/courselist",
+        "http://localhost:3001/courselist1",
         Batchlist
       );
       setCourse(res.data);

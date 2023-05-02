@@ -14,7 +14,7 @@ import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity
 function Studentlayout({ StudentElement }) {
     // console.log(children);
     // const StudentElement = children.StudentElement;
-    console.log(StudentElement);
+    // console.log(StudentElement);
 
 return (
 	<>

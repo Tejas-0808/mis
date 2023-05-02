@@ -6,6 +6,8 @@ import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardConte
 function OfferedCourses() {
   const [Courseslists, SetCourselists] = useState({
     SessionID: "",
+    Term: "",
+    Degree: "",
     BranchID: "",
     Semester: "",
     SchemeID: "",
@@ -40,7 +42,9 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/degree")
+      .get("http://localhost:3001/degree",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setdegree(response.data);
       })
@@ -168,7 +172,7 @@ function OfferedCourses() {
       .catch((error) => {
         console.error(error);
       });
-    navigate("/");
+    // navigate("/");
     // }
     // if (checkedValues.length > 0) {
     // axios
@@ -187,7 +191,7 @@ function OfferedCourses() {
 
   //   console.log(studentlist);
 
-  //   console.log(Rolllists);
+    console.log(Courseslists);
   return (
 
     <Box component="form"
@@ -225,10 +229,10 @@ function OfferedCourses() {
             </FormControl>
 
             <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Term</InputLabel>
+              <InputLabel id="demo-simple-select-label">Offered to Term</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
-                name="term"
+                name="Term"
                 placeholder="select Term"
                 className="form-select-term"
                 onChange={handleChange}
