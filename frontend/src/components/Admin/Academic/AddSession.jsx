@@ -44,30 +44,9 @@ function AddSession() {
     // eslint-disable-next-line
   }, []);
    
-  const [Session, setSession] = useState([]);
-
-  const fetchAllSession = async () => {
-    try {
-        const res = await axios.get("http://localhost:3001/session",{
-          headers: { authorization: localStorage.getItem('token') }
-        });
-        setSession(res.data);
-        console.log(res.data);
-    } catch(err) {
-        console.log(err);
-    }
-}
-
-  useEffect(() => {
-
-    fetchAllSession();
-    // eslint-disable-next-line
-  }, []);
-   
-const navigate = useNavigate();
-const handleChange = (e) => {
+  const handleChange = (e) => {
   
-    setSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAddSession((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   
 

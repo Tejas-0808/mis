@@ -165,7 +165,6 @@ function App() {
                         <Route path="/newuser" element={<NewUser />} />
                         <Route path="/newstudent" element={<NewStudent />} />
                         <Route path="/student" element={<Student />} />
-                        <Route path="/profile" element={<Profile />} />
                         <Route path="/newstudent" element={<NewStudent />} />
                         {/* <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
                 <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} /> */}
