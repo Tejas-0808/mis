@@ -87,6 +87,7 @@ function Createstafflogin(props) {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3001/addusername_staff", formValues);
+   
       console.log('Username created successfully');
       navigate("/");
     } catch (err) {
@@ -170,9 +171,12 @@ function Createstafflogin(props) {
                         required
                       />
 
-                      <Button variant="contained" onClick={handleClicked}>
+                      {/* <Button variant="contained" onClick={handleClicked}>
                         Create Username
-                      </Button>
+                      </Button> */}
+                      <Button variant="contained"
+    onClick={handleClicked}
+    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }} >Create Username</Button>
                     </td>
                   </tr>
                 </table>
