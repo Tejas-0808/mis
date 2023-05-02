@@ -34,6 +34,9 @@ import Branchchange from "../components/Studentsection/Academic/Utiity/Branchcha
 import NewStudent from "../components/Studentsection/Academic/Admission/Newstudent";
 
 
+import Session from "../components/Admin/Academic/Session";
+import AddSession from "../components/Admin/Academic/AddSession";
+
 function StudentSectionlayout({ StudentSectionElement }) {
     console.log(StudentSectionElement);
     // const StudentSectionElement = children.StudentSectionElement;
@@ -41,6 +44,9 @@ function StudentSectionlayout({ StudentSectionElement }) {
         <>
             <SideBar />
             <Routes>
+            <Route path="/addsession" element={<AddSession />} />
+            <Route path="/session" element={<Session />} />
+            
                 <Route path="/state" element={<State />} />
                 <Route path="/addstate" element={<AddState />} />
                 <Route path="/updatestate/:id" element={<UpdateState />} />
