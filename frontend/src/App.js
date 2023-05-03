@@ -247,6 +247,9 @@ function App() {
                         <Route path="/courseallotment" element={<Courseallotment />}></Route>
                         <Route path="/" element={<Loginform />} />
 
+
+                        <Route path="/facultyconfirm" element={<Facultyadvisorconfirm/>} />
+          <Route path="/editcourses/:id" element={<Editcourses/>} />
                       </Routes>
                     )
 

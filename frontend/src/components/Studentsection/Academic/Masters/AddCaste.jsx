@@ -15,6 +15,9 @@ import Paper from '@mui/material/Paper';
 
 function AddCaste() {
   const [Caste, setCaste] = useState([]);
+  const [Addcaste, setAddCaste] = useState({
+    caste_name : ""
+});
 
   const fetchAllCaste = async () => {
     try {
@@ -36,19 +39,39 @@ function AddCaste() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setCaste((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAddCaste((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // const handleClick = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const caste_name1 = `${Caste.caste_name}`;
+  //     console.log(Caste);
+  //     setCaste(prevState => ({
+  //       ...prevState,
+  //       caste_name: caste_name1
+  //     }));
+  //     await axios.post("http://localhost:3001/caste", Addcaste, {
+  //       headers: { authorization: localStorage.getItem('token') }
+  //     });
+  //     navigate("/caste");
+  //   } catch (err) {
+  //     console.log(err);
+  //     // setError(true)
+  //   }
+  // };.
   const handleClick = async (e) => {
+
     e.preventDefault();
     try {
-      const caste_name1 = `${Caste.caste_name}`;
+      // const session_name1=  `${Session.term} ${Session.year}-${(Session.year%100+1)}`
+
       console.log(Caste);
-      setCaste(prevState => ({
-        ...prevState,
-        caste_name: caste_name1
-      }));
-      await axios.post("http://localhost:3001/caste", Caste, {
+  // setSession(prevState => ({
+  //   ...prevState,
+  //   // session_name: session_name1
+  // }));
+      await axios.post("http://localhost:3001/caste", Addcaste,{
         headers: { authorization: localStorage.getItem('token') }
       });
       navigate("/caste");
@@ -68,7 +91,7 @@ function AddCaste() {
         noValidate
         autoComplete="off">
         <Card sx={{
-          m: 3, minWidth: 275, backgroundColor: '#F5F5F5'
+          m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
         }}>
           <CardContent>
             <CardHeader
@@ -78,8 +101,8 @@ function AddCaste() {
             <div style={{ padding: '5px', marginTop: 30, marginLeft: 5 }}  >
               <Grid container spacing={1} >
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'left' }}>
-                  <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                    <TextField
+                  {/* <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
+                     <TextField
                       required
                       type="number"
                       variant="outlined"
@@ -87,8 +110,8 @@ function AddCaste() {
                       name="caste_id"
                       onChange={handleChange}
                       sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
-                    />
-                  </Grid>
+                    /> 
+                  </Grid> */}
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <TextField
                       required
