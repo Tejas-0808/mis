@@ -93,6 +93,7 @@ const Branch = () => {
   //   </Card>
   // </Box>
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
 
     <Box
       component="form"
@@ -167,6 +168,7 @@ const Branch = () => {
         </CardContent>
       </Card>
     </Box>
+</div>
   )
 }
 

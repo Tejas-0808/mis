@@ -112,6 +112,8 @@ function Addscheme() {
     //   <input type="number" placeholder="pt" name="pt" onChange={handleChange} />
     //   <button onClick={handleClick}>Add</button>
     // </div>
+    <div style={{ height: '100vh', width: '100%'}}>
+
     <Box
       component="form"
       sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
@@ -196,7 +198,7 @@ function Addscheme() {
       
       </Card>
     </Box>
-  
+  </div>
 
   )
 }

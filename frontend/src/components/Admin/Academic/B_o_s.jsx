@@ -86,6 +86,7 @@ const B_o_s = () => {
     // </Box>
     // )
     return (
+      <div style={{ height: '100vh', width: '100%'}}>
   
       <Box
       component="form"
@@ -163,6 +164,7 @@ const B_o_s = () => {
         </CardContent>
       </Card>
       </Box>
+      </div>
     )
   }
 
