@@ -54,7 +54,9 @@ function Createstafflogin(props) {
     try {
       const res = await axios.post(
         "http://localhost:3001/facultyrolllist",
-        formValues
+        formValues,{
+          headers: { authorization: localStorage.getItem('token') }
+        }
       );
 
       setFaculty(res.data);
@@ -82,28 +84,28 @@ function Createstafflogin(props) {
     }
   };
 
+  
   const handleClicked = async (e) => {
-    
     e.preventDefault();
+    
     try {
-      await axios.post("http://localhost:3001/addusername_staff", formValues);
-      console.log('Username created successfully');
-      navigate("/");
+      const token = localStorage.getItem('token');
+      const headers = { authorization: token };
+      
+      const request1 = axios.post('http://localhost:3001/addusername_staff', formValues, { headers });
+      const request2 = axios.post('http://localhost:3001/otherlogins', formValues, { headers });
+      
+      await Promise.all([request1, request2]);
+      
+      console.log('Both requests completed successfully');
+      navigate('/createuserlogin', { state: {} });
     } catch (err) {
       console.log(err);
-      // setError(true)
     }
-    // try {
-    //   console.log(formValues);
-    //   await axios.post("http://localhost:3001/otherlogins", formValues);
-    //   console.log('User registered successfully');
-    //   navigate("/");
-    // } catch (err) {
-    //   console.log(err);
-    //   // setError(true)
-    // }
-  };
-
+  }
+  
+  
+ 
   return (
     <Box>
       <div>
@@ -147,8 +149,7 @@ function Createstafflogin(props) {
                         name="username"
                         value={
                           faculty.Staff_username === null
-                            ? formValues.username
-                            : faculty.Staff_username
+                            ? formValues.username : faculty.Staff_username
                         }
                         onChange={handleChange}
                         //  InputLabelProps={{ shrink: true }}
