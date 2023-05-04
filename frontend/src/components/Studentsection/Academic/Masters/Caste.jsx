@@ -37,11 +37,20 @@ const Caste = () => {
   };
 
   return (
-      <Card sx={{ minWidth: 275 }}>
+    <Box
+      component="form"
+      sx={{
+        width: '100%', height: '100%'
+      }}
+      noValidate
+      autoComplete="off">
+      <Card sx={{
+        m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
+      }}>
         <CardContent>
           <CardHeader
             style={{ backgroundColor: "lightblue", textAlign: 'center' }}
-            title="Caste Management"
+            title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px", textAlign: 'center' }}>Caste Management</h1>}
           />
 
           <TableContainer component={Paper}>
@@ -83,6 +92,7 @@ const Caste = () => {
           </Box>
         </CardContent>
       </Card>
+    </Box>
   )
 }
 

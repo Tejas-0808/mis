@@ -83,7 +83,6 @@ function Createstafflogin(props) {
       console.log(err);
     }
   };
-
   
   const handleClicked = async (e) => {
     e.preventDefault();
@@ -171,9 +170,12 @@ function Createstafflogin(props) {
                         required
                       />
 
-                      <Button variant="contained" onClick={handleClicked}>
+                      {/* <Button variant="contained" onClick={handleClicked}>
                         Create Username
-                      </Button>
+                      </Button> */}
+                      <Button variant="contained"
+    onClick={handleClicked}
+    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }} >Create Username</Button>
                     </td>
                   </tr>
                 </table>

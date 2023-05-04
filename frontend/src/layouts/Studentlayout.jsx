@@ -9,6 +9,7 @@ import AddPersonalDetails from "../components/Student/Profile/AddPersonalDetails
 import Dashboard from "../components/Student/Dashboard/dashboard";
 import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
 import Student from "../components/Student";
+import Login from "../components/Login/Login";
 
 function Studentlayout({ StudentElement }) {
     // console.log(children);
@@ -28,6 +29,8 @@ function Studentlayout({ StudentElement }) {
                 <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
                 <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
                 <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
+                <Route path="/login" element={<StudentElement><Login /></StudentElement>} />
+                {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
             </Routes>
         </>
     );

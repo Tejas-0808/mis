@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import SideBar from "./sidebar";
+import axios from "axios";
 
 const AdminDashboard = () => {
   return (
-    <>
+    <> <SideBar />
       <p>
         <button>
           <Link to="/createuserlogin">Create logins</Link>
