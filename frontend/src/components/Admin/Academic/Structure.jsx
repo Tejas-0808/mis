@@ -93,6 +93,7 @@ const Structure = () => {
 //   );
 // };
 return (
+  <div style={{ height: '100vh', width: '100%'}}>
   
   <Box
   component="form"
@@ -202,6 +203,7 @@ return (
     </CardContent>
   </Card>
   </Box>
+  </div>
 )
 }
 export default Structure;

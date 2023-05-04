@@ -67,7 +67,7 @@ app.use(require('./router/login/otherlogins'));
 app.use(require('./router/login/facultyrolllist'));
 app.use(require('./router/login/addusername_staff'));
 app.use(require('./router/FinalCoursesOffered'))
-
+app.use(require('./router/courseallotment'));
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

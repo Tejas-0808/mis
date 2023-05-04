@@ -5,9 +5,9 @@ const util = require('util');
 const { pool } = require('../../db/mySql');
 const { use, route } = require('../auth');
 const query = util.promisify(pool.query).bind(pool);
-
+const verifyToken = require("../verifyToken");
 //update assign
-router.post('/addusername_staff', (req, res) => {
+router.post('/addusername_staff',verifyToken,  (req, res) => {
     const Email_id = req.body.Email_id;
     const username = req.body.username;
   console.log(Email_id);

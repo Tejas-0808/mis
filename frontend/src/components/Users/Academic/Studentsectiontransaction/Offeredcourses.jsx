@@ -62,7 +62,9 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/semester")
+      .get("http://localhost:3001/semester",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setsemester(response.data);
       })
@@ -78,7 +80,9 @@ function OfferedCourses() {
     //   console.error(error);
     // });
     axios
-      .get("http://localhost:3001/master_scheme")
+      .get("http://localhost:3001/master_scheme",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setscheme(response.data);
       })
@@ -96,7 +100,9 @@ function OfferedCourses() {
 
       const res = await axios.post(
         "http://localhost:3001/courselist",
-        Courseslists
+        Courseslists,{
+          headers: { authorization: localStorage.getItem('token') }
+        }
       );
       setCourselt(res.data);
       const couselistss = res.data;

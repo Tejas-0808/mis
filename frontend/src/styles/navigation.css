@@ -1,12 +1,4 @@
-{
-        /*
-    color- pallete
-    #C2DED1
-    #ECE5C7
-    #CDC2AE
-    #354259
-    */
-    }
+
 
     /*Navigation.js*/
     .navigation {
@@ -39,6 +31,9 @@
         color: #000000;
         display: flex;
         padding-top: 12px;
+        align-items: center;
+        justify-content: space-between;
+    
     }
 
     .navigation-menu li {
@@ -109,6 +104,8 @@
         .navigation-menu.expanded ul {
             display: block;
         }
+        
+    
     }
 
     /*=========================Header.js===============================*/
@@ -127,3 +124,103 @@
     .logo-image {
         padding-left: 60px;
     }
+
+    .logout-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:transparent;
+        border: 1px solid cornflowerblue;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .profile-icon {
+        position: relative;
+        
+      }
+      
+      .profile-icon img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      
+      .expanded-content {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      
+      .logout-box {
+        padding: 10px;
+      }
+      
+      .logout-box a {
+        color: black;
+        text-decoration: none;
+      }
+      
+      .logout-box a:hover {
+        text-decoration: underline;
+      }
+      .profile-container {
+        position: relative;
+      }
+      
+      .profile-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1;
+        display: none;
+        min-width: 120px;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+      
+       
+      }
+      
+      .profile-container:hover .profile-dropdown {
+        display: block;
+      }
+      .profile-icon button {
+        background: none;
+        border: none;
+        padding: 0;
+        position: relative;
+      }
+      .profile-icon button::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        /* border-style: solid;
+        border-width: 5px 5px 0 5px;
+        border-color: #fff transparent transparent transparent; */
+      }
+      .profile-dropdown a {
+        display: block;
+        padding: 8px 0;
+        color: black;
+        text-decoration: none;
+      }
+      .profile-dropdown.open {
+        display: block;
+        background-color: #f9f9f9;
+      }
+      
+.profile-dropdown a:hover {
+  background-color: #f2f2f2;
+}
+.profile-icon img:hover {
+  background-color: #ccc; /* change to the color that you want */
+}

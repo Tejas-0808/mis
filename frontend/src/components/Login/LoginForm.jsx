@@ -6,7 +6,7 @@ import { Grid, Paper, Avatar, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import AdminDashboard from "../Admin/AdminDashboard";
+import Ssdashboard from "../Studentsection/ssdashboard/ssdashboard";
 
 // import { useNavigate } from "react-router-dom";
 
@@ -50,7 +50,7 @@ const LoginForm = () => {
         console.log(" error ");
         console.error(error.response.data.message);
       }
-      navigate("/login");
+      navigate("/dashboard");
     } else {
       alert("fill the values");
     }
@@ -58,9 +58,9 @@ const LoginForm = () => {
   };
 
   return (
-    
+
     <Grid container spacing={2}>
-      
+
       <Paper elevation={14} style={paperStyle}>
         <Grid align='center'>
           <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
@@ -74,8 +74,8 @@ const LoginForm = () => {
             <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required value={password} onChange={(e) => setPassword(e.target.value)} />
           </Grid>
         </Grid>
-        
-        
+
+
         <FormControlLabel
           control={
             <Checkbox
@@ -102,17 +102,14 @@ const LoginForm = () => {
           <>
             {role === 1 && (
               <>
-                <p>Welcome Admin!</p>
-                <p>You have access to the admin dashboard.</p>
-                <AdminDashboard />
+                <Ssdashboard />
               </>
             )}
 
             {role === 4 && (
-              <div>
-                <p>Welcome User!</p>
-                <p>You have access to your user dashboard.</p>
-              </div>
+              <>
+                <Ssdashboard />
+              </>
             )}
           </>
         )}
