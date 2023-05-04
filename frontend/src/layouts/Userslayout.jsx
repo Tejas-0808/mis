@@ -18,7 +18,6 @@ function Userslayout({ UserElement }) {
         <>
             <SideBar />
             <Routes>
-
                 <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
                 <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
                 <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
@@ -28,7 +27,7 @@ function Userslayout({ UserElement }) {
                 <Route path="/user" element={<UserElement><UserDashboard /></UserElement>} />
                 <Route path="/batchallotment" element={<UserElement><Batchallotment /></UserElement>} />
                 <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
-                s<Route path="/courseallotment" element={<Courseallotment />}></Route>
+                <Route path="/courseallotment" element={<Courseallotment />}></Route>
             </Routes>
         </>
     );

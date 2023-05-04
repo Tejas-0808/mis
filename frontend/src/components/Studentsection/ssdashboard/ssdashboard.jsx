@@ -1,6 +1,6 @@
 import "../../../styles/Student/dashboard.css";
 
-export default function ssdashboard() {
+export default function Ssdashboard() {
     return (
         <>
             <div class="h-screen w-auto flex-grow-1 overflow-y-lg-auto position-relative">
