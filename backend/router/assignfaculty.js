@@ -36,10 +36,10 @@ router.post('/assignfaculty', (req, res) => {
     try{
 
         (async()=>{
-            
-            const data = await query("SELECT roll_no, First_Name FROM student_info where Degree = ? and Branch = ? and Semester= ? and Admission_batch = ?",[Degree, Branch,Semester,Batch]);
+            const data = await query ("SELECT roll_no, First_Name, Middle_Name, Last_Name, Branch, (SELECT CONCAT(sd.First_Name, ' ', sd.Last_Name) FROM staff_details AS sd WHERE sd.staffID = student_info.faculty_adv_id)  AS 'FA Name' FROM student_info WHERE Degree = ? AND Branch = ? AND Semester = ? AND Admission_batch = ? ", [Degree, Branch,Semester,Batch]);
             const result = await data;
-            // console.log(data);
+       
+            console.log(result);
             return res.json(result);
 
         })()

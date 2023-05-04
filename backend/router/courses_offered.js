@@ -32,7 +32,7 @@ router.get("/courses_offered", async (req,res)=> {
 
 
 router.post('/courses_offered', async (req, res) => {
-
+console.log(req,body);
     const {cid,coursename,coursecode,semester,prerequisite,final_offering,staff_id} = req.body;
     
         if(!cid|| !coursename || !coursecode || !semester || !prerequisite || !final_offering || !staff_id){

@@ -40,6 +40,7 @@ app.use(require('./router/b_o_s'));
 app.use(require('./router/attendance'));
 app.use(require('./router/time_table'));
 app.use(require('./router/citylist'));
+app.use(require('./router/facultyadvconfirm'));
 app.use(require('./router/state'));
 app.use(require('./router/district'));
 app.use(require('./router/particularstudent'));
@@ -66,6 +67,7 @@ app.use(require('./router/login/otherlogins'));
 app.use(require('./router/login/facultyrolllist'));
 app.use(require('./router/login/addusername_staff'));
 app.use(require('./router/FinalCoursesOffered'))
+
 
 app.get('/', (req, res) => {
   res.send(`Hello worldddd abc returns one`);

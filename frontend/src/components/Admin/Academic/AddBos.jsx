@@ -49,6 +49,7 @@ function AddBos() {
 
   return (
     <div style={{ height: '100vh', width: '100%'}}>
+    
     <Box component="form"
     sx={{ "& .MuiTextField-root": { m: 1}, width: "100%" }}
     noValidate
@@ -80,7 +81,7 @@ function AddBos() {
       
       </Card>
     </Box>
-    </div>
+    </div>    
   )
 }
 

@@ -127,6 +127,8 @@ function AddStructure() {
   };
 
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
+
     <Box
       component="form"
       sx={{
@@ -365,6 +367,7 @@ function AddStructure() {
       </CardContent>
   </Card>
     </Box>
+    </div>
   );
 }
 
