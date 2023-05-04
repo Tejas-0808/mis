@@ -10,6 +10,7 @@ import AddPersonalDetails from "../components/Student/Profile/AddPersonalDetails
 import Dashboard from "../components/Student/Dashboard/dashboard";
 import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
 import Student from "../components/Student";
+import LoginForm from "../components/Login/LoginForm";
 
 // import StudentDashboard from "../components/Student/StudentDashboard";
 function Studentlayout({ StudentElement }) {
@@ -31,6 +32,7 @@ function Studentlayout({ StudentElement }) {
                 <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
                 <Route path="/dashboard" element={<StudentElement><Dashboard /></StudentElement>} />
                 <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
+                <Route path="/loginform" element={<LoginForm/>} />
                 {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
             </Routes>
         </>

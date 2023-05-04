@@ -133,7 +133,7 @@ function App() {
 
                     return (
 
-                      <StudentSectionlayout StudentElement={StudentElement} />
+                      <StudentSectionlayout StudentSectionElement={StudentSectionElement} />
                     )
 
                   } else if (CURRENT_USER_TYPE == USER_TYPES.ADMIN_USER) {
@@ -141,6 +141,7 @@ function App() {
                     return (
 
                       <Routes>
+
                         <Route path="/branch" element={<AdminElement><Branch /></AdminElement>} />
                         <Route path="/addbranch" element={<AdminElement><Addbranch /></AdminElement>} />
                         <Route path="/update/:id" element={<AdminElement><Update /></AdminElement>} />
@@ -164,7 +165,7 @@ function App() {
                         {/* <Route path="/add" element={<Protected Component={Add} pageid="1" />} /> */}
                         <Route path="/newuser" element={<NewUser />} />
                         <Route path="/newstudent" element={<NewStudent />} />
-                        <Route path="/student" element={<Student />} />
+                        {/* <Route path="/student" element={<Student />} /> */}
                         <Route path="/newstudent" element={<NewStudent />} />
                         {/* <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
                 <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} /> */}
@@ -217,7 +218,7 @@ function App() {
                         <Route path="/rolllist" element={<Rolllist />} />
                         <Route path="/branchchange" element={<Branchchange />} />
                         <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
-                        <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
+                        {/* <Route path="/student" element={<StudentElement><Student /></StudentElement>} /> */}
                         {/* <Route path="/fill_profile" element={<Add_per_d />} />
               <Route path="/profile" element={<StudentElement><Profile /></StudentElement>} />
               <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
@@ -242,7 +243,7 @@ function App() {
                         <Route path="*" element={<div>Page not found</div>} />
                         <Route path="/ssdashboard" element={<ssdashboard />} />
                         <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
-                        <Route path="/ssdashboard" element={<ssdashboard />} />
+                        <Route path="/dashboard" element={<ssdashboard />} />
                         <Route path="/courseallotment" element={<Courseallotment />}></Route>
                         <Route path="/" element={<Loginform />} />
 
