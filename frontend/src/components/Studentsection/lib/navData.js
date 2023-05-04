@@ -14,6 +14,35 @@ export const navData = [
         "path": "/",
     },
     {
+        "title": "Academic",
+        "icon": <TbBooks className="icons" />,
+        "childrens": [
+            {
+                "title": "Academic Reports",
+                "childrens": [
+                    {
+                        "title": "Identity Card Gen",
+                        "path": "/identitycard"
+                    },
+                ]
+            },
+
+            {
+                "title": "Admission",
+                "childrens": [
+                    {
+                        "title": "Add New Student",
+                        "path": "/newstudent"
+                    },
+                ]
+            },
+           
+        ]
+
+    },
+
+
+    {
         "title": "Masters",
         "icon": <MdAccountCircle className="icons" />,
         "childrens": [
@@ -47,7 +76,7 @@ export const navData = [
             },
             {
                 "title": "Payment Type",
-                "path": "/paymenttype"
+                "path": "/payment"
             },
         ]
 

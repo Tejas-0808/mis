@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import SideBar from "../components/Student/sidebar";
+import SideBar from "../components/Users/sidebar";
 import Schemeallotment from "../components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "../components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 import Promotion from "../components/Users/Academic/Studentsectiontransaction/Promotion";
@@ -12,6 +12,8 @@ import Courseallotment from "../components/Users/Academic/Studentsectiontransact
 import CourseConfirmation from "../components/Users/Academic/courseConfirmation";
 import Ssdashboard from "../components/Studentsection/ssdashboard/ssdashboard";
 import Navigation from "../components/Navbar/navbar";
+import Login from "../components/Login/Login";
+
 function Userslayout({ UserElement }) {
     console.log(UserElement);
     // const StudentElement = children.StudentElemnt;
@@ -33,6 +35,7 @@ function Userslayout({ UserElement }) {
                         <Route path="/batchallotment" element={<UserElement><Batchallotment /></UserElement>} />
                         <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
                         <Route path="/courseallotment" element={<Courseallotment />}></Route>
+                        <Route path="/login" element={<Login />}></Route>
                     </Routes>
                 </div>
             </div>
