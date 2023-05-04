@@ -51,53 +51,49 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navigation />
-
         {
           token && role && username ? (
             <>
-              <div className="d-flex">
-                {(() => {
+              {(() => {
 
-                  if (CURRENT_USER_TYPE == USER_TYPES.STUDENT_USER) {
+                if (CURRENT_USER_TYPE == USER_TYPES.STUDENT_USER) {
 
-                    return (
-                      <Studentlayout StudentElement={StudentElement} />
-                    )
+                  return (
+                    <Studentlayout StudentElement={StudentElement} />
+                  )
 
-                  } else if (CURRENT_USER_TYPE == USER_TYPES.STUDENTSECTION_USER) {
+                } else if (CURRENT_USER_TYPE == USER_TYPES.STUDENTSECTION_USER) {
 
-                    return (
+                  return (
 
-                      <StudentSectionlayout StudentSectionElement={StudentSectionElement} />
-                    )
+                    <StudentSectionlayout StudentSectionElement={StudentSectionElement} />
+                  )
 
-                  } else if (CURRENT_USER_TYPE == USER_TYPES.NORMAL_USER) {
+                } else if (CURRENT_USER_TYPE == USER_TYPES.NORMAL_USER) {
 
-                    return (
+                  return (
 
-                      <Userslayout UserElement={UserElement} />
-                    )
+                    <Userslayout UserElement={UserElement} />
+                  )
 
-                  } else if (CURRENT_USER_TYPE == USER_TYPES.ADMIN_USER) {
+                } else if (CURRENT_USER_TYPE == USER_TYPES.ADMIN_USER) {
 
-                    return (
-                      <Adminlayout AdminElement={AdminElement} />
-                    )
+                  return (
+                    <Adminlayout AdminElement={AdminElement} />
+                  )
 
-                  } else {
+                } else {
 
-                    return (
-                      <>
-                        Please login first
-                      </>
-                    )
+                  return (
+                    <>
+                      Please login first
+                    </>
+                  )
 
-                  }
+                }
 
-                })()}
+              })()}
 
-              </div>
             </>) : <div>
             <Routes>
               <Route path="/" element={<Loginform />} />
