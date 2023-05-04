@@ -37,7 +37,9 @@ function Createstudlogin(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/degree")
+      .get("http://localhost:3001/degree",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setdegree(response.data);
       })
@@ -66,7 +68,9 @@ function Createstudlogin(props) {
     //   });
 
     axios
-      .get("http://localhost:3001/batch")
+      .get("http://localhost:3001/batch",{
+        headers: { authorization: localStorage.getItem('token') }
+      })
       .then((response) => {
         setbatch(response.data);
       })
@@ -90,7 +94,9 @@ function Createstudlogin(props) {
     try {
       const res = await axios.post(
         "http://localhost:3001/studentrolllists",
-        Rolllists
+        Rolllists,{
+          headers: { authorization: localStorage.getItem('token') }
+        }
       );
       setstudentlist(res.data);
       // setBranch(res.data);
@@ -140,7 +146,9 @@ function Createstudlogin(props) {
     console.log(typeof(users));
   
     try {
-      await axios.post("http://localhost:3001/studpassword", users);
+      await axios.post("http://localhost:3001/studpassword", users,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/");
     } catch (err) {
       console.log(err);

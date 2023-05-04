@@ -6,8 +6,9 @@ const bcrypt = require("bcrypt");
 const { pool } = require("../../db/mySql");
 const { use, route } = require("../auth");
 const query = util.promisify(pool.query).bind(pool);
+const verifyToken = require("../verifyToken");
 
-router.get("/studpassword", async (req,res)=> {
+router.get("/studpassword", verifyToken, async (req,res)=> {
     try{
 
         (async()=>{
@@ -28,7 +29,7 @@ router.get("/studpassword", async (req,res)=> {
 })
 
 //Adding student username, password to login_details table
-router.post("/studpassword", async (req, res) => {
+router.post("/studpassword",verifyToken,  async (req, res) => {
   const users = req.body;
   if (!Array.isArray(users)) {
     return res.status(400).json({ error: "Invalid input format" });

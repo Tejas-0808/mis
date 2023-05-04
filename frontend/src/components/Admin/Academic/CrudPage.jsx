@@ -45,6 +45,8 @@ function CrudPage() {
 
   // Render data list and form for adding/updating data
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
+
     <div>
       <h1>CRUD Page</h1>
 
@@ -71,6 +73,7 @@ function CrudPage() {
         </form>
       )}
     </div>
+</div>
   );
 }
 
