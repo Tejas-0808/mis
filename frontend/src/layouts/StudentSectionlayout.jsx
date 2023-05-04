@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import SideBar from "../components/Studentsection/sidebar.jsx";
+import Ssdashboard from "../components/Studentsection/ssdashboard/ssdashboard.jsx";
 import AddPaymentType from "../components/Studentsection/Academic/Masters/AddPaymentType";
 import PaymentType from "../components/Studentsection/Academic/Masters/PaymentType";
 import StudentsectionDashboard from "../components/Studentsection/StudentsectionDashboard.jsx";
@@ -35,57 +36,63 @@ import NewStudent from "../components/Studentsection/Academic/Admission/Newstude
 import Session from "../components/Admin/Academic/Session";
 import AddSession from "../components/Admin/Academic/AddSession";
 import Login from "../components/Login/Login.jsx";
+import Navigation from "../components/Navbar/navbar.jsx";
 
 function StudentSectionlayout({ StudentSectionElement }) {
     console.log(StudentSectionElement);
     // const StudentSectionElement = children.StudentSectionElement;
     return (
         <>
-            <SideBar />
-            <Routes>
-                <Route path="/addsession" element={<AddSession />} />
-                <Route path="/session" element={<Session />} />
-                <Route path="/state" element={<State />} />
-                <Route path="/addstate" element={<AddState />} />
-                <Route path="/updatestate/:id" element={<UpdateState />} />
-                <Route path="/update/:id" element={<Update />} />
-                <Route path="/scheme" element={<Scheme />} />
-                <Route path="/addscheme" element={<Addscheme />} />
-                <Route path="/masterscheme" element={<Masterscheme />} />
-                <Route path="/addmasterscheme" element={<AddMasterscheme />} />
-                <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
-                <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
-                <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} />
-                <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
-                <Route path="/category" element={<StudentSectionElement><Category /></StudentSectionElement>} />
-                <Route path="/addcategory" element={<AddCategory />} />
-                <Route path="/updatecategory/:id" element={<StudentSectionElement><UpdateCategory /></StudentSectionElement>} />
-                <Route path="/city" element={<StudentSectionElement><City /></StudentSectionElement>} />
-                <Route path="/addcity" element={<StudentSectionElement><Addcity /></StudentSectionElement>} />
-                <Route path="/religion" element={<StudentSectionElement><Religion /></StudentSectionElement>} />
-                <Route path="/addreligion" element={<StudentSectionElement><AddReligion /></StudentSectionElement>} />
-                <Route path="/updatereligion/:id" element={<StudentSectionElement><UpdateReligion /></StudentSectionElement>} />
-                <Route path="/district" element={<StudentSectionElement><District /></StudentSectionElement>} />
-                <Route path="/adddistrict" element={<StudentSectionElement><AddDistrict /></StudentSectionElement>} />
-                <Route path="/updatedistrict/:id" element={<StudentSectionElement><UpdateDistrict /></StudentSectionElement>} />
-                <Route path="/city" element={<StudentSectionElement><City /></StudentSectionElement>} />
-                <Route path="/updatecity/:id" element={<StudentSectionElement><UpdateCity /></StudentSectionElement>} />
-                <Route path="/addcity" element={<StudentSectionElement><Addcity /></StudentSectionElement>} />
-                <Route path="/caste" element={<Caste />} />
-                <Route path="/addcaste" element={<AddCaste />} />
-                <Route path="/updatecaste/:id" element={<StudentSectionElement><UpdateCaste /></StudentSectionElement>} />
-                <Route path="/district" element={<StudentSectionElement><District /></StudentSectionElement>} />
-                <Route path="/adddistrict" element={<StudentSectionElement><AddDistrict /></StudentSectionElement>} />
-                <Route path="/updatedistrict/:id" element={<StudentSectionElement><UpdateDistrict /></StudentSectionElement>} />
-                <Route path="rollnogeneration" element={<RollNoGeneration />} />
-                {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
-                <Route path="/identitycard" element={<IdentityCard />} />
-                <Route path="/rolllist" element={<Rolllist />} />
-                <Route path="/branchchange" element={<Branchchange />} />
-                <Route path="/newstudent" element={<NewStudent />} />
-                <Route path="/ssdashboard" element={<ssdashboard />} />
-                <route path="/login" element={<Login/>} />
-            </Routes>
+            <div className="d-flex flex-column">
+                <Navigation />
+                <div className="d-flex">
+                    <SideBar />
+                    <Routes>
+                        <Route path="/" element={<Ssdashboard />} />
+                        <Route path="/addsession" element={<AddSession />} />
+                        <Route path="/session" element={<Session />} />
+                        <Route path="/state" element={<State />} />
+                        <Route path="/addstate" element={<AddState />} />
+                        <Route path="/updatestate/:id" element={<UpdateState />} />
+                        <Route path="/update/:id" element={<Update />} />
+                        <Route path="/scheme" element={<Scheme />} />
+                        <Route path="/addscheme" element={<Addscheme />} />
+                        <Route path="/masterscheme" element={<Masterscheme />} />
+                        <Route path="/addmasterscheme" element={<AddMasterscheme />} />
+                        <Route path="/updatemasterscheme/:id" element={<UpdateMasterScheme />} />
+                        <Route path="/addPayment" element={<StudentSectionElement><AddPaymentType /></StudentSectionElement>} />
+                        <Route path="/payment" element={<StudentSectionElement><PaymentType /></StudentSectionElement>} />
+                        <Route path="/studentsection" element={<StudentSectionElement><StudentsectionDashboard /></StudentSectionElement>} />
+                        <Route path="/category" element={<StudentSectionElement><Category /></StudentSectionElement>} />
+                        <Route path="/addcategory" element={<AddCategory />} />
+                        <Route path="/updatecategory/:id" element={<StudentSectionElement><UpdateCategory /></StudentSectionElement>} />
+                        <Route path="/city" element={<StudentSectionElement><City /></StudentSectionElement>} />
+                        <Route path="/addcity" element={<StudentSectionElement><Addcity /></StudentSectionElement>} />
+                        <Route path="/religion" element={<StudentSectionElement><Religion /></StudentSectionElement>} />
+                        <Route path="/addreligion" element={<StudentSectionElement><AddReligion /></StudentSectionElement>} />
+                        <Route path="/updatereligion/:id" element={<StudentSectionElement><UpdateReligion /></StudentSectionElement>} />
+                        <Route path="/district" element={<StudentSectionElement><District /></StudentSectionElement>} />
+                        <Route path="/adddistrict" element={<StudentSectionElement><AddDistrict /></StudentSectionElement>} />
+                        <Route path="/updatedistrict/:id" element={<StudentSectionElement><UpdateDistrict /></StudentSectionElement>} />
+                        <Route path="/city" element={<StudentSectionElement><City /></StudentSectionElement>} />
+                        <Route path="/updatecity/:id" element={<StudentSectionElement><UpdateCity /></StudentSectionElement>} />
+                        <Route path="/addcity" element={<StudentSectionElement><Addcity /></StudentSectionElement>} />
+                        <Route path="/caste" element={<Caste />} />
+                        <Route path="/addcaste" element={<AddCaste />} />
+                        <Route path="/updatecaste/:id" element={<StudentSectionElement><UpdateCaste /></StudentSectionElement>} />
+                        <Route path="/district" element={<StudentSectionElement><District /></StudentSectionElement>} />
+                        <Route path="/adddistrict" element={<StudentSectionElement><AddDistrict /></StudentSectionElement>} />
+                        <Route path="/updatedistrict/:id" element={<StudentSectionElement><UpdateDistrict /></StudentSectionElement>} />
+                        <Route path="rollnogeneration" element={<RollNoGeneration />} />
+                        {/* <Route path="/imageshow" element={<Imagetest/>}/> */}
+                        <Route path="/identitycard" element={<IdentityCard />} />
+                        <Route path="/rolllist" element={<Rolllist />} />
+                        <Route path="/branchchange" element={<Branchchange />} />
+                        <Route path="/newstudent" element={<NewStudent />} />
+                        <Route path="/login" element={<Login />} />
+                    </Routes>
+                </div>
+            </div>
         </>
     );
 }

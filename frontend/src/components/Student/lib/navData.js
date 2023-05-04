@@ -11,7 +11,7 @@ export const navData = [
     {
         "title": "Home",
         "icon": <FaHome className="icons" />,
-        "path": "/",
+        "path": "/login",
     },
     {
         "title": "Academics",

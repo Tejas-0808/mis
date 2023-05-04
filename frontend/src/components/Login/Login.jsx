@@ -67,7 +67,6 @@ const Login = () => {
         </>
       ) : <LoginForm />
       }
-      <Button type='submit' color='primary' variant="contained" style={btnstyle} onClick={Logout}>logout</Button>
     </Box>
   );
 };
