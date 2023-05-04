@@ -11,6 +11,7 @@ import Batchallotment from "../components/Users/Academic/Studentsectiontransacti
 import Courseallotment from "../components/Users/Academic/Studentsectiontransaction/Courseallotment";
 import CourseConfirmation from "../components/Users/Academic/courseConfirmation";
 import Login from "../components/Login/Login";
+import Facultyadvisorconfirm from "../components/Users/Academic/Studentsectiontransaction/Facultyadvisorconfirm";
 
 function Userslayout({ UserElement }) {
     console.log(UserElement);
@@ -30,6 +31,7 @@ function Userslayout({ UserElement }) {
                 <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
                 <Route path="/courseallotment" element={<Courseallotment />}></Route>
                 <Route path="/login" element={<Login />}></Route>
+                <Route path="facultyconfirm" element={<Facultyadvisorconfirm />}></Route>
             </Routes>
         </>
     );
