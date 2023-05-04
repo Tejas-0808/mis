@@ -86,6 +86,7 @@ const B_o_s = () => {
     // </Box>
     // )
     return (
+      <div style={{ height: '100vh', width: '100%'}}>
   
       <Box
       component="form"
@@ -129,7 +130,7 @@ const B_o_s = () => {
             
                   <TableCell align="center">
                   <Link to={`/updatebos/${B_o_s.bos_id}`}><Button color='success' variant='contained'className='update'>Update</Button></Link>
-                  &nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   {/* <button className="delete" onClick={()=>handleDelete(B_o_s.bos_id)}>Delete</button> */}
                   <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(B_o_s.bos_id)}>Delete</Button>
                   {/* <button className="delete" onClick={()=>handleDelete(scheme.scid)}>Delete</button>
@@ -163,6 +164,7 @@ const B_o_s = () => {
         </CardContent>
       </Card>
       </Box>
+      </div>
     )
   }
 

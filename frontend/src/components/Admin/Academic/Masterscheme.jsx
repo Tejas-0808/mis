@@ -76,6 +76,7 @@ const Masterscheme = () => {
   //   </div>
   // )
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
   
     <Box
     component="form"
@@ -151,6 +152,7 @@ const Masterscheme = () => {
       </CardContent>
     </Card>
     </Box>
+    </div>
   )
 }
 

@@ -5,12 +5,12 @@ const util = require('util');
 const { pool } = require('../db/mySql');
 const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
-
+const verifyToken = require("./verifyToken");
 
  
 //adding branch
 
-router.get("/privilege", async (req,res)=> {
+router.get("/privilege",verifyToken, async (req,res)=> {
     try{
 
         (async()=>{
@@ -30,7 +30,7 @@ router.get("/privilege", async (req,res)=> {
 })
 
 
-router.post('/privilege', async (req, res) => {
+router.post('/privilege',verifyToken,  async (req, res) => {
 
     const {role_id,role} = req.body;
     

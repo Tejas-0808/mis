@@ -21,7 +21,9 @@ function Promotion() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/degree")
+      .get("http://localhost:3001/degree",{
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then((response) => {
         setdegree(response.data);
       })
@@ -39,7 +41,9 @@ function Promotion() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/semester")
+      .get("http://localhost:3001/semester",{
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then((response) => {
         setsemester(response.data);
       })
@@ -47,7 +51,9 @@ function Promotion() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/batch")
+      .get("http://localhost:3001/batch",{
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then((response) => {
         setbatch(response.data);
       })
@@ -65,7 +71,9 @@ function Promotion() {
   const fetchStudents = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/rolllist", Rolllists);
+      const res = await axios.post("http://localhost:3001/rolllist", Rolllists,{
+        headers: { authorization: localStorage.getItem("token") },
+      });
       setstudentlist(res.data);
       // setBranch(res.data);
       // console.log(res.data+"!");

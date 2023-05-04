@@ -48,12 +48,15 @@ function AddBos() {
   };
 
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
+    
     <Box component="form"
-    sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" },}}
+    sx={{ "& .MuiTextField-root": { m: 1}, width: "100%" }}
     noValidate
     autoComplete="off"
     >
-       <Card sx={{ m: 1, minWidth: 275 }}>
+    {/* <Box sx={{width:'100%',height:'100%'}}> */}
+       <Card sx={{ m: 1, minWidth: 275, backgroundColor:'#f5f5f5'}}>
      
         
      <CardContent>
@@ -78,6 +81,7 @@ function AddBos() {
       
       </Card>
     </Box>
+    </div>    
   )
 }
 

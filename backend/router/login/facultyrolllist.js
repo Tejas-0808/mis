@@ -5,9 +5,9 @@ const util = require('util');
 const { pool } = require('../../db/mySql');
 const { use, route } = require('../auth');
 const query = util.promisify(pool.query).bind(pool);
-
+const verifyToken = require("../verifyToken");
 //fetching data of particular student 
-router.post("/facultyrolllist", async (req,res)=> {
+router.post("/facultyrolllist",verifyToken,  async (req,res)=> {
 
     const Email_id = req.body.Email_id;
     const role_id = req.body.role_id;

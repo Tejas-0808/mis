@@ -55,6 +55,8 @@ function Update() {
       };
 
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
+
     <Box component="form"
     sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" }, }}
     noValidate
@@ -87,6 +89,7 @@ function Update() {
       
       </Card>
     </Box>
+</div>
   )
 }
 

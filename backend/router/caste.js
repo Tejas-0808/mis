@@ -47,13 +47,13 @@ router.get("/caste/:id", async (req, res) => {
 
 router.post('/caste', async (req, res) => {
 
-    const {caste_id, caste_name} = req.body;
-    console.log(caste_id);
+    const { caste_name} = req.body;
+
     console.log(caste_name);
     // console.log(HOD);
     // console.log(students_enrolled);
 
-        if(!caste_id || !caste_name){
+        if( !caste_name){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -72,7 +72,7 @@ router.post('/caste', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO caste_list VALUES(?,?)",[caste_id, caste_name ]);
+                          const data = await query("INSERT  INTO caste_list (caste_name) VALUES(?)",[ caste_name ]);
                           console.log(data[0]);
                           res.status(200).json({msg: "caste added successfully"})
                         }

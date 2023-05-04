@@ -14,129 +14,95 @@ export const navData = [
         "path": "/",
     },
     {
-        "title": "Academics",
-        "icon": <MdAccountCircle className="icons" />,
-        "childrens": [
-            {
-                "title": "Course Registration",
-                "childrens": [
-                    {
-                        "title": "Course Registration",
-                        "path": "/coursereg"
-                    },
-                    {
-                        "title": "Registration Reciepts",
-                        "path": "/finalcoursesoffered"
-                    },
-                ]
-            },
-            {
-                "title": "Time Table",
-                "path": "/academic/time-table"
-            },
-            {
-                "title": "Attendance",
-                "path": "/academic/attendance"
-            },
-            {
-                "title": "Academic Calendar",
-                "path": "/academic/calender",
-            },
-        ]
-    },
-    {
-        "title": "Fees Payment",
-        "icon": <MdOutlinePayment className="icons" />,
-        "childrens": [
-            {
-                "title": "Fees Payment",
-                "path": "/settings/fees/academic-payment"
-            },
-            {
-                "title": "Exam Fees",
-                "path": "/settings/fees/exam"
-            },
-            {
-                "title": "Re Exam Fees",
-                "path": "/settings/fees/re-exam"
-            },
-            {
-                "title": "Payment Reciepts",
-                "path": "/settings/fees/reciepts"
-            }
-        ]
-    },
-    {
-        "title": "Examination",
+        "title": "Academic",
         "icon": <TbBooks className="icons" />,
         "childrens": [
             {
-                "title": "Exam Registration",
-                "path": "/exam-registration"
-            },
-            {
-                "title": "Start Exam",
-                "path": "/start-exam"
-            },
-            {
-                "title": "Re- Exam Registration",
-                "path": "/re-exam-registration"
-            },
-            {
-                "title": "Grade Cards",
-                "path": "/grade-cards"
-            }
-        ]
-    },
-    {
-        "title": "Profile",
-        "icon": <AiFillProfile className="icons" />,
-        "childrens": [
-            {
-                "title": "Fill Profile",
-                "path": "/student"
-            },
-            {
-                "title": "Settings",
+                "title": "Academic Reports",
                 "childrens": [
                     {
-                        "title": "Notifications",
-                        "path": "/settings/notifications"
+                        "title": "Identity Card Gen",
+                        "path": "/identitycard"
                     },
-                    {
-                        "title": "Forgot Password",
-                        "path": "/forgot-password",
-                    },
-                    {
-                        "title": "Reset Password",
-                        "path": "/reset-password",
-                    }
                 ]
             },
 
             {
-                "title": "Logout",
-                "path": "/logout"
-            }
+                "title": "Admission",
+                "childrens": [
+                    {
+                        "title": "Add New Student",
+                        "path": "/newstudent"
+                    },
+                ]
+            },
+           
+        ]
+
+    },
+
+
+    {
+        "title": "Masters",
+        "icon": <MdAccountCircle className="icons" />,
+        "childrens": [
+            {
+                "title": "Caste",
+                "path": "/caste"
+            },
+            {
+                "title": "Category",
+                "path": "/category"
+            },
+            {
+                "title": "City",
+                "path": "/city"
+            },
+            {
+                "title": "District",
+                "path": "/district"
+            },
+            {
+                "title": "Nationality",
+                "path": "/nationality"
+            },
+            {
+                "title": "Religion",
+                "path": "/religion"
+            },
+            {
+                "title": "State",
+                "path": "/state"
+            },
+            {
+                "title": "Payment Type",
+                "path": "/payment"
+            },
+        ]
+
+    },
+    {
+        "title": "Student Section Transaction",
+        "icon": <MdOutlinePayment className="icons" />,
+        "childrens": [
+            {
+                "title": "Roll No generation",
+                "path": "/rollnogeneration"
+            },
         ]
     },
     {
-        "title": "DigiLocker",
-        "icon": <GiLockedDoor className="icons" />,
-        "path": "/support"
+        "title": "Utility",
+        "icon": <TbBooks className="icons" />,
+        "childrens": [
+            {
+                "title": "Branch Change",
+                "path": "/branchchange"
+            },
+            {
+                "title": "Roll List",
+                "path": "/rollist"
+            },
+        ]
     },
-    {
-        "title": "Institute Level FeedBack",
-        "icon": <MdOutlineFeedback className="icons" />,
-        "path": "/support"
-    },
-    {
-        "title": "FAQ",
-        "icon": <BsQuestionSquareFill className="icons" />
-    },
-    {
-        "title": "Report Bug",
-        "icon": <MdReport className="icons" />,
-        "path": "/report-bug"
-    }
 ]

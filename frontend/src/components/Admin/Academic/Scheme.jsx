@@ -55,6 +55,7 @@ const Scheme = () => {
   }
   console.log(scheme);
   return (
+    <div style={{ height: '100vh', width: '100%'}}>
   
     <Box
     component="form"
@@ -130,6 +131,7 @@ const Scheme = () => {
       </CardContent>
     </Card>
     </Box>
+</div>
   )
 }
   {/* /* // return (
