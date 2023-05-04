@@ -34,6 +34,7 @@ import Branchchange from "../components/Studentsection/Academic/Utiity/Branchcha
 import NewStudent from "../components/Studentsection/Academic/Admission/Newstudent";
 import Session from "../components/Admin/Academic/Session";
 import AddSession from "../components/Admin/Academic/AddSession";
+import Login from "../components/Login/Login.jsx";
 
 function StudentSectionlayout({ StudentSectionElement }) {
     console.log(StudentSectionElement);
@@ -83,6 +84,7 @@ function StudentSectionlayout({ StudentSectionElement }) {
                 <Route path="/branchchange" element={<Branchchange />} />
                 <Route path="/newstudent" element={<NewStudent />} />
                 <Route path="/ssdashboard" element={<ssdashboard />} />
+                <route path="/login" element={<Login/>} />
             </Routes>
         </>
     );
