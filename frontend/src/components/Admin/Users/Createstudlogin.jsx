@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
+import {Card, CardContent, CardHeader} from "@mui/material";
 // import { DataGrid } from '@mui/x-data-grid';
 import {
   InputLabel,
@@ -174,10 +176,23 @@ function Createstudlogin(props) {
 
   console.log(Rolllists);
   return (
-    <Box>
+    // <Box sx={{ height: "100%", width: "100%" }}>
+    // <Box
+    //   component="form"
+    //   sx={{ "& .MuiTextField-root": { m: 1} }}
+    //   noValidate
+    //   autoComplete="off"
+    // >
+      <Card sx={{ m: 1,  backgroundColor: "#F5F5F5" }}>
+        <CardContent>
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="Student Login"
+          />
+    {/* <Box>
       <div>
         <h1>Student Login</h1>
-        <hr></hr>
+        <hr></hr> */}
 
         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Degree</InputLabel>
@@ -342,8 +357,12 @@ function Createstudlogin(props) {
             </Button>
           </div>
         </div>
-      </div>
-    </Box>
+      {/* </div> */}
+    {/* </Box> */}
+    </CardContent>
+      </Card>
+    //  </Box> 
+  // </Box>
   );
 }
 
