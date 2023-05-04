@@ -26,21 +26,21 @@ export const navData = [
                     },
                     {
                         "title": "Registration Reciepts",
-                        "path": "/finalcoursesoffered"
+                        "path": "/"
                     },
                 ]
             },
             {
                 "title": "Time Table",
-                "path": "/academic/time-table"
+                "path": "/"
             },
             {
                 "title": "Attendance",
-                "path": "/academic/attendance"
+                "path": "/"
             },
             {
                 "title": "Academic Calendar",
-                "path": "/academic/calender",
+                "path": "/",
             },
         ]
     },
@@ -50,19 +50,19 @@ export const navData = [
         "childrens": [
             {
                 "title": "Fees Payment",
-                "path": "/settings/fees/academic-payment"
+                "path": "/"
             },
             {
                 "title": "Exam Fees",
-                "path": "/settings/fees/exam"
+                "path": "/"
             },
             {
                 "title": "Re Exam Fees",
-                "path": "/settings/fees/re-exam"
+                "path": "/"
             },
             {
                 "title": "Payment Reciepts",
-                "path": "/settings/fees/reciepts"
+                "path": "/"
             }
         ]
     },
@@ -72,19 +72,19 @@ export const navData = [
         "childrens": [
             {
                 "title": "Exam Registration",
-                "path": "/exam-registration"
+                "path": "/"
             },
             {
                 "title": "Start Exam",
-                "path": "/start-exam"
+                "path": "/"
             },
             {
                 "title": "Re- Exam Registration",
-                "path": "/re-exam-registration"
+                "path": "/"
             },
             {
                 "title": "Grade Cards",
-                "path": "/grade-cards"
+                "path": "/"
             }
         ]
     },
@@ -101,15 +101,15 @@ export const navData = [
                 "childrens": [
                     {
                         "title": "Notifications",
-                        "path": "/settings/notifications"
+                        "path": "/"
                     },
                     {
                         "title": "Forgot Password",
-                        "path": "/forgot-password",
+                        "path": "/",
                     },
                     {
                         "title": "Reset Password",
-                        "path": "/reset-password",
+                        "path": "/",
                     }
                 ]
             },

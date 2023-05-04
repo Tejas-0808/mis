@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import SideBar from "../components/Student/sidebar";
+import SideBar from "../components/Admin/sidebar";
 import Branch from "./components/Admin/Academic/Branch";
 import Addbranch from "./components/Admin/Academic/Addbranch";
 import Scheme from "./components/Admin/Academic/Scheme";
@@ -18,6 +18,9 @@ import Session from "./components/Admin/Academic/Session";
 import AddSession from "./components/Admin/Academic/AddSession";
 import Createuserlogin from "./components/Admin/Users/Createuserlogin";
 import AdminDashboard from "./components/Admin/AdminDashboard";
+import Createstafflogin from "../components/Admin/Users/Createstafflogin";
+import Createstudlogin from "../components/Admin/Users/Createstudlogin";
+import Createotherlogin from "../components/Admin/Users/Createotherlogin";
 
 function Adminlayout({ AdminElement }) {
     console.log(AdminElement);
@@ -45,6 +48,10 @@ function Adminlayout({ AdminElement }) {
                 <Route path="/createuserlogin" element={<AdminElement><Createuserlogin /></AdminElement>} />
                 <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
                 <Route path="/branch" element={<Branch />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/createstafflogin" element={<AdminElement><Createstafflogin /></AdminElement>} />
+                <Route path="/createstudlogin" element={<AdminElement><Createstudlogin /></AdminElement>} />
+                <Route path="/createotherlogin" element={<AdminElement><Createotherlogin /></AdminElement>} />
             </Routes>
         </>
     );
