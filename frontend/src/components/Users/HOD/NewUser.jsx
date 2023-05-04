@@ -98,7 +98,7 @@ function NewUser() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/branch",{
+      .get("http://localhost:3001/branch", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -112,7 +112,7 @@ function NewUser() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/privilege",{
+      .get("http://localhost:3001/privilege", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
