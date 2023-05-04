@@ -37,53 +37,61 @@ const Religion = () => {
     };
 
     return (
+        <Box
+            component="form"
+            sx={{
+                width: '100%', height: '100%'
+            }}
+            noValidate
+            autoComplete="off">
+            <Card sx={{
+                m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
+            }}>
+                <CardContent>
+                    <CardHeader
+                        style={{ backgroundColor: "lightblue", textAlign: 'center' }}
+                        title="Religion Management"
+                    />
 
-        <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-                <CardHeader
-                    style={{ backgroundColor: "lightblue", textAlign: 'center' }}
-                    title="Religion Management"
-                />
-
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center">Religion Id</TableCell>
-                                <TableCell align="center">Religion Name</TableCell>
-                                <TableCell align="center"></TableCell>
-                            </TableRow>
-
-                        </TableHead>
-                        <TableBody>
-                            {Religion.map((Religion) => (
-                                <TableRow
-                                    key={Religion.religion_id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell align="center">{Religion.religion_id}</TableCell>
-                                    <TableCell align="center">{Religion.Religion_name}</TableCell>
-                                    <TableCell align="center">
-                                        <Link to={`/updatereligion/${Religion.religion_id}`}><Button variant='contained' color='success'>Update</Button></Link>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <Button variant='contained' color='error' onClick={() => handleDelete(Religion.religion_id)}>Delete</Button>
-                                    </TableCell>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="center">Religion Id</TableCell>
+                                    <TableCell align="center">Religion Name</TableCell>
+                                    <TableCell align="center"></TableCell>
                                 </TableRow>
 
-                            ))}
+                            </TableHead>
+                            <TableBody>
+                                {Religion.map((Religion) => (
+                                    <TableRow
+                                        key={Religion.religion_id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell align="center">{Religion.religion_id}</TableCell>
+                                        <TableCell align="center">{Religion.Religion_name}</TableCell>
+                                        <TableCell align="center">
+                                            <Link to={`/updatereligion/${Religion.religion_id}`}><Button variant='contained' color='success'>Update</Button></Link>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <Button variant='contained' color='error' onClick={() => handleDelete(Religion.religion_id)}>Delete</Button>
+                                        </TableCell>
+                                    </TableRow>
 
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <br></br>
-                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                ))}
 
-                    <Link to="/addreligion"><Button variant='contained'>Add new Religion</Button></Link>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <br></br>
+                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                </Box>
-            </CardContent>
-        </Card>
+                        <Link to="/addreligion"><Button variant='contained'>Add new Religion</Button></Link>
 
+                    </Box>
+                </CardContent>
+            </Card>
+        </Box>
 
 
         //   <div>

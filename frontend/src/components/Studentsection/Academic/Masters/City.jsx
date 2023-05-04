@@ -41,55 +41,63 @@ const City = () => {
   //   console.log(branch);
 
   return (
+    <Box
+      component="form"
+      sx={{
+        width: '100%', height: '100%'
+      }}
+      noValidate
+      autoComplete="off">
+      <Card sx={{
+        m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
+      }}>
+        <CardContent>
+          <CardHeader
+            style={{ backgroundColor: "lightblue", textAlign: 'center' }}
+            title="City Management"
+          />
 
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-        <CardHeader
-          style={{ backgroundColor: "lightblue", textAlign: 'center' }}
-          title="City Management"
-        />
-
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">City Id</TableCell>
-                <TableCell align="center">City Name</TableCell>
-                <TableCell align="center">State Id</TableCell>
-                <TableCell align="center"></TableCell>
-              </TableRow>
-
-            </TableHead>
-            <TableBody>
-              {city.map((city) => (
-                <TableRow
-                  key={city.city_id} className="city"
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell align="center">{city.city_name}</TableCell>
-                  <TableCell align="center">{city.isDistrict}</TableCell>
-                  <TableCell align="center">{city.state_id}</TableCell>
-                  <TableCell align="center">
-                    <Link to={`/updatecity/${city.city_id}`}><Button variant='contained' color='success'>Update</Button></Link>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button variant='contained' color='error' onClick={() => handleDelete(city.city_id)}>Delete</Button>
-                  </TableCell>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">City Id</TableCell>
+                  <TableCell align="center">City Name</TableCell>
+                  <TableCell align="center">State Id</TableCell>
+                  <TableCell align="center"></TableCell>
                 </TableRow>
 
-              ))}
+              </TableHead>
+              <TableBody>
+                {city.map((city) => (
+                  <TableRow
+                    key={city.city_id} className="city"
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell align="center">{city.city_name}</TableCell>
+                    <TableCell align="center">{city.isDistrict}</TableCell>
+                    <TableCell align="center">{city.state_id}</TableCell>
+                    <TableCell align="center">
+                      <Link to={`/updatecity/${city.city_id}`}><Button variant='contained' color='success'>Update</Button></Link>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <Button variant='contained' color='error' onClick={() => handleDelete(city.city_id)}>Delete</Button>
+                    </TableCell>
+                  </TableRow>
 
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <br></br>
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                ))}
 
-          <Link to="/addcity"><Button variant='contained'>Add new City</Button></Link>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <br></br>
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-        </Box>
-      </CardContent>
-    </Card>
+            <Link to="/addcity"><Button variant='contained'>Add new City</Button></Link>
 
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
 
     // <div>
     //     <h1>
