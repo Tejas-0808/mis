@@ -19,7 +19,6 @@ function Studentlayout({ StudentElement }) {
 
     return (
         <>
-<<<<<<< HEAD
             <div className="d-flex flex-column">
                 <Navigation />
                 <div className="d-flex">
@@ -39,22 +38,6 @@ function Studentlayout({ StudentElement }) {
                     </Routes>
                 </div>
             </div>
-=======
-            <SideBar />
-            <Routes>
-                <Route path="/login" element={<StudentElement><Dashboard /></StudentElement>} />
-                <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
-                <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
-                <Route path="/Add_contact_details" element={<StudentElement><Add_C_d /></StudentElement>} />
-                <Route path="/Add_Educationdetails" element={<Add_EducationDetails />} />
-                <Route path="/Education_details" element={<StudentElement><Educationdetails /></StudentElement>} />
-                <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
-                <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
-                <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-                {/* <Route path="/login" element={<StudentElement><Login /></StudentElement>} /> */}
-                {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
-            </Routes>
->>>>>>> f5561142d1778142054b80c3961e350e6e9c6ed5
         </>
     );
 }
