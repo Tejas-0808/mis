@@ -20,7 +20,7 @@ function Studentlayout({ StudentElement }) {
         <>
             <SideBar />
             <Routes>
-                <Route path="/" element={<StudentElement><Dashboard /></StudentElement>} />
+                <Route path="/login" element={<StudentElement><Dashboard /></StudentElement>} />
                 <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
                 <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
                 <Route path="/Add_contact_details" element={<StudentElement><Add_C_d /></StudentElement>} />
@@ -29,7 +29,7 @@ function Studentlayout({ StudentElement }) {
                 <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
                 <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
                 <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-                <Route path="/login" element={<StudentElement><Login /></StudentElement>} />
+                {/* <Route path="/login" element={<StudentElement><Login /></StudentElement>} /> */}
                 {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
             </Routes>
         </>

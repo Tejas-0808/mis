@@ -84,7 +84,7 @@ function StudentSectionlayout({ StudentSectionElement }) {
                 <Route path="/branchchange" element={<Branchchange />} />
                 <Route path="/newstudent" element={<NewStudent />} />
                 <Route path="/ssdashboard" element={<ssdashboard />} />
-                <route path="/login" element={<Login/>} />
+                <Route path="/login" element={<Login/>} />
             </Routes>
         </>
     );

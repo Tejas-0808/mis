@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import SideBar from "../components/Student/sidebar";
+import SideBar from "../components/Users/sidebar";
 import Schemeallotment from "../components/Users/Academic/Studentsectiontransaction/Schemeallotment";
 import Facultyadvisor from "../components/Users/Academic/Studentsectiontransaction/Facultyadvisor";
 import Promotion from "../components/Users/Academic/Studentsectiontransaction/Promotion";
@@ -10,6 +10,7 @@ import NewUser from "../components/Users/HOD/NewUser";
 import Batchallotment from "../components/Users/Academic/Studentsectiontransaction/Batchallotment";
 import Courseallotment from "../components/Users/Academic/Studentsectiontransaction/Courseallotment";
 import CourseConfirmation from "../components/Users/Academic/courseConfirmation";
+import Login from "../components/Login/Login";
 
 function Userslayout({ UserElement }) {
     console.log(UserElement);
@@ -28,6 +29,7 @@ function Userslayout({ UserElement }) {
                 <Route path="/batchallotment" element={<UserElement><Batchallotment /></UserElement>} />
                 <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
                 <Route path="/courseallotment" element={<Courseallotment />}></Route>
+                <Route path="/login" element={<Login />}></Route>
             </Routes>
         </>
     );
