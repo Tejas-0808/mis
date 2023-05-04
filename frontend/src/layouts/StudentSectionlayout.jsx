@@ -32,8 +32,6 @@ import RollNoGeneration from "../components/Studentsection/Academic/Studentsecti
 import IdentityCard from '../components/Studentsection/Academic/Academicreports/Identitycard';
 import Branchchange from "../components/Studentsection/Academic/Utiity/Branchchange";
 import NewStudent from "../components/Studentsection/Academic/Admission/Newstudent";
-
-
 import Session from "../components/Admin/Academic/Session";
 import AddSession from "../components/Admin/Academic/AddSession";
 import Login from "../components/Login/Login.jsx";
@@ -45,9 +43,8 @@ function StudentSectionlayout({ StudentSectionElement }) {
         <>
             <SideBar />
             <Routes>
-            <Route path="/addsession" element={<AddSession />} />
-            <Route path="/session" element={<Session />} />
-            
+                <Route path="/addsession" element={<AddSession />} />
+                <Route path="/session" element={<Session />} />
                 <Route path="/state" element={<State />} />
                 <Route path="/addstate" element={<AddState />} />
                 <Route path="/updatestate/:id" element={<UpdateState />} />

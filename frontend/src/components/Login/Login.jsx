@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Box } from "@mui/material/";
-import AdminDashboard from "../Admin/AdminDashboard";
 import LoginForm from "./LoginForm";
-import UserDashboard from "../Users/UserDashboard";
-import StudentsectionDashboard from "../Studentsection/StudentsectionDashboard";
 import Dashboard from "../Student/Dashboard/dashboard";
+import Ssdashboard from "../Studentsection/ssdashboard/ssdashboard";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,67 +42,25 @@ const Login = () => {
 
   return (
     <Box>
-
-      {/* {token && (
-            <>
-              {role === '1' && (
-                <>
-                  <p>Welcome Admin!</p>
-                  <p>You have access to the admin dashboard.</p>
-                  <AdminDashboard />
-                </>
-              )}
-              {(role === '2'|| role === '4') && (
-                <>
-                  <p>Welcome user!</p>
-                  <p>You have access to your user dashboard.</p>
-                  <UserDashboard />
-                </>
-              )}
-              {role === '3' && (
-                <>
-                  <p>Student Section</p>
-                  <p>You have access to your studentsection dashboard.</p>
-                  <StudentsectionDashboard/>
-                </>
-              )}
-              {role === '5' && (
-                <>
-                  <p>Welcome Student!</p>
-                  <p>You have access to your Student dashboard.</p>
-                  <StudentDashboard/>
-                </>
-              )}
-            </>
-          )} */}
-
       {token ? (
         <>
           {role === '1' && (
             <>
-              <p>Welcome Admin!</p>
-              <p>You have access to the admin dashboard.</p>
-              <AdminDashboard />
+              <Ssdashboard />
             </>
           )}
           {(role === '2' || role === '4') && (
             <>
-              <p>Welcome user!</p>
-              <p>You have access to your user dashboard.</p>
-              <UserDashboard />
+              <Ssdashboard />
             </>
           )}
           {role === '3' && (
             <>
-              <p>Student Section</p>
-              <p>You have access to your studentsection dashboard.</p>
-              <StudentsectionDashboard />
+              <Ssdashboard />
             </>
           )}
           {role === '5' && (
             <>
-              <p>Welcome Student!</p>
-              <p>You have access to your Student dashboard.</p>
               <Dashboard />
             </>
           )}

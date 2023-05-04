@@ -35,7 +35,7 @@ function Add_EducationDetails() {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3001/qualification_details", Edudetails);
-      navigate("/Educationdetails");
+      navigate("/Education_details");
     } catch (err) {
       console.log(err);
       // setError(true)
@@ -45,18 +45,17 @@ function Add_EducationDetails() {
   console.log(Edudetails);
   const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
-    <Box>
     <Card sx={{ minWidth: 275, marginTop: 5 }}>
       <CardHeader
         sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
         title="Educational Details"
       />
       <CardContent>
-       
+        <Box
           component="form"
           sx={{
             '& .MuiTextField-root': {
-              m: 2,
+              m: 4,
               width: '25ch',
             },
             border: '1px solid black',
@@ -65,8 +64,8 @@ function Add_EducationDetails() {
             boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2)',
           }}
           noValidate
-          autoComplete="off"
-        <TextField required type="number" label="Registration ID" name="Reg_id" onChange={handleChange} />
+          autoComplete="off">
+          <TextField required type="number" label="Registration ID" name="Reg_id" onChange={handleChange} />
           <TextField required type="text" label="Custom ID" name="Custom_Id" onChange={handleChange} />
           <TextField required type="text" label="Exam Type " name="Exam_type" onChange={handleChange} />
           <TextField required type="text" label="Month of passing" name="Month_of_Passing" onChange={handleChange} />
@@ -76,12 +75,11 @@ function Add_EducationDetails() {
           <TextField required type="text" label="Address of school/college" name="Address_School_college" onChange={handleChange} />
           <TextField required type="number" label="Marks Obtained" name="Marks_obtained" onChange={handleChange} />
           <TextField required type="number" label="Out of " name="Out_of_marks" onChange={handleChange} />
-
-          <Button variant="contained" style={btnstyle} onClick={handleClick} fullWidth>Add</Button>
+        </Box>
+        <Button variant="contained" style={btnstyle} onClick={handleClick} fullWidth>Add</Button>
       </CardContent>
     </Card>
-    </Box>
-    )
+  )
 }
 
 export default Add_EducationDetails
