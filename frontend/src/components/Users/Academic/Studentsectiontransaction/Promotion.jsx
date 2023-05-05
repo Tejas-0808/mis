@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import {  InputLabel, FormControl, Select, MenuItem, Button, Box, CardContent, Card, CardHeader} from "@mui/material/";
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, CardContent, Card, CardHeader } from "@mui/material/";
 
 function Promotion() {
   const [Rolllists, SetRolllists] = useState({
@@ -21,7 +21,7 @@ function Promotion() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/degree",{
+      .get("http://localhost:3001/degree", {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((response) => {
@@ -41,7 +41,7 @@ function Promotion() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/semester",{
+      .get("http://localhost:3001/semester", {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((response) => {
@@ -51,7 +51,7 @@ function Promotion() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/batch",{
+      .get("http://localhost:3001/batch", {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((response) => {
@@ -71,7 +71,7 @@ function Promotion() {
   const fetchStudents = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/rolllist", Rolllists,{
+      const res = await axios.post("http://localhost:3001/rolllist", Rolllists, {
         headers: { authorization: localStorage.getItem("token") },
       });
       setstudentlist(res.data);
@@ -123,7 +123,7 @@ function Promotion() {
         .catch((error) => {
           console.error(error);
         });
-        navigate("/");
+      navigate("/");
     }
   };
 
@@ -132,17 +132,17 @@ function Promotion() {
   console.log(Rolllists);
   return (
     <Box
-    component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 },
-          whiteSpace: "normal",
-        }}
-        noValidate
-        autoComplete="off"
-      >
-    <Card sx={{ m: 1, minWidth: 275 }}>
-     
-        
+      component="form"
+      sx={{
+        "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 },
+        whiteSpace: "normal",
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
+
+
         <CardContent>
 
           <CardHeader
@@ -285,7 +285,7 @@ function Promotion() {
         </select> */}
 
             <Button variant="contained" onClick={fetchStudents}
-             sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>
+              sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>
               Show Students
             </Button>
 
@@ -353,15 +353,15 @@ function Promotion() {
             </select> */}
 
                 <Button variant="contained" onClick={handleUpdateButtonClick}
-                 sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>
+                  sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>
                   Assign Semester
                 </Button>
               </div>
             </div>
           </div>
         </CardContent>
-      
-    </Card>
+
+      </Card>
     </Box>
   );
 }

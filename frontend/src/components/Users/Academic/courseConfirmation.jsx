@@ -32,7 +32,9 @@ useEffect(()=>{
     });
 
     axios
-    .get("http://localhost:3001/session")
+    .get("http://localhost:3001/session", {
+      headers: { authorization: localStorage.getItem("token") },
+    })
     .then((response) => {
       setSession(response.data);
 

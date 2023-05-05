@@ -49,7 +49,7 @@ function UpdateCategory() {
             noValidate
             autoComplete="off">
 
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
                 <CardContent>
 
                     <CardHeader

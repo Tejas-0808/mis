@@ -96,7 +96,7 @@ function IdentityCard() {
   };
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
       <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
       <CardContent>
         <Box
