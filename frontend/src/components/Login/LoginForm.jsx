@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { TextField, Button, Box } from "@mui/material/";
@@ -26,6 +26,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
+
+ 
+
   //   const navigate = useNavigate();
   const SubmitBtn = async (event) => {
     if (username && password) {
@@ -50,12 +53,15 @@ const LoginForm = () => {
         console.log(" error ");
         console.error(error.response.data.message);
       }
-      navigate("/dashboard");
+      // navigate("/ssdashboard");
+      navigate("/");
     } else {
       alert("fill the values");
     }
     // const handleSubmit = async (event) => {
   };
+
+ 
 
   return (
 
@@ -97,7 +103,8 @@ const LoginForm = () => {
           </Link>
         </Typography>
       </Paper>
-      <div className="ListContainer">
+     
+      {/* <div className="ListContainer">
         {token && (
           <>
             {role === 1 && (
@@ -113,7 +120,7 @@ const LoginForm = () => {
             )}
           </>
         )}
-      </div>
+      </div> */}
     </Grid>
   )
 }

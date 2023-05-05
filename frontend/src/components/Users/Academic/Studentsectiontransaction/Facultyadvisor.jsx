@@ -343,8 +343,6 @@ function Facultyadvisor() {
                 </Grid>
                 
                 <div style={{ display: 'flex', justifyContent: 'center',  alignItems: 'center', gap: '16px' }}>
-             
-              
                 
                 </div>
 

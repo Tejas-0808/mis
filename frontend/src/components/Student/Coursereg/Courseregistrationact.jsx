@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Alert } from '@mui/material';
 
 
 const CourseRegActivity = () => {
@@ -16,7 +17,6 @@ const CourseRegActivity = () => {
     const [semester, setsemester] = useState([]);
     const [courselist, setCourseList] = useState([]);
     const [checkedValues, setCheckedValues] = useState([]);
-    const [ faculty_id, setfaculty_id ] = useState("");
 
     var username = localStorage.getItem('username');
     console.log(username);
@@ -25,33 +25,14 @@ const CourseRegActivity = () => {
         roll_no: "",
         semester: "",
         session: "",
-        courses: {
-            BS: [],
-            ES: [],
-            HS: [],
-            PC: [],
-            PE: [],
-            OE: [],
-            MC: [],
-            PR: [],
-            AB: []
-        },
-        fac_id: ""
+        courses: []
     });
 
     const sem =  fetchcourses.semester;
     const Session =  fetchcourses.session.slice(2);
-    const courses = {
-        BS: [],
-        ES: [],
-        HS: [],
-        PC: [],
-        PE: [],
-        OE: [],
-        MC: [],
-        PR: [],
-        AB: []
-    }
+    const courses = [];
+
+    const [error, setError] = useState("");
 
     console.log(sem);
     console.log(Session);
@@ -72,15 +53,15 @@ const CourseRegActivity = () => {
             });
 
 
-        axios
-            .get(`http://localhost:3001/getfacultyid?username=${username}`)
-            .then((response) => {
-                console.log(response.data);
-                setfaculty_id(response.data[0])
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        // axios
+        //     .get(`http://localhost:3001/getfacultyid?username=${username}`)
+        //     .then((response) => {
+        //         console.log(response.data);
+        //         setfaculty_id(response.data[0])
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
 
         axios
             .get("http://localhost:3001/semester")
@@ -102,39 +83,16 @@ const CourseRegActivity = () => {
                 console.error(error);
             });
 
-            setCourseTaken(prev => ({ ...prev, roll_no: username, semester: sem, session: Session, courses: courses, fac_id : faculty_id.faculty_adv_id}))
+            setCourseTaken(prev => ({ ...prev, roll_no: username, semester: sem, session: Session, courses: courses}))
             for (let i = 0; i < checkedValues.length; i++) {
                 let temp_course = checkedValues[i];
                 console.log(temp_course);
-                let c_cat = ""
-                for (let j = 0; j < courselist.length; j++) {
-                    if (temp_course === courselist[j].coursecode) {
-                        c_cat = courselist[j].course_category
-                        break;
-                    }
-                }
-                if (c_cat === 1) {
-                    courses.BS.push(temp_course)
-                } else if (c_cat === 2) {
-                    courses.ES.push(temp_course)
-                } else if (c_cat === 3) {
-                    courses.HS.push(temp_course)
-                } else if (c_cat === 4) {
-                    courses.PC.push(temp_course)
-                } else if (c_cat === 4) {
-                    courses.PC.push(temp_course)
-                } else if (c_cat === 5) {
-                    courses.PE.push(temp_course)
-                } else if (c_cat === 6) {
-                    courses.OE.push(temp_course)
-                } else if (c_cat === 7) {
-                    courses.MC.push(temp_course)
-                } else if (c_cat === 8) {
-                    courses.PR.push(temp_course)
-                } else if (c_cat === 9) {
-                    courses.AB.push(temp_course)
-                }
+                courses.push(temp_course);
+              
             }
+            
+
+            console.log(courses);
         
     },[checkedValues,])
 
@@ -184,7 +142,10 @@ const CourseRegActivity = () => {
         
         try {
             console.log(courseTaken);
-            await axios.post("http://localhost:3001/confirmcourse", courseTaken);
+            const res = await axios.post("http://localhost:3001/confirmcourse", courseTaken);
+            // console.log(res);
+            setError("Roll number " + courseTaken.roll_no + " already exists");
+          
         } catch (err) {
             console.log(err);
         }
@@ -262,6 +223,17 @@ const CourseRegActivity = () => {
                 <p>Selected items: {JSON.stringify(checkedValues)}</p>
             </div>
             <div><button onClick={() => handleConfirm(fetchcourses, courselist, checkedValues)}>Confirm</button></div>
+            <div>
+            {error ? <>
+                <Alert severity='error'>{error}</Alert>
+
+            </>: <>
+                <Alert severity='success'>{error}</Alert>
+            </>
+            }
+                    
+            </div>
+
         </div>
     )
 }

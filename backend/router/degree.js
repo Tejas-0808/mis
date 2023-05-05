@@ -11,7 +11,7 @@ const query = util.promisify(pool.query).bind(pool);
 
 //adding branch
 
-router.get("/degree", verifyToken,async (req,res)=> {
+router.get("/degree", verifyToken, async (req,res)=> {
     try{
 
         (async()=>{

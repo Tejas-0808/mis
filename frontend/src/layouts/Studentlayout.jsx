@@ -8,7 +8,7 @@ import Educationdetails from "../components/Student/Profile/Educationdetails";
 import PersonalDetails from "../components/Student/Profile/Personaldetails";
 import AddPersonalDetails from "../components/Student/Profile/AddPersonalDetails";
 import Dashboard from "../components/Student/Dashboard/dashboard";
-import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
+import CourseRegActivity from "../components/Student/Coursereg/Courseregistrationact";
 import Student from "../components/Student";
 import Login from "../components/Login/Login";
 

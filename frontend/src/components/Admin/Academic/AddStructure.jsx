@@ -242,7 +242,7 @@ function AddStructure() {
           >
             <MenuItem value="">-- Select BOS --</MenuItem>
             {Bos.map((Bos) => (
-              <MenuItem value={Bos.dept_id}>{Bos.department}</MenuItem>
+              <MenuItem value={Bos.bos_id}>{Bos.bos_name}</MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -294,14 +294,14 @@ function AddStructure() {
             value={result}
           />
         </h3> */}
-        <TextField
+        {/* <TextField
           type="number"
           value={result}
           required
           placeholder="Total"
           name="total"
           onChange={handleChange}
-        />
+        /> */}
 
         <TextField
           type="number"

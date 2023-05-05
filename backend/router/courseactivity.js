@@ -34,7 +34,6 @@ router.post("/confirmcourse", async(req, res)=>{
     const sem = req.body.semester;
     const session = req.body.session;
     const courses = req.body.courses;
-    const fac_id = req.body.fac_id;
     console.log(roll);
     console.log(sem);
     console.log(session);
@@ -47,30 +46,32 @@ router.post("/confirmcourse", async(req, res)=>{
     
     try {
         (async () => {
-            // try {
-            // const data = await query("SELECT * FROM courses_taken WHERE serial_no=?", [
-            //     [s_no]
-            // ]);
-            // userExists = await data[0];
-            // } finally {
-            // // pool.end();
-            // }
+            try {
+            const data = await query("SELECT roll_no FROM courses_taken_stud WHERE roll_no=?", [
+                [roll]
+            ]);
+            userExists = await data[0];
+            } finally {
+            // pool.end();
+            }
 
-           
+           if(!userExists){
             (async () => {
                 try {
-                const data = await query("INSERT INTO courses_taken (`roll_no`, `semester`, `session`, `courses`,`fac_adv_id`) VALUES(?,?,?,?,?)", [
+                const data = await query("INSERT INTO courses_taken_stud (`roll_no`, `semester`, `session`, `courses`) VALUES(?,?,?,?)", [
                     roll,
                     sem,
                     session,
-                    JSON.stringify(courses),
-                    fac_id
+                    JSON.stringify(courses)
                 ]);
                 console.log(data[0]);
-                res.status(200).json({ msg: "courses registration added successfully" });
+                // res.status(200).json({ msg: "courses registration added successfully" });
                 } finally {
                 }
-            })();
+            })();}
+            else{
+                return res.json("User already exists.");
+            }
            
         })();
     } catch (err) {
