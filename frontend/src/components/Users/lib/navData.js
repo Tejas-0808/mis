@@ -22,35 +22,35 @@ export const navData = [
                 "childrens": [
                     {
                         "title": "Batch Allotment",
-                        "path": "/identitycard"
+                        "path": "/batchallotment"
                     },
                     {
                         "title": "Course Allotment",
-                        "path": "/identitycard"
+                        "path": "/courseallotment"
                     },
                     {
                         "title": "Edit Course",
-                        "path": "/identitycard"
+                        "path": "/editcourse"
                     },
                     {
                         "title": "Faculty Advisor",
-                        "path": "/identitycard"
+                        "path": "/facultyadvisor"
                     },
                     {
                         "title": "Faculty Advisor Confirmation",
-                        "path": "/identitycard"
+                        "path": "/facultyconfirm"
                     },
                     {
                         "title": "Offered Courses",
-                        "path": "/identitycard"
+                        "path": "/offeredcourses"
                     },
                     {
                         "title": "Promotion",
-                        "path": "/identitycard"
+                        "path": "/promotion"
                     },
                     {
                         "title": "Scheme Allotment",
-                        "path": "/identitycard"
+                        "path": "/schemeallotment"
                     },
                 ]
                 
@@ -59,18 +59,8 @@ export const navData = [
             },
             {
                 "title": "Course Confirmation",
-                "path": "/courseconfirmation"
+                "path": "/courseconfirm"
 
-            },
-
-            {
-                "title": "Admission",
-                "childrens": [
-                    {
-                        "title": "Add New Student",
-                        "path": "/newstudent"
-                    },
-                ]
             },
            
         ]

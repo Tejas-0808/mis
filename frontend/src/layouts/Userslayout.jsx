@@ -13,6 +13,7 @@ import CourseConfirmation from "../components/Users/Academic/courseConfirmation"
 import Ssdashboard from "../components/Studentsection/ssdashboard/ssdashboard";
 import Navigation from "../components/Navbar/navbar";
 import Login from "../components/Login/Login";
+import Facultyadvisorconfirm from "../components/Users/Academic/Studentsectiontransaction/Facultyadvisorconfirm";
 
 function Userslayout({ UserElement }) {
     console.log(UserElement);
@@ -36,6 +37,7 @@ function Userslayout({ UserElement }) {
                         <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
                         <Route path="/courseallotment" element={<Courseallotment />}></Route>
                         <Route path="/login" element={<Login />}></Route>
+                        <Route path="facultyconfirm" element={<Facultyadvisorconfirm />}></Route>
                     </Routes>
                 </div>
             </div>

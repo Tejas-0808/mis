@@ -32,7 +32,7 @@ function OfferedCourses() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/session",{
+      .get("http://localhost:3001/session", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -42,7 +42,7 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/degree",{
+      .get("http://localhost:3001/degree", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -62,7 +62,7 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/semester",{
+      .get("http://localhost:3001/semester", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -80,7 +80,7 @@ function OfferedCourses() {
     //   console.error(error);
     // });
     axios
-      .get("http://localhost:3001/master_scheme",{
+      .get("http://localhost:3001/master_scheme", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -100,9 +100,9 @@ function OfferedCourses() {
 
       const res = await axios.post(
         "http://localhost:3001/courselist",
-        Courseslists,{
-          headers: { authorization: localStorage.getItem('token') }
-        }
+        Courseslists, {
+        headers: { authorization: localStorage.getItem('token') }
+      }
       );
       setCourselt(res.data);
       const couselistss = res.data;
@@ -197,14 +197,14 @@ function OfferedCourses() {
 
   //   console.log(studentlist);
 
-    console.log(Courseslists);
+  console.log(Courseslists);
   return (
 
     <Box component="form"
       sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
       noValidate
       autoComplete="off">
-      <Card sx={{ m: 4, minWidth: 275 }}>
+      <Card sx={{ m: 4, minWidth: 275, backgroundColor: '#f5f5f5' }}>
         <CardContent>
           <CardHeader
             style={{ backgroundColor: "lightblue" }}

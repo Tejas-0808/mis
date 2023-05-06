@@ -7,6 +7,27 @@ const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
 const verifyToken = require('./login')
 
+router.get("/students/:course", verifyToken, async (req,res)=> {
+    try{
+        const course  = req.params.course;
+         //const roll_no = 'BE19F01F018'
+        (async()=>{
+            
+            const data = await query("SELECT roll_no FROM courses_taken_stud WHERE JSON_CONTAINS(courses,  JSON_ARRAY(?))",course);
+            const result = await data;
+            console.log(result);
+            return res.json(result);
+
+            // return res.json(data);
+            
+        })()
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({error: err});
+    }
+})
+
 router.get("/student/:roll_no", verifyToken, async (req,res)=> {
     try{
         const roll_no = req.params.roll_no;

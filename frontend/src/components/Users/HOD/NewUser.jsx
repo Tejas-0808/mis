@@ -35,7 +35,7 @@ function NewUser() {
     Marital_Status: "",
   });
 
-  // const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");  
   // const [isValid, setIsValid] = useState(false);
   const [emailError, setEmailError] = useState("");
 
@@ -144,7 +144,7 @@ function NewUser() {
       autoComplete="off"
     >
 
-      <Card sx={{ m: 1, minWidth: 275 }}>
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
 
 
         <CardContent>

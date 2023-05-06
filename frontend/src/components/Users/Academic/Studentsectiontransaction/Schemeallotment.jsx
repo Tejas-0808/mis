@@ -29,7 +29,9 @@ function Schemeallotment() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/degree")
+      .get("http://localhost:3001/degree", {
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then((response) => {
         setdegree(response.data);
       })
@@ -163,7 +165,7 @@ function Schemeallotment() {
   console.log(Rolllists);
   return (
     <Box>
-      <Card sx={{ m: 1, minWidth: 275 }}>
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
 
 
         <CardContent>

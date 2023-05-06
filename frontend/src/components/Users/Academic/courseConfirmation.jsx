@@ -11,7 +11,9 @@ const [stud, setStud] = useState({Branch: "", Semester: "", Session: ""});
 
 useEffect(()=>{
     axios
-    .get("http://localhost:3001/branch")
+    .get("http://localhost:3001/branch", {
+      headers: { authorization: localStorage.getItem('token') }
+    })
     .then((response) => {
       setBranch(response.data);
 
@@ -30,7 +32,9 @@ useEffect(()=>{
     });
 
     axios
-    .get("http://localhost:3001/session")
+    .get("http://localhost:3001/session", {
+      headers: { authorization: localStorage.getItem("token") },
+    })
     .then((response) => {
       setSession(response.data);
 

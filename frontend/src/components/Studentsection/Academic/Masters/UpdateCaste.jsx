@@ -51,7 +51,7 @@ function UpdateCaste() {
             noValidate
             autoComplete="off">
 
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
                 <CardContent>
 
                     <CardHeader
@@ -80,7 +80,7 @@ function UpdateCaste() {
                             onChange={handleChange}
                         />
 
-                        <Button variant="contained"  sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }} onClick={handleEdit}>SUBMIT</Button>
+                        <Button variant="contained" sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }} onClick={handleEdit}>SUBMIT</Button>
 
                         {/* <input type="number" placeholder="ID" name="caste_id" value={Caste.caste_id} onChange={handleChange}/>
         <input type="text" placeholder="Caste Name" name="caste_name" value={Caste.caste_name} onChange={handleChange}/>
