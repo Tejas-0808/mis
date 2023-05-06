@@ -3,7 +3,7 @@ import { useState, } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Box, Button } from "@mui/material";
-import {TextField, Card, CardContent, CardHeader } from "@mui/material";
+import { TextField, Card, CardContent, CardHeader } from "@mui/material";
 
 
 function UpdateState() {
@@ -51,7 +51,7 @@ function UpdateState() {
             noValidate
             autoComplete="off">
 
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
                 <CardContent>
 
                     <CardHeader

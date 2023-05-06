@@ -8,14 +8,10 @@ import Createotherlogin from "./Createotherlogin";
 
 import {Card, CardContent, CardHeader} from "@mui/material";
 import {
-  Button,
-  Checkbox,
   InputLabel,
   Select,
   MenuItem,
   FormControl,
-  TextField,
-  Radio,
   Box,
   Typography,
   FormLabel,
@@ -35,7 +31,7 @@ function Createuserlogin() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/privilege",{
+      .get("http://localhost:3001/privilege", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {

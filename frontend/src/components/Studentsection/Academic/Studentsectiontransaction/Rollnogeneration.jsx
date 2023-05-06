@@ -274,7 +274,7 @@ function RollNoGeneration() {
       noValidate
       autoComplete="off"
     >
-      <Card sx={{ m: 4, minWidth: 275 }}>
+      <Card sx={{ m: 4, minWidth: 275, backgroundColor: '#f5f5f5' }}>
         <CardContent>
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
@@ -491,7 +491,7 @@ function RollNoGeneration() {
           </div>
         </CardContent>
       </Card>
-    </Box >   
+    </Box >
   );
 }
 

@@ -136,13 +136,13 @@ function Courseallotment() {
     try {
       await axios.post("http://localhost:3001/courseallotment", Courseallotment);
       axios.get("http://localhost:3001/courseallotment")
-      .then((response) => {
-        setCourseteacherlist(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => {
+          setCourseteacherlist(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
 
     } catch (err) {
       console.log(err);
@@ -155,7 +155,7 @@ function Courseallotment() {
   console.log(Courseallotment);
   return (
     <Box>
-      <Card sx={{ m: 1, minWidth: 275 }}>
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
 
 
         <CardContent>
@@ -393,7 +393,7 @@ function Courseallotment() {
                       key={courseteacherlist.courseallot_ID}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                     
+
                       <TableCell align="center">{courseteacherlist.courseallot_ID}</TableCell>
                       <TableCell align="center">{courseteacherlist.course_name}</TableCell>
                       <TableCell align="center">{courseteacherlist.teacher}</TableCell>

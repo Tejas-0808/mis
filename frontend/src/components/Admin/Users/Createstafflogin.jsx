@@ -6,6 +6,9 @@ import {
   TextField,
   Button,
   Box,
+  Card,
+  CardContent,
+  CardHeader
 } from "@mui/material/";
 
 function Createstafflogin(props) {
@@ -54,9 +57,9 @@ function Createstafflogin(props) {
     try {
       const res = await axios.post(
         "http://localhost:3001/facultyrolllist",
-        formValues,{
-          headers: { authorization: localStorage.getItem('token') }
-        }
+        formValues, {
+        headers: { authorization: localStorage.getItem('token') }
+      }
       );
 
       setFaculty(res.data);
@@ -65,14 +68,14 @@ function Createstafflogin(props) {
         if (faculty.Staff_username) {
           console.log("Faculty staff username exists!");
         }
-        else{
+        else {
           setFormValues((prevValues) => ({
-          ...prevValues,
-          username: faculty.Staff_username || prevValues.username,
-        }));
+            ...prevValues,
+            username: faculty.Staff_username || prevValues.username,
+          }));
+        }
       }
-      }
-      else{
+      else {
         setEmailError("Mail ID doesn't exists.");
         console.log("Mail not exists");
       }
@@ -83,109 +86,119 @@ function Createstafflogin(props) {
       console.log(err);
     }
   };
-  
+
   const handleClicked = async (e) => {
     e.preventDefault();
-    
+
     try {
       const token = localStorage.getItem('token');
       const headers = { authorization: token };
-      
+
       const request1 = axios.post('http://localhost:3001/addusername_staff', formValues, { headers });
       const request2 = axios.post('http://localhost:3001/otherlogins', formValues, { headers });
-      
+
       await Promise.all([request1, request2]);
-      
+
       console.log('Both requests completed successfully');
       navigate('/createuserlogin', { state: {} });
     } catch (err) {
       console.log(err);
     }
   }
-  
-  
- 
+
+
+
   return (
     <Box>
-      <div>
-        <h1>Staff Login</h1>
-        <hr></hr>
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#F5F5F5' }}>
 
-        <TextField
-          required
-          type="email"
-          variant="outlined"
-          label="Email ID"
-          name="Email_id"
-          // value={Email_id}
-          onChange={handleChange}
-          error={Boolean(emailError)}
-          helperText={emailError}
-        />
-
-        <Button variant="contained" onClick={fetchFaculty}>
-          Fetch
-        </Button>
-
-        <div className="facultylogin">
+        <CardContent>
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="STAFF LOGIN"
+          />
           <div>
-            <table id="stafflist">
-              {faculty.map((faculty) => (
-                <table>
-                  <tr>
-                    <td>
-                      <span>
-                        {faculty.First_Name + " " + faculty.Last_Name}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Username"
-                        name="username"
-                        value={
-                          faculty.Staff_username === null
-                            ? formValues.username : faculty.Staff_username
-                        }
-                        onChange={handleChange}
-                        //  InputLabelProps={{ shrink: true }}
-                        InputLabelProps={
-                          faculty.Staff_username !== null && { shrink: true }
-                        }
-                        InputProps={{
-                          readOnly: faculty.Staff_username !== null,
-                        }}
-                        required
-                      />
+            <hr></hr>
 
-                      <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Password"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                      />
+            <TextField
+              required
+              type="email"
+              variant="outlined"
+              label="Email ID"
+              name="Email_id"
+              // value={Email_id}
+              onChange={handleChange}
+              error={Boolean(emailError)}
+              helperText={emailError}
+            />
 
-                      {/* <Button variant="contained" onClick={handleClicked}>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <Button variant="contained" onClick={fetchFaculty}>
+              Fetch
+            </Button>
+
+            <div className="facultylogin">
+              <div>
+                <table id="stafflist">
+                  {faculty.map((faculty) => (
+                    <table>
+                      <tr>
+                        <td>
+                          <span>
+                            {faculty.First_Name + " " + faculty.Last_Name}
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <TextField
+                            type="text"
+                            variant="outlined"
+                            label="Username"
+                            name="username"
+                            value={
+                              faculty.Staff_username === null
+                                ? formValues.username : faculty.Staff_username
+                            }
+                            onChange={handleChange}
+                            //  InputLabelProps={{ shrink: true }}
+                            InputLabelProps={
+                              faculty.Staff_username !== null && { shrink: true }
+                            }
+                            InputProps={{
+                              readOnly: faculty.Staff_username !== null,
+                            }}
+                            required
+                          />
+
+                          <TextField
+                            type="text"
+                            variant="outlined"
+                            label="Password"
+                            name="password"
+                            onChange={handleChange}
+                            required
+                          />
+
+                          {/* <Button variant="contained" onClick={handleClicked}>
                         Create Username
                       </Button> */}
-                      <Button variant="contained"
-    onClick={handleClicked}
-    sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }} >Create Username</Button>
-                    </td>
-                  </tr>
+                          <Button variant="contained"
+                            onClick={handleClicked}
+                            sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }} >Create Username</Button>
+                        </td>
+                      </tr>
+                    </table>
+                  ))}
                 </table>
-              ))}
-            </table>
-          </div>
-        </div>
+              </div>
+            </div>
 
-        <br></br>
-      </div>
+            <br></br>
+          </div>
+        </CardContent>
+      </Card>
     </Box>
   );
 }

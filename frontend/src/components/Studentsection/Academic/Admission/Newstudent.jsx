@@ -67,12 +67,12 @@ function NewStudent() {
   const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setPersonalDetails((prev) => ({
       ...prev,
       [name]: value,
     }));
-  
+
     if (name === "Phone_No" || name === "Fathers_mobile" || name === "Guardian_Number") {
       setPhoneError(
         /^\d{10}$/.test(value)
@@ -80,18 +80,18 @@ function NewStudent() {
           : "Invalid Phone Number"
       );
     }
-  
-    if (name === "Email_id" || name ==="Fathers_email ") {
+
+    if (name === "Email_id" || name === "Fathers_email ") {
       setEmailError(
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
           ? ""
           : "Invalid email address"
       );
     }
-  
+
     console.log(personaldetails);
   };
-  
+
   const handleClickadd = async (e) => {
     e.preventDefault();
     try {
@@ -263,20 +263,21 @@ function NewStudent() {
     if (selectedState) {
       // Fetch the list of cities for the selected state ID from the API
       fetch("http://localhost:3001/city?state_id=${selectedState} ")
-      .then(response => response.json())
-      .then(data => setCities(data))
-      .catch(error => console.error(error));
-    }}, [selectedState]);
-  
-      const handleCityChange = (event) => {
-        setSelectedCity(event.target.value);
-      };
-    
+        .then(response => response.json())
+        .then(data => setCities(data))
+        .catch(error => console.error(error));
+    }
+  }, [selectedState]);
+
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
+
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
   };
-  
+
   return (
     // <Card sx={{ minWidth: 275 }}>
     //   {/* <h1>Educational Detail</h1><hr /> */}
@@ -769,52 +770,52 @@ function NewStudent() {
           onChange={handleChange}
         />
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 130 }}>
-          <InputLabel id="demo-simple-select-label">Degree</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Degree"
-            placeholder="Select Degree"
-            className="form-select-Degree"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Degree --</MenuItem>
-            {degree.map((item) => (
-              <MenuItem key={item.degree_id} value={item.degree_name}>
-                {item.degree_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+              <FormControl variant="outlined" sx={{ m: 1, minWidth: 130 }}>
+                <InputLabel id="demo-simple-select-label">Degree</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  name="Degree"
+                  placeholder="Select Degree"
+                  className="form-select-Degree"
+                  onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="">-- Select Degree --</MenuItem>
+                  {degree.map((item) => (
+                    <MenuItem key={item.degree_id} value={item.degree_name}>
+                      {item.degree_name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Semester</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Semester"
-            placeholder="Select Semester"
-            className="form-select-Semester"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Semester --</MenuItem>
-            {semester.map((item) => (
-              <MenuItem key={item.sem_id} value={item.sem}>
-                {item.sem}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <TextField
-          name="Date_of_admission"
-          label="Date of Admission"
-          type="date"
-          onChange={handleChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+              <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-label">Semester</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  name="Semester"
+                  placeholder="Select Semester"
+                  className="form-select-Semester"
+                  onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="">-- Select Semester --</MenuItem>
+                  {semester.map((item) => (
+                    <MenuItem key={item.sem_id} value={item.sem}>
+                      {item.sem}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextField
+                name="Date_of_admission"
+                label="Date of Admission"
+                type="date"
+                onChange={handleChange}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
 
         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
@@ -835,43 +836,43 @@ function NewStudent() {
           </Select>
         </FormControl>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Payment-Type</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Payment_type"
-            placeholder="Select Payment Type"
-            className="form-select-PT"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Payment Type --</MenuItem>
-            {payment.map((item) => (
-              <MenuItem key={item.payment_id} value={item.payment_type}>
-                {item.payment_type}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+              <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-label">Payment-Type</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  name="Payment_type"
+                  placeholder="Select Payment Type"
+                  className="form-select-PT"
+                  onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="">-- Select Payment Type --</MenuItem>
+                  {payment.map((item) => (
+                    <MenuItem key={item.payment_id} value={item.payment_type}>
+                      {item.payment_type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Batch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Admission_batch"
-            placeholder="Select Batch"
-            className="form-select-batch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">-- Select Batch --</MenuItem>
-            {batch.map((item) => (
-              <MenuItem key={item.batch_id} value={item.year}>
-                {item.year}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+              <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-label">Batch</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  name="Admission_batch"
+                  placeholder="Select Batch"
+                  className="form-select-batch"
+                  onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="">-- Select Batch --</MenuItem>
+                  {batch.map((item) => (
+                    <MenuItem key={item.batch_id} value={item.year}>
+                      {item.year}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
         <Button variant="contained" onClick={handleClickadd}>
           Add

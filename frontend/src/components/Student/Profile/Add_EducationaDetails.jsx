@@ -45,7 +45,7 @@ function Add_EducationDetails() {
   console.log(Edudetails);
   const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
-    <Card sx={{ minWidth: 275, marginTop: 5 }}>
+    <Card sx={{ minWidth: 275, marginTop: 5, backgroundColor: '#f5f5f5' }}>
       <CardHeader
         sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
         title="Educational Details"
