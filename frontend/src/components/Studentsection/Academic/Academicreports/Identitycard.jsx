@@ -30,7 +30,9 @@ function IdentityCard() {
 
   const fetchBranch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/branch");
+      const res = await axios.get("http://localhost:3001/branch" , {
+        headers: { authorization: localStorage.getItem('token') }
+      }) 
       setBranch(res.data);
     } catch (err) {
       console.log(err);
@@ -94,7 +96,7 @@ function IdentityCard() {
   };
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
       <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
       <CardContent>
         <Box

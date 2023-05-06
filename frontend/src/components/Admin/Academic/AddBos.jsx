@@ -3,7 +3,7 @@ import { useState, } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, TextField, Button } from '@mui/material/';
-import {  InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader} from "@mui/material/";
+import { InputLabel, FormControl, Select, MenuItem, CardContent, Card, CardHeader } from "@mui/material/";
 
 // import { useEffect } from 'react';
 const pageid = "2";//IN FUTURE WE WILL FETCH IT FROM DATABASE 
@@ -13,7 +13,7 @@ function AddBos() {
   const [Bos, setBos] = useState({
     bos_id: "",
     bos_name: "",
-    code:""
+    code: ""
   });
 
 
@@ -38,7 +38,7 @@ function AddBos() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/b_o_s", Bos,{
+      await axios.post("http://localhost:3001/b_o_s", Bos, {
         headers: { authorization: localStorage.getItem('token') }
       });
       navigate("/bos");
@@ -48,40 +48,40 @@ function AddBos() {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100%'}}>
-    
-    <Box component="form"
-    sx={{ "& .MuiTextField-root": { m: 1}, width: "100%" }}
-    noValidate
-    autoComplete="off"
-    >
-    {/* <Box sx={{width:'100%',height:'100%'}}> */}
-       <Card sx={{ m: 1, minWidth: 275, backgroundColor:'#f5f5f5'}}>
-     
-        
-     <CardContent>
+    <div style={{ height: '100vh', width: '100%' }}>
 
-       <CardHeader
-         style={{ backgroundColor: "lightblue" }}
-         title="ADD BOS"
-       />
-      {true ? (
-      <>
-      <div className="form">
-        {/* <h1>ADD BOS</h1> */}
-        <hr />
-        <TextField type="number" required label="BOS ID" name="bos_id" onChange={handleChange} />
-        <TextField type="text" required label="BOS Name" name="bos_name" onChange={handleChange} />
-        <TextField type="text" required label="BOS code" name="code" onChange={handleChange} />
+      <Box component="form"
+        sx={{ "& .MuiTextField-root": { m: 1 }, width: "100%" }}
+        noValidate
+        autoComplete="off"
+      >
+        {/* <Box sx={{width:'100%',height:'100%'}}> */}
+        <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
 
-        <Button variant="contained" onClick={handleClick}sx={{ ml: 1, alignSelf: 'center',mt: 1,height: 55 }}>Add</Button>
-      </div>
-    </>):<>You don't have access to this page</>}
-    </CardContent>
-      
-      </Card>
-    </Box>
-    </div>    
+
+          <CardContent>
+
+            <CardHeader
+              style={{ backgroundColor: "lightblue" }}
+              title="ADD BOS"
+            />
+            {true ? (
+              <>
+                <div className="form">
+                  {/* <h1>ADD BOS</h1> */}
+                  <hr />
+                  <TextField type="number" required label="BOS ID" name="bos_id" onChange={handleChange} />
+                  <TextField type="text" required label="BOS Name" name="bos_name" onChange={handleChange} />
+                  <TextField type="text" required label="BOS code" name="code" onChange={handleChange} />
+
+                  <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>Add</Button>
+                </div>
+              </>) : <>You don't have access to this page</>}
+          </CardContent>
+
+        </Card>
+      </Box>
+    </div>
   )
 }
 
