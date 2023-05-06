@@ -50,7 +50,7 @@ const LoginForm = () => {
         console.log(" error ");
         console.error(error.response.data.message);
       }
-      navigate("/dashboard");
+      navigate("/");
     } else {
       alert("fill the values");
     }
