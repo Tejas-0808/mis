@@ -66,26 +66,57 @@ function Branchchange() {
   // let bro =  branch[0];
   console.log(Branchchange);
   return (
-    <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
-      <h1>&nbsp;&nbsp;Utility</h1><hr />
-      <CardContent>
-        <Box
-          component="form"
-          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
-          noValidate
-          autoComplete="off"
-        >
+
+    // <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
+    //   <h1>&nbsp;&nbsp;Utility</h1><hr />
+    //   <CardContent>
+    //     <Box
+    //       component="form"
+    //       sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+    //       noValidate
+    //       autoComplete="off"
+    //     >
+    //       <CardHeader
+    //         style={{ backgroundColor: "lightblue" }}
+    //         title="Branch Change"
+    //       />
+   
+    <Box sx={{ width: '100%', height: '100%' }}>
+
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#F5F5F5' }}>
+
+        <CardContent>
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
             title="Branch Change"
           />
 
+
           <div className="form">
 
             <br />
-            <input type="text" placeholder="Roll No" name="roll_no" value={Branchchange.roll_no} onChange={handleChange} />
+            <TextField
+                      id="outlined-basic"
+                      required
+                      variant="outlined"
+                      name="roll_no"
+                      label="Roll No"
+                      onChange={handleChange}
+                    />
+            {/* <input type="text" placeholder="Roll No" name="roll_no" value={Branchchange.roll_no} onChange={handleChange} /> */}
             &nbsp;&nbsp;
-            <input type="text" placeholder="Branch" name="Branch" value={Branchchange.Branch} onChange={handleChange} />
+            <TextField
+                      id="outlined-basic"
+                      variant="outlined"
+                      name="Branch"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      label="Branch"
+                      value={Branchchange.Branch}
+                      onChange={handleChange}
+                    />
+            {/* <input type="text" placeholder="Branch" name="Branch" value={Branchchange.Branch} onChange={handleChange} /> */}
             &nbsp;&nbsp;
             {/* <button onClick={fetchStubranch}>Fetch</button>
       <button onClick={handleClick}>Update</button> */}
@@ -94,9 +125,13 @@ function Branchchange() {
             &nbsp;&nbsp;
             <Button variant="contained" onClick={handleClick} size="medium">Update</Button>
           </div>
-        </Box>
+        {/* </Box>
       </CardContent>
-    </Card>
+    </Card> */}
+     </CardContent>
+        </Card>
+      </Box>
+
   )
 }
 

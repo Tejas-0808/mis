@@ -43,13 +43,13 @@ router.get("/category/:id", async (req, res) => {
 });
 
 router.post("/category", async (req, res) => {
-  const { category_id, category_name } = req.body;
-  console.log(category_id);
+  const {  category_name } = req.body;
+  
   console.log(category_name);
   // console.log(HOD);
   // console.log(students_enrolled);
 
-  if (!category_id || !category_name) {
+  if ( !category_name) {
     return res.status(422).json({ error: "plz fill all fields properly" });
   }
 
@@ -68,8 +68,8 @@ router.post("/category", async (req, res) => {
       if (!userExists) {
         (async () => {
           try {
-            const data = await query("INSERT INTO category_list VALUES(?,?)", [
-              category_id,
+            const data = await query("INSERT INTO category_list (category_name) VALUES(?)", [
+              
               category_name,
             ]);
             console.log(data[0]);

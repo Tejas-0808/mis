@@ -32,13 +32,12 @@ router.get("/payment", async (req,res)=> {
 
 router.post('/payment', async (req, res) => {
 
-    const {payment_id, payment_type, category_id} = req.body;
-    console.log(payment_id);
+    const {payment_type, category_id} = req.body;
     console.log(payment_type);
     console.log(category_id);
     // console.log(students_enrolled);
 
-        if(!payment_id || !payment_type || !category_id){
+        if(!payment_type || !category_id){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -46,7 +45,7 @@ router.post('/payment', async (req, res) => {
     
             (async()=>{
                 try{
-                    const data = await query("SELECT * FROM payment_type_list WHERE payment_id=?",[payment_id]);
+                    const data = await query("SELECT * FROM payment_type_list WHERE payment_type=?",[payment_type]);
                     userExists = await data[0];
                 }
                 finally{
@@ -57,7 +56,7 @@ router.post('/payment', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO payment_type_list VALUES(?,?,?)",[payment_id, payment_type, category_id ]);
+                          const data = await query("INSERT INTO payment_type_list (payment_type, category_id ) VALUES(?,?)",[payment_type, category_id ]);
                           console.log(data[0]);
                           res.status(200).json({msg: "payment type added successfully"})
                         }

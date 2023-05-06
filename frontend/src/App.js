@@ -79,14 +79,15 @@ function App() {
                 } else if (CURRENT_USER_TYPE == USER_TYPES.ADMIN_USER) {
 
                   return (
-                    <Adminlayout AdminElement={AdminElement} />
+                    <Adminlayout />
                   )
 
                 } else {
 
                   return (
                     <>
-                      Please login first
+                      <Route path="/" element={<Loginform />} />
+              <Route path="*" element={<Loginform />} />
                     </>
                   )
 
@@ -98,18 +99,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Loginform />} />
               <Route path="*" element={<Loginform />} />
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
             </Routes>
           </div>
         }
-        {/* <SideBar /> */}
-        {/* <Studentlayout><StudentElement /></Studentlayout> */}
-        {/* <Studentlayout StudentElement={StudentElement}/> */}
-        {/* <StudentSectionlayout><StudentSectionElement /></StudentSectionlayout> */}
-        {/* <Route path="/" element={<Branch />} /> */}
-        {/* <Route path="/edit/:id" element={<Edit/>}/> */}
-        {/* <Route path="/" element={<PublicElement><Home /></PublicElement>} /> */}
-
 
       </BrowserRouter>
     </div>

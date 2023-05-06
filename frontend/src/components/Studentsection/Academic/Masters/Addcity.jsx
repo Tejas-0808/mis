@@ -91,9 +91,7 @@ function Addcity() {
             <div style={{ padding: '5px', marginTop: 30, marginLeft: 5 }}  >
               <Grid container spacing={1} >
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'left' }}>
-                  <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                   
-                  </Grid>
+                  
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <TextField
                       required
@@ -101,21 +99,33 @@ function Addcity() {
                       name="city_name"
                       label="City Name"
                       onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
+                      sx={{ m: 1, minWidth: 180, paddingLeft: 0 }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                    <TextField
+                  <FormControl sx={{ m: 1, minWidth: 180, width: '100%' }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Is District
+                    </InputLabel>
+                    <Select
                       required
-                      variant="outlined"
                       name="isDistrict"
+                      className="form-is-district"  
+                      labelId="demo-simple-select-helper-label"
                       label="Is District"
                       onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
-                    />
+                    >
+                      <MenuItem value="">
+                        <em>-- Is District --</em>
+                      </MenuItem>
+                      <MenuItem value="1">Yes</MenuItem>
+                      <MenuItem value="0">No</MenuItem>
+                    </Select>
+                  </FormControl>
+                 
                   </Grid>
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                  <FormControl sx={{ m: 1, minWidth: 180 }}>
+                  <FormControl sx={{ m: 1, minWidth: 180 , width: '100%' }}>
                     <InputLabel id="demo-simple-select-helper-label">State</InputLabel>
                     <Select
                       required
@@ -136,16 +146,6 @@ function Addcity() {
                       ))}
                     </Select>
                   </FormControl>
-
-
-                    {/* <TextField
-                      required
-                      variant="outlined"
-                      label="State ID"
-                      name="state_id"
-                      onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
-                    /> */}
                   </Grid>
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <Button variant="contained"
@@ -162,8 +162,8 @@ function Addcity() {
                   <TableHead style={{ backgroundColor: '#1976d2' }}>
 
                     <TableRow>
+                      <TableCell align="center">City ID</TableCell>
                       <TableCell align="center">City Name</TableCell>
-                      <TableCell align="center">State Id</TableCell>
                     </TableRow>
 
                   </TableHead>
@@ -173,8 +173,8 @@ function Addcity() {
                         key={city.city_id} className="city"
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
+                        <TableCell align="center">{city.city_id}</TableCell>
                         <TableCell align="center">{city.city_name}</TableCell>
-                        <TableCell align="center">{city.state_id}</TableCell>
                       </TableRow>
 
                     ))}

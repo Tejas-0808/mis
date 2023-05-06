@@ -53,15 +53,16 @@ const LoginForm = () => {
         console.log(" error ");
         console.error(error.response.data.message);
       }
-      // navigate("/ssdashboard");
+      alert("login successfully");
+      window.location.reload();
       navigate("/");
+
     } else {
       alert("fill the values");
     }
     // const handleSubmit = async (event) => {
   };
-
- 
+  
 
   return (
 
@@ -91,7 +92,9 @@ const LoginForm = () => {
           }
           label="Remember me"
         />
-        <Button type='submit' color="success" variant="contained" style={btnstyle} onClick={SubmitBtn} fullWidth>Sign in</Button>
+        <a href="/">
+         <Button type='submit' color="success" variant="contained" style={btnstyle} onClick={SubmitBtn} fullWidth>Sign in</Button>
+         </a>
         <Typography >
           <Link href="#" >
             Forgot password ?
@@ -103,7 +106,6 @@ const LoginForm = () => {
           </Link>
         </Typography>
       </Paper>
-     
       {/* <div className="ListContainer">
         {token && (
           <>

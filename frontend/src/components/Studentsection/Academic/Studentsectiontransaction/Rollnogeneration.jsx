@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Box, Button, Card, CardContent, CardHeader, TextField, nputLabel, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+import { Box, Button, Card, CardContent, CardHeader,Grid, TextField, nputLabel, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 
 function RollNoGeneration() {
   const [batch, setBatch] = useState([]);
@@ -50,7 +50,9 @@ function RollNoGeneration() {
 
   const fetchSem = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/semester");
+      const res = await axios.get("http://localhost:3001/semester", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setSem(res.data);
       console.log(res.data);
     } catch (err) {
@@ -225,10 +227,13 @@ function RollNoGeneration() {
 
 
   const HandleShow = async (rollGen) => {
-    const { admission_batch, department, degree, semester } = rollGen
-    const dept = department.slice(2);
+    const { admission_batch, department, degree, semester } = rollGen;
+    const dept = department.slice(0);
+    console.log("dept" + dept);
     try {
-      const res = await axios.get("http://localhost:3001/rollgen?admission_batch=" + admission_batch + "&department=" + dept + "&degree=" + degree + "&semester=" + semester);
+      const res = await axios.get("http://localhost:3001/rollgen?admission_batch=" + admission_batch + "&department=" + dept + "&degree=" + degree + "&semester=" + semester,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       const Dinfo = await res.data;
       SetSData(Dinfo);
     } catch (err) {
@@ -258,7 +263,9 @@ function RollNoGeneration() {
     console.log(info);
 
     try {
-      await axios.post("http://localhost:3001/rollgen", info);
+      await axios.post("http://localhost:3001/rollgen", info, {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/rollnogeneration")
     } catch (err) {
       console.log(err);
@@ -270,20 +277,21 @@ function RollNoGeneration() {
 
     <Box
       component="form"
-      sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
+      sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' ,  width: '100%', height: '100%'}}
       noValidate
       autoComplete="off"
     >
-      <Card sx={{ m: 4, minWidth: 275, backgroundColor: '#f5f5f5' }}>
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
         <CardContent>
           <CardHeader
-            style={{ backgroundColor: "lightblue" }}
+            style={{ backgroundColor: "lightblue", textAlign: 'center'  }}
             title="Roll Number Generation"
           />
-          <br></br>
-
-          <div>
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+         <hr />
+          <div style={{ padding: '15px' }} >
+          <Grid container spacing={1} >
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Admission Batch:</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -301,8 +309,9 @@ function RollNoGeneration() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Degree:</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -320,6 +329,59 @@ function RollNoGeneration() {
                 ))}
               </Select>
             </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
+              <InputLabel id="demo-simple-select-label">Branch:</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="department"
+                placeholder="Select Branch"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Branch --</MenuItem>
+                {branch.map((item) => (
+                        <MenuItem key={item.Branch_id} value={item.Branch_id + "," + item.Branch_name}>
+                          {item.Branch_id}.{item.Branch_name}
+                        </MenuItem>
+                      ))}
+                {/* {branch.map((item) => (
+                    <MenuItem key={item.branch} value={item.branch}>
+                      {item.branch}
+                    </MenuItem>
+                  ))} */}
+              </Select>
+            </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
+              <InputLabel id="demo-simple-select-label">Semester:</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="semester"
+                placeholder="Select Semester"
+                className="form-select-semester"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Semester --</MenuItem>
+                {sem.map((sem) => (
+                  <MenuItem key={sem.sem} value={sem.sem}>
+                    {sem.sem}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+                </Grid>
+              </Grid>
+
+
+
+            
+
+           
 
             {/* <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-label">Branch:</InputLabel>
@@ -345,48 +407,9 @@ function RollNoGeneration() {
                   ))}
                 </Select>
               </FormControl> */}
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Branch:</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                name="department"
-                placeholder="Select Branch"
-                className="form-select-branch"
-                onChange={handleChange}
-                required
-              >
-                <MenuItem value="">-- Select Branch --</MenuItem>
-                {branch.map((branch) => (
-                  <MenuItem value={[branch.Branch_id, branch.Branch_name]}>
-                    {branch.Branch_id}.{branch.Branch_name}
-                  </MenuItem>
-                ))}
-                {/* {branch.map((item) => (
-                    <MenuItem key={item.branch} value={item.branch}>
-                      {item.branch}
-                    </MenuItem>
-                  ))} */}
-              </Select>
-            </FormControl>
+         
 
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Semester:</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                name="semester"
-                placeholder="Select Semester"
-                className="form-select-semester"
-                onChange={handleChange}
-                required
-              >
-                <MenuItem value="">-- Select Semester --</MenuItem>
-                {sem.map((sem) => (
-                  <MenuItem key={sem.sem} value={sem.sem}>
-                    {sem.sem}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+          
 
             <Button
               variant='contained' className="Show" onClick={() => HandleShow(rollGen)}>Show</Button>

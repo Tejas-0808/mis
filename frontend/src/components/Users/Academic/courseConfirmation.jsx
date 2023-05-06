@@ -23,7 +23,9 @@ useEffect(()=>{
     });
 
   axios
-    .get("http://localhost:3001/semester")
+    .get("http://localhost:3001/semester",{
+      headers: { authorization: localStorage.getItem('token') }
+    })
     .then((response) => {
       setSemester(response.data);
     })
@@ -89,7 +91,7 @@ return (<div>
         <option value="">-- Select Session --</option>
         {session.map((item) => (
           <option key={item.session_id} value={item.session_name}>
-            {item.sem}
+            {item.session_name}
           </option>
         ))}
       </select>

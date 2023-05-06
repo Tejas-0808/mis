@@ -25,9 +25,7 @@ import Createotherlogin from "../components/Admin/Users/Createotherlogin";
 import Login from "../components/Login/Login";
 import Ssdashboard from "../components/Studentsection/ssdashboard/ssdashboard";
 
-function Adminlayout({ AdminElement }) {
-    console.log(AdminElement);
-    // const AdminElement = children.StudentElemnt;
+function Adminlayout() {
     return (
         <>
             <div className="d-flex flex-column">
@@ -38,29 +36,29 @@ function Adminlayout({ AdminElement }) {
                     <SideBar />
                     <Routes>
                         <Route path="/" element={<Ssdashboard />} />
-                        <Route path="/branch" element={<AdminElement><Branch /></AdminElement>} />
-                        <Route path="/addbranch" element={<AdminElement><Addbranch /></AdminElement>} />
-                        <Route path="/update/:id" element={<AdminElement><Update /></AdminElement>} />
-                        <Route path="/scheme" element={<AdminElement><Scheme /></AdminElement>} />
-                        <Route path="/addscheme" element={<AdminElement><Addscheme /></AdminElement>} />
-                        <Route path="/masterscheme" element={<AdminElement><Masterscheme /></AdminElement>} />
-                        <Route path="/addmasterscheme" element={<AdminElement><AddMasterscheme /></AdminElement>} />
-                        <Route path="/updatemasterscheme/:id" element={<AdminElement><UpdateMasterScheme /></AdminElement>} />
-                        <Route path="/bos" element={<AdminElement><B_o_s /></AdminElement>} />
-                        <Route path="/addbos" element={<AdminElement><AddBos /></AdminElement>} />
-                        <Route path="/updatebos/:id" element={<AdminElement><UpdateBos /></AdminElement>} />
-                        <Route path="/structure" element={<AdminElement><Structure /></AdminElement>} />
-                        <Route path="addstructure" element={<AdminElement><AddStructure /></AdminElement>} />
-                        <Route path="/updatestructure/:id" element={<AdminElement><UpdateStructure /></AdminElement>} />
-                        <Route path="/addsession" element={<AdminElement><AddSession /></AdminElement>} />
-                        <Route path="/session" element={<AdminElement><Session /></AdminElement>} />
-                        <Route path="/createuserlogin" element={<AdminElement><Createuserlogin /></AdminElement>} />
+                        <Route path="/branch" element={ <Branch /> } />
+                        <Route path="/addbranch" element={ <Addbranch /> } />
+                        <Route path="/update/:id" element={ <Update /> } />
+                        <Route path="/scheme" element={ <Scheme /> } />
+                        <Route path="/addscheme" element={ <Addscheme /> } />
+                        <Route path="/masterscheme" element={ <Masterscheme /> } />
+                        <Route path="/addmasterscheme" element={ <AddMasterscheme /> } />
+                        <Route path="/updatemasterscheme/:id" element={ <UpdateMasterScheme /> } />
+                        <Route path="/bos" element={ <B_o_s /> } />
+                        <Route path="/addbos" element={ <AddBos /> } />
+                        <Route path="/updatebos/:id" element={ <UpdateBos /> } />
+                        <Route path="/structure" element={ <Structure /> } />
+                        <Route path="addstructure" element={ <AddStructure /> } />
+                        <Route path="/updatestructure/:id" element={ <UpdateStructure /> } />
+                        <Route path="/addsession" element={ <AddSession /> } />
+                        <Route path="/session" element={ <Session /> } />
+                        <Route path="/createuserlogin" element={ <Createuserlogin /> } />
                         <Route path="/branch" element={<Branch />} />
-                        <Route path="/admin" element={<AdminElement><AdminDashboard /></AdminElement>} />
+                        <Route path="/admin" element={ <AdminDashboard /> } />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/createstafflogin" element={<AdminElement><Createstafflogin /></AdminElement>} />
-                        <Route path="/createstudlogin" element={<AdminElement><Createstudlogin /></AdminElement>} />
-                        <Route path="/createotherlogin" element={<AdminElement><Createotherlogin /></AdminElement>} />
+                        <Route path="/createstafflogin" element={ <Createstafflogin /> } />
+                        <Route path="/createstudlogin" element={ <Createstudlogin /> } />
+                        <Route path="/createotherlogin" element={ <Createotherlogin /> } />
                     </Routes>
                 </div>
             </div>

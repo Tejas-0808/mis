@@ -9,7 +9,9 @@ const District = () => {
 
   const fetchDistrict = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/district");
+      const res = await axios.get("http://localhost:3001/district",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setDistrict(res.data);
       console.log(res.data);
     } catch (err) {
@@ -26,8 +28,12 @@ const District = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id)
-      await axios.delete("http://localhost:3001/district/" + id)
-      const res = await axios.get("http://localhost:3001/district");
+      await axios.delete("http://localhost:3001/district/" + id,{
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      const res = await axios.get("http://localhost:3001/district",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setDistrict(res.data);
       // window.location.reload()
       // navigate("/"); 
@@ -52,10 +58,10 @@ const District = () => {
             style={{ backgroundColor: "lightblue", textAlign: 'center' }}
             title="District Management"
           />
-
+        <hr />
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              <TableHead style={{ backgroundColor: '#1976d2'} }>
                 <TableRow>
                   <TableCell align="center">District Id</TableCell>
                   <TableCell align="center">District Name</TableCell>

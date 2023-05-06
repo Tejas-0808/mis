@@ -9,7 +9,9 @@ const Caste = () => {
 
   const fetchCaste = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/caste");
+      const res = await axios.get("http://localhost:3001/caste",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCaste(res.data);
       console.log(res.data);
     } catch (err) {
@@ -26,8 +28,12 @@ const Caste = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id)
-      await axios.delete("http://localhost:3001/caste/" + id)
-      const res = await axios.get("http://localhost:3001/caste");
+      await axios.delete("http://localhost:3001/caste/" + id, {
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      const res = await axios.get("http://localhost:3001/caste", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCaste(res.data);
       // window.location.reload()
       // navigate("/"); 
@@ -53,9 +59,10 @@ const Caste = () => {
             title={<h1 style={{ fontSize: "30px", fontWeight: "bold", marginLeft: "10px", textAlign: 'center' }}>Caste Management</h1>}
           />
 
+          <hr />
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              <TableHead style={{ backgroundColor: '#1976d2'} }>
                 <TableRow>
                   <TableCell align="center">Caste ID</TableCell>
                   <TableCell align="center">Caste Name</TableCell>
@@ -63,17 +70,17 @@ const Caste = () => {
                 </TableRow>
 
               </TableHead>
-              <TableBody>
+              <TableBody  style={{fontSize: "40px"}}>
                 {caste.map((caste) => (
                   <TableRow
                     key={caste.caste_id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
 
-                    <TableCell align="center">{caste.caste_id}</TableCell>
-                    <TableCell align="center">{caste.caste_name}</TableCell>
+                    <TableCell align="center" >{caste.caste_id}</TableCell>
+                    <TableCell align="center" >{caste.caste_name}</TableCell>
                     <TableCell align="center">
-                      <Button variant="contained" color='success' className='update'><Link to={`/updatecaste/${caste.caste_id}`} size="medium">Update</Link></Button>
+                      <Link to={`/updatecaste/${caste.caste_id}`} size="medium"><Button variant="contained" color='success' className='update'>Update</Button></Link>
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <Button variant="contained" color='error' className="delete" onClick={() => handleDelete(caste.caste_id)} size="medium">Delete</Button>
                     </TableCell>

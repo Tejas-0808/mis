@@ -33,7 +33,7 @@ const CourseRegActivity = () => {
     const courses = [];
 
     const [error, setError] = useState("");
-
+    const [alert, setAlert] = useState("");
     console.log(sem);
     console.log(Session);
     console.log(courses);
@@ -139,13 +139,21 @@ const CourseRegActivity = () => {
     const handleConfirm = async () => {
 
 
-        
+        let res = null; // Initialize res to null
+
         try {
             console.log(courseTaken);
-            const res = await axios.post("http://localhost:3001/confirmcourse", courseTaken);
-            // console.log(res);
-            setError("Roll number " + courseTaken.roll_no + " already exists");
+            res = await axios.post("http://localhost:3001/confirmcourse", courseTaken);
           
+            if(res || res.data || res.data.error){
+            setError("Roll number " + courseTaken.roll_no + " already exists");
+            }else if (res === null) {
+                setAlert("Response is null");
+                console.log(alert);
+              } else {
+                setAlert("done");
+                console.log(alert);
+              }
         } catch (err) {
             console.log(err);
         }
@@ -228,7 +236,13 @@ const CourseRegActivity = () => {
                 <Alert severity='error'>{error}</Alert>
 
             </>: <>
-                <Alert severity='success'>{error}</Alert>
+            {alert ? <>
+                <Alert severity='success'>{alert}</Alert>
+                </>: <>
+                
+            </>
+            }
+                {/* <Alert severity='success'>{error}</Alert> */}
             </>
             }
                     

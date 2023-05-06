@@ -309,7 +309,7 @@ function NewStudent() {
      
     <Box 
       component="form"
-      sx={{ "& .MuiTextField-root": { m: 1, width: "30ch" } }}
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"
     >
@@ -413,7 +413,7 @@ function NewStudent() {
         
           <Grid container spacing={1} >
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-            <FormControl sx={{ m: 1, minWidth: "30ch"}}>
+            <FormControl sx={{ m: 1, minWidth: "25ch"}}>
                 <InputLabel id="demo-simple-select-helper-label">Caste</InputLabel>
                 <Select
                   required
@@ -446,7 +446,7 @@ function NewStudent() {
             labelId="demo-simple-select-helper-label"
             label="Category"
             onChange={handleChange}
-            sx={{ height: 45}}
+            sx={{ height: 55}}
           >
             <MenuItem value="">
               <em>-- Select Category --</em>
@@ -460,7 +460,7 @@ function NewStudent() {
         </FormControl>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-            <FormControl sx={{ m: 1, minWidth: 220 }}>
+            <FormControl sx={{ m: 1, minWidth:  "25ch"}}>
           <InputLabel id="demo-simple-select-helper-label">Religion</InputLabel>
           <Select
             required
@@ -469,7 +469,7 @@ function NewStudent() {
             labelId="demo-simple-select-helper-label"
             label="Religion"
             onChange={handleChange}
-            sx={{ height: 45}}
+            sx={{ height: 55}}
           >
             <MenuItem value="">
               <em>-- Select Religion --</em>
@@ -483,38 +483,28 @@ function NewStudent() {
         </FormControl>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-            <FormGroup>
-          <FormLabel id="demo-controlled-radio-buttons-group">
-            Martial Status
-          </FormLabel>
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="Married"
-                checked={selectedMS === "Married"}
-                name="Marital_Status"
-                onChange={handleCheckboxChange}
-                
-              />
-            }
-            label="Married"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="Unmarried"
-                checked={selectedMS === "Unmarried"}
-                name="Marital_Status"
-                onChange={handleCheckboxChange}
-              />
-            }
-            label="Unmarried"
-          />
-        </FormGroup>
-            </Grid>
+            <FormControl sx={{ m: 1, minWidth: 250 }}>
+          <InputLabel id="demo-simple-select-helper-label">
+            Physically Handicapped
+          </InputLabel>
+          <Select
+            required
+            name="Physically_handicapped"
+            className="form-physically-handicapped"
+            labelId="demo-simple-select-helper-label"
+            label="Physically Handicapped"
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>-- Physically Handicapped --</em>
+            </MenuItem>
+            <MenuItem value="1">Yes</MenuItem>
+            <MenuItem value="0">No</MenuItem>
+          </Select>
+        </FormControl>
+           </Grid>
           </Grid>
           
-        
         
           <Grid container spacing={1} >
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
@@ -574,34 +564,63 @@ function NewStudent() {
         </FormGroup>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-            <FormControl sx={{ m: 1, minWidth: 250 }}>
-          <InputLabel id="demo-simple-select-helper-label">
-            Physically Handicapped
-          </InputLabel>
-          <Select
-            required
-            name="Physically_handicapped"
-            className="form-physically-handicapped"
-            labelId="demo-simple-select-helper-label"
-            label="Physically Handicapped"
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>-- Physically Handicapped --</em>
-            </MenuItem>
-            <MenuItem value="1">Yes</MenuItem>
-            <MenuItem value="0">No</MenuItem>
-          </Select>
-        </FormControl>
+            <FormGroup sx={{ m: 1, minWidth: '25ch'}}>
+          <FormLabel id="demo-controlled-radio-buttons-group">
+            Martial Status
+          </FormLabel>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Married"
+                checked={selectedMS === "Married"}
+                name="Marital_Status"
+                onChange={handleCheckboxChange}
+                
+              />
+            }
+            label="Married"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Unmarried"
+                checked={selectedMS === "Unmarried"}
+                name="Marital_Status"
+                onChange={handleCheckboxChange}
+              />
+            }
+            label="Unmarried"
+          />
+        </FormGroup>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-            <TextField
-          required
-          type="text"
-          label="DTE application ID"
-          name="DTE application ID"
-          onChange={handleChange}
-        />
+            <FormGroup>
+          <FormLabel id="demo-controlled-radio-buttons-group">Status</FormLabel>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Day Scholar"
+                checked={selectedStatus === "Day Scholar"}
+                name="Student_type"
+                onChange={handleCheckboxChange3}
+              />
+            }
+            label="Day Scholar"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="Hosteller"
+                checked={selectedStatus === "Hosteller"}
+                name="Student_type"
+                onChange={handleCheckboxChange3}
+              />
+            }
+            label="Hosteller"
+          />
+        </FormGroup>
+           
+            
             </Grid>
           </Grid>
 
@@ -646,7 +665,6 @@ function NewStudent() {
             </Grid>
           </Grid>
 
-        
 
           <Grid container spacing={1} >
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
@@ -660,63 +678,37 @@ function NewStudent() {
         />
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
-            <FormGroup>
-          <FormLabel id="demo-controlled-radio-buttons-group">Status</FormLabel>
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="Day Scholar"
-                checked={selectedStatus === "Day Scholar"}
-                name="Student_type"
-                onChange={handleCheckboxChange3}
-              />
-            }
-            label="Day Scholar"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                value="Hosteller"
-                checked={selectedStatus === "Hosteller"}
-                name="Student_type"
-                onChange={handleCheckboxChange3}
-              />
-            }
-            label="Hosteller"
-          />
-        </FormGroup>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-            <TextField
-          required
-          type="number"
-          label="Aadhar Number "
-          name="Addhar_no"
-          onChange={handleChange}
-        />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
             <TextField
           required
           type="text"
-          variant="outlined"
-          label="Guardian Name"
-          name="Guardian_Name"
+          label="DTE application ID"
+          name="DTE application ID"
           onChange={handleChange}
         />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <TextField
+              required
+              type="number"
+              label="PIN"
+              name="PIN"
+              onChange={handleChange}
+            />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <TextField
+                    label="Father's Phone No"
+                    name="Fathers_mobile"
+                    value={personaldetails.Fathers_mobile}
+                    onChange={handleChange}
+                    error={Boolean(phoneError)}
+                    helperText={phoneError}
+                  />
             </Grid>
           </Grid>
 
         
-
-        
-
-        
-        
-         
-
-        
-        <div>
+        {/* <div>
     <label htmlFor="state-select">Select a state:</label>
     <select id="state-select" value={selectedState} onChange={handleStateChange}>
       <option value="">--Select a state--</option>
@@ -737,24 +729,11 @@ function NewStudent() {
         </select>
       </>
     )}
-  </div>
-        <TextField
-          required
-          type="number"
-          label="PIN"
-          name="PIN"
-          onChange={handleChange}
-        />
-        <TextField
-          label="Father's Phone No"
-          name="Fathers_mobile"
-          value={personaldetails.Fathers_mobile}
-          onChange={handleChange}
-          error={Boolean(phoneError)}
-          helperText={phoneError}
-        />
-      
-          <TextField
+  </div> */}
+
+<Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <TextField
           label="Father's Email"
           name="Fathers_email"
           value={personaldetails.Fathers_email}
@@ -762,15 +741,18 @@ function NewStudent() {
           error={Boolean(emailError)}
           helperText={emailError}
         />
-        <TextField
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+            <TextField
           required
           type="text"
           label="Permanent Address"
           name="Permanent_Add"
           onChange={handleChange}
         />
-
-              <FormControl variant="outlined" sx={{ m: 1, minWidth: 130 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
                 <InputLabel id="demo-simple-select-label">Degree</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -788,8 +770,9 @@ function NewStudent() {
                   ))}
                 </Select>
               </FormControl>
-
-              <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
                 <InputLabel id="demo-simple-select-label">Semester</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -807,7 +790,11 @@ function NewStudent() {
                   ))}
                 </Select>
               </FormControl>
-              <TextField
+            </Grid>
+          </Grid>
+          <Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <TextField
                 name="Date_of_admission"
                 label="Date of Admission"
                 type="date"
@@ -816,8 +803,9 @@ function NewStudent() {
                   shrink: true,
                 }}
               />
-
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -835,8 +823,9 @@ function NewStudent() {
             ))}
           </Select>
         </FormControl>
-
-              <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
                 <InputLabel id="demo-simple-select-label">Payment-Type</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -854,8 +843,9 @@ function NewStudent() {
                   ))}
                 </Select>
               </FormControl>
-
-              <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
                 <InputLabel id="demo-simple-select-label">Batch</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -873,10 +863,21 @@ function NewStudent() {
                   ))}
                 </Select>
               </FormControl>
+            </Grid>
+          </Grid>
 
-        <Button variant="contained" onClick={handleClickadd}>
+           <br />
+           <br />
+
+           
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+            <Button variant='contained' onClick={handleClickadd}>Add New Student</Button>
+
+          </Box>
+        {/* <Button variant="contained" onClick={handleClickadd}>
           Add
-        </Button>
+        </Button> */}
       </div>
     </Box>
     {/* </Box>
