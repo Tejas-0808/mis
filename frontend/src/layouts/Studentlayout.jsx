@@ -8,7 +8,7 @@ import Educationdetails from "../components/Student/Profile/Educationdetails";
 import PersonalDetails from "../components/Student/Profile/Personaldetails";
 import AddPersonalDetails from "../components/Student/Profile/AddPersonalDetails";
 import Dashboard from "../components/Student/Dashboard/dashboard";
-import CourseRegActivity from "../components/Student/Coursereg/Courseregactivity";
+import CourseRegActivity from "../components/Student/Coursereg/Courseregistrationact";
 import Student from "../components/Student";
 import Login from "../components/Login/Login";
 
@@ -24,17 +24,17 @@ function Studentlayout({ StudentElement }) {
                 <div className="d-flex">
                     <SideBar />
                     <Routes>
-                        <Route path="/" element={<StudentElement><Dashboard /></StudentElement>} />
-                        <Route path="/student" element={<StudentElement><Student /></StudentElement>} />
-                        <Route path="/contact_details" element={<StudentElement><Student_info /></StudentElement>} />
-                        <Route path="/Add_contact_details" element={<StudentElement><Add_C_d /></StudentElement>} />
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/student" element={<Student />} />
+                        <Route path="/contact_details" element={<Student_info />} />
+                        <Route path="/Add_contact_details" element={<Add_C_d />} />
                         <Route path="/Add_Educationdetails" element={<Add_EducationDetails />} />
-                        <Route path="/Education_details" element={<StudentElement><Educationdetails /></StudentElement>} />
-                        <Route path="/PersonalDetails" element={<StudentElement><PersonalDetails /></StudentElement>} />
-                        <Route path="/addPersonalDetails" element={<StudentElement><AddPersonalDetails /></StudentElement>} />
-                        <Route path="/coursereg" element={<StudentElement><CourseRegActivity /></StudentElement>} />
-                        <Route path="/login" element={<StudentElement><Login /></StudentElement>} />
-                        {/* <Route path="/studentdashboard" element={<StudentElement><StudentDashboard /></StudentElement>} /> */}
+                        <Route path="/Education_details" element={<Educationdetails />} />
+                        <Route path="/PersonalDetails" element={<PersonalDetails />} />
+                        <Route path="/addPersonalDetails" element={<AddPersonalDetails />} />
+                        <Route path="/coursereg" element={<CourseRegActivity />} />
+                        <Route path="/login" element={<Login />} />
+                        {/* <Route path="/studentdashboard" element={<StudentDashboard />} /> */}
                     </Routes>
                 </div>
             </div>

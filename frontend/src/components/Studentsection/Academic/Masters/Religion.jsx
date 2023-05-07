@@ -9,7 +9,9 @@ const Religion = () => {
 
     const fetchReligion = async () => {
         try {
-            const res = await axios.get("http://localhost:3001/religion");
+            const res = await axios.get("http://localhost:3001/religion",{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setReligion(res.data);
             console.log(res.data);
         } catch (err) {
@@ -26,8 +28,12 @@ const Religion = () => {
     const handleDelete = async (id) => {
         try {
             console.log(id)
-            await axios.delete("http://localhost:3001/religion/" + id)
-            const res = await axios.get("http://localhost:3001/religion");
+            await axios.delete("http://localhost:3001/religion/" + id,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
+            const res = await axios.get("http://localhost:3001/religion",{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setReligion(res.data);
             // window.location.reload()
             // navigate("/"); 
@@ -52,10 +58,11 @@ const Religion = () => {
                         style={{ backgroundColor: "lightblue", textAlign: 'center' }}
                         title="Religion Management"
                     />
+                    <hr />
 
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                            <TableHead>
+                            <TableHead style={{ backgroundColor: '#1976d2'} }>
                                 <TableRow>
                                     <TableCell align="center">Religion Id</TableCell>
                                     <TableCell align="center">Religion Name</TableCell>

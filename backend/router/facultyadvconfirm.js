@@ -127,7 +127,7 @@ router.get("/getstdcourse", async (req, res) => {
         (async () => {
             const data = await query("select courses from courses_taken where roll_no = ?", [roll]);
             const result = await data;
-            // console.log(result);
+            console.log(result);
             return res.json(result);
         })()
     } catch (err) {

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Box, Button, TextField, Card, CardContent, CardHeader } from "@mui/material";
+import { Box, Button, TextField, Card, CardContent, CardHeader ,InputLabel, FormControl, Select,  MenuItem} from "@mui/material";
 import Grid from '@mui/material/Grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,11 +15,12 @@ import Paper from '@mui/material/Paper';
 function Addcity() {
   const [City, setCity] = useState([]);
   const [addCity, setAddCity] = useState({
-    city_id: "",
     city_name: "",
     isDistrict: "",
     state_id: "",
   });
+
+  const [state, setState] = useState([]);
 
   const fetchAllCities = async () => {
     try {
@@ -33,8 +34,21 @@ function Addcity() {
     }
   }
 
+  const fetchAllStates = async () =>{
+    try {
+      const res = await axios.get("http://localhost:3001/state", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
+      setState(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     fetchAllCities();
+    fetchAllStates();
   }, []);
 
   const navigate = useNavigate();
@@ -45,7 +59,10 @@ function Addcity() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/city", addCity);
+      const res = await axios.post("http://localhost:3001/city", addCity, {
+        headers: { authorization: localStorage.getItem('token') }
+      });
+      console.log(res);
       navigate("/city");
     } catch (err) {
       console.log(err);
@@ -74,16 +91,7 @@ function Addcity() {
             <div style={{ padding: '5px', marginTop: 30, marginLeft: 5 }}  >
               <Grid container spacing={1} >
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'left' }}>
-                  <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                    <TextField
-                      required
-                      variant="outlined"
-                      label="City ID"
-                      name="city_id"
-                      onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
-                    />
-                  </Grid>
+                  
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <TextField
                       required
@@ -91,28 +99,53 @@ function Addcity() {
                       name="city_name"
                       label="City Name"
                       onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
+                      sx={{ m: 1, minWidth: 180, paddingLeft: 0 }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                    <TextField
+                  <FormControl sx={{ m: 1, minWidth: 180, width: '100%' }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Is District
+                    </InputLabel>
+                    <Select
                       required
-                      variant="outlined"
                       name="isDistrict"
+                      className="form-is-district"  
+                      labelId="demo-simple-select-helper-label"
                       label="Is District"
                       onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
-                    />
+                    >
+                      <MenuItem value="">
+                        <em>-- Is District --</em>
+                      </MenuItem>
+                      <MenuItem value="1">Yes</MenuItem>
+                      <MenuItem value="0">No</MenuItem>
+                    </Select>
+                  </FormControl>
+                 
                   </Grid>
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
-                    <TextField
+                  <FormControl sx={{ m: 1, minWidth: 180 , width: '100%' }}>
+                    <InputLabel id="demo-simple-select-helper-label">State</InputLabel>
+                    <Select
                       required
-                      variant="outlined"
-                      label="State ID"
                       name="state_id"
+                      className="form-select-state"
+                      labelId="demo-simple-select-helper-label"
+                      label="State"
                       onChange={handleChange}
-                      sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
-                    />
+                      sx={{ height: 55}}
+                    >
+                      <MenuItem value="">
+                        <em>-- Select State --</em>
+                      </MenuItem>
+                      {state.map((item) => (
+                        <MenuItem key={item.state_id} value={item.state_id}>
+                          {item.state_name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <Button variant="contained"
@@ -129,9 +162,8 @@ function Addcity() {
                   <TableHead style={{ backgroundColor: '#1976d2' }}>
 
                     <TableRow>
-                      <TableCell align="center">City Id</TableCell>
+                      <TableCell align="center">City ID</TableCell>
                       <TableCell align="center">City Name</TableCell>
-                      <TableCell align="center">State Id</TableCell>
                     </TableRow>
 
                   </TableHead>
@@ -141,9 +173,8 @@ function Addcity() {
                         key={city.city_id} className="city"
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
+                        <TableCell align="center">{city.city_id}</TableCell>
                         <TableCell align="center">{city.city_name}</TableCell>
-                        <TableCell align="center">{city.isDistrict}</TableCell>
-                        <TableCell align="center">{city.state_id}</TableCell>
                       </TableRow>
 
                     ))}

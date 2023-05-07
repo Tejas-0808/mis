@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
+  Grid,
   Button,
   Card,
   CardContent,
@@ -29,13 +30,13 @@ function NewUser() {
     Qualifications: "",
     role_id: "",
     Email_id: "",
-    Phone_no: "",
+    Phone_No: "",
     Address: "",
     Gender: "",
     Marital_Status: "",
   });
 
-  // const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");  
   // const [isValid, setIsValid] = useState(false);
   const [emailError, setEmailError] = useState("");
 
@@ -86,7 +87,10 @@ function NewUser() {
   const handleClickadd = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/newuser", staffdetails);
+      const res = await axios.post("http://localhost:3001/newuser", staffdetails,{
+        headers: { authorization: localStorage.getItem('token') }
+      });
+      console.log(res);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -135,27 +139,52 @@ function NewUser() {
   };
 
   return (
+    // <Box
+    //   component="form"
+    //   sx={{
+    //     "& .MuiTextField-root": { m: 1, width: "25ch" },
+    //   }}
+    //   noValidate
+    //   autoComplete="off"
+    // >
+
+    //   <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
+
+
+    //     <CardContent>
+
+    //       <CardHeader
+    //         style={{ backgroundColor: "lightblue" }}
+    //         title="New User"
+    //       />
     <Box
+    component="form"
+    sx={{
+        width: '100%', height: '100%'
+    }}
+    noValidate
+    autoComplete="off">
+    <Card sx={{
+        m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
+    }}>
+        <CardContent>
+            <CardHeader
+                style={{ backgroundColor: "lightblue", textAlign: 'center' }}
+                title="New User"
+            />
+            <hr />
+            <Box 
       component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
+      sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"
     >
+      <div>
+       
+        <hr></hr>
 
-      <Card sx={{ m: 1, minWidth: 275 }}>
-
-
-        <CardContent>
-
-          <CardHeader
-            style={{ backgroundColor: "lightblue" }}
-            title="New User"
-          />
-
-          <div className="form">
-
+          <Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
             <TextField
               type="text"
               variant="outlined"
@@ -164,6 +193,8 @@ function NewUser() {
               onChange={handleChange}
               required
             />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
             <TextField
               type="text"
               variant="outlined"
@@ -172,6 +203,8 @@ function NewUser() {
               onChange={handleChange}
               required
             />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
             <TextField
               type="text"
               variant="outlined"
@@ -180,20 +213,23 @@ function NewUser() {
               onChange={handleChange}
               required
             />
-            <FormControl sx={{ m: 1, minWidth: 250 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+            <FormControl sx={{ m: 1, minWidth:  "25ch" }}>
               <InputLabel id="demo-simple-select-label">
-                ---Select Program---
+                 Program
               </InputLabel>
               <Select
-                labelId="Branch_id"
                 label="Select Program"
                 name="Branch_id"
+                labelId="demo-simple-select-helper-label"
                 className="form-select-Program"
                 onChange={handleChange}
+                sx={{ height: 55}}
                 required
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>--Select Program--</em>
                 </MenuItem>
                 {branch.map((item) => (
                   <MenuItem key={item.Branch_id} value={item.Branch_id}>
@@ -202,7 +238,11 @@ function NewUser() {
                 ))}
               </Select>
             </FormControl>
+            </Grid>
+          </Grid>
 
+          <Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
             <TextField
               type="text"
               label="Enter Qualifications"
@@ -211,20 +251,23 @@ function NewUser() {
               onChange={handleChange}
               required
             />
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+            <FormControl sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">
-                ---Select Role---
+                  Role
               </InputLabel>
               <Select
                 required
                 name="role_id"
                 labelId="role_id"
                 id="select"
-                label="---Select Role---"
+                label="Role"
                 onChange={handleChange}
+                sx={{ height: 55}}
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>--Select Role--</em>
                 </MenuItem>
                 {role.map((item) => (
                   <MenuItem key={item.role_id} value={item.role_id}>
@@ -233,7 +276,8 @@ function NewUser() {
                 ))}
               </Select>
             </FormControl>
-
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
             <TextField
               label="Email"
               name="Email_id"
@@ -242,16 +286,25 @@ function NewUser() {
               error={Boolean(emailError)}
               helperText={emailError}
             />
-
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
             <TextField
               label="Phone No"
               name="Phone_No"
-              value={staffdetails.Phone_No}
+              // value={staffdetails.Phone_No}
               onChange={handleChange}
               error={Boolean(phoneError)}
               helperText={phoneError}
             />
+            </Grid>
+          </Grid>
+            
+            
+          
 
+            
+          <Grid container spacing={1} >
+            <Grid item xs={12} sm={6} md={4} sx={{ p: 0, m: 0 }}>
             <TextField
               type="text"
               variant="outlined"
@@ -259,30 +312,12 @@ function NewUser() {
               name="Address"
               onChange={handleChange}
               required
+  
             />
-            {/* <h5>Gender</h5>
-        <label>
-          <input
-            type="radio"
-            name="Gender"
-            value="Female"
-            checked={selectedGender === "Female"}
-            onChange={handleCheckboxChange1}
-          />
-          Female
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="Gender"
-            value="Male"
-            checked={selectedGender === "Male"}
-            onChange={handleCheckboxChange1}
-          />
-          Male
-        </label> */}
-
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
+            </Grid>
+            
+            <Grid item xs={12} sm={6} md={4} sx={{ p: 0, m: 0 }}>
+            <FormControl sx={{ m: 1, minWidth: 250 }}>
               <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
               <RadioGroup
                 aria-labelledby="demo-controlled-radio-buttons-group"
@@ -299,8 +334,9 @@ function NewUser() {
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
               </RadioGroup>
             </FormControl>
-
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} sx={{ p: 0, m: 0 }}>
+            <FormControl sx={{ m: 1, minWidth: 250 }}>
               <FormLabel id="demo-controlled-radio-buttons-group">
                 Martial Status
               </FormLabel>
@@ -316,33 +352,33 @@ function NewUser() {
                 />
                 <FormControlLabel value="Unmarried" control={<Radio />} label="Unmarried" />
               </RadioGroup>
-              {/* <Typography>Martial Status</Typography>
-          <InputLabel>
-            <Radio
-              type="radio"
-              name="Marital_Status"
-              value="Married"
-              checked={selectedMS === "Married"}
-              onChange={handleCheckboxChange}
-            />
-            Married
-          </InputLabel>
-          <InputLabel>
-            <Radio
-              type="radio"
-              name="Marital_Status"
-              value="Unmarried"
-              checked={selectedMS === "Unmarried"}
-              onChange={handleCheckboxChange}
-            />
-            Unmarried
-          </InputLabel> */}
+              
             </FormControl>
+            </Grid>
+          </Grid>
 
-            <Button variant="contained" onClick={handleClickadd}>
+            
+
+          
+          
+
+            
+            <br />
+           <br />
+
+           
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+            <Button variant='contained' onClick={handleClickadd}>Add New Staff Member</Button>
+
+          </Box>
+         
+
+            {/* <Button variant="contained" onClick={handleClickadd}>
               Add
-            </Button>
-          </div>
+            </Button> */}
+         </div>
+    </Box>
         </CardContent>
 
       </Card>

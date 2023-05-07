@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
 // import { DataGrid } from '@mui/x-data-grid';
 import {
   InputLabel,
@@ -8,7 +9,11 @@ import {
   Select,
   MenuItem,
   Button,
+  Grid,
   Box,
+  Card,
+  CardContent,
+  CardHeader
 } from "@mui/material/";
 
 function Createstudlogin(props) {
@@ -30,14 +35,14 @@ function Createstudlogin(props) {
   const [branch, setbranch] = useState([]);
   const [batch, setbatch] = useState([]);
   const [checkedValues, setCheckedValues] = useState([]);
- const semester = [
+  const semester = [
     { sem_id: 1, sem: "I" },
     { sem_id: 2, sem: "III" },
   ];
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/degree",{
+      .get("http://localhost:3001/degree", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -48,7 +53,7 @@ function Createstudlogin(props) {
       });
 
     axios
-      .get("http://localhost:3001/branch" ,{
+      .get("http://localhost:3001/branch", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -68,7 +73,7 @@ function Createstudlogin(props) {
     //   });
 
     axios
-      .get("http://localhost:3001/batch",{
+      .get("http://localhost:3001/batch", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -94,9 +99,9 @@ function Createstudlogin(props) {
     try {
       const res = await axios.post(
         "http://localhost:3001/studentrolllists",
-        Rolllists,{
-          headers: { authorization: localStorage.getItem('token') }
-        }
+        Rolllists, {
+        headers: { authorization: localStorage.getItem('token') }
+      }
       );
       setstudentlist(res.data);
       // setBranch(res.data);
@@ -106,7 +111,7 @@ function Createstudlogin(props) {
       console.log(err);
     }
 
-   
+
   };
 
   console.log(studentlist);
@@ -120,7 +125,7 @@ function Createstudlogin(props) {
     }
   }
   const handleSelectAllChange = (e) => {
-    
+
     setSelectAll(e.target.checked);
     if (e.target.checked) {
       const allRollNos = studentlist.map((student) => student.roll_no);
@@ -133,20 +138,20 @@ function Createstudlogin(props) {
 
   const handleUpdateButtonClick = async (e) => {
     e.preventDefault();
-  
+
     const selectedStudents = studentlist.filter((student) => checkedValues.includes(student.roll_no));
-    
+
     // Make an API call to insert the student names as passwords into the login table
     const users = selectedStudents.map((student) => ({
       username: student.roll_no,
       password: student.roll_no, // Using the student's name as the password is not secure!
       role_id: props.selectedRoleId,
     }));
-    
-    console.log(typeof(users));
-  
+
+    console.log(typeof (users));
+
     try {
-      await axios.post("http://localhost:3001/studpassword", users,{
+      await axios.post("http://localhost:3001/studpassword", users, {
         headers: { authorization: localStorage.getItem('token') }
       });
       navigate("/");
@@ -175,62 +180,68 @@ function Createstudlogin(props) {
   console.log(Rolllists);
   return (
     <Box>
-      <div>
-        <h1>Student Login</h1>
-        <hr></hr>
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#F5F5F5' }}>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Degree</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Degree"
-            label="Select Degree"
-            className="form-select-degree"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">None</MenuItem>
-            {degree.map((item) => (
-              <MenuItem key={item.degree_id} value={item.degree_name}>
-                {item.degree_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <CardContent>
+          <CardHeader
+            style={{ backgroundColor: "lightblue" }}
+            title="STUDENT LOGIN"
+          />
+          <div>
+            <hr></hr>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Branch"
-            placeholder="Select Branch"
-            className="form-select-branch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">None</MenuItem>
-            {branch.map((item) => (
-              <MenuItem
-                key={item.Branch_id}
-                value={item.Branch_id + "," + item.Branch_name}
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Degree</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Degree"
+                label="Select Degree"
+                className="form-select-degree"
+                onChange={handleChange}
+                required
               >
-                {item.Branch_id}.{item.Branch_name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+                <MenuItem value="">None</MenuItem>
+                {degree.map((item) => (
+                  <MenuItem key={item.degree_id} value={item.degree_name}>
+                    {item.degree_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Semester</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Semester"
-            placeholder="Select Semester"
-            className="form-select-semester"
-            onChange={handleChange}
-            required
-          >
-            {/* <MenuItem value="">
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Branch"
+                placeholder="Select Branch"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">None</MenuItem>
+                {branch.map((item) => (
+                  <MenuItem
+                    key={item.Branch_id}
+                    value={item.Branch_id + "," + item.Branch_name}
+                  >
+                    {item.Branch_id}.{item.Branch_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Semester</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Semester"
+                placeholder="Select Semester"
+                className="form-select-semester"
+                onChange={handleChange}
+                required
+              >
+                {/* <MenuItem value="">
               None
             </MenuItem>
             {semester.map((item) => (
@@ -238,87 +249,87 @@ function Createstudlogin(props) {
                 {item.sem}
               </MenuItem>
             ))} */}
-            <MenuItem value="">None</MenuItem>
-            {semester.map((semester) => (
-              <MenuItem key={semester.sem_id} value={semester.sem}>
-                {semester.sem}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+                <MenuItem value="">None</MenuItem>
+                {semester.map((semester) => (
+                  <MenuItem key={semester.sem_id} value={semester.sem}>
+                    {semester.sem}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Batch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            name="Batch"
-            placeholder="Select Batch"
-            className="form-select-batch"
-            onChange={handleChange}
-            required
-          >
-            <MenuItem value="">
-              <option value="">None</option>
-            </MenuItem>
-            {batch
-              .sort((a, b) => b.batch_id - a.batch_id)
-              .slice(0, 1)
-              .map((item) => (
-                <MenuItem key={item.batch_id} value={item.year}>
-                  {item.year}
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">Batch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="Batch"
+                placeholder="Select Batch"
+                className="form-select-batch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">
+                  <option value="">None</option>
                 </MenuItem>
-              ))}
-          </Select>
-        </FormControl>
+                {batch
+                  .sort((a, b) => b.batch_id - a.batch_id)
+                  .slice(0, 1)
+                  .map((item) => (
+                    <MenuItem key={item.batch_id} value={item.year}>
+                      {item.year}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
 
-        <Button variant="contained" onClick={fetchStudents}>
-          Fetch
-        </Button>
-        <br></br>
-        <br></br>
+            <Button variant="contained" onClick={fetchStudents}>
+              Fetch
+            </Button>
+            <br></br>
+            <br></br>
 
-        <div className="facultyadv">
-          
-          <div>
-            <table>
-          <thead>
-          {showInput &&
-            <tr>
-           
-              <th>
-               
-              <input
-                  label="rollnos"
-                  type="checkbox"
-                  checked={checkedValues.length === studentlist.length}
-                  onChange={handleSelectAllChange}
-                />
-              </th>
-              
-              <th>Roll No</th>
-            </tr>}
-          </thead>
-          <tbody>
-            {studentlist.map((student) => (
-              <tr key={student.roll_no}>
-                <td>
-                  <input
-                    type="checkbox"
-                    value={student.roll_no}
-                    checked={checkedValues.includes(student.roll_no)}
-                    onChange={handleCheckboxChange}
-                  />
-                </td>
-                <td>{student.roll_no}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            <div className="facultyadv">
 
-            <p>Selected items: {JSON.stringify(checkedValues)}</p>
-            <br />
+              <div>
+                <table>
+                  <thead>
+                    {showInput &&
+                      <tr>
 
-            {/* <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                        <th>
+
+                          <input
+                            label="rollnos"
+                            type="checkbox"
+                            checked={checkedValues.length === studentlist.length}
+                            onChange={handleSelectAllChange}
+                          />
+                        </th>
+
+                        <th>Roll No</th>
+                      </tr>}
+                  </thead>
+                  <tbody>
+                    {studentlist.map((student) => (
+                      <tr key={student.roll_no}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            value={student.roll_no}
+                            checked={checkedValues.includes(student.roll_no)}
+                            onChange={handleCheckboxChange}
+                          />
+                        </td>
+                        <td>{student.roll_no}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <p>Selected items: {JSON.stringify(checkedValues)}</p>
+                <br />
+
+                {/* <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -337,12 +348,14 @@ function Createstudlogin(props) {
               </Select>
             </FormControl> */}
 
-            <Button variant="contained" onClick={handleUpdateButtonClick}>
-              Create Passwords
-            </Button>
+                <Button variant="contained" onClick={handleUpdateButtonClick}>
+                  Create Passwords
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </Box>
   );
 }

@@ -35,7 +35,7 @@ const Login = () => {
         console.error(err);
       });
     } else {
-      navigate("/loginform");
+      navigate("/");
     }
   }, []);
   const btnstyle = { margin: '3px 720px', padding: 10, float: "center" }

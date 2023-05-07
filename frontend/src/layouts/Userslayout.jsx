@@ -14,6 +14,7 @@ import Ssdashboard from "../components/Studentsection/ssdashboard/ssdashboard";
 import Navigation from "../components/Navbar/navbar";
 import Login from "../components/Login/Login";
 import Facultyadvisorconfirm from "../components/Users/Academic/Studentsectiontransaction/Facultyadvisorconfirm";
+import EditCourses from "../components/Users/Academic/Studentsectiontransaction/Editcourses";
 
 function Userslayout({ UserElement }) {
     console.log(UserElement);
@@ -26,18 +27,19 @@ function Userslayout({ UserElement }) {
                     <SideBar />
                     <Routes>
                         <Route path="/" element={<Ssdashboard />} />
-                        <Route path="/facultyadvisor" element={<UserElement><Facultyadvisor /></UserElement>} />
-                        <Route path="/promotion" element={<UserElement><Promotion /></UserElement>} />
-                        <Route path="/schemeallotment" element={<UserElement><Schemeallotment /></UserElement>} />
-                        <Route path="/offeredcourses" element={<UserElement><Offeredcourses /></UserElement>} />
-                        <Route path="/courseconfirm" element={<UserElement><CourseConfirmation /></UserElement>} />
-                        <Route path="/newuser" element={<UserElement><NewUser /></UserElement>} />
-                        <Route path="/user" element={<UserElement><UserDashboard /></UserElement>} />
-                        <Route path="/batchallotment" element={<UserElement><Batchallotment /></UserElement>} />
+                        <Route path="/facultyadvisor" element={<Facultyadvisor />} />
+                        <Route path="/promotion" element={<Promotion />} />
+                        <Route path="/schemeallotment" element={<Schemeallotment />} />
+                        <Route path="/offeredcourses" element={<Offeredcourses />} />
+                        <Route path="/courseconfirm" element={<CourseConfirmation />} />
+                        <Route path="/newuser" element={<NewUser />} />
+                        <Route path="/user" element={<UserDashboard />} />
+                        <Route path="/batchallotment" element={<Batchallotment />} />
                         <Route path="/finalcoursesoffered" element={<FinalCoursesOffered />}></Route>
                         <Route path="/courseallotment" element={<Courseallotment />}></Route>
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="facultyconfirm" element={<Facultyadvisorconfirm />}></Route>
+                        <Route path="/editcourses/:roll_no" element={<EditCourses />} />
                     </Routes>
                 </div>
             </div>

@@ -17,10 +17,13 @@ function IdentityCard() {
   });
 
   const [studentlist, setstudentlist] = useState([]);
+  const token = localStorage.getItem('token')
 
   const fetchDegree = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/degree");
+      const res = (await axios.get("http://localhost:3001/degree"), {
+        headers: { authorization: token }
+      });
       setDegree(res.data);
       console.log(res.data);
     } catch (err) {
@@ -30,9 +33,9 @@ function IdentityCard() {
 
   const fetchBranch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/branch" , {
+      const res = await axios.get("http://localhost:3001/branch", {
         headers: { authorization: localStorage.getItem('token') }
-      }) 
+      })
       setBranch(res.data);
     } catch (err) {
       console.log(err);
@@ -41,7 +44,9 @@ function IdentityCard() {
 
   const fetchBatch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/batch");
+      const res = await axios.get("http://localhost:3001/batch", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setBatch(res.data);
     } catch (err) {
       console.log(err);
@@ -50,7 +55,9 @@ function IdentityCard() {
 
   const fetchSem = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/semester");
+      const res = await axios.get("http://localhost:3001/semester", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setSem(res.data);
       console.log(res.data);
     } catch (err) {
@@ -61,7 +68,9 @@ function IdentityCard() {
   const fetchStudents = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/identitycard", IdentityCard);
+      const res = await axios.post("http://localhost:3001/identitycard", IdentityCard, {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setstudentlist(res.data);
       // setBranch(res.data);
       // console.log(res.data+"!");
@@ -96,110 +105,122 @@ function IdentityCard() {
   };
 
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
+    // <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
+    //   <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
+    //   <CardContent>
+    //     <Box
+    //       component="form"
+    //       sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+    //       noValidate
+    //       autoComplete="off"
+    //     >
+    //       <CardHeader
+    //         style={{ backgroundColor: "lightblue" }}
+    //         title="Identity Card Generation"
+    //       />.
+    <Box
+    component="form"
+    sx={{
+      width: '100%', height: '100%'
+    }}
+    noValidate
+    autoComplete="off">
+    <Card sx={{
+      m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
+    }}>
       <CardContent>
-        <Box
-          component="form"
-          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
-          noValidate
-          autoComplete="off"
-        >
-          <CardHeader
-            style={{ backgroundColor: "lightblue" }}
-            title="Identity Card Generation"
-          />
+        <CardHeader
+          style={{ backgroundColor: "lightblue", textAlign: 'center' }}
+          title="Identity Card Generation"
+        />
 
-    <><div>
-      &nbsp;&nbsp;
-      <label>
-        {/* Degree: */}
-        <select
-          name="Degree"
-          placeholder="Select Degree"
-          className="form-select-Degree"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Degree --</option>
-          {Degree.map((Degree) => (
-            <option value={Degree.degree_name}>{Degree.degree_name}</option>
-          ))}
-        </select>
-      </label>
-      &nbsp;&nbsp;
-      <label>
-        {/* Branch: */}
-        <select
-          name="Branch"
-          placeholder="Select Branch"
-          className="form-select-branch"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Branch --</option>
-          {branch.map((branch) => (
-            <option value={branch.Branch_name}>{branch.Branch_name}</option>
-          ))}
-        </select>
-      </label>
-      &nbsp;&nbsp;
-      <label>
-        {/* Admission Batch: */}
-        <select
-          name="Batch"
-          placeholder="Select Admission Batch"
-          className="form-select-batch"
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Batch --</option>
-          {batch.map((batch) => (
-            <option value={batch.year}>{batch.year}</option>
-          ))}
-        </select>
-      </label>
+        <div>
+            &nbsp;&nbsp;
+            <label>
+              {/* Degree: */}
+              <select
+                name="Degree"
+                placeholder="Select Degree"
+                className="form-select-Degree"
+                onChange={handleChange}
+                required
+              >
+                <option value="">-- Select Degree --</option>
+                {Degree.map((Degree) => (
+                  <option value={Degree.degree_name}>{Degree.degree_name}</option>
+                ))}
+              </select>
+            </label>
+            &nbsp;&nbsp;
+            <label>
+              {/* Branch: */}
+              <select
+                name="Branch"
+                placeholder="Select Branch"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <option value="">-- Select Branch --</option>
+                {branch.map((branch) => (
+                  <option value={branch.Branch_name}>{branch.Branch_name}</option>
+                ))}
+              </select>
+            </label>
+            &nbsp;&nbsp;
+            <label>
+              {/* Admission Batch: */}
+              <select
+                name="Batch"
+                placeholder="Select Admission Batch"
+                className="form-select-batch"
+                onChange={handleChange}
+                required
+              >
+                <option value="">-- Select Batch --</option>
+                {batch.map((batch) => (
+                  <option value={batch.year}>{batch.year}</option>
+                ))}
+              </select>
+            </label>
 
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      {/* <button type="button" className="Generate" value="Get" onClick={fetchStudents}>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {/* <button type="button" className="Generate" value="Get" onClick={fetchStudents}>
         Generate
       </button> */}
-       <Button variant="contained" className="Generate" value="Get" onClick={fetchStudents}size="medium" >Generate</Button>
-      <div>
-      {studentlist.map((student) => (
-              <table>
-                <tr>
-                  <td>
-                    <div key={student.roll_no}>
-                      <input
-                        type="checkbox"
-                        value={student.roll_no}
+            <Button variant="contained" className="Generate" value="Get" onClick={fetchStudents} size="medium" >Generate</Button>
+            <div>
+              {studentlist.map((student) => (
+                <table>
+                  <tr>
+                    <td>
+                      <div key={student.roll_no}>
+                        <input
+                          type="checkbox"
+                          value={student.roll_no}
                         // checked={checkedValues.includes(student.roll_no)}
                         // onChange={handleCheckboxChange}
-                      /> &nbsp;&nbsp;
-                      <span>{student.roll_no}</span> &nbsp;&nbsp;
-                      <span>{student.First_Name}</span> &nbsp;&nbsp;
-                      <span>{student.Middle_Name}</span> &nbsp;&nbsp;
-                      <span>{student.Last_Name}</span> &nbsp;&nbsp;
-                      <span>{student.Branch}</span> &nbsp;&nbsp;
-                      <span>{student.Phone_No}</span> &nbsp;&nbsp;
-                      <span>{student.Blood_grp}</span> &nbsp;&nbsp;
-                      <span>{student.D_O_B}</span> &nbsp;&nbsp;
-                      <span>{student.Permanent_Add}</span> &nbsp;&nbsp;
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            ))}
-        </div>
+                        /> &nbsp;&nbsp;
+                        <span>{student.roll_no}</span> &nbsp;&nbsp;
+                        <span>{student.First_Name}</span> &nbsp;&nbsp;
+                        <span>{student.Middle_Name}</span> &nbsp;&nbsp;
+                        <span>{student.Last_Name}</span> &nbsp;&nbsp;
+                        <span>{student.Branch}</span> &nbsp;&nbsp;
+                        <span>{student.Phone_No}</span> &nbsp;&nbsp;
+                        <span>{student.Blood_grp}</span> &nbsp;&nbsp;
+                        <span>{student.D_O_B}</span> &nbsp;&nbsp;
+                        <span>{student.Permanent_Add}</span> &nbsp;&nbsp;
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              ))}
+            </div>
 
-    </div>
-
-
-    </>
+          </div>
+     </CardContent>
+      </Card>
     </Box>
-      </CardContent>
-    </Card>
   )
 }
 

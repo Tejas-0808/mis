@@ -54,6 +54,14 @@ const Editcourses = () => {
     }
 
     // console.log(selectedCourses);
+
+    const courseCodes1 = allCourses.map(course => course.coursecode);
+console.log(courseCodes1);
+
+// const courseCodes = Object.values(courses[0].courses).flat();
+// console.log(courseCodes);
+
+
     console.log(courses);
     console.log(allCourses);
 

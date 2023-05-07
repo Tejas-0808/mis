@@ -62,10 +62,10 @@ export const navData = [
                 "title": "District",
                 "path": "/district"
             },
-            {
-                "title": "Nationality",
-                "path": "/nationality"
-            },
+            // {
+            //     "title": "Nationality",
+            //     "path": "/nationality"
+            // },
             {
                 "title": "Religion",
                 "path": "/religion"

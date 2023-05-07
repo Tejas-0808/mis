@@ -41,13 +41,13 @@ function Add_C_d() {
   console.log(student_info);
   const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
-    <Card sx={{ minWidth: 350, marginTop: 5 }}>
+    <Card sx={{ minWidth: 350, marginTop: 5, backgroundColor: '#f5f5f5' }}>
       <CardHeader
         sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
         title="Contact Details"
       />
       <CardContent>
-        <Box
+        <Box style={{ maxHeight: 400, overflow: 'auto' }}
           component="form"
           sx={{
             '& .MuiTextField-root': {

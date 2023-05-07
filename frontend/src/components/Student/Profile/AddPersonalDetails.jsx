@@ -81,13 +81,13 @@ function Add_per_d() {
   console.log(personaldetails);
   const btnstyle = { margin: '20px 10px', padding: 10 }
   return (
-    <Card sx={{ minWidth: 275, marginTop: 5 }}>
+    <Card sx={{ minWidth: 275, marginTop: 5, backgroundColor: '#f5f5f5' }}>
       <CardHeader
         sx={{ backgroundColor: 'lightblue', textAlign: 'center' }}
         title="Student Personal Details"
       />
       <CardContent>
-        <Box style={{maxHeight: 400, overflow: 'auto'}}
+        <Box style={{ maxHeight: 400, overflow: 'auto' }}
           component="form"
           sx={{
             '& .MuiTextField-root': {

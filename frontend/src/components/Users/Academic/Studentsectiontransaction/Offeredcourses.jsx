@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
+import { InputLabel, Grid, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
 
 function OfferedCourses() {
   const [Courseslists, SetCourselists] = useState({
@@ -32,7 +32,7 @@ function OfferedCourses() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/session",{
+      .get("http://localhost:3001/session", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -42,7 +42,7 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/degree",{
+      .get("http://localhost:3001/degree", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -62,7 +62,7 @@ function OfferedCourses() {
         console.error(error);
       });
     axios
-      .get("http://localhost:3001/semester",{
+      .get("http://localhost:3001/semester", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -80,7 +80,7 @@ function OfferedCourses() {
     //   console.error(error);
     // });
     axios
-      .get("http://localhost:3001/master_scheme",{
+      .get("http://localhost:3001/master_scheme", {
         headers: { authorization: localStorage.getItem('token') }
       })
       .then((response) => {
@@ -100,9 +100,9 @@ function OfferedCourses() {
 
       const res = await axios.post(
         "http://localhost:3001/courselist",
-        Courseslists,{
-          headers: { authorization: localStorage.getItem('token') }
-        }
+        Courseslists, {
+        headers: { authorization: localStorage.getItem('token') }
+      }
       );
       setCourselt(res.data);
       const couselistss = res.data;
@@ -197,23 +197,38 @@ function OfferedCourses() {
 
   //   console.log(studentlist);
 
-    console.log(Courseslists);
+  console.log(Courseslists);
   return (
 
-    <Box component="form"
-      sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
-      noValidate
-      autoComplete="off">
-      <Card sx={{ m: 4, minWidth: 275 }}>
+    // <Box component="form"
+    //   sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
+    //   noValidate
+    //   autoComplete="off">
+    //   <Card sx={{ m: 4, minWidth: 275, backgroundColor: '#f5f5f5' }}>
+    //     <CardContent>
+    //       <CardHeader
+    //         style={{ backgroundColor: "lightblue" }}
+    //         title="Courses Offered"
+    //       />
+    //       <br></br>
+    //       <div>
+    <div style={{ height: '100vh', width: '100%' }}>
+
+    <Box sx={{ width: '100%', height: '100%' }}>
+
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#F5F5F5' }}>
+
         <CardContent>
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
-            title="Courses Offered"
+            title="Offer Courses"
           />
-          <br></br>
-          <div>
 
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <div style={{ padding: '15px' }}  >
+                {/* <Grid container spacing={2} sx={{ width: '100%' }}> */}
+              <Grid container spacing={1} >
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Session ID</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -233,8 +248,9 @@ function OfferedCourses() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Offered to Term</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -252,8 +268,9 @@ function OfferedCourses() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Degree</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -271,8 +288,9 @@ function OfferedCourses() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Branch</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -290,8 +308,12 @@ function OfferedCourses() {
                 ))}
               </Select>
             </FormControl>
+                </Grid>
+              </Grid>
 
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+              <Grid container spacing={1} >
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Scheme</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -309,8 +331,9 @@ function OfferedCourses() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Semester</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -328,9 +351,26 @@ function OfferedCourses() {
                 ))}
               </Select>
             </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <Button variant="contained" onClick={fetchCourses}>Show Courses</Button>
 
-            <Button variant="contained" onClick={fetchCourses}>Show Courses</Button>
+                </Grid>
+                
+              </Grid>
 
+
+            
+
+            
+
+           
+
+            
+
+            
+
+           
             <br></br>
             <br></br>
             Offered Courses
@@ -373,6 +413,7 @@ function OfferedCourses() {
         </CardContent>
       </Card >
     </Box >
+    </div>
   );
 }
 

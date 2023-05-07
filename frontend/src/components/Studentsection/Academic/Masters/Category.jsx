@@ -9,7 +9,9 @@ const Category = () => {
 
     const fetchCategory = async () => {
         try {
-            const res = await axios.get("http://localhost:3001/category");
+            const res = await axios.get("http://localhost:3001/category",{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setCategory(res.data);
             console.log(res.data);
         } catch (err) {
@@ -26,8 +28,12 @@ const Category = () => {
     const handleDelete = async (id) => {
         try {
             console.log(id)
-            await axios.delete("http://localhost:3001/category/" + id)
-            const res = await axios.get("http://localhost:3001/category");
+            await axios.delete("http://localhost:3001/category/" + id,{
+                headers: { authorization: localStorage.getItem('token') }
+              })
+            const res = await axios.get("http://localhost:3001/category",{
+                headers: { authorization: localStorage.getItem('token') }
+              });
             setCategory(res.data);
             // window.location.reload()
             // navigate("/"); 
@@ -52,10 +58,10 @@ const Category = () => {
                         style={{ backgroundColor: "lightblue", textAlign: 'center' }}
                         title="Category Management"
                     />
-
+                    <hr />
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                            <TableHead>
+                            <TableHead style={{ backgroundColor: '#1976d2'} }>
                                 <TableRow>
                                     <TableCell align="center">Category ID</TableCell>
                                     <TableCell align="center">Category Name</TableCell>

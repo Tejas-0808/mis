@@ -18,13 +18,14 @@ function AddCategory() {
   const [category, setCategory] = useState([]);
 
   const [addCategory, setAddCategory] = useState({
-    category_id: "",
     category_name: "",
   });
 
   const fetchCategory = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/category");
+      const res = await axios.get("http://localhost:3001/category",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCategory(res.data);
       console.log(res.data);
     } catch (err) {
@@ -45,7 +46,9 @@ function AddCategory() {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/category", addCategory);
+      await axios.post("http://localhost:3001/category", addCategory, {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       navigate("/category");
     } catch (err) {
       console.log(err);
@@ -74,7 +77,7 @@ function AddCategory() {
             <div style={{ padding: '5px', marginTop: 30, marginLeft: 5 }}  >
               <Grid container spacing={1} >
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'left' }}>
-                  <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
+                  {/* <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <TextField
                       required
                       variant="outlined"
@@ -83,7 +86,7 @@ function AddCategory() {
                       onChange={handleChange}
                       sx={{ m: 1, minWidth: 120, paddingLeft: 0 }}
                     />
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs={12} sm={6} md={2} sx={{ p: 0, m: 0 }}>
                     <TextField
                       required
