@@ -37,11 +37,11 @@ function App() {
           // setUsername(response.data.username);
         }).catch((err) => {
           localStorage.clear();
-          <Navigate to={"/loginform"} />
+          <Navigate to={"/"} />
           console.error(err);
         });
       } else {
-        <Navigate to={"/loginform"} />
+        <Navigate to={"/"} />
       }
       console.log('This will run every one hour!');
     }, 1000 * 60 * 60);
@@ -59,21 +59,21 @@ function App() {
                 if (CURRENT_USER_TYPE == USER_TYPES.STUDENT_USER) {
 
                   return (
-                    <Studentlayout StudentElement={StudentElement} />
+                    <Studentlayout />
                   )
 
                 } else if (CURRENT_USER_TYPE == USER_TYPES.STUDENTSECTION_USER) {
 
                   return (
 
-                    <StudentSectionlayout StudentSectionElement={StudentSectionElement} />
+                    <StudentSectionlayout />
                   )
 
                 } else if (CURRENT_USER_TYPE == USER_TYPES.NORMAL_USER) {
 
                   return (
 
-                    <Userslayout UserElement={UserElement} />
+                    <Userslayout />
                   )
 
                 } else if (CURRENT_USER_TYPE == USER_TYPES.ADMIN_USER) {
@@ -87,7 +87,7 @@ function App() {
                   return (
                     <>
                       <Route path="/" element={<Loginform />} />
-              <Route path="*" element={<Loginform />} />
+                      <Route path="*" element={<Loginform />} />
                     </>
                   )
 
@@ -109,45 +109,6 @@ function App() {
   );
 }
 
-function PublicElement({ children }) {
-  return <>{children}</>
-}
 
-function AdminElement({ children }) {
-  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) {
-    return <>{children}</>;
-  } else {
-    return <Navigate to={"/loginform"} />
-  }
-}
-
-function StudentSectionElement({ children }) {
-  if (CURRENT_USER_TYPE === USER_TYPES.STUDENTSECTION_USER) {
-    return <>{children}</>;
-  } else {
-    return <Navigate to={"/loginform"} />
-  }
-}
-
-function UserElement({ children }) {
-  if (username) {
-    if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ||
-      CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
-      return <>{children}</>;
-    } else {
-      return <Navigate to={"/loginform"} />
-    }
-  } else {
-    return <Navigate to={"/loginform"} />
-  }
-}
-
-function StudentElement({ children }) {
-  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER || CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
-    return <>{children}</>;
-  } else {
-    return <Navigate to={"/loginform"} />
-  }
-}
 
 export default App;

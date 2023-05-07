@@ -51,15 +51,15 @@ const LoginForm = () => {
         console.error(error.response.data.message);
       }
       alert("login successfully");
-      window.location.reload();
       navigate("/");
+      window.location.reload();
 
     } else {
       alert("fill the values");
     }
     // const handleSubmit = async (event) => {
   };
-  
+
 
   return (
 
@@ -90,8 +90,8 @@ const LoginForm = () => {
           label="Remember me"
         />
         <a href="/">
-         <Button type='submit' color="success" variant="contained" style={btnstyle} onClick={SubmitBtn} fullWidth>Sign in</Button>
-         </a>
+          <Button type='submit' color="success" variant="contained" style={btnstyle} onClick={SubmitBtn} fullWidth>Sign in</Button>
+        </a>
         <Typography >
           <Link href="#" >
             Forgot password ?

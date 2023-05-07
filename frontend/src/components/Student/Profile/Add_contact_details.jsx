@@ -47,7 +47,7 @@ function Add_C_d() {
         title="Contact Details"
       />
       <CardContent>
-        <Box
+        <Box style={{ maxHeight: 400, overflow: 'auto' }}
           component="form"
           sx={{
             '& .MuiTextField-root': {

@@ -51,7 +51,7 @@ function Add_EducationDetails() {
         title="Educational Details"
       />
       <CardContent>
-        <Box
+        <Box style={{ maxHeight: 400, overflow: 'auto' }}
           component="form"
           sx={{
             '& .MuiTextField-root': {

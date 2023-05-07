@@ -95,7 +95,7 @@ const Branch = () => {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
 
-      <Box
+      <Box style={{ maxHeight: 650, overflow: 'auto' }}
         component="form"
         sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
         noValidate
