@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box, CardContent, Card, CardHeader } from "@mui/material/";
+import { InputLabel,Alert, FormControl,Grid, Select, MenuItem, Button, Box, CardContent, Card, CardHeader } from "@mui/material/";
 
 function Promotion() {
   const [Rolllists, SetRolllists] = useState({
@@ -10,6 +10,10 @@ function Promotion() {
     Semester: "",
     Batch: "",
   });
+
+  const [error, setError] = useState("");
+
+  const [alert, setAlert] = useState("");
 
   const [studentlist, setstudentlist] = useState([]);
 
@@ -123,7 +127,8 @@ function Promotion() {
         .catch((error) => {
           console.error(error);
         });
-      navigate("/");
+        setAlert("Selected Students Promoted");
+      navigate("/promotion");
     }
   };
 
@@ -131,26 +136,42 @@ function Promotion() {
 
   console.log(Rolllists);
   return (
-    <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 },
-        whiteSpace: "normal",
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
+    // <Box
+    //   component="form"
+    //   sx={{
+    //     "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 },
+    //     whiteSpace: "normal",
+    //   }}
+    //   noValidate
+    //   autoComplete="off"
+    // >
+    //   <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#f5f5f5' }}>
 
 
-        <CardContent>
+    //     <CardContent>
 
-          <CardHeader
-            style={{ backgroundColor: "lightblue" }}
-            title="Promotion"
-          />
+    //       <CardHeader
+    //         style={{ backgroundColor: "lightblue" }}
+    //         title="Promotion"
+    //       />
+    <div style={{ height: '100vh', width: '100%' }}>
+
+      <Box sx={{ width: '100%', height: '100%' }}>
+
+        <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#F5F5F5' }}>
+
+          <CardContent>
+            <CardHeader
+              style={{ backgroundColor: "lightblue" }}
+              title="Promote Students"
+            />
+
+          <hr />
           <div>
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+
+          <Grid container spacing={1} >
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Degree</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -168,8 +189,9 @@ function Promotion() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Batch</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -187,8 +209,9 @@ function Promotion() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Batch</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -206,8 +229,9 @@ function Promotion() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Batch</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -225,6 +249,22 @@ function Promotion() {
                 ))}
               </Select>
             </FormControl>
+                </Grid>
+              </Grid>
+
+             
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <Button variant="contained" onClick={fetchStudents}
+                    sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>
+                    Show Students
+                  </Button>
+                </Grid>
+
+          
+
+            
+
+           
 
             {/* <select
           name="Degree"
@@ -284,10 +324,7 @@ function Promotion() {
           ))}
         </select> */}
 
-            <Button variant="contained" onClick={fetchStudents}
-              sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>
-              Show Students
-            </Button>
+            
 
             <br></br>
             <br></br>
@@ -356,13 +393,29 @@ function Promotion() {
                   sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>
                   Assign Semester
                 </Button>
+
+                <div>
+            {alert ? <>
+                <Alert severity='success'>{alert}</Alert>
+
+            </>: <>
+                {/* <Alert severity='error'>{error}</Alert> */}
+            </>
+            }
+                    
+            </div>
               </div>
             </div>
           </div>
-        </CardContent>
+        {/* </CardContent>
 
       </Card>
-    </Box>
+    </Box> */}
+    </CardContent>
+        </Card>
+      </Box>
+
+    </div>
   );
 }
 

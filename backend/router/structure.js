@@ -49,7 +49,6 @@ router.post("/structure", verifyToken, async (req, res) => {
     semester,
     branch_id,
     board_of_study,
-    session_id,
     coursecode,
     coursename,
     lecture,
@@ -71,7 +70,6 @@ router.post("/structure", verifyToken, async (req, res) => {
     !semester ||
     !branch_id ||
     !board_of_study ||
-    !session_id ||
     !coursecode ||
     !coursename ||
     !lecture ||
@@ -111,7 +109,6 @@ router.post("/structure", verifyToken, async (req, res) => {
                 semester,
                 branch_id,
                 board_of_study,
-                session_id,
                 coursecode,
                 coursename,
                 lecture,

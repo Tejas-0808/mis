@@ -9,7 +9,9 @@ const City = () => {
 
   const fetchAllBranch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/city");
+      const res = await axios.get("http://localhost:3001/city", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCity(res.data);
       console.log(res.data);
     } catch (err) {
@@ -28,8 +30,12 @@ const City = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id)
-      await axios.delete("http://localhost:3001/city/" + id)
-      const res = await axios.get("http://localhost:3001/city");
+      await axios.delete("http://localhost:3001/city/" + id, {
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      const res = await axios.get("http://localhost:3001/city", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setCity(res.data);
       // window.location.reload()
       // navigate("/"); 
@@ -57,13 +63,14 @@ const City = () => {
             title="City Management"
           />
 
+          <hr />
+
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              <TableHead style={{ backgroundColor: '#1976d2'} }>
                 <TableRow>
                   <TableCell align="center">City Id</TableCell>
                   <TableCell align="center">City Name</TableCell>
-                  <TableCell align="center">State Id</TableCell>
                   <TableCell align="center"></TableCell>
                 </TableRow>
 
@@ -74,9 +81,9 @@ const City = () => {
                     key={city.city_id} className="city"
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    <TableCell align="center">{city.city_name}</TableCell>
-                    <TableCell align="center">{city.isDistrict}</TableCell>
-                    <TableCell align="center">{city.state_id}</TableCell>
+                    <TableCell align="center">{city.city_id}</TableCell>
+                     <TableCell align="center">{city.city_name}</TableCell>
+                    {/* <TableCell align="center">{city.state_id}</TableCell> */}
                     <TableCell align="center">
                       <Link to={`/updatecity/${city.city_id}`}><Button variant='contained' color='success'>Update</Button></Link>
                       &nbsp;&nbsp;&nbsp;&nbsp;

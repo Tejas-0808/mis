@@ -230,22 +230,22 @@ function AddStructure() {
                 </Select>
               </FormControl>
 
-              <FormControl sx={{ m: 1, minWidth: "25ch" }}>
-                <InputLabel id="demo-simple-select-helper-label">BOS</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  name="board_of_study"
-                  placeholder="Select BOS"
-                  className="form-select-Bos"
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value="">-- Select BOS --</MenuItem>
-                  {Bos.map((Bos) => (
-                    <MenuItem value={Bos.dept_id}>{Bos.department}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+        <FormControl sx={{ m: 1, minWidth: "25ch" }}>
+          <InputLabel id="demo-simple-select-helper-label">BOS</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            name="board_of_study"
+            placeholder="Select BOS"
+            className="form-select-Bos"
+            onChange={handleChange}
+            required
+          >
+            <MenuItem value="">-- Select BOS --</MenuItem>
+            {Bos.map((Bos) => (
+              <MenuItem value={Bos.bos_id}>{Bos.bos_name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
               <TextField
                 required
@@ -294,14 +294,14 @@ function AddStructure() {
             value={result}
           />
         </h3> */}
-              <TextField
-                type="number"
-                value={result}
-                required
-                placeholder="Total"
-                name="total"
-                onChange={handleChange}
-              />
+        {/* <TextField
+          type="number"
+          value={result}
+          required
+          placeholder="Total"
+          name="total"
+          onChange={handleChange}
+        /> */}
 
               <TextField
                 type="number"

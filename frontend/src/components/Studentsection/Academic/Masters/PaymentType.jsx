@@ -9,7 +9,9 @@ const PaymentType = () => {
 
   const fetchAllPayment = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/payment");
+      const res = await axios.get("http://localhost:3001/payment",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setPayment(res.data);
       console.log(res.data);
     } catch (err) {
@@ -28,8 +30,12 @@ const PaymentType = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id)
-      await axios.delete("http://localhost:3001/payment/" + id)
-      const res = await axios.get("http://localhost:3001/payment");
+      await axios.delete("http://localhost:3001/payment/" + id,{
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      const res = await axios.get("http://localhost:3001/payment",{
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setPayment(res.data);
       // window.location.reload()
       // navigate("/");
@@ -56,10 +62,11 @@ const PaymentType = () => {
             style={{ backgroundColor: "lightblue", textAlign: 'center' }}
             title="Payment Management"
           />
+          <hr />
 
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              <TableHead style={{ backgroundColor: '#1976d2'} }>
                 <TableRow>
                   <TableCell align="center">Payment Id</TableCell>
                   <TableCell align="center">Payment Name</TableCell>

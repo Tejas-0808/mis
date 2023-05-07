@@ -44,7 +44,9 @@ function IdentityCard() {
 
   const fetchBatch = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/batch");
+      const res = await axios.get("http://localhost:3001/batch", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setBatch(res.data);
     } catch (err) {
       console.log(err);
@@ -53,7 +55,9 @@ function IdentityCard() {
 
   const fetchSem = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/semester");
+      const res = await axios.get("http://localhost:3001/semester", {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setSem(res.data);
       console.log(res.data);
     } catch (err) {
@@ -64,7 +68,9 @@ function IdentityCard() {
   const fetchStudents = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/identitycard", IdentityCard);
+      const res = await axios.post("http://localhost:3001/identitycard", IdentityCard, {
+        headers: { authorization: localStorage.getItem('token') }
+      });
       setstudentlist(res.data);
       // setBranch(res.data);
       // console.log(res.data+"!");
@@ -99,21 +105,36 @@ function IdentityCard() {
   };
 
   return (
-    <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
-      <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
+    // <Card sx={{ minWidth: 275, backgroundColor: '#f5f5f5' }}>
+    //   <h1>&nbsp;&nbsp;Academic Reports</h1><hr />
+    //   <CardContent>
+    //     <Box
+    //       component="form"
+    //       sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
+    //       noValidate
+    //       autoComplete="off"
+    //     >
+    //       <CardHeader
+    //         style={{ backgroundColor: "lightblue" }}
+    //         title="Identity Card Generation"
+    //       />.
+    <Box
+    component="form"
+    sx={{
+      width: '100%', height: '100%'
+    }}
+    noValidate
+    autoComplete="off">
+    <Card sx={{
+      m: 1, minWidth: 275, backgroundColor: '#F5F5F5'
+    }}>
       <CardContent>
-        <Box
-          component="form"
-          sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
-          noValidate
-          autoComplete="off"
-        >
-          <CardHeader
-            style={{ backgroundColor: "lightblue" }}
-            title="Identity Card Generation"
-          />
+        <CardHeader
+          style={{ backgroundColor: "lightblue", textAlign: 'center' }}
+          title="Identity Card Generation"
+        />
 
-          <><div>
+        <div>
             &nbsp;&nbsp;
             <label>
               {/* Degree: */}
@@ -197,12 +218,9 @@ function IdentityCard() {
             </div>
 
           </div>
-
-
-          </>
-        </Box>
-      </CardContent>
-    </Card>
+     </CardContent>
+      </Card>
+    </Box>
   )
 }
 

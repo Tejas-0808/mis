@@ -30,9 +30,9 @@ router.get("/newuser", async (req,res)=> {
 //Adding student data
 router.post('/newuser', async (req, res) => {
 
-    const { First_Name, Middle_Name, Last_Name,Branch_id, Qualifications, role_id, Email_id, Phone_no, Address, Gender, Marital_Status} = req.body;
+    const { First_Name, Middle_Name, Last_Name,Branch_id, Qualifications, role_id, Email_id, Phone_No, Address, Gender, Marital_Status} = req.body;
 
-    if( !First_Name || !Middle_Name || !Last_Name || !Email_id || !Branch_id || !Phone_no  || !Gender  || !Address ) {
+    if( !First_Name || !Middle_Name || !Last_Name || !Email_id || !Branch_id || !Phone_No   ) {
         return res.status(422).json({error: "plz fill all fields properly"});
     }
 
@@ -51,7 +51,7 @@ router.post('/newuser', async (req, res) => {
                 (async()=>{
                     try{
 
-                      const data = await query("INSERT INTO staff_details (First_Name, Middle_Name, Last_Name, Branch_id, Qualifications, role_id, Email_id, Phone_no, Address, Gender, Marital_Status)  VALUES(?,?,?,?,?,?,?,?,?,?,?)",[
+                      const data = await query("INSERT INTO staff_details (First_Name, Middle_Name, Last_Name, Branch_id, Qualifications, role_id, Email_id, Phone_No, Address, Gender, Marital_Status)  VALUES(?,?,?,?,?,?,?,?,?,?,?)",[
                         First_Name, 
                         Middle_Name, 
                         Last_Name, 
@@ -59,7 +59,7 @@ router.post('/newuser', async (req, res) => {
                         Qualifications,
                         role_id,
                         Email_id,
-                        Phone_no, 
+                        Phone_No, 
                         Address, 
                         Gender, 
                         Marital_Status ]);

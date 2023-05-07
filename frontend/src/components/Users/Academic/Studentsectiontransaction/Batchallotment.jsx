@@ -469,10 +469,8 @@ function Batchallotment() {
                       />
                     </TableCell>
                     <TableCell align="center">Roll No</TableCell>
-                    {/* <TableCell align="right">Session ID</TableCell> */}
-                    {/* <TableCell align="center">Name</TableCell> */}
-                    {/* <TableCell align="center">Batch</TableCell> */}
-                    {/* <TableCell align="center">FA Name</TableCell> */}
+                    {/* <TableCell align="center">Course Name </TableCell>  */}
+                    {/* <TableCell align="center">Name</TableCell>  */}
                   </TableRow>
 
                 </TableHead>
@@ -514,7 +512,7 @@ function Batchallotment() {
                 </TableBody>
               </Table>
             </TableContainer>
-
+{/* 
             <table id="studentList">
               {studentlist.map((student) => (
                 <table>
@@ -528,7 +526,6 @@ function Batchallotment() {
                           onChange={handleCheckboxChange}
                         />
                         <span>{student.roll_no}</span>
-                        {/* <input type="text" value={item.value} onChange={(event) => handleInputChange(event, item.id)} /> */}
                       </div>
                     </td>
                   </tr>
@@ -537,7 +534,7 @@ function Batchallotment() {
             </table>
 
             <p>Selected items: {JSON.stringify(checkedValues.length)}</p>
-            <br />
+            <br /> */}
 
 
           </CardContent>

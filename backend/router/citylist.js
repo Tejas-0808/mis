@@ -8,7 +8,7 @@ const query = util.promisify(pool.query).bind(pool);
 
 
 
-//adding branch
+//adding city
 
 router.get("/city", async (req,res)=> {
     try{
@@ -17,10 +17,7 @@ router.get("/city", async (req,res)=> {
             
             const data = await query("SELECT * FROM city_list");
             const result = await data;
-            console.log(result+"1");
             return res.json(result);
-
-            // return res.json(data);
             
         })()
     }
@@ -50,15 +47,14 @@ router.get("/city/:id", async (req, res) => {
 
 router.post('/city', async (req, res) => {
 
-    const {city_id, city_name, isDistrict, state_id} = req.body;
-    console.log(city_id);
+    const {city_name, isDistrict, state_id} = req.body;
     console.log(city_name);
     console.log(isDistrict);
     console.log(state_id);
     // console.log(HOD);
     // console.log(students_enrolled);
 
-        if(!city_id || !city_name || !isDistrict || !state_id){
+        if( !city_name || !state_id){
             return res.status(422).json({error: "plz fill all fields properly"});
         }
     
@@ -77,7 +73,7 @@ router.post('/city', async (req, res) => {
                     (async()=>{
                         try{
     
-                          const data = await query("INSERT INTO city_list VALUES(?,?,?,?)",[city_id, city_name, isDistrict, state_id]);
+                          const data = await query("INSERT INTO city_list (city_name, isDistrict, state_id) VALUES(?,?,?)",[ city_name, isDistrict, state_id]);
                           console.log(data[0]);
                           res.status(200).json({msg: "city added successfully"})
                         }

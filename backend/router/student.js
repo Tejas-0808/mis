@@ -13,8 +13,12 @@ router.get("/students/:course", verifyToken, async (req,res)=> {
          //const roll_no = 'BE19F01F018'
         (async()=>{
             
+           
             const data = await query("SELECT roll_no FROM courses_taken_stud WHERE JSON_CONTAINS(courses,  JSON_ARRAY(?))",course);
             const result = await data;
+            // const roll = await query("SELECT roll_no, First_Name, Last_Name FROM student_info where roll_no = ?",[data]);
+            // console.log(roll);
+            
             console.log(result);
             return res.json(result);
 
