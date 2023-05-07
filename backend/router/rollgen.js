@@ -6,7 +6,7 @@ const { pool } = require("../db/mySql");
 const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
 
-
+ 
 router.get("/rollgen", async (req, res) => {
     const { admission_batch, department, degree, semester } = req.query;
     console.log(admission_batch)
