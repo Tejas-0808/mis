@@ -162,7 +162,7 @@ function Courseallotment() {
 
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
-            title="Course Allotment"
+            title="Course Teacher Allotment"
           />
           <div>
 
