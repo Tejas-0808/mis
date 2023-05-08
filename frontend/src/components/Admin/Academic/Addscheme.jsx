@@ -11,19 +11,23 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { CardContent, Card, CardHeader } from "@mui/material/";
+import { Alert,CardContent, Card, CardHeader } from "@mui/material/";
 
 
 function Addscheme() {
+
+  const [branch, setbranch] = useState([]);
   const [CourseCategory, setCourseCategory] = useState([]);
   const [MasterScheme, setMasterScheme] = useState([]);
   const [scheme, setScheme] = useState({
-    scid: "",
     master_sch_id: "",
     category: "",
+    branch: "",
     ft: "",
     pt: ""
   });
+  const [alert, setAlert] = useState("");
+
 
   const fetchCourseCategory = async () => {
     try {
@@ -51,6 +55,16 @@ function Addscheme() {
   useEffect(() => {
     fetchMasterScheme();
     fetchCourseCategory();
+    axios
+      .get("http://localhost:3001/branch", {
+        headers: { authorization: localStorage.getItem('token') }
+      })
+      .then((response) => {
+        setbranch(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, [])
 
   const navigate = useNavigate();
@@ -64,10 +78,11 @@ function Addscheme() {
       await axios.post("http://localhost:3001/scheme", scheme, {
         headers: { authorization: localStorage.getItem('token') }
       });
+        setAlert("Scheme added Successfully");
       navigate("/scheme");
     } catch (err) {
-      console.log(err);
-      // setError(true)
+      console.log(err.response.data.error);
+        setAlert(err.response.data.error);
     }
   };
 
@@ -75,43 +90,7 @@ function Addscheme() {
   const [batch, setBatch] = useState([]);
 
   return (
-    // <div className="form">
-    //   ADD
-    //   <input type="number" placeholder="ID" name="scid" onChange={handleChange} />
-    //   <label>
-    //     Master Scheme ID:
-    //     <select
-    //       name="master_sch_id"
-    //       placeholder="Master id"
-    //       className="form-select-MasterschemeId"
-    //       onChange={handleChange}
-    //       required
-    //     >
-    //       <option value="">-- Select Masterscheme ID --</option>
-    //       {MasterScheme.map((MasterScheme) => (
-    //         <option value={MasterScheme.mastersch_id}>{MasterScheme.mastersch_id}</option>
-    //       ))}
-    //     </select>
-    //   </label>
-    //   <label>
-    //     Category:
-    //     <select
-    //       name="category"
-    //       placeholder="Category"
-    //       className="form-select-MasterschemeId"
-    //       onChange={handleChange}
-    //       required
-    //     >
-    //       <option value="">-- Select Course Category --</option>
-    //       {CourseCategory.map((CourseCategory) => (
-    //         <option value={CourseCategory.name}>{CourseCategory.name}</option>
-    //       ))}
-    //     </select>
-    //   </label>
-    //   <input type="number" placeholder="ft" name="ft" onChange={handleChange} />
-    //   <input type="number" placeholder="pt" name="pt" onChange={handleChange} />
-    //   <button onClick={handleClick}>Add</button>
-    // </div>
+
     <div style={{ height: '100vh', width: '100%' }}>
 
       <Box
@@ -130,15 +109,6 @@ function Addscheme() {
               title="ADD SCHEME"
             />
 
-
-            <TextField
-              required
-              type="number"
-              variant="outlined"
-              label="Scheme ID"
-              name="scid"
-              onChange={handleChange}
-            />
             <FormControl variant="outlined" sx={{ m: 1, minWidth: 200 }}>
               <InputLabel id="demo-simple-select-label">Master Scheme</InputLabel>
               <Select
@@ -176,6 +146,25 @@ function Addscheme() {
               </Select>
             </FormControl>
 
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 200 }}>
+              <InputLabel id="demo-simple-select-label">Department</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                name="branch"
+                placeholder="Department"
+                className="form-select-branch"
+                onChange={handleChange}
+                required
+              >
+                <MenuItem value="">-- Select Department --</MenuItem>
+                {branch.map((item) => (
+                  <MenuItem key={item.Branch_id} value={item.Branch_id}>
+                    {item.Branch_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
             <TextField
               required
               type="number"
@@ -194,6 +183,13 @@ function Addscheme() {
               onChange={handleChange}
             />
             <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>Add</Button>
+            {alert ? <>
+                <Alert severity='error'>{alert}</Alert>
+
+            </>: <>
+                {/* <Alert severity='error'>{error}</Alert> */}
+            </>
+            }
           </CardContent>
 
         </Card>
