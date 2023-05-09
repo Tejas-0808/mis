@@ -57,7 +57,7 @@ const Scheme = () => {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
 
-      <Box
+      <Box style={{ maxHeight: 650, overflow: 'auto' }}
         component="form"
         sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
         noValidate
@@ -77,10 +77,9 @@ const Scheme = () => {
                 <TableHead>
 
                   <TableRow>
-                    <TableCell align="center">Scheme ID</TableCell>
-                    {/* <TableCell align="right">Session ID</TableCell> */}
                     <TableCell align="center">Master Scheme ID</TableCell>
                     <TableCell align="center">Course Category ID</TableCell>
+                    <TableCell align="center">Branch ID</TableCell>
                     <TableCell align="center">Full Time</TableCell>
                     <TableCell align="center">Part Time</TableCell>
                   </TableRow>
@@ -95,9 +94,9 @@ const Scheme = () => {
                       {/* <TableCell component="th" scope="row">
                   {Session.session_id}
                 </TableCell> */}
-                      <TableCell align="center">{scheme.scid}</TableCell>
-                      <TableCell align="center">{scheme.master_sch_id}</TableCell>
-                      <TableCell align="center">{scheme.category}</TableCell>
+                      <TableCell align="center">{scheme.master_scheme}</TableCell>
+                      <TableCell align="center">{scheme.course_category_name}</TableCell>
+                      <TableCell align="center">{scheme.branch_name}</TableCell>
                       <TableCell align="center">{scheme.ft}</TableCell>
                       <TableCell align="center">{scheme.pt}</TableCell>
                       <TableCell align="center">

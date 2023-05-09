@@ -49,7 +49,7 @@ function UpdateMasterscheme() {
     return (
         <div style={{ height: '100vh', width: '100%' }}>
 
-            <Box component="form"
+            <Box style={{ maxHeight: 650, overflow: 'auto' }} component="form"
                 sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" }, }}
                 noValidate
                 autoComplete="off"
