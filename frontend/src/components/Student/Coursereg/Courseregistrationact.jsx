@@ -64,7 +64,9 @@ const CourseRegActivity = () => {
         //     })
 
         axios
-            .get("http://localhost:3001/semester")
+            .get("http://localhost:3001/semester",{
+                headers: { authorization: localStorage.getItem('token') }
+              })
             .then((response) => {
                 setsemester(response.data);
             })
