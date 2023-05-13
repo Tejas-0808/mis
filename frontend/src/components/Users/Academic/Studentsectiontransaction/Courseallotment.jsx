@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader } from '@mui/material/';
+import { InputLabel, FormControl, Select, MenuItem, Button, Box, Card, CardContent, CardHeader, Alert } from '@mui/material/';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -26,7 +26,8 @@ function Courseallotment() {
   });
 
   const navigate = useNavigate();
-
+  const [alert, setAlert] = useState("");
+  const [alertsucc, setAlertsucc] = useState("");
   const [session, setSession] = useState([]);
   const [degree, setdegree] = useState([]);
   const [branch, setbranch] = useState([]);
@@ -38,6 +39,7 @@ function Courseallotment() {
   const [teacher, setTeacher] = useState([]);
   const [addteacher, setaddTeacher] = useState([]);
   const [courseteacherlist, setCourseteacherlist] = useState([]);
+  const token = localStorage.getItem('token')
 
 
   useEffect(() => {
@@ -131,6 +133,29 @@ function Courseallotment() {
 
   }, [Courseallotment]);
 
+
+  const handleDelete = async (id) => {
+    try {
+      console.log(id);
+      await axios.delete("http://localhost:3001/courseallotment/" + id, {
+        headers: { authorization: token }
+      });
+      const res = await axios.get("http://localhost:3001/courseallotment", {
+        headers: { authorization: token }
+      });
+      setCourseteacherlist(res.data);
+      setAlert("");
+      setAlertsucc("Course Deleted");
+      // setBranch(res.data);
+      // window.location.reload()
+      // navigate("/");
+    } catch (err) {
+      console.log(err);
+      setAlert(err.response.data.error);
+    }
+
+  }
+
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -138,14 +163,20 @@ function Courseallotment() {
       axios.get("http://localhost:3001/courseallotment")
         .then((response) => {
           setCourseteacherlist(response.data);
+          setAlert("");
+         setAlertsucc("Course alloted");
           console.log(response.data);
         })
         .catch((error) => {
+        setAlert(error.response.data.error);
           console.error(error);
         });
 
     } catch (err) {
       console.log(err);
+      setAlertsucc("");
+      setAlert(err.response.data.error);
+
     }
   };
 
@@ -373,7 +404,7 @@ function Courseallotment() {
                 ))}
               </Select>
             </FormControl>
-            <Button variant="contained" onClick={handleClick}>submit</Button>
+            <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}  >submit</Button>
 
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -398,6 +429,17 @@ function Courseallotment() {
                       <TableCell align="center">{courseteacherlist.course_name}</TableCell>
                       <TableCell align="center">{courseteacherlist.teacher}</TableCell>
                       <TableCell align="center">{courseteacherlist.add_teacher}</TableCell>
+                      <TableCell align="center">
+                        {/* <button className="delete" onClick={() => handleDelete(branch.Branch_id)}>Delete</button> */}
+
+
+                        {/* <Link to={`/update/${branch.Branch_id}`}><Button color='success' variant='contained' className='update'>Update</Button></Link> */}
+                        &nbsp;&nbsp;&nbsp;
+                        <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(courseteacherlist.courseallot_ID)}>Delete</Button>
+                        {/* <button className="update">
+        <Link to={`/update/${branch.Branch_id}`}>Update</Link>
+      </button> */}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -407,58 +449,18 @@ function Courseallotment() {
             {/* <Button variant="contained" onClick={fetchCourses}>Fetch</Button> */}
             <br></br>
             <br></br>
-            <div className="facultyadv">
-              <div>
-
-
-                {/* <p>Selected itex`ms: {JSON.stringify(checkedValues)}</p> */}
-                <br />
-
-                {/* <FormControl variant="outlined" sx={{ m: 1, minWidth: 200 }}>
-                <InputLabel id="demo-simple-select-label">Batch</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  name="Degree"
-                  label="Select Degree"
-                  className="form-select-degree"
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value="">
-                    None
-                  </MenuItem>
-                  {batch.map((item) => (
-                    <MenuItem key={item} value={item}>
-                      {item}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
-
-                {/* <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-label">Faculty</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  name="Faculty"
-                  placeholder="Select FA"
-                  className="form-select-fa"
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value="">
-                    -- Select FA --
-                  </MenuItem>
-                  {faculty_advisor.map((item) => (
-                    <MenuItem key={item.staffID} value={item.staffID}>
-                      {item.First_Name + " " + item.Last_Name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
-
-
-              </div>
-            </div>
+            {alert ? <>
+                <Alert severity='error'>{alert}</Alert>
+            </>: <>
+                {/* <Alert severity='error'>{error}</Alert> */}
+            </>
+            }
+            {alertsucc ? <>
+                <Alert severity='success'>{alertsucc}</Alert>
+            </>: <>
+                {/* <Alert severity='error'>{error}</Alert> */}
+            </>
+            }
           </div>
         </CardContent>
       </Card>

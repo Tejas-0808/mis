@@ -149,12 +149,12 @@ const Structure = () => {
                 {Session.session_id}
               </TableCell> */}
                       <TableCell align="center">{structure.strid}</TableCell>
-                      <TableCell align="center">{structure.mastersch_id}</TableCell>
-                      <TableCell align="center">{structure.course_category}</TableCell>
+                      <TableCell align="center">{structure.master_scheme}</TableCell>
+                      <TableCell align="center">{structure.course_category_name}</TableCell>
                       <TableCell align="center">{structure.semester}</TableCell>
-                      <TableCell align="center">{structure.branch_id}</TableCell>
+                      <TableCell align="center">{structure.branch_name}</TableCell>
                       <TableCell align="center">{structure.board_of_study}</TableCell>
-                      <TableCell align="center">{structure.session_id}</TableCell>
+                      <TableCell align="center">{structure.session}</TableCell>
                       <TableCell align="center">{structure.coursecode}</TableCell>
                       <TableCell align="center">{structure.coursename}</TableCell>
                       <TableCell align="center">{structure.lecture}</TableCell>
