@@ -38,6 +38,7 @@ router.post('/courses_taken', async (req, res) => {
         // }
     
          try{
+            
     
             (async()=>{
                 try{

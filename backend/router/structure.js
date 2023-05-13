@@ -11,7 +11,8 @@ const verifyToken = require("./verifyToken");
 router.get("/structure",verifyToken, async (req, res) => {
   try {
     (async () => {
-      const data = await query("SELECT * FROM structure");
+      // const data = await query("SELECT * FROM structure");
+      const data = await query("SELECT strid,master_scheme.master_scheme as master_scheme, course_category.name as course_category_name,semester,branch.Branch_name as branch_name,b_o_s.bos_name as board_of_study, sessions.session_name as session,coursecode, coursename,lecture,tut,pract,ise1,ise2,ise3,PR,TW,ese,total_marks,total_credits,finally_offered, degree_list.degree_name as degree_name,course_type FROM structure INNER JOIN master_scheme ON structure.mastersch_id = master_scheme.mastersch_id INNER JOIN course_category ON structure.course_category =course_category.course_category_id INNER JOIN branch ON structure.branch_id = branch.Branch_id INNER JOIN b_o_s ON structure.board_of_study = b_o_s.bos_id INNER JOIN sessions ON structure.session_id = sessions.session_id INNER JOIN degree_list ON structure.degree_id = degree_list.degree_id")
       const result = await data;
       return res.json(result);
 

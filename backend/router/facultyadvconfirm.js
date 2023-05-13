@@ -121,6 +121,7 @@ router.get("/getfacid", async (req, res) => {
 })
 
 
+
 router.get("/getstdcourse", async (req, res) => {
     const roll = req.query.roll_no;
     try {

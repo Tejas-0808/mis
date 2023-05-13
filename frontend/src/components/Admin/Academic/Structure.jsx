@@ -95,7 +95,7 @@ const Structure = () => {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
 
-      <Box style={{ maxHeight: 650, overflow: 'auto' }}
+      <Box style={{ maxHeight: 650, maxWidth: '100%', overflow: 'auto' }}
         component="form"
         sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
         noValidate
@@ -149,12 +149,12 @@ const Structure = () => {
                 {Session.session_id}
               </TableCell> */}
                       <TableCell align="center">{structure.strid}</TableCell>
-                      <TableCell align="center">{structure.mastersch_id}</TableCell>
-                      <TableCell align="center">{structure.course_category}</TableCell>
+                      <TableCell align="center">{structure.master_scheme}</TableCell>
+                      <TableCell align="center">{structure.course_category_name}</TableCell>
                       <TableCell align="center">{structure.semester}</TableCell>
-                      <TableCell align="center">{structure.branch_id}</TableCell>
+                      <TableCell align="center">{structure.branch_name}</TableCell>
                       <TableCell align="center">{structure.board_of_study}</TableCell>
-                      <TableCell align="center">{structure.session_id}</TableCell>
+                      <TableCell align="center">{structure.session}</TableCell>
                       <TableCell align="center">{structure.coursecode}</TableCell>
                       <TableCell align="center">{structure.coursename}</TableCell>
                       <TableCell align="center">{structure.lecture}</TableCell>

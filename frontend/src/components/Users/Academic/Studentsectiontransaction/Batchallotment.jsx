@@ -349,7 +349,7 @@ function Batchallotment() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
-                  <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 200 }}>
+                  <FormControl fullWidth variant="outlined" sx={{ m: 1, minWidth: 120 }}>
                     <InputLabel id="demo-simple-select-label">Course Type</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
@@ -401,7 +401,7 @@ function Batchallotment() {
             <br></br>
             <Grid container spacing={1} style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', gap: '16px' }}>
               <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
-                <FormControl variant="outlined" sx={{ m: 1, minWidth: 200 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-label">Batch</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"

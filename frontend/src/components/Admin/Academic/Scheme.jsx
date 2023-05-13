@@ -77,6 +77,7 @@ const Scheme = () => {
                 <TableHead>
 
                   <TableRow>
+                  <TableCell align="center">Sr No.</TableCell>
                     <TableCell align="center">Master Scheme ID</TableCell>
                     <TableCell align="center">Course Category ID</TableCell>
                     <TableCell align="center">Branch ID</TableCell>
@@ -86,7 +87,7 @@ const Scheme = () => {
 
                 </TableHead>
                 <TableBody>
-                  {scheme.map((scheme) => (
+                  {scheme.map((scheme, index) => (
                     <TableRow
                       key={scheme.scid}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -94,6 +95,7 @@ const Scheme = () => {
                       {/* <TableCell component="th" scope="row">
                   {Session.session_id}
                 </TableCell> */}
+                <TableCell align="center">{index+1}</TableCell>
                       <TableCell align="center">{scheme.master_scheme}</TableCell>
                       <TableCell align="center">{scheme.course_category_name}</TableCell>
                       <TableCell align="center">{scheme.branch_name}</TableCell>

@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { TextField, Button, Box } from "@mui/material/";
+import { TextField, Button, Box,Alert } from "@mui/material/";
 import { Grid, Paper, Avatar, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -45,17 +45,20 @@ const LoginForm = () => {
         localStorage.setItem("username", username);
         setToken(response.data.token);
         setRole(response.data.role);
-        setError("");
+        
         setUsername("");
-        setPassword("");
-        console.log(response.data.message);
+        setPassword("");        
+        navigate("/");
+        window.location.reload();
+        console.log();
       } catch (error) {
         console.log(" error ");
+        setError(error.response.data.message);
         console.error(error.response.data.message);
       }
-      alert("login successfully");
-      navigate("/");
-      window.location.reload();
+      
+      // navigate("/");
+      // window.location.reload();
 
     } else {
       alert("fill the values");
@@ -104,6 +107,13 @@ const LoginForm = () => {
           <Link href="#" >
             Sign Up
           </Link>
+          {error ? <>
+                <Alert severity='error'>{error}</Alert>
+
+            </>: <>
+                {/* <Alert severity='error'>{error}</Alert> */}
+            </>
+            }
         </Typography>
       </Paper>
       {/* <div className="ListContainer">

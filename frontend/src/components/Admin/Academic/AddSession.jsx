@@ -25,6 +25,7 @@ function AddSession() {
     term: "",
     year: ""
   });
+  const navigate = useNavigate();
 
   const fetchAllSession = async () => {
     try {
@@ -64,7 +65,7 @@ function AddSession() {
       await axios.post("http://localhost:3001/session", Addsession, {
         headers: { authorization: localStorage.getItem('token') }
       });
-      // navigate("/session");
+      navigate("/session");
     } catch (err) {
       console.log(err);
       // setError(true)

@@ -55,6 +55,7 @@ router.post("/confirmcourse", async(req, res)=>{
             // pool.end();
             }
 
+            
            if(!userExists){
             (async () => {
                 try {

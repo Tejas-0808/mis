@@ -17,6 +17,7 @@ import AddBos from "../components/Admin/Academic/AddBos";
 import UpdateBos from "../components/Admin/Academic/UpdateBos";
 import Session from "../components/Admin/Academic/Session";
 import AddSession from "../components/Admin/Academic/AddSession";
+import Updatesession from "../components/Admin/Academic/Updatesession"
 import Createuserlogin from "../components/Admin/Users/Createuserlogin";
 import AdminDashboard from "../components/Admin/AdminDashboard";
 import Createstafflogin from "../components/Admin/Users/Createstafflogin";
@@ -52,6 +53,7 @@ function Adminlayout() {
                         <Route path="/updatestructure/:id" element={ <UpdateStructure /> } />
                         <Route path="/addsession" element={ <AddSession /> } />
                         <Route path="/session" element={ <Session /> } />
+                        <Route path="/updatesession/:id" element={ <Updatesession /> } />
                         <Route path="/createuserlogin" element={ <Createuserlogin /> } />
                         <Route path="/branch" element={<Branch />} />
                         <Route path="/admin" element={ <AdminDashboard /> } />

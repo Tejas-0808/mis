@@ -7,25 +7,7 @@ const { use, route } = require("./auth");
 const query = util.promisify(pool.query).bind(pool);
 const verifyToken = require("./verifyToken");
 
-//adding branch
 
-// router.get("/b_o_s",verifyToken, async (req, res) => {
-//   try {
-//     (async () => {
-//       const data = await query("SELECT * FROM b_o_s");
-//       const result = await data;
-//       return res.json(result);
-
-//       // return res.json(data);
-//       console.log(result);
-//     })();
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(400).json({ error: err });
-//   }
-// });
-
-//get particular religion
 
 router.get("/courseallotment", async (req, res) => {
   try {
@@ -46,20 +28,20 @@ router.post("/courseallotment", async (req, res) => {
   const { Course,Teacher,AddTeacher } = req.body;
   console.log(Course);
 
-//   if (!bos_id || !bos_name || !code) {
-//     return res.status(422).json({ error: "plz fill all fields properly" });
-//   }
+  if (!Course || !Teacher ) {
+    return res.status(422).json({ error: "plz fill all fields properly" });
+  }
   try {
     (async () => {
-      // try{
-      //     const data = await query("SELECT * FROM branch WHERE Branch_name=?",[Branch_name]);
-      //     userExists = await data[0];
-      // }
-      // finally{
-      //     // pool.end();
-      // }
+      try{
+          const data = await query("SELECT * FROM course_teacher WHERE course_name=?",[Course]);
+          courseExists = await data[0];
+      }
+      finally{
+          // pool.end();
+      }
 
-      if (true) {
+      if (!courseExists) {
         (async () => {
           try {
             const data = await query("INSERT INTO course_teacher (course_name,teacher,add_teacher) VALUES(?,?,?)", [
@@ -73,13 +55,32 @@ router.post("/courseallotment", async (req, res) => {
           }
         })();
       } else {
-        return res.status(422).json({ error: "b_o_s already exists" });
+        return res.status(422).json({ error: "Course already exists" });
       }
     })();
   } catch (err) {
     console.log(err);
   }
 
+});
+
+router.delete("/courseallotment/:id",verifyToken, async (req, res) => {
+  const courseallot_ID = req.params.id;
+  console.log(courseallot_ID);
+  try {
+    (async () => {
+      const q = "Delete from course_teacher where courseallot_ID = ?";
+
+      pool.query(q, [courseallot_ID], (err, data) => {
+        if (err) return res.json(err);
+
+        return res.json("Course Allotment Delected has been deleted");
+      });
+    })();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err });
+  }
 });
 
 module.exports = router;
