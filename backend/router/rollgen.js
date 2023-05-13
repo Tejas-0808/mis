@@ -11,7 +11,7 @@ router.get("/rollgen", async (req, res) => {
     const { admission_batch, department, degree, semester } = req.query;
 
     try {
-        const data = await query("SELECT First_Name, Middle_Name, Last_Name from student_info WHERE Admission_batch = ? AND Branch = ? AND Degree = ? AND Semester = ? ORDER BY Last_Name", [admission_batch, department, degree, semester]);
+        const data = await query("SELECT roll_no, First_Name, Middle_Name, Last_Name from student_info WHERE Admission_batch = ? AND Branch = ? AND Degree = ? AND Semester = ? ORDER BY Last_Name", [admission_batch, department, degree, semester]);
         const result = data;
         console.log("223"+result);
         return res.json(result);

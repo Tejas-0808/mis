@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Box, Button, Card, CardContent, CardHeader, TextField, nputLabel, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+import { Box, Button, Grid, Card,Table, TableCell,TableBody,TableContainer,Paper,TableRow, TableHead, CardContent, CardHeader, TextField, nputLabel, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 
 function RollNoGeneration() {
   const [batch, setBatch] = useState([]);
@@ -224,22 +224,25 @@ function RollNoGeneration() {
 
   return (
 
-    <Box
-      component="form"
-      sx={{ "& .MuiTextField-root": { m: 2, width: "25ch", padding: 2 }, whiteSpace: 'normal' }}
-      noValidate
-      autoComplete="off"
-    >
-      <Card sx={{ m: 4, minWidth: 275 }}>
+    <div style={{ height: '100%', width: '100%' }}>
+
+    <Box sx={{ width: '100%', height: '100%' }}>
+      {/* <Box> */}
+      <Card sx={{ m: 1, minWidth: 275, backgroundColor: '#F5F5F5' }}>
+
+
         <CardContent>
+
           <CardHeader
             style={{ backgroundColor: "lightblue" }}
             title="Roll Number Generation"
           />
-          <br></br>
 
-          <div>
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+          <div style={{ padding: '15px' }} >
+
+          <Grid container spacing={1} >
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Admission Batch:</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -257,8 +260,9 @@ function RollNoGeneration() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }} >
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Degree:</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -276,8 +280,9 @@ function RollNoGeneration() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Branch:</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -295,8 +300,9 @@ function RollNoGeneration() {
                 ))}
               </Select>
             </FormControl>
-
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={3} sx={{ p: 0, m: 0 }}>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
               <InputLabel id="demo-simple-select-label">Semester:</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -319,16 +325,62 @@ function RollNoGeneration() {
                   })}
               </Select>
             </FormControl>
+                </Grid>
+              </Grid>
 
-            <Button
-              variant='contained' className="Show" onClick={() => HandleShow(rollGen)}>Show</Button>
+            
 
+            
+
+            
+              <Box
+                m={1}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Button variant='contained' className="Show" onClick={() => HandleShow(rollGen)}>Show Students</Button>
+
+              </Box>
+            
+
+            
             <br></br>
             
+            <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                      <TableHead style={{ backgroundColor: '#1976d2' }}>
+
+                        <TableRow>
+                          <TableCell align="center">Roll No</TableCell>
+                          <TableCell align="center">Name</TableCell>
+                        </TableRow>
+
+                      </TableHead>
+                      <TableBody>
+                        {SData.map((student) => (
+                          <TableRow
+                            key={student.roll_no}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                          >
+                        
+
+                            <TableCell align="center">
+                              {student.roll_no ? student.roll_no : 'NULL'}
+                              </TableCell>
+                            <TableCell align="center">{student.First_Name + " " + student.Middle_Name + " " + student.Last_Name}</TableCell>
+                            
+                          </TableRow>
+
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+
 
             <div>
               <br></br>
-              <br></br>
+              {/* <br></br>
               <div>
                 <table id="courselist">
                   <tbody>
@@ -343,7 +395,7 @@ function RollNoGeneration() {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </div> */}
 
               <Box
                 m={1}
@@ -360,6 +412,7 @@ function RollNoGeneration() {
         </CardContent>
       </Card>
     </Box >   
+    </div>
   );
 }
 
