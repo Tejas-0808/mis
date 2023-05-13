@@ -411,7 +411,7 @@ function Courseallotment() {
                 <TableHead>
 
                   <TableRow>
-                    <TableCell align="center">Course ID</TableCell>
+                    <TableCell align="center">Sr No.</TableCell>
                     <TableCell align="center">Course Name</TableCell>
                     <TableCell align="center">Teacher name</TableCell>
                     <TableCell align="center">Addition Teacher Name</TableCell>
@@ -419,13 +419,13 @@ function Courseallotment() {
 
                 </TableHead>
                 <TableBody>
-                  {courseteacherlist.map((courseteacherlist) => (
+                  {courseteacherlist.map((courseteacherlist,index) => (
                     <TableRow
                       key={courseteacherlist.courseallot_ID}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
 
-                      <TableCell align="center">{courseteacherlist.courseallot_ID}</TableCell>
+                      <TableCell align="center">{index+1}</TableCell>
                       <TableCell align="center">{courseteacherlist.course_name}</TableCell>
                       <TableCell align="center">{courseteacherlist.teacher}</TableCell>
                       <TableCell align="center">{courseteacherlist.add_teacher}</TableCell>
