@@ -116,7 +116,7 @@ const B_o_s = () => {
 
                 </TableHead>
                 <TableBody>
-                  {B_o_s.map((B_o_s) => (
+                  {B_o_s.map((B_o_s, index) => (
                     <TableRow
                       key={B_o_s.bos_id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -124,7 +124,7 @@ const B_o_s = () => {
                       {/* <TableCell component="th" scope="row">
                     {Session.session_id}
                   </TableCell> */}
-                      <TableCell align="center">{B_o_s.bos_id}</TableCell>
+                      <TableCell align="center">{index}</TableCell>
                       <TableCell align="center">{B_o_s.bos_name}</TableCell>
                       <TableCell align="center">{B_o_s.code}</TableCell>
 

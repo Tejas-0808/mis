@@ -181,7 +181,6 @@ function Facultyadvisor() {
         .catch((error) => {
           console.error(error);
         });
-      navigate("/userdashboard");
     }
   };
 

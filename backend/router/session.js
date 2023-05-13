@@ -22,6 +22,28 @@ router.get("/session",verifyToken, async (req, res) => {
   }
 });
 
+//fetching data of particular id
+router.get("/session/:id",verifyToken, async (req, res) => {
+  const Sessionid = req.params.id;
+
+  try {
+    (async () => {
+      const data = await query(
+        "SELECT * FROM sessions where session_id = ?",
+        Sessionid
+      );
+      const result = await data[0];
+      // console.log(result);
+      return res.json(result);
+
+      // return res.json(data);
+    })();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err });
+  }
+});
+
 //adding session
 router.post("/session", verifyToken, async (req, res) => {
     // const session_id = req.body.session_id;

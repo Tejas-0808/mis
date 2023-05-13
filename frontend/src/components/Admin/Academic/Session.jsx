@@ -156,6 +156,8 @@ const Session = () => {
                 <TableHead>
 
                   <TableRow>
+                  <TableCell align="center">Sr No.</TableCell>
+
                     <TableCell align="center">Session ID</TableCell>
                     {/* <TableCell align="right">Session ID</TableCell> */}
                     <TableCell align="center">Session Name</TableCell>
@@ -165,7 +167,7 @@ const Session = () => {
 
                 </TableHead>
                 <TableBody>
-                  {Session.map((Session) => (
+                  {Session.map((Session,index) => (
                     <TableRow
                       key={Session.session_id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -173,10 +175,16 @@ const Session = () => {
                       {/* <TableCell component="th" scope="row">
                 {Session.session_id}
               </TableCell> */}
-                      <TableCell align="center">{Session.session_id}</TableCell>
+              <TableCell align="center">{index+1}</TableCell>
+
                       <TableCell align="center">{Session.session_name}</TableCell>
                       <TableCell align="center">{Session.term}</TableCell>
                       <TableCell align="center">{Session.year}</TableCell>
+                      <TableCell align="center">
+                        <Link to={`/updatesession/${Session.session_id}`}><Button color='success' variant='contained' className='update'>Update</Button></Link>
+                        &nbsp;&nbsp;&nbsp;
+                        <Button color='error' variant='contained' className="delete" onClick={() => handleDelete(Session.session_id)}>Delete</Button>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

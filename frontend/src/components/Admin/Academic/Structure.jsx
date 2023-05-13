@@ -95,7 +95,7 @@ const Structure = () => {
   return (
     <div style={{ height: '100vh', width: '100%' }}>
 
-      <Box style={{ maxHeight: 650, overflow: 'auto' }}
+      <Box style={{ maxHeight: 650, maxWidth: '100%', overflow: 'auto' }}
         component="form"
         sx={{ "& .MuiTextField-root": { m: 2, width: "25ch" }, whiteSpace: 'normal', border: 1 }}
         noValidate

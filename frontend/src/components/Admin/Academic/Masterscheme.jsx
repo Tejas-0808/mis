@@ -98,6 +98,8 @@ const Masterscheme = () => {
                 <TableHead>
 
                   <TableRow>
+                  <TableCell align="center">Sr No.</TableCell>
+
                     <TableCell align="center">Master Scheme ID</TableCell>
                     {/* <TableCell align="right">Session ID</TableCell> */}
                     <TableCell align="center">Master Scheme</TableCell>
@@ -107,7 +109,7 @@ const Masterscheme = () => {
 
                 </TableHead>
                 <TableBody>
-                  {Masterscheme.map((Masterscheme) => (
+                  {Masterscheme.map((Masterscheme,index) => (
                     <TableRow
                       key={Masterscheme.mastersch_id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -115,7 +117,8 @@ const Masterscheme = () => {
                       {/* <TableCell component="th" scope="row">
                   {Session.session_id}
                 </TableCell> */}
-                      <TableCell align="center">{Masterscheme.mastersch_id}</TableCell>
+                <TableCell align="center">{index+1}</TableCell>
+
                       <TableCell align="center">{Masterscheme.master_scheme}</TableCell>
                       <TableCell align="center">{Masterscheme.from_year}</TableCell>
                       <TableCell align="center">{Masterscheme.to_year}</TableCell>

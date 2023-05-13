@@ -1,6 +1,24 @@
 import "../../../styles/Student/dashboard.css";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 export default function Ssdashboard() {
+    const [Count, setCount] = useState([]);
+
+    useEffect(() => {
+
+
+        axios.get("http://localhost:3001/students")
+          .then((response) => {
+            setCount(response.data);
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+    
+      }, []);
+
     return (
         <>
             <div class="h-screen w-auto flex-grow-1 overflow-y-lg-auto position-relative">
@@ -13,7 +31,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Overall Students</span>
-                                                <span class="h3 font-bold mb-0">3568</span>
+                                                <span class="h3 font-bold mb-0">{Count.total}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -36,7 +54,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Total Male</span>
-                                                <span class="h3 font-bold mb-0">2100</span>
+                                                <span class="h3 font-bold mb-0">{Count.male}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -59,7 +77,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Total Female</span>
-                                                <span class="h3 font-bold mb-0">1200</span>
+                                                <span class="h3 font-bold mb-0">{Count.female}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-info text-white text-lg rounded-circle">

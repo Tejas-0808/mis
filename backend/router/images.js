@@ -21,7 +21,7 @@ router.post('/upload', upload.single('image'), (req, res) => {
       res.send('Image uploaded');
     });
   });
-  
+
   router.get("/images/:id", async (req,res)=> {
 
     const id = req.params.id;

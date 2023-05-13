@@ -121,7 +121,7 @@ const Branch = () => {
 
                 </TableHead>
                 <TableBody>
-                  {branch.map((branch) => (
+                  {branch.map((branch,index) => (
                     <TableRow
                       key={branch.Branch_id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -129,7 +129,7 @@ const Branch = () => {
                       {/* <TableCell component="th" scope="row">
                     {Session.session_id}
                   </TableCell> */}
-                      <TableCell align="center">{branch.Branch_id}</TableCell>
+                      <TableCell align="center">{index+1}</TableCell>
                       <TableCell align="center">{branch.Branch_name}</TableCell>
                       <TableCell align="center">{branch.HOD}</TableCell>
                       <TableCell align="center">{branch.Students_enrolled}</TableCell>

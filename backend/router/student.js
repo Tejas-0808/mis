@@ -7,13 +7,39 @@ const { use, route } = require('./auth');
 const query = util.promisify(pool.query).bind(pool);
 const verifyToken = require('./login')
 
+
+router.get("/students", verifyToken, async (req,res)=> {
+    try{
+
+        (async()=>{
+            
+            const data = await query("SELECT COUNT(Reg_Id) as count from student_info");
+            const datam = await query("SELECT COUNT(Reg_Id) as count from student_info where Gender='Male'");
+            const dataf = await query("SELECT COUNT(Reg_Id) as count from student_info where Gender='Female'");
+
+
+            const result ={total:data[0].count,
+            male:datam[0].count,
+            female: dataf[0].count};
+            
+            return res.json(result);
+
+            // return res.json(data);
+            
+        })()
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({error: err});
+    }
+})
+
 router.get("/students/:course", verifyToken, async (req,res)=> {
     try{
         const course  = req.params.course;
          //const roll_no = 'BE19F01F018'
         (async()=>{
             
-           
             const data = await query("SELECT roll_no FROM courses_taken_stud WHERE JSON_CONTAINS(courses,  JSON_ARRAY(?))",course);
             const result = await data;
             // const roll = await query("SELECT roll_no, First_Name, Last_Name FROM student_info where roll_no = ?",[data]);

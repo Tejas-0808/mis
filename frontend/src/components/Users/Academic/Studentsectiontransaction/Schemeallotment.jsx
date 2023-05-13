@@ -144,7 +144,6 @@ function Schemeallotment() {
   const handleUpdateButtonClick = () => {
     const newData = Rolllists.Scheme;
     console.log(newData);
-    // if (checkedValues.length > 0) {
     axios.post('http://localhost:3001/assignscheme', {
       checkedValues: checkedValues,
       newData: newData,
@@ -156,8 +155,6 @@ function Schemeallotment() {
         console.error(error);
       });
 
-    navigate("/");
-    // }
   };
 
   console.log(studentlist);
