@@ -16,11 +16,13 @@ router.get("/students", verifyToken, async (req,res)=> {
             const data = await query("SELECT COUNT(Reg_Id) as count from student_info");
             const datam = await query("SELECT COUNT(Reg_Id) as count from student_info where Gender='Male'");
             const dataf = await query("SELECT COUNT(Reg_Id) as count from student_info where Gender='Female'");
+            const users = await query("SELECT COUNT(staffID) as count from staff_details");
 
 
             const result ={total:data[0].count,
             male:datam[0].count,
-            female: dataf[0].count};
+            female: dataf[0].count,
+            users: users[0].count};
             
             return res.json(result);
 

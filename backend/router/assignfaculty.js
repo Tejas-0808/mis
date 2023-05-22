@@ -11,7 +11,7 @@ router.post('/assignfaculty', (req, res) => {
     const checkedValues = req.body.checkedValues;
     const newData = req.body.newData;
   console.log(newData);
-  console.log(checkedValues);
+  console.log(checkedValues+'checj');
 
     const query = `UPDATE student_info SET faculty_adv_id = ? WHERE roll_no IN (?)`;
     pool.query(query, [newData, checkedValues], (error, results) => {

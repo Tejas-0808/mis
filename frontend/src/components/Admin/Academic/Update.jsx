@@ -73,10 +73,8 @@ function Update() {
             <div className="form">
               {/* Update Branch */}
               <br />
-              <TextField type="number" required label="ID" name="Branch_id" value={branch.Branch_id} onChange={handleChange} />
               <TextField type="text" required label="Branch Name" name="Branch_name" value={branch.Branch_name} onChange={handleChange} />
               <TextField type="text" required label="HOD" name="HOD" value={branch.HOD} onChange={handleChange} />
-              <TextField type="number" required label="Students enrolled" name="Students_enrolled" value={branch.Students_enrolled} onChange={handleChange} />
               {/* <input type="number" placeholder="ID" name="Branch_id" value={branch.Branch_id} onChange={handleChange}/>
       <input type="text" placeholder="Brach Name" name="Branch_name" value={branch.Branch_name} onChange={handleChange}/>
       <input type="text" placeholder="HOD " name="HOD" value={branch.HOD} onChange={handleChange}/>

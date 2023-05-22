@@ -9,13 +9,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import AlertM from '../../AlertM';
 
 
 
 const Scheme = () => {
 
   const [scheme, setScheme] = useState([]);
-
+  const [alert, setAlert] = useState(false);
   const fetchAllScheme = async () => {
     try {
       const res = await axios.get("http://localhost:3001/scheme", {
@@ -42,6 +43,7 @@ const Scheme = () => {
       await axios.delete("http://localhost:3001/scheme/" + id, {
         headers: { authorization: localStorage.getItem('token') }
       })
+      setAlert(true);
       const res = await axios.get("http://localhost:3001/scheme", {
         headers: { authorization: localStorage.getItem('token') }
       });
@@ -117,6 +119,12 @@ const Scheme = () => {
             </TableContainer>
 
             <br></br>
+            {alert ? <>
+                  <AlertM type='success' message={'Scheme Deleted Successfully'}/>
+              </>: <>
+              </>}
+              <br />
+
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               {/* <button>
       <Link to="/addbranch">Add new Branch</Link>
@@ -124,7 +132,9 @@ const Scheme = () => {
               {/* <button>
           <Link to="/addscheme">Add new Scheme</Link>
         </button> */}
+  
               <Link to="/addscheme"><Button variant='contained'>Add New Scheme</Button></Link>
+             
             </Box>
             {/* <Button variant="contained" onClick={handleClick}>
             Add New Session

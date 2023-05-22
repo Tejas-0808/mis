@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import Login from "./components/Login/Login";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate,  } from "react-router-dom";
 import Loginform from "./components/Login/LoginForm";
 import axios from "axios";
-import Protected from "./components/Protected";
-import Navigation from "./components/Navbar/navbar";
 import Studentlayout from "./layouts/Studentlayout";
 import StudentSectionlayout from "./layouts/StudentSectionlayout";
 import Userslayout from "./layouts/Userslayout";
@@ -26,6 +23,7 @@ console.log(CURRENT_USER_TYPE);
 function App() {
   // const navigate = useNavigate();
   useEffect(() => {
+    
     const interval = setInterval(() => {
       const token = localStorage.getItem('token');
       //setToken(localStorage.getItem('token'))
@@ -56,27 +54,27 @@ function App() {
             <>
               {(() => {
 
-                if (CURRENT_USER_TYPE == USER_TYPES.STUDENT_USER) {
+                if (CURRENT_USER_TYPE === USER_TYPES.STUDENT_USER) {
 
                   return (
                     <Studentlayout />
                   )
 
-                } else if (CURRENT_USER_TYPE == USER_TYPES.STUDENTSECTION_USER) {
+                } else if (CURRENT_USER_TYPE === USER_TYPES.STUDENTSECTION_USER) {
 
                   return (
 
                     <StudentSectionlayout />
                   )
 
-                } else if (CURRENT_USER_TYPE == USER_TYPES.NORMAL_USER) {
+                } else if (CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
 
                   return (
 
                     <Userslayout />
                   )
 
-                } else if (CURRENT_USER_TYPE == USER_TYPES.ADMIN_USER) {
+                } else if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) {
 
                   return (
                     <Adminlayout />

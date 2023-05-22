@@ -12,7 +12,7 @@ router.get("/scheme",verifyToken, async (req, res) => {
   try {
     (async () => {
       // const data = await query("SELECT * FROM scheme");
-      const data = await query("SELECT ft,pt, master_scheme.master_scheme as master_scheme,branch.Branch_name as branch_name,  course_category.name as course_category_name FROM scheme INNER JOIN branch ON scheme.branch_id = branch.Branch_id INNER JOIN course_category ON scheme.course_category_id = course_category.course_category_id INNER JOIN master_scheme ON scheme.master_sch_id = master_scheme.mastersch_id");
+      const data = await query("SELECT scid,ft,pt, master_scheme.master_scheme as master_scheme,branch.Branch_name as branch_name,  course_category.name as course_category_name FROM scheme INNER JOIN branch ON scheme.branch_id = branch.Branch_id INNER JOIN course_category ON scheme.course_category_id = course_category.course_category_id INNER JOIN master_scheme ON scheme.master_sch_id = master_scheme.mastersch_id");
       const result = await data;
       console.log(result);
       return res.json(result);

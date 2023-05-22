@@ -31,7 +31,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Overall Students</span>
-                                                <span class="h3 font-bold mb-0">{Count.total}</span>
+                                                <span class="h3 font-bold mb-0">{Count.total+ 0}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -54,7 +54,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Total Male</span>
-                                                <span class="h3 font-bold mb-0">{Count.male}</span>
+                                                <span class="h3 font-bold mb-0">{Count.male+0}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -77,7 +77,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Total Female</span>
-                                                <span class="h3 font-bold mb-0">{Count.female}</span>
+                                                <span class="h3 font-bold mb-0">{Count.female+0}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
@@ -100,7 +100,7 @@ export default function Ssdashboard() {
                                         <div class="row">
                                             <div class="col">
                                                 <span class="h6 font-semibold text-sm d-block mb-2">Total Users</span>
-                                                <span class="h3 font-bold mb-0">4000</span>
+                                                <span class="h3 font-bold mb-0">{Count.total + Count.users}</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">

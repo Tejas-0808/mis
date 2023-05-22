@@ -11,8 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Alert,CardContent, Card, CardHeader } from "@mui/material/";
-
+import {Alert, CardContent, Card, CardHeader } from "@mui/material/";
+import AlertM from "../../AlertM";
 
 function Addscheme() {
 
@@ -184,7 +184,9 @@ function Addscheme() {
             />
             <Button variant="contained" onClick={handleClick} sx={{ ml: 1, alignSelf: 'center', mt: 1, height: 55 }}>Add</Button>
             {alert ? <>
-                <Alert severity='error'>{alert}</Alert>
+                {/* <Alert severity='error'>{alert}</Alert> */}
+                {/* <Alert type={isSuccess ? 'success' : 'error'} message={alertMessage} /> */}
+                <AlertM type='error' message={alert} kuch={true}/>
 
             </>: <>
                 {/* <Alert severity='error'>{error}</Alert> */}
